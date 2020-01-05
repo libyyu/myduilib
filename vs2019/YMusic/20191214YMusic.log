@@ -1,0 +1,36 @@
+
+--------------------------[2019-12-14 23:59:42]--------------------------
+Target = WIN32, CharSet = MutiChar, Mode = Debug
+---------------------------------LogBegin--------------------------------
+
+[Info][2019-12-14 23:59:42][34B0][Window.cpp:653]
+	RegisterSkin 
+	Xml: xml/main.xml
+	Type: 0
+	Zip: 
+	ResType: 1
+[Info][2019-12-14 23:59:42][34B0][Window.cpp:653]
+	RegisterSkin 
+	Xml: xml/musiclib.xml
+	Type: 0
+	Zip: 
+	ResType: 1
+[Info][2019-12-14 23:59:42][34B0][Window.cpp:653]
+	RegisterSkin 
+	Xml: xml/lrc.xml
+	Type: 0
+	Zip: 
+	ResType: 1
+[Info][2019-12-14 23:59:42][34B0][Window.cpp:653]
+	RegisterSkin 
+	Xml: xml/lrc-toolbar.xml
+	Type: 0
+	Zip: 
+	ResType: 1
+[Info][2019-12-14 23:59:42][34B0][Window.cpp:653]
+	RegisterSkin 
+	Xml: xml/lrc.xml
+	Type: 0
+	Zip: 
+	ResType: 1
+-----------------------------------LogEnd--------------------------------

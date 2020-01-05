@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="lib_json">
+      <UniqueIdentifier>{CF96B197-D0F0-9FC5-86A3-8A79BD036C44}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\thirdpart\json\lib_json\json_reader.cpp">
+      <Filter>lib_json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\json\lib_json\json_writer.cpp">
+      <Filter>lib_json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\json\lib_json\json_value.cpp">
+      <Filter>lib_json</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>

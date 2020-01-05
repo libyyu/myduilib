@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="release|Win32">
+      <Configuration>release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="release|x64">
+      <Configuration>release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="debug|Win32">
+      <Configuration>debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="debug|x64">
+      <Configuration>debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{2B0273C7-1C51-A735-96A0-0D6909960D54}</ProjectGuid>
+    <RootNamespace>taglib_plugin_test</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
+    <OutDir>..\..\release\</OutDir>
+    <IntDir>..\..\build\.objs\x86\release\taglib_plugin_test\windows\x86\release\</IntDir>
+    <TargetName>taglib_plugin_test</TargetName>
+    <TargetExt>.exe</TargetExt>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
+    <OutDir>..\..\release\</OutDir>
+    <IntDir>..\..\build\.objs\x64\release\taglib_plugin_test\windows\x64\release\</IntDir>
+    <TargetName>taglib_plugin_test</TargetName>
+    <TargetExt>.exe</TargetExt>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
+    <OutDir>..\..\debug\</OutDir>
+    <IntDir>..\..\build\.objs\x86\debug\taglib_plugin_test\windows\x86\debug\</IntDir>
+    <TargetName>taglib_plugin_test</TargetName>
+    <TargetExt>.exe</TargetExt>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
+    <OutDir>..\..\debug\</OutDir>
+    <IntDir>..\..\build\.objs\x64\debug\taglib_plugin_test\windows\x64\debug\</IntDir>
+    <TargetName>taglib_plugin_test</TargetName>
+    <TargetExt>.exe</TargetExt>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
+    <Link>
+      <AdditionalLibraryDirectories>..\..\release;..\..\libs;..\..\libs\release;..\..\release\plugins;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>taglib_plugin.lib;taglib.lib;ws2_32.lib;-nodefaultlib:"LIBCMT.lib";-nodefaultlib:"LIBC.lib";-nodefaultlib:"msvcrt.lib";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>-nologo -dynamicbase -nxcompat %(AdditionalOptions)</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <ProgramDatabaseFile>..\..\release\taglib_plugin_test.pdb</ProgramDatabaseFile>
+      <SubSystem>Console</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <WarningLevel>Level3</WarningLevel>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>..\..\thirdpart\taglib;..\..\thirdpart\taglib_plugin\taglib_plugin\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\thirdpart\taglib;..\..\thirdpart\taglib_plugin\taglib_plugin\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <AdditionalOptions>-EHsc -nologo -FS %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <PreBuildEvent>
+      <Command>@call pre-build.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PreBuildEvent>
+    <PreLinkEvent>
+      <Command>@call pre-link.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PreLinkEvent>
+    <PostBuildEvent>
+      <Command>@call post-build.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
+    <Link>
+      <AdditionalLibraryDirectories>..\..\release;..\..\libs;..\..\libs\release;..\..\release\plugins;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>taglib_plugin.lib;taglib.lib;ws2_32.lib;-nodefaultlib:"LIBCMT.lib";-nodefaultlib:"LIBC.lib";-nodefaultlib:"msvcrt.lib";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>-nologo -dynamicbase -nxcompat %(AdditionalOptions)</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <ProgramDatabaseFile>..\..\release\taglib_plugin_test.pdb</ProgramDatabaseFile>
+      <SubSystem>Console</SubSystem>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <WarningLevel>Level3</WarningLevel>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>..\..\thirdpart\taglib;..\..\thirdpart\taglib_plugin\taglib_plugin\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\thirdpart\taglib;..\..\thirdpart\taglib_plugin\taglib_plugin\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <AdditionalOptions>-EHsc -nologo -FS %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <PreBuildEvent>
+      <Command>@call pre-build.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PreBuildEvent>
+    <PreLinkEvent>
+      <Command>@call pre-link.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PreLinkEvent>
+    <PostBuildEvent>
+      <Command>@call post-build.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
+    <Link>
+      <AdditionalLibraryDirectories>..\..\debug;..\..\libs;..\..\libs\debug;..\..\debug\plugins;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>taglib_plugin.lib;taglib.lib;ws2_32.lib;-nodefaultlib:"LIBCMT.lib";-nodefaultlib:"LIBC.lib";-nodefaultlib:"msvcrt.lib";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>-nologo -dynamicbase -nxcompat %(AdditionalOptions)</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>..\..\debug\taglib_plugin_test.pdb</ProgramDatabaseFile>
+      <SubSystem>Console</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <WarningLevel>Level3</WarningLevel>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";__config_debug__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>..\..\thirdpart\taglib;..\..\thirdpart\taglib_plugin\taglib_plugin\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\thirdpart\taglib;..\..\thirdpart\taglib_plugin\taglib_plugin\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";__config_debug__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <AdditionalOptions>-EHsc -nologo %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <PreBuildEvent>
+      <Command>@call pre-build.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PreBuildEvent>
+    <PreLinkEvent>
+      <Command>@call pre-link.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PreLinkEvent>
+    <PostBuildEvent>
+      <Command>@call post-build.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
+    <Link>
+      <AdditionalLibraryDirectories>..\..\debug;..\..\libs;..\..\libs\debug;..\..\debug\plugins;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>taglib_plugin.lib;taglib.lib;ws2_32.lib;-nodefaultlib:"LIBCMT.lib";-nodefaultlib:"LIBC.lib";-nodefaultlib:"msvcrt.lib";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>-nologo -dynamicbase -nxcompat %(AdditionalOptions)</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>..\..\debug\taglib_plugin_test.pdb</ProgramDatabaseFile>
+      <SubSystem>Console</SubSystem>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <WarningLevel>Level3</WarningLevel>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>..\..\thirdpart\taglib;..\..\thirdpart\taglib_plugin\taglib_plugin\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\thirdpart\taglib;..\..\thirdpart\taglib_plugin\taglib_plugin\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <AdditionalOptions>-EHsc -nologo %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <PreBuildEvent>
+      <Command>@call pre-build.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PreBuildEvent>
+    <PreLinkEvent>
+      <Command>@call pre-link.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PreLinkEvent>
+    <PostBuildEvent>
+      <Command>@call post-build.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\thirdpart\taglib_plugin\test.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\taglib_plugin_test\windows\x86\debug\thirdpart\taglib_plugin\test.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\taglib_plugin_test\windows\x64\release\thirdpart\taglib_plugin\test.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\taglib_plugin_test\windows\x64\debug\thirdpart\taglib_plugin\test.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\taglib_plugin_test\windows\x86\release\thirdpart\taglib_plugin\test.cpp.obj</ObjectFileName>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

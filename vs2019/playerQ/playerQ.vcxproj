@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="release|Win32">
+      <Configuration>release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="release|x64">
+      <Configuration>release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="debug|Win32">
+      <Configuration>debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="debug|x64">
+      <Configuration>debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{706A4975-C476-3A83-C590-9077F0B0DEF2}</ProjectGuid>
+    <RootNamespace>playerQ</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
+    <OutDir>..\..\release\</OutDir>
+    <IntDir>..\..\build\.objs\x86\release\playerQ\windows\x86\release\</IntDir>
+    <TargetName>playerQ</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
+    <OutDir>..\..\release\</OutDir>
+    <IntDir>..\..\build\.objs\x64\release\playerQ\windows\x64\release\</IntDir>
+    <TargetName>playerQ</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
+    <OutDir>..\..\debug\</OutDir>
+    <IntDir>..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\</IntDir>
+    <TargetName>playerQ</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
+    <OutDir>..\..\debug\</OutDir>
+    <IntDir>..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\</IntDir>
+    <TargetName>playerQ</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
+    <Link>
+      <AdditionalLibraryDirectories>..\..\libs;..\..\libs\release;..\..\release;..\..\release\plugins;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>openal32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>-nologo %(AdditionalOptions)</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <ProgramDatabaseFile>..\..\release\playerQ.pdb</ProgramDatabaseFile>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <WarningLevel>Level3</WarningLevel>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";BUILD_AS_DLL;PLAYERQ_DLL_EXPORT;AL_ALEXT_PROTOTYPES;AL_BUILD_LIBRARY;AL_LIBTYPE_STATIC;_CRT_NONSTDC_NO_DEPRECATE;strcasecmp=_stricmp;strncasecmp=_strnicmp;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>..\..\thirdpart\play_plugin\playerQ;..\..\thirdpart\play_plugin\playerQ\src\openal32;..\..\thirdpart\play_plugin\playerQ\src\openal32\Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\thirdpart\play_plugin\playerQ;..\..\thirdpart\play_plugin\playerQ\src\openal32;..\..\thirdpart\play_plugin\playerQ\src\openal32\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";BUILD_AS_DLL;PLAYERQ_DLL_EXPORT;AL_ALEXT_PROTOTYPES;AL_BUILD_LIBRARY;AL_LIBTYPE_STATIC;_CRT_NONSTDC_NO_DEPRECATE;strcasecmp=_stricmp;strncasecmp=_strnicmp;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <AdditionalOptions>-EHsc -nologo -FS %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <PreBuildEvent>
+      <Command>@call pre-build.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PreBuildEvent>
+    <PreLinkEvent>
+      <Command>@call pre-link.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PreLinkEvent>
+    <PostBuildEvent>
+      <Command>@call post-build.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
+    <Link>
+      <AdditionalLibraryDirectories>..\..\libs;..\..\libs\release;..\..\release;..\..\release\plugins;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>openal32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>-nologo %(AdditionalOptions)</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <ProgramDatabaseFile>..\..\release\playerQ.pdb</ProgramDatabaseFile>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <WarningLevel>Level3</WarningLevel>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";BUILD_AS_DLL;PLAYERQ_DLL_EXPORT;AL_ALEXT_PROTOTYPES;AL_BUILD_LIBRARY;AL_LIBTYPE_STATIC;_CRT_NONSTDC_NO_DEPRECATE;strcasecmp=_stricmp;strncasecmp=_strnicmp;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>..\..\thirdpart\play_plugin\playerQ;..\..\thirdpart\play_plugin\playerQ\src\openal32;..\..\thirdpart\play_plugin\playerQ\src\openal32\Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\thirdpart\play_plugin\playerQ;..\..\thirdpart\play_plugin\playerQ\src\openal32;..\..\thirdpart\play_plugin\playerQ\src\openal32\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";BUILD_AS_DLL;PLAYERQ_DLL_EXPORT;AL_ALEXT_PROTOTYPES;AL_BUILD_LIBRARY;AL_LIBTYPE_STATIC;_CRT_NONSTDC_NO_DEPRECATE;strcasecmp=_stricmp;strncasecmp=_strnicmp;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <AdditionalOptions>-EHsc -nologo -FS %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <PreBuildEvent>
+      <Command>@call pre-build.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PreBuildEvent>
+    <PreLinkEvent>
+      <Command>@call pre-link.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PreLinkEvent>
+    <PostBuildEvent>
+      <Command>@call post-build.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
+    <Link>
+      <AdditionalLibraryDirectories>..\..\libs;..\..\libs\debug;..\..\debug;..\..\debug\plugins;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>openal32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>-nologo %(AdditionalOptions)</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>..\..\debug\playerQ.pdb</ProgramDatabaseFile>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <WarningLevel>Level3</WarningLevel>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";BUILD_AS_DLL;PLAYERQ_DLL_EXPORT;AL_ALEXT_PROTOTYPES;AL_BUILD_LIBRARY;AL_LIBTYPE_STATIC;_CRT_NONSTDC_NO_DEPRECATE;strcasecmp=_stricmp;strncasecmp=_strnicmp;__config_debug__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>..\..\thirdpart\play_plugin\playerQ;..\..\thirdpart\play_plugin\playerQ\src\openal32;..\..\thirdpart\play_plugin\playerQ\src\openal32\Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\thirdpart\play_plugin\playerQ;..\..\thirdpart\play_plugin\playerQ\src\openal32;..\..\thirdpart\play_plugin\playerQ\src\openal32\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";BUILD_AS_DLL;PLAYERQ_DLL_EXPORT;AL_ALEXT_PROTOTYPES;AL_BUILD_LIBRARY;AL_LIBTYPE_STATIC;_CRT_NONSTDC_NO_DEPRECATE;strcasecmp=_stricmp;strncasecmp=_strnicmp;__config_debug__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <AdditionalOptions>-EHsc -nologo %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <PreBuildEvent>
+      <Command>@call pre-build.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PreBuildEvent>
+    <PreLinkEvent>
+      <Command>@call pre-link.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PreLinkEvent>
+    <PostBuildEvent>
+      <Command>@call post-build.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
+    <Link>
+      <AdditionalLibraryDirectories>..\..\libs;..\..\libs\debug;..\..\debug;..\..\debug\plugins;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>openal32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>-nologo %(AdditionalOptions)</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>..\..\debug\playerQ.pdb</ProgramDatabaseFile>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <WarningLevel>Level3</WarningLevel>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";BUILD_AS_DLL;PLAYERQ_DLL_EXPORT;AL_ALEXT_PROTOTYPES;AL_BUILD_LIBRARY;AL_LIBTYPE_STATIC;_CRT_NONSTDC_NO_DEPRECATE;strcasecmp=_stricmp;strncasecmp=_strnicmp;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>..\..\thirdpart\play_plugin\playerQ;..\..\thirdpart\play_plugin\playerQ\src\openal32;..\..\thirdpart\play_plugin\playerQ\src\openal32\Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\thirdpart\play_plugin\playerQ;..\..\thirdpart\play_plugin\playerQ\src\openal32;..\..\thirdpart\play_plugin\playerQ\src\openal32\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";BUILD_AS_DLL;PLAYERQ_DLL_EXPORT;AL_ALEXT_PROTOTYPES;AL_BUILD_LIBRARY;AL_LIBTYPE_STATIC;_CRT_NONSTDC_NO_DEPRECATE;strcasecmp=_stricmp;strncasecmp=_strnicmp;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <AdditionalOptions>-EHsc -nologo %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <PreBuildEvent>
+      <Command>@call pre-build.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PreBuildEvent>
+    <PreLinkEvent>
+      <Command>@call pre-link.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PreLinkEvent>
+    <PostBuildEvent>
+      <Command>@call post-build.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alBuffer.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alBuffer.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alBuffer.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alBuffer.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alBuffer.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\alcReverb.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\alcReverb.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\alcReverb.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alc\alcReverb.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alc\alcReverb.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alState.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alState.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alState.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alState.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alState.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\playerQueue.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\playerQueue.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\playerQueue.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\playerQueue.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\playerQueue.cpp.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\loopback.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\loopback.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\loopback.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\loopback.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\loopback.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\mixer_c.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\mixer_c.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\mixer_c.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alc\mixer_c.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alc\mixer_c.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alAuxEffectSlot.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alAuxEffectSlot.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alAuxEffectSlot.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alAuxEffectSlot.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alAuxEffectSlot.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\hrtf.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alc\hrtf.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\hrtf.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alc\hrtf.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\hrtf.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\wave.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\wave.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\wave.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\wave.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\wave.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\ALu.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\ALu.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alc\ALu.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alc\ALu.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\ALu.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\null.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\null.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\null.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\null.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\null.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alEffect.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alEffect.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alEffect.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alEffect.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alEffect.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alError.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alError.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alError.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alError.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alError.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alExtension.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alExtension.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alExtension.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alExtension.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alExtension.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alListener.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alListener.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alListener.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alListener.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alListener.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\winmm.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\winmm.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\winmm.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\winmm.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\winmm.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\helpers.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\helpers.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\helpers.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alc\helpers.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alc\helpers.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\ALc.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\ALc.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alc\ALc.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alc\ALc.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\ALc.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\alcEcho.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\alcEcho.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\alcEcho.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alc\alcEcho.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alc\alcEcho.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\panning.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\panning.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\panning.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alc\panning.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alc\panning.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\alcDedicated.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alc\alcDedicated.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\alcDedicated.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alc\alcDedicated.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\alcDedicated.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\mmdevapi.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\mmdevapi.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\mmdevapi.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\mmdevapi.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\mmdevapi.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\alcModulator.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alc\alcModulator.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\alcModulator.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alc\alcModulator.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\alcModulator.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alSource.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alSource.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alSource.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alSource.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alSource.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\alhelpers.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\alhelpers.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\alhelpers.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\alhelpers.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\alhelpers.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\bs2b.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alc\bs2b.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\bs2b.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alc\bs2b.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\bs2b.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\dsound.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\dsound.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\dsound.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\dsound.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\dsound.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\alcConfig.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\alcConfig.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\alcConfig.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alc\alcConfig.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alc\alcConfig.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\mixer.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\mixer.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alc\mixer.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\mixer.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alc\mixer.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alThunk.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alThunk.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alThunk.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alThunk.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alThunk.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\alcThread.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\alcThread.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\alcThread.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alc\alcThread.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alc\alcThread.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alFilter.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alFilter.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alFilter.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alFilter.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alFilter.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\alcRing.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\alcRing.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\alcRing.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alc\alcRing.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alc\alcRing.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\mixer_sse.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playerQ\windows\x86\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\mixer_sse.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playerQ\windows\x64\debug\thirdpart\play_plugin\playerQ\src\openal32\alc\mixer_sse.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playerQ\windows\x86\release\thirdpart\play_plugin\playerQ\src\openal32\alc\mixer_sse.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playerQ\windows\x64\release\thirdpart\play_plugin\playerQ\src\openal32\alc\mixer_sse.c.obj</ObjectFileName>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\alhelpers.h" />
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\AL\al.h" />
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\AL\alc.h" />
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\AL\alext.h" />
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\AL\efx-creative.h" />
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\AL\efx-presets.h" />
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\AL\efx.h" />
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\Include\alAuxEffectSlot.h" />
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\Include\alBuffer.h" />
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\Include\alEffect.h" />
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\Include\alError.h" />
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\Include\alFilter.h" />
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\Include\alListener.h" />
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\Include\alMain.h" />
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\Include\alSource.h" />
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\Include\alThunk.h" />
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\Include\alu.h" />
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\Include\bs2b.h" />
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\Include\config.h" />
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\playerQueue.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

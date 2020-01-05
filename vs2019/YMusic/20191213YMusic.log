@@ -1,0 +1,151 @@
+
+--------------------------[2019-12-13 23:59:14]--------------------------
+Target = WIN32, CharSet = MutiChar, Mode = Debug
+---------------------------------LogBegin--------------------------------
+
+[Info][2019-12-13 23:59:15][630][Window.cpp:653]
+	RegisterSkin 
+	Xml: xml/main.xml
+	Type: 0
+	Zip: 
+	ResType: 1
+[Info][2019-12-13 23:59:15][630][UIDlgBuilder.cpp:299]
+	Begin Include xml/config.xml
+
+[Info][2019-12-13 23:59:15][630][UIDlgBuilder.cpp:299]
+	Begin Include xml/font-config.xml
+
+[Error][2019-12-13 23:59:15][630][UIDlgBuilder.cpp:312]
+	Failed to Include xml/font-config.xml
+
+[Info][2019-12-13 23:59:15][630][UIDlgBuilder.cpp:299]
+	Begin Include xml/scrollbar.xml
+
+[Error][2019-12-13 23:59:15][630][UIDlgBuilder.cpp:312]
+	Failed to Include xml/scrollbar.xml
+
+[Error][2019-12-13 23:59:15][630][UIDlgBuilder.cpp:312]
+	Failed to Include xml/config.xml
+
+[Info][2019-12-13 23:59:15][630][UIDlgBuilder.cpp:299]
+	Begin Include xml/sys-caption.xml
+
+[Info][2019-12-13 23:59:15][630][UIDlgBuilder.cpp:299]
+	Begin Include xml/style001.xml
+
+[Error][2019-12-13 23:59:15][630][UIDlgBuilder.cpp:312]
+	Failed to Include xml/style001.xml
+
+[Info][2019-12-13 23:59:15][630][UIDlgBuilder.cpp:299]
+	Begin Include xml/song-caption.xml
+
+[Info][2019-12-13 23:59:15][630][UIDlgBuilder.cpp:299]
+	Begin Include xml/style002.xml
+
+[Error][2019-12-13 23:59:15][630][UIDlgBuilder.cpp:312]
+	Failed to Include xml/style002.xml
+
+[Info][2019-12-13 23:59:15][630][UIDlgBuilder.cpp:299]
+	Begin Include xml/play-control.xml
+
+[Info][2019-12-13 23:59:15][630][UIDlgBuilder.cpp:299]
+	Begin Include xml/style003.xml
+
+[Error][2019-12-13 23:59:15][630][UIDlgBuilder.cpp:312]
+	Failed to Include xml/style003.xml
+
+[Info][2019-12-13 23:59:15][630][UIDlgBuilder.cpp:299]
+	Begin Include xml/main-container.xml
+
+[Info][2019-12-13 23:59:15][630][UIDlgBuilder.cpp:299]
+	Begin Include xml/song-container.xml
+
+[Info][2019-12-13 23:59:15][630][UIDlgBuilder.cpp:299]
+	Begin Include xml/play-list-container.xml
+
+[Info][2019-12-13 23:59:15][630][UIDlgBuilder.cpp:299]
+	Begin Include xml/song-list-container.xml
+
+[Info][2019-12-13 23:59:15][630][UIDlgBuilder.cpp:299]
+	Begin Include xml/lrc-container.xml
+
+[Info][2019-12-13 23:59:15][630][UIDlgBuilder.cpp:299]
+	Begin Include xml/style004.xml
+
+[Error][2019-12-13 23:59:15][630][UIDlgBuilder.cpp:312]
+	Failed to Include xml/style004.xml
+
+[Info][2019-12-13 23:59:15][630][Window.cpp:653]
+	RegisterSkin 
+	Xml: xml/musiclib.xml
+	Type: 0
+	Zip: 
+	ResType: 1
+[Info][2019-12-13 23:59:15][630][Window.cpp:653]
+	RegisterSkin 
+	Xml: xml/lrc.xml
+	Type: 0
+	Zip: 
+	ResType: 1
+[Info][2019-12-13 23:59:15][630][Window.cpp:653]
+	RegisterSkin 
+	Xml: xml/lrc-toolbar.xml
+	Type: 0
+	Zip: 
+	ResType: 1
+[Info][2019-12-13 23:59:15][630][UIDlgBuilder.cpp:299]
+	Begin Include xml/style005.xml
+
+[Error][2019-12-13 23:59:15][630][UIDlgBuilder.cpp:312]
+	Failed to Include xml/style005.xml
+
+[Info][2019-12-13 23:59:15][630][Window.cpp:653]
+	RegisterSkin 
+	Xml: xml/lrc.xml
+	Type: 0
+	Zip: 
+	ResType: 1
+[Info][2019-12-13 23:59:49][630][Window.cpp:653]
+	RegisterSkin 
+	Xml: xml/setting-window.xml
+	Type: 0
+	Zip: 
+	ResType: 1
+[Info][2019-12-13 23:59:49][630][UIDlgBuilder.cpp:299]
+	Begin Include xml/config.xml
+
+[Info][2019-12-13 23:59:49][630][UIDlgBuilder.cpp:299]
+	Begin Include xml/font-config.xml
+
+[Error][2019-12-13 23:59:49][630][UIDlgBuilder.cpp:312]
+	Failed to Include xml/font-config.xml
+
+[Info][2019-12-13 23:59:49][630][UIDlgBuilder.cpp:299]
+	Begin Include xml/scrollbar.xml
+
+[Error][2019-12-13 23:59:49][630][UIDlgBuilder.cpp:312]
+	Failed to Include xml/scrollbar.xml
+
+[Error][2019-12-13 23:59:49][630][UIDlgBuilder.cpp:312]
+	Failed to Include xml/config.xml
+
+[Info][2019-12-13 23:59:49][630][UIDlgBuilder.cpp:299]
+	Begin Include xml/About.xml
+
+[Info][2019-12-13 23:59:49][630][UIDlgBuilder.cpp:299]
+	Begin Include xml/General-Settings.xml
+
+[Info][2019-12-13 23:59:49][630][UIDlgBuilder.cpp:299]
+	Begin Include xml/LrcPanel-Settings.xml
+
+[Info][2019-12-13 23:59:49][630][UIDlgBuilder.cpp:299]
+	Begin Include xml/LrcDesk-Settings.xml
+
+[Info][2019-12-13 23:59:49][630][UIDlgBuilder.cpp:299]
+	Begin Include xml/Cache-Settings.xml
+
+[Info][2019-12-13 23:59:49][630][UIDlgBuilder.cpp:299]
+	Begin Include xml/Hotkey-Settings.xml
+
+[Info][2019-12-13 23:59:49][630][UIDlgBuilder.cpp:299]
+	Begin Include xml/Update-Settings.xml

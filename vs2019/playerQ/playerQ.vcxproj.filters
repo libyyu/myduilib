@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src\openal32">
+      <UniqueIdentifier>{D20D443F-A9E5-72ED-CC50-B8A15AA815AC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{AFD19EEF-3A3E-277D-9F05-B271490381AC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\openal32\alc">
+      <UniqueIdentifier>{D9F2042B-243D-5359-76D8-340DEE98BC58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\openal32\alc\backends">
+      <UniqueIdentifier>{93DF9042-F098-EB90-57FA-0B046DB7D81F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\openal32\AL">
+      <UniqueIdentifier>{0DB21C38-C0B5-7E46-4BD7-2A3AB07A8735}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\openal32\Include">
+      <UniqueIdentifier>{E6520FFF-928D-5FAD-237F-1B610A8E7EEC}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alBuffer.c">
+      <Filter>src\openal32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\alcReverb.c">
+      <Filter>src\openal32\alc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alState.c">
+      <Filter>src\openal32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\playerQueue.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\loopback.c">
+      <Filter>src\openal32\alc\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alSource.c">
+      <Filter>src\openal32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alAuxEffectSlot.c">
+      <Filter>src\openal32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\hrtf.c">
+      <Filter>src\openal32\alc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\wave.c">
+      <Filter>src\openal32\alc\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\ALu.c">
+      <Filter>src\openal32\alc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\null.c">
+      <Filter>src\openal32\alc\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alEffect.c">
+      <Filter>src\openal32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alError.c">
+      <Filter>src\openal32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alExtension.c">
+      <Filter>src\openal32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alListener.c">
+      <Filter>src\openal32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\winmm.c">
+      <Filter>src\openal32\alc\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\helpers.c">
+      <Filter>src\openal32\alc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\ALc.c">
+      <Filter>src\openal32\alc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\alcEcho.c">
+      <Filter>src\openal32\alc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\panning.c">
+      <Filter>src\openal32\alc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\alcDedicated.c">
+      <Filter>src\openal32\alc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\mmdevapi.c">
+      <Filter>src\openal32\alc\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alFilter.c">
+      <Filter>src\openal32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\alcConfig.c">
+      <Filter>src\openal32\alc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\alhelpers.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\bs2b.c">
+      <Filter>src\openal32\alc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\backends\dsound.c">
+      <Filter>src\openal32\alc\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\alcRing.c">
+      <Filter>src\openal32\alc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\mixer.c">
+      <Filter>src\openal32\alc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alThunk.c">
+      <Filter>src\openal32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\alcThread.c">
+      <Filter>src\openal32\alc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\mixer_c.c">
+      <Filter>src\openal32\alc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\mixer_sse.c">
+      <Filter>src\openal32\alc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\alc\alcModulator.c">
+      <Filter>src\openal32\alc</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\alhelpers.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\AL\al.h">
+      <Filter>src\openal32\AL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\AL\alc.h">
+      <Filter>src\openal32\AL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\AL\alext.h">
+      <Filter>src\openal32\AL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\AL\efx-creative.h">
+      <Filter>src\openal32\AL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\AL\efx-presets.h">
+      <Filter>src\openal32\AL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\AL\efx.h">
+      <Filter>src\openal32\AL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\Include\alAuxEffectSlot.h">
+      <Filter>src\openal32\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\Include\alBuffer.h">
+      <Filter>src\openal32\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\Include\alEffect.h">
+      <Filter>src\openal32\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\Include\alError.h">
+      <Filter>src\openal32\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\Include\alFilter.h">
+      <Filter>src\openal32\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\Include\alListener.h">
+      <Filter>src\openal32\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\Include\alMain.h">
+      <Filter>src\openal32\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\Include\alSource.h">
+      <Filter>src\openal32\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\Include\alThunk.h">
+      <Filter>src\openal32\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\Include\alu.h">
+      <Filter>src\openal32\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\Include\bs2b.h">
+      <Filter>src\openal32\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\play_plugin\playerQ\src\openal32\Include\config.h">
+      <Filter>src\openal32\Include</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

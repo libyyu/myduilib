@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{AFD19EEF-3A3E-277D-9F05-B271490381AC}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FValue.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FFile.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FWString.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FThread.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FSocket.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FIni.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FSemaphore.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FProcess.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FPool.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FPlugin.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FOStream.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FMemPool.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FMemory.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FDoStructFile.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FAlloctor.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FMD5.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FDataTable.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FLogFile.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FDReadAWriteLock.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FLock.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FDequeAddLock.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FCounter.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FListAddLock.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FBase64.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FConsole.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FFunc.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FAString.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FConvert.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FBuffer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FEncoding.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FAlloctor.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FAString.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FBase64.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FBuffer.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FConsole.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FConvert.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FCounter.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FDataTable.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FDequeAddLock.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FDoStructFile.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FDReadAWriteLock.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FEncoding.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FFile.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FFunc.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FIni.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\flib.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FListAddLock.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FLock.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FLogFile.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FMD5.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FMemory.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FMemPool.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FObserver.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FOStream.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FPlatform.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FPlugin.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FPool.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FProcess.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FSemaphore.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FSocket.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FThread.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FType.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FValue.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FWString.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

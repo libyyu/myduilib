@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="taglib_plugin\src">
+      <UniqueIdentifier>{47CE030C-D70F-8D5A-5C45-16CE291B6569}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="taglib_plugin">
+      <UniqueIdentifier>{10D31968-A0B3-0B36-9317-A9AA4D6C4105}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\thirdpart\taglib_plugin\taglib_plugin\src\tagFactory.cpp">
+      <Filter>taglib_plugin\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib_plugin\taglib_plugin\src\itag.cpp">
+      <Filter>taglib_plugin\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib_plugin\taglib_plugin\src\cueTag.cpp">
+      <Filter>taglib_plugin\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib_plugin\taglib_plugin\src\tagBase.cpp">
+      <Filter>taglib_plugin\src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\thirdpart\taglib_plugin\taglib_plugin\src\cueTag.h">
+      <Filter>taglib_plugin\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\taglib_plugin\taglib_plugin\src\itag.h">
+      <Filter>taglib_plugin\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\taglib_plugin\taglib_plugin\src\SmartPtr.h">
+      <Filter>taglib_plugin\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\taglib_plugin\taglib_plugin\src\tagBase.h">
+      <Filter>taglib_plugin\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\taglib_plugin\taglib_plugin\src\tagFactory.h">
+      <Filter>taglib_plugin\src</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

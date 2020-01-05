@@ -1,0 +1,14 @@
+
+--------------------------[2019-07-27 10:57:39]--------------------------
+Target = WIN32, CharSet = MutiChar, Mode = Debug
+---------------------------------LogBegin--------------------------------
+
+[Info][2019-07-27 10:57:40][2324][Window.cpp:653]
+	RegisterSkin 
+	Xml: mainwindow.xml
+	Type: 0
+	Zip: Srv.dat
+	ResType: 2
+[Error][2019-07-27 10:57:40][2324][UIRender.cpp:347]
+	(LoadImage)Failed LoadImage button/allbtn_nor.png
+-----------------------------------LogEnd--------------------------------

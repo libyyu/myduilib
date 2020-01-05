@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src\AgentClient">
+      <UniqueIdentifier>{B3186DA9-661B-CFB7-F13D-7BAB55E0D8A6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{AFD19EEF-3A3E-277D-9F05-B271490381AC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utility">
+      <UniqueIdentifier>{A2116C7F-EEF7-A60D-D1A0-0701DABB84BC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\AgentService">
+      <UniqueIdentifier>{18B7EFDB-6303-3F09-B59E-1FBD2D5EA808}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\thirdpart\Agent\src\AgentClient\dispatcher.cpp">
+      <Filter>src\AgentClient</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\Agent\src\Utility\misc.cpp">
+      <Filter>src\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\Agent\src\AgentClient\receiver.cpp">
+      <Filter>src\AgentClient</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\Agent\src\AgentClient\sock.cpp">
+      <Filter>src\AgentClient</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\Agent\src\AgentClient\process.cpp">
+      <Filter>src\AgentClient</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\Agent\src\Agent.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\Agent\src\AgentService\agentService.cpp">
+      <Filter>src\AgentService</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\thirdpart\Agent\src\Agent.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\Agent\src\AgentClient\dispatcher.h">
+      <Filter>src\AgentClient</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\Agent\src\AgentClient\process.h">
+      <Filter>src\AgentClient</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\Agent\src\AgentClient\receiver.h">
+      <Filter>src\AgentClient</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\Agent\src\AgentClient\registry_key.h">
+      <Filter>src\AgentClient</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\Agent\src\AgentClient\sock.h">
+      <Filter>src\AgentClient</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\Agent\src\AgentService\agentService.h">
+      <Filter>src\AgentService</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\Agent\src\Utility\misc.h">
+      <Filter>src\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\Agent\src\Utility\xiamiProtocol.h">
+      <Filter>src\Utility</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

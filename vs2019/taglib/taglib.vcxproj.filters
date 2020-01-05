@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="taglib\toolkit">
+      <UniqueIdentifier>{856DCF9C-DADC-728A-487D-9DBEE0D61A69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="taglib">
+      <UniqueIdentifier>{5D547CBA-6E64-9EA8-A8E9-13DCEBF59A07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="taglib\mpeg\id3v2\frames">
+      <UniqueIdentifier>{7823BB1D-3753-EB4B-9373-C1FFCF2BB0CA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="taglib\mpeg\id3v2">
+      <UniqueIdentifier>{B257E733-4199-7181-C6CE-FAF593A54990}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="taglib\mpeg">
+      <UniqueIdentifier>{BA76068F-075C-401D-EA04-A111F3201ECC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="taglib\wavpack">
+      <UniqueIdentifier>{896C8B73-DEDB-2E61-4C7C-5995E4D4D640}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="taglib\ogg\flac">
+      <UniqueIdentifier>{2B75EAE5-DE79-4CF3-699A-F8E7CE3E55E2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="taglib\ogg">
+      <UniqueIdentifier>{ED4FB2B3-66D6-A521-DA19-D5558A207EC0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="taglib\asf">
+      <UniqueIdentifier>{9D0622E0-168D-154E-89D0-458239D6EEED}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="taglib\ogg\vorbis">
+      <UniqueIdentifier>{5CDAFDF4-EC1C-8842-7152-11B63E286051}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="taglib\ogg\opus">
+      <UniqueIdentifier>{F3D06296-A6D3-C4A4-31F5-70989698CD93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="taglib\xm">
+      <UniqueIdentifier>{613EAD0B-8343-E659-661A-D9CD59F469E8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="taglib\ogg\speex">
+      <UniqueIdentifier>{A4E03594-EF2B-84C2-41C6-6576B986EDC1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="taglib\trueaudio">
+      <UniqueIdentifier>{DB486B78-2593-BAA6-782E-9B5AEFEF23A5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="taglib\mp4">
+      <UniqueIdentifier>{6A9E50F7-E425-4365-5768-7399076F1D04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="taglib\flac">
+      <UniqueIdentifier>{1DB5DBBC-6A9C-154A-4D44-763E565FF3F9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="taglib\riff\wav">
+      <UniqueIdentifier>{AF85EB27-6289-4D35-EDAA-F929524E5624}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="taglib\riff">
+      <UniqueIdentifier>{D57A008D-2260-3A1B-0508-9B0F0E2418CA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="taglib\ape">
+      <UniqueIdentifier>{91B5794C-0B3C-6BBA-7E7F-9BEE2E864559}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="taglib\it">
+      <UniqueIdentifier>{28C36873-4AC8-A1C1-2D9F-953521792550}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="taglib\s3m">
+      <UniqueIdentifier>{71CBF9E9-EB52-EC57-5E96-1C8B0E9CC5F6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="taglib\mod">
+      <UniqueIdentifier>{67399B46-E0C0-8DB4-5403-BDE8040A6753}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="taglib\mpc">
+      <UniqueIdentifier>{6AFC7D36-E483-6FA4-57C6-9FD807CD4943}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="taglib\riff\aiff">
+      <UniqueIdentifier>{217E699F-6BC9-B8CD-BE64-9981362521CC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="taglib\mpeg\id3v1">
+      <UniqueIdentifier>{B255E642-4197-7090-C6CC-FA0493A3489F}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\toolkit\tpropertymap.cpp">
+      <Filter>taglib\toolkit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\toolkit\tbytevectorstream.cpp">
+      <Filter>taglib\toolkit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\fileref.cpp">
+      <Filter>taglib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\frames\textidentificationframe.cpp">
+      <Filter>taglib\mpeg\id3v2\frames</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\wavpack\wavpackproperties.cpp">
+      <Filter>taglib\wavpack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\tag.cpp">
+      <Filter>taglib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\ogg\flac\oggflacfile.cpp">
+      <Filter>taglib\ogg\flac</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\frames\ownershipframe.cpp">
+      <Filter>taglib\mpeg\id3v2\frames</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\frames\relativevolumeframe.cpp">
+      <Filter>taglib\mpeg\id3v2\frames</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\asf\asffile.cpp">
+      <Filter>taglib\asf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\ogg\vorbis\vorbisfile.cpp">
+      <Filter>taglib\ogg\vorbis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\id3v2frame.cpp">
+      <Filter>taglib\mpeg\id3v2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\wavpack\wavpackfile.cpp">
+      <Filter>taglib\wavpack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\toolkit\tdebuglistener.cpp">
+      <Filter>taglib\toolkit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\ogg\opus\opusproperties.cpp">
+      <Filter>taglib\ogg\opus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\frames\unsynchronizedlyricsframe.cpp">
+      <Filter>taglib\mpeg\id3v2\frames</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\xm\xmproperties.cpp">
+      <Filter>taglib\xm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\ogg\speex\speexfile.cpp">
+      <Filter>taglib\ogg\speex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\xm\xmfile.cpp">
+      <Filter>taglib\xm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\id3v2header.cpp">
+      <Filter>taglib\mpeg\id3v2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\toolkit\tbytevectorlist.cpp">
+      <Filter>taglib\toolkit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\trueaudio\trueaudioproperties.cpp">
+      <Filter>taglib\trueaudio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mp4\mp4item.cpp">
+      <Filter>taglib\mp4</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\toolkit\unicode.cpp">
+      <Filter>taglib\toolkit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\toolkit\tstringlist.cpp">
+      <Filter>taglib\toolkit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\flac\flacmetadatablock.cpp">
+      <Filter>taglib\flac</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\ogg\opus\opusfile.cpp">
+      <Filter>taglib\ogg\opus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\riff\wav\wavproperties.cpp">
+      <Filter>taglib\riff\wav</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\toolkit\tstring.cpp">
+      <Filter>taglib\toolkit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\toolkit\trefcounter.cpp">
+      <Filter>taglib\toolkit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\frames\attachedpictureframe.cpp">
+      <Filter>taglib\mpeg\id3v2\frames</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\toolkit\tiostream.cpp">
+      <Filter>taglib\toolkit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\ape\apefooter.cpp">
+      <Filter>taglib\ape</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\ape\apetag.cpp">
+      <Filter>taglib\ape</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\toolkit\tfilestream.cpp">
+      <Filter>taglib\toolkit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\toolkit\tfile.cpp">
+      <Filter>taglib\toolkit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\toolkit\tdebug.cpp">
+      <Filter>taglib\toolkit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\riff\wav\wavfile.cpp">
+      <Filter>taglib\riff\wav</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mp4\mp4file.cpp">
+      <Filter>taglib\mp4</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\audioproperties.cpp">
+      <Filter>taglib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\it\itfile.cpp">
+      <Filter>taglib\it</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\s3m\s3mproperties.cpp">
+      <Filter>taglib\s3m</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\flac\flacpicture.cpp">
+      <Filter>taglib\flac</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\frames\privateframe.cpp">
+      <Filter>taglib\mpeg\id3v2\frames</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\id3v2synchdata.cpp">
+      <Filter>taglib\mpeg\id3v2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\s3m\s3mfile.cpp">
+      <Filter>taglib\s3m</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\toolkit\tbytevector.cpp">
+      <Filter>taglib\toolkit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\riff\wav\infotag.cpp">
+      <Filter>taglib\riff\wav</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\riff\rifffile.cpp">
+      <Filter>taglib\riff</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\mpegheader.cpp">
+      <Filter>taglib\mpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mp4\mp4atom.cpp">
+      <Filter>taglib\mp4</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\ogg\xiphcomment.cpp">
+      <Filter>taglib\ogg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mod\modfilebase.cpp">
+      <Filter>taglib\mod</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\asf\asfpicture.cpp">
+      <Filter>taglib\asf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mp4\mp4tag.cpp">
+      <Filter>taglib\mp4</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\trueaudio\trueaudiofile.cpp">
+      <Filter>taglib\trueaudio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\flac\flacunknownmetadatablock.cpp">
+      <Filter>taglib\flac</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\tagunion.cpp">
+      <Filter>taglib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mpc\mpcproperties.cpp">
+      <Filter>taglib\mpc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\riff\aiff\aifffile.cpp">
+      <Filter>taglib\riff\aiff</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mod\modtag.cpp">
+      <Filter>taglib\mod</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\frames\commentsframe.cpp">
+      <Filter>taglib\mpeg\id3v2\frames</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mod\modproperties.cpp">
+      <Filter>taglib\mod</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\ogg\vorbis\vorbisproperties.cpp">
+      <Filter>taglib\ogg\vorbis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mod\modfile.cpp">
+      <Filter>taglib\mod</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v1\id3v1genres.cpp">
+      <Filter>taglib\mpeg\id3v1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\it\itproperties.cpp">
+      <Filter>taglib\it</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\ape\apefile.cpp">
+      <Filter>taglib\ape</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\asf\asfattribute.cpp">
+      <Filter>taglib\asf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mp4\mp4coverart.cpp">
+      <Filter>taglib\mp4</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\ape\apeproperties.cpp">
+      <Filter>taglib\ape</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\frames\uniquefileidentifierframe.cpp">
+      <Filter>taglib\mpeg\id3v2\frames</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\asf\asfproperties.cpp">
+      <Filter>taglib\asf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\ape\apeitem.cpp">
+      <Filter>taglib\ape</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\flac\flacproperties.cpp">
+      <Filter>taglib\flac</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v1\id3v1tag.cpp">
+      <Filter>taglib\mpeg\id3v1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mp4\mp4properties.cpp">
+      <Filter>taglib\mp4</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\frames\generalencapsulatedobjectframe.cpp">
+      <Filter>taglib\mpeg\id3v2\frames</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\frames\popularimeterframe.cpp">
+      <Filter>taglib\mpeg\id3v2\frames</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\flac\flacfile.cpp">
+      <Filter>taglib\flac</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\frames\unknownframe.cpp">
+      <Filter>taglib\mpeg\id3v2\frames</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\frames\urllinkframe.cpp">
+      <Filter>taglib\mpeg\id3v2\frames</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mpc\mpcfile.cpp">
+      <Filter>taglib\mpc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\id3v2extendedheader.cpp">
+      <Filter>taglib\mpeg\id3v2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\id3v2footer.cpp">
+      <Filter>taglib\mpeg\id3v2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\id3v2framefactory.cpp">
+      <Filter>taglib\mpeg\id3v2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\id3v2tag.cpp">
+      <Filter>taglib\mpeg\id3v2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\mpegfile.cpp">
+      <Filter>taglib\mpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\riff\aiff\aiffproperties.cpp">
+      <Filter>taglib\riff\aiff</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\xingheader.cpp">
+      <Filter>taglib\mpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\mpegproperties.cpp">
+      <Filter>taglib\mpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\ogg\oggfile.cpp">
+      <Filter>taglib\ogg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\ogg\oggpage.cpp">
+      <Filter>taglib\ogg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\ogg\oggpageheader.cpp">
+      <Filter>taglib\ogg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\asf\asftag.cpp">
+      <Filter>taglib\asf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\taglib\taglib\ogg\speex\speexproperties.cpp">
+      <Filter>taglib\ogg\speex</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>

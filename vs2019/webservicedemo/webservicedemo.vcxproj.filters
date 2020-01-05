@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="WebService">
+      <UniqueIdentifier>{1A7ECEA6-9405-C114-0748-F148B74F9AB3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Demos\WebService\WebService\stdafx.cpp">
+      <Filter>WebService</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\WebService\WebService\main.cpp">
+      <Filter>WebService</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>

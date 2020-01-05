@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src\Utility">
+      <UniqueIdentifier>{A2116C7F-EEF7-A60D-D1A0-0701DABB84BC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{AFD19EEF-3A3E-277D-9F05-B271490381AC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GUI">
+      <UniqueIdentifier>{A258E0F0-F664-D1FE-F77F-27F2229F766D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Web">
+      <UniqueIdentifier>{00928399-549E-74A7-55B8-CA9B80D91916}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utility\tinyxml">
+      <UniqueIdentifier>{9CAF44D0-2F1A-AF5E-1F50-E65258BCD28D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GUI\Controls">
+      <UniqueIdentifier>{A7EB4750-F236-967E-44D1-7732BC91FF7D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Mgr\ConfigMgr">
+      <UniqueIdentifier>{A1460569-3087-8FB7-B5BD-192B829367C6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Mgr">
+      <UniqueIdentifier>{D3287E41-2734-6F4F-284E-C543536F13BE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Mgr\LrcMgr">
+      <UniqueIdentifier>{5F12A9E4-B481-4CD2-2222-7806BA7AF4B1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Mgr\DB">
+      <UniqueIdentifier>{9B204113-14A7-3381-87EA-63B537F10D20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utility\json\lib_json">
+      <UniqueIdentifier>{1B619541-781A-F08F-DF7C-1003F539DD1E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utility\json">
+      <UniqueIdentifier>{11C9BB55-5C15-0A83-AEAF-EB3726707382}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Mgr\CacheMgr">
+      <UniqueIdentifier>{954E3B07-DF99-8A35-3234-6AE9A9F4F334}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utility\win_io">
+      <UniqueIdentifier>{92DCEEC0-842C-222E-FE7A-88627170884D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Mgr\PlayMgr">
+      <UniqueIdentifier>{21022659-D405-8867-5F27-345BC3CA9156}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Mgr\FilePathMgr">
+      <UniqueIdentifier>{EE603B00-80CB-A58E-7101-DC82AA6DC8BD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utility\json\include">
+      <UniqueIdentifier>{7F7D8635-3EAD-B663-9ACD-8D17D6857BE2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Demos\YMusic\src\Utility\Thread.cpp">
+      <Filter>src\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\GUI\SearchLrcWindow.cpp">
+      <Filter>src\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\GUI\PropertyWin.cpp">
+      <Filter>src\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Web\HTTPprotocol.cpp">
+      <Filter>src\Web</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Utility\mt_helper.cpp">
+      <Filter>src\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Utility\tinyxml\tinyxml.cpp">
+      <Filter>src\Utility\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\GUI\Controls\SysSkinLayout.cpp">
+      <Filter>src\GUI\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Mgr\ConfigMgr\ConfigMgr.cpp">
+      <Filter>src\Mgr\ConfigMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Mgr\LrcMgr\LrcMgr.cpp">
+      <Filter>src\Mgr\LrcMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\GUI\Controls\DownloadItem.cpp">
+      <Filter>src\GUI\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\YMainWindow.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\GUI\LrcSelectWnd.cpp">
+      <Filter>src\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Mgr\DB\ShareData.cpp">
+      <Filter>src\Mgr\DB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Web\HttpManager.cpp">
+      <Filter>src\Web</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Utility\json\lib_json\json_writer.cpp">
+      <Filter>src\Utility\json\lib_json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\GUI\DesktopLrcWindow.cpp">
+      <Filter>src\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Utility\tinyxml\tinyxmlerror.cpp">
+      <Filter>src\Utility\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Mgr\LrcMgr\lrcFileReader.cpp">
+      <Filter>src\Mgr\LrcMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\GUI\Controls\UIMedia.cpp">
+      <Filter>src\GUI\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\GUI\SettingWindow.cpp">
+      <Filter>src\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\GUI\LrcMask.cpp">
+      <Filter>src\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\GUI\WebLoginWindow.cpp">
+      <Filter>src\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Utility\Convert.cpp">
+      <Filter>src\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Utility\json\lib_json\json_value.cpp">
+      <Filter>src\Utility\json\lib_json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Mgr\CacheMgr\CacheMgr.cpp">
+      <Filter>src\Mgr\CacheMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Mgr\DB\DB.cpp">
+      <Filter>src\Mgr\DB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\GUI\LrcToolBar.cpp">
+      <Filter>src\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\YApp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Web\UrlPraser.cpp">
+      <Filter>src\Web</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Web\down_http_file.cpp">
+      <Filter>src\Web</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\GUI\YLogin.cpp">
+      <Filter>src\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Var.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Utility\xml_wrapper.cpp">
+      <Filter>src\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\GUI\trayIcon.cpp">
+      <Filter>src\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Mgr\LrcMgr\ParseTrackFile.cpp">
+      <Filter>src\Mgr\LrcMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\GUI\TagModifyWin.cpp">
+      <Filter>src\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\GUI\MainMenu.cpp">
+      <Filter>src\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\GUI\ShareWin.cpp">
+      <Filter>src\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\GUI\SkinWindow.cpp">
+      <Filter>src\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Utility\tinyxml\tinyxmlparser.cpp">
+      <Filter>src\Utility\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\GUI\MusicLib.cpp">
+      <Filter>src\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\GUI\DownLoadWin.cpp">
+      <Filter>src\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\GUI\MediaPlayerWnd.cpp">
+      <Filter>src\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\GUI\Controls\LrcPreview.cpp">
+      <Filter>src\GUI\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Utility\win_io\win_io_base.cpp">
+      <Filter>src\Utility\win_io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Mgr\DB\DatabaseManager.cpp">
+      <Filter>src\Mgr\DB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\GUI\LoginWindow.cpp">
+      <Filter>src\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\GUI\Controls\YPlayListItem.cpp">
+      <Filter>src\GUI\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\GUI\Controls\LrcView.cpp">
+      <Filter>src\GUI\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\GUI\AddingSong.cpp">
+      <Filter>src\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Mgr\ConfigMgr\ConfigBase.cpp">
+      <Filter>src\Mgr\ConfigMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\GUI\Controls\YSongListItem.cpp">
+      <Filter>src\GUI\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\GUI\Controls\MySkinLayout.cpp">
+      <Filter>src\GUI\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Utility\json\lib_json\json_reader.cpp">
+      <Filter>src\Utility\json\lib_json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Utility\win_io\io_interface.cpp">
+      <Filter>src\Utility\win_io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Mgr\LrcMgr\SearchLrcFromWeb.cpp">
+      <Filter>src\Mgr\LrcMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Mgr\DB\ISerialize.cpp">
+      <Filter>src\Mgr\DB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\GUI\BaseWindow.cpp">
+      <Filter>src\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Mgr\PlayMgr\PlayListMgr.cpp">
+      <Filter>src\Mgr\PlayMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Mgr\FilePathMgr\FilePathMgr.cpp">
+      <Filter>src\Mgr\FilePathMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\RuntimeState.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\GUI\InfoWindow.cpp">
+      <Filter>src\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Utility\json\DataParser.cpp">
+      <Filter>src\Utility\json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Utility\jsHandler.cpp">
+      <Filter>src\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Mgr\PlayMgr\audioinfo.cpp">
+      <Filter>src\Mgr\PlayMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Utility\log.cpp">
+      <Filter>src\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Utility\ThreadHelper.cpp">
+      <Filter>src\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Utility\tinyxml\tinystr.cpp">
+      <Filter>src\Utility\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\YMusic\src\Utility\win_io\FileMgr.cpp">
+      <Filter>src\Utility\win_io</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Demos\YMusic\src\GUI\AddingSong.h">
+      <Filter>src\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\GUI\BaseWindow.h">
+      <Filter>src\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\GUI\Controls\DownloadItem.h">
+      <Filter>src\GUI\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\GUI\Controls\LrcPreview.h">
+      <Filter>src\GUI\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\GUI\Controls\LrcView.h">
+      <Filter>src\GUI\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\GUI\Controls\MySkinLayout.h">
+      <Filter>src\GUI\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\GUI\Controls\SysSkinLayout.h">
+      <Filter>src\GUI\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\GUI\Controls\UIMedia.h">
+      <Filter>src\GUI\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\GUI\Controls\YPlayListItem.h">
+      <Filter>src\GUI\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\GUI\Controls\YSongListItem.h">
+      <Filter>src\GUI\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\GUI\DesktopLrcWindow.h">
+      <Filter>src\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\GUI\DownLoadWin.h">
+      <Filter>src\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\GUI\InfoWindow.h">
+      <Filter>src\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\GUI\LoginWindow.h">
+      <Filter>src\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\GUI\LrcMask.h">
+      <Filter>src\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\GUI\LrcSelectWnd.h">
+      <Filter>src\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\GUI\LrcToolBar.h">
+      <Filter>src\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\GUI\MainMenu.h">
+      <Filter>src\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\GUI\MediaPlayerWnd.h">
+      <Filter>src\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\GUI\MusicLib.h">
+      <Filter>src\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\GUI\PropertyWin.h">
+      <Filter>src\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\GUI\SearchLrcWindow.h">
+      <Filter>src\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\GUI\SettingWindow.h">
+      <Filter>src\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\GUI\ShareWin.h">
+      <Filter>src\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\GUI\SkinWindow.h">
+      <Filter>src\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\GUI\TagModifyWin.h">
+      <Filter>src\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\GUI\trayIcon.h">
+      <Filter>src\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\GUI\WebLoginWindow.h">
+      <Filter>src\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\GUI\YLogin.h">
+      <Filter>src\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Mgr\CacheMgr\CacheMgr.h">
+      <Filter>src\Mgr\CacheMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Mgr\ConfigMgr\ConfigBase.h">
+      <Filter>src\Mgr\ConfigMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Mgr\ConfigMgr\ConfigMgr.h">
+      <Filter>src\Mgr\ConfigMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Mgr\DB\DatabaseManager.h">
+      <Filter>src\Mgr\DB</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Mgr\DB\DB.h">
+      <Filter>src\Mgr\DB</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Mgr\DB\ISerialize.h">
+      <Filter>src\Mgr\DB</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Mgr\DB\ShareData.h">
+      <Filter>src\Mgr\DB</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Mgr\FilePathMgr\FilePathMgr.h">
+      <Filter>src\Mgr\FilePathMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Mgr\LrcMgr\lrcFileReader.h">
+      <Filter>src\Mgr\LrcMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Mgr\LrcMgr\LrcMgr.h">
+      <Filter>src\Mgr\LrcMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Mgr\LrcMgr\ParseTrackFile.h">
+      <Filter>src\Mgr\LrcMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Mgr\LrcMgr\SearchLrcFromWeb.h">
+      <Filter>src\Mgr\LrcMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Mgr\Mgr.h">
+      <Filter>src\Mgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Mgr\PlayMgr\audioinfo.h">
+      <Filter>src\Mgr\PlayMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Mgr\PlayMgr\PlayListMgr.h">
+      <Filter>src\Mgr\PlayMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\RuntimeState.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Utility\base64.h">
+      <Filter>src\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Utility\Convert.h">
+      <Filter>src\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Utility\encrypt.h">
+      <Filter>src\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Utility\jsHandler.h">
+      <Filter>src\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Utility\json\DataParser.h">
+      <Filter>src\Utility\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Utility\json\include\autolink.h">
+      <Filter>src\Utility\json\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Utility\json\include\config.h">
+      <Filter>src\Utility\json\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Utility\json\include\features.h">
+      <Filter>src\Utility\json\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Utility\json\include\forwards.h">
+      <Filter>src\Utility\json\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Utility\json\include\json.h">
+      <Filter>src\Utility\json\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Utility\json\include\reader.h">
+      <Filter>src\Utility\json\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Utility\json\include\value.h">
+      <Filter>src\Utility\json\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Utility\json\include\writer.h">
+      <Filter>src\Utility\json\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Utility\json\lib_json\json_batchallocator.h">
+      <Filter>src\Utility\json\lib_json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Utility\log.h">
+      <Filter>src\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Utility\mt_helper.h">
+      <Filter>src\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Utility\Mutex.h">
+      <Filter>src\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Utility\Thread.h">
+      <Filter>src\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Utility\ThreadHelper.h">
+      <Filter>src\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Utility\tinyxml\tinystr.h">
+      <Filter>src\Utility\tinyxml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Utility\tinyxml\tinyxml.h">
+      <Filter>src\Utility\tinyxml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Utility\url.h">
+      <Filter>src\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Utility\win_io\FileMgr.h">
+      <Filter>src\Utility\win_io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Utility\win_io\io_interface.h">
+      <Filter>src\Utility\win_io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Utility\win_io\win_io_base.h">
+      <Filter>src\Utility\win_io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Utility\xml_wrapper.h">
+      <Filter>src\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Var.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Web\down_http_file.h">
+      <Filter>src\Web</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Web\HttpManager.h">
+      <Filter>src\Web</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Web\HTTPprotocol.h">
+      <Filter>src\Web</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Web\UrlPraser.h">
+      <Filter>src\Web</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\YApp.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\YMainWindow.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\Marco.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\YMusic\src\skin_change_event.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

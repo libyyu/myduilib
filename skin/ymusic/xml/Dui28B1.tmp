@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window>
+    <VerticalLayout inset="15,10,5,5">
+        <HorizontalLayout height="100">
+            <Control />
+            <Control name="wust_ico" width="360" bkimage="YTing/wust.png" />
+            <Control />
+        </HorizontalLayout>
+        <HorizontalLayout height="100">
+            <Control name="tray_ico" width="100" bkimage="YTing/YMusic.png" />
+            <Control width="10" />
+            <Label text="{f 5}{c #0000008A}逸听音乐，好听的音乐播放器{/c}{/f}" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="5" showhtml="true" transtext="168" transshadow="60" transtext1="168" transshadow1="60" textcolor1="#FFFFFFFF" textshadowcolora="#FF000000" textshadowcolorb="#FFFFFFFF" />
+        </HorizontalLayout>
+        <HorizontalLayout>
+            <Label name="lb" text="{f 5}{c #0000008A}libyyu@qq.com{/c}{/f}" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="5" showhtml="true" align="center" transtext="168" transshadow="60" transtext1="168" transshadow1="60" textcolor1="#FFFFFFFF" textshadowcolora="#FF000000" textshadowcolorb="#FFFFFFFF" />
+        </HorizontalLayout>
+        <HorizontalLayout>
+            <Label name="lc" text="{f 5}{c #0000008A}★★★蓝逸轩★★★{/c}{/f}" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="5" showhtml="true" align="center" transtext="168" transshadow="60" transtext1="168" transshadow1="60" textcolor1="#FFFFFFFF" textshadowcolora="#FF000000" textshadowcolorb="#FFFFFFFF" />
+        </HorizontalLayout>
+    </VerticalLayout>
+</Window>

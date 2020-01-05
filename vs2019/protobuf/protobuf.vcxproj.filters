@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="google\protobuf">
+      <UniqueIdentifier>{7BA88991-2EAB-EB9F-B9CD-97931E70F48E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="google">
+      <UniqueIdentifier>{1151AAA4-2261-CC92-5CE6-41C69FF2C7F1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="google\protobuf\io">
+      <UniqueIdentifier>{0F7E0245-00CD-35B3-7B1B-9BE7EE119BD2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="google\protobuf\stubs">
+      <UniqueIdentifier>{568FC5EE-19C1-C8BC-04BB-7D30514E330B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="google\protobuf\compiler">
+      <UniqueIdentifier>{37EA14C8-F71A-44F6-533A-1BAA8EF20A75}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\struct.pb.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\service.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\io\gzip_stream.cc">
+      <Filter>google\protobuf\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\arena.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\stubs\status.cc">
+      <Filter>google\protobuf\stubs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\unknown_field_set.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\stubs\common.cc">
+      <Filter>google\protobuf\stubs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\stubs\substitute.cc">
+      <Filter>google\protobuf\stubs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\stubs\strutil.cc">
+      <Filter>google\protobuf\stubs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\type.pb.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\empty.pb.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\stubs\structurally_valid.cc">
+      <Filter>google\protobuf\stubs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\extension_set.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\stubs\stringprintf.cc">
+      <Filter>google\protobuf\stubs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\io\zero_copy_stream.cc">
+      <Filter>google\protobuf\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\stubs\stringpiece.cc">
+      <Filter>google\protobuf\stubs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\timestamp.pb.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\stubs\statusor.cc">
+      <Filter>google\protobuf\stubs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\stubs\mathlimits.cc">
+      <Filter>google\protobuf\stubs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\stubs\io_win32.cc">
+      <Filter>google\protobuf\stubs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\reflection_ops.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\stubs\time.cc">
+      <Filter>google\protobuf\stubs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\compiler\importer.cc">
+      <Filter>google\protobuf\compiler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\compiler\parser.cc">
+      <Filter>google\protobuf\compiler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\map_field.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\api.pb.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\io\zero_copy_stream_impl_lite.cc">
+      <Filter>google\protobuf\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\io\zero_copy_stream_impl.cc">
+      <Filter>google\protobuf\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\generated_message_table_driven_lite.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\io\tokenizer.cc">
+      <Filter>google\protobuf\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\descriptor_database.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\io\strtod.cc">
+      <Filter>google\protobuf\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\field_mask.pb.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\implicit_weak_message.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\io\printer.cc">
+      <Filter>google\protobuf\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\arenastring.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\generated_message_table_driven.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\generated_message_util.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\io\coded_stream.cc">
+      <Filter>google\protobuf\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\wrappers.pb.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\source_context.pb.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\wire_format_lite.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\dynamic_message.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\descriptor.pb.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\repeated_field.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\extension_set_heavy.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\text_format.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\duration.pb.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\descriptor.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\any.pb.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\message.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\message_lite.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\generated_message_reflection.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\wire_format.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\stubs\int128.cc">
+      <Filter>google\protobuf\stubs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\any.cc">
+      <Filter>google\protobuf</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>

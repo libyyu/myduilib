@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="msvc++">
+      <UniqueIdentifier>{C94E3C76-DA5E-5E64-14E2-D39857EF59C3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\thirdpart\play_plugin\libmad-0.15.1b\msvc++\config.h">
+      <Filter>msvc++</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

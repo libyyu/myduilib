@@ -1,0 +1,4 @@
+LIBRARY	"mp3_plugin"
+EXPORTS
+
+get_xiami_decoder_proc
