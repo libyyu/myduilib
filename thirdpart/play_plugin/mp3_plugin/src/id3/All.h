@@ -39,6 +39,8 @@ Global includes
 
 namespace em_mp3_tag
 {
+#define MY_MIN(a, b) ((a) < (b) ? (a) : (b))
+#define MY_MAX(a, b) ((a) > (b) ? (a) : (b))
 
 #ifdef _WIN32
     typedef unsigned __int32                            uint32;

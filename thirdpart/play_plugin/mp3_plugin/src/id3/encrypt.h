@@ -8,8 +8,7 @@
 #define _XIAMI_ENCRYPT_API_
 #endif
 #include <string>
-using namespace std;
-typedef unsigned long DWORD;
+
 #ifndef _WIN32
 typedef bool  BOOL;
 #ifndef FALSE
@@ -20,7 +19,6 @@ typedef bool  BOOL;
 #endif
 #endif
 #include "vlong.h"
-
 
 #define LEVEL	32	
 //当LEVEL=32表示1024位,LEVEL=64表示2048,LEVEL=128表示4096位的RSA
@@ -66,7 +64,7 @@ namespace  encrypt_mod
 		void Des_set_key(const std::string& s_key);
 		void Des_delete_buf(char *p_buf);
 	private:
-		string m_p_des_key; //des key
+		std::string m_p_des_key; //des key
 	};
 
 	class _XIAMI_ENCRYPT_API_ public_key

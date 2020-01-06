@@ -310,7 +310,7 @@ int file_io::attach_header(unsigned char* p_buf, unsigned int n_len)
 	unsigned int n_write_begin = n_after_len;
 	while (n_before_len > 0)
 	{
-		n_bytes_2_read = std::min(DATA_COPY_BUF, n_before_len);
+		n_bytes_2_read = MY_MIN(DATA_COPY_BUF, n_before_len);
 		n_before_len -= n_bytes_2_read;
 		n_result = seek(n_before_len, FILE_BEGIN);
 		assert(n_result == 0);
@@ -374,7 +374,7 @@ int file_io::cut_header(unsigned int n_len)
 	unsigned int n_write_begin = 0;
 	while (n_remain_bytes > 0)
 	{
-		n_bytes_2_read = std::min(DATA_COPY_BUF, n_remain_bytes);
+		n_bytes_2_read = MY_MIN(DATA_COPY_BUF, n_remain_bytes);
 		n_result = seek(n_before_len - n_remain_bytes, FILE_BEGIN);
 		assert(n_result == 0);
 		n_result = read(s_buf, n_bytes_2_read, &n_bytes_readed);
@@ -475,7 +475,7 @@ unsigned int file_io::_fill_buf(unsigned int n_offset, unsigned int n_len)
 	assert(n_offset + n_len <= get_size());
 	if (mp_buf == NULL)
 	{
-		mn_buf_size = std::max(DEF_BUF_SIZE, n_len);
+		mn_buf_size = MY_MAX(DEF_BUF_SIZE, n_len);
 		mp_buf = new char[mn_buf_size];
 	}
 	else
