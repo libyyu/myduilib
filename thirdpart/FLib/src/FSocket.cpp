@@ -83,7 +83,7 @@ FSocket::~FSocket() { Close(); }
 FSocket::operator F_SOCKET() const { return _s; }
 bool FSocket::IsCreate()const { return INVALID_SOCKET != _s; }
 
-bool FSocket::Ioctl(long cmd,u_long* argp)
+bool FSocket::Ioctl(long cmd, unsigned long* argp)
 {
 	assert(IsCreate());
 	if(!IsCreate()) return false;
