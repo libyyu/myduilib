@@ -888,9 +888,6 @@
     <ClInclude Include="..\..\Demos\YMusic\src\Marco.hpp" />
     <ClInclude Include="..\..\Demos\YMusic\src\skin_change_event.hpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="..\..\Demos\YMusic\YMusic.rc" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

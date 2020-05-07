@@ -19,28 +19,28 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{BA19B4EE-33A0-A75C-A6E3-D79056EA80FB}</ProjectGuid>
-    <RootNamespace>playcenter</RootNamespace>
+    <ProjectGuid>{936CC683-B571-FFD1-9848-F3458C228360}</ProjectGuid>
+    <RootNamespace>test_flib</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -62,35 +62,40 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
     <OutDir>..\..\release\</OutDir>
-    <IntDir>..\..\build\.objs\x86\release\playcenter\windows\x86\release\</IntDir>
-    <TargetName>playcenter</TargetName>
-    <TargetExt>.dll</TargetExt>
+    <IntDir>..\..\build\.objs\x86\release\test_flib\windows\x86\release\</IntDir>
+    <TargetName>test_flib</TargetName>
+    <TargetExt>.exe</TargetExt>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
     <OutDir>..\..\release\</OutDir>
-    <IntDir>..\..\build\.objs\x64\release\playcenter\windows\x64\release\</IntDir>
-    <TargetName>playcenter</TargetName>
-    <TargetExt>.dll</TargetExt>
+    <IntDir>..\..\build\.objs\x64\release\test_flib\windows\x64\release\</IntDir>
+    <TargetName>test_flib</TargetName>
+    <TargetExt>.exe</TargetExt>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
     <OutDir>..\..\debug\</OutDir>
-    <IntDir>..\..\build\.objs\x86\debug\playcenter\windows\x86\debug\</IntDir>
-    <TargetName>playcenter</TargetName>
-    <TargetExt>.dll</TargetExt>
+    <IntDir>..\..\build\.objs\x86\debug\test_flib\windows\x86\debug\</IntDir>
+    <TargetName>test_flib</TargetName>
+    <TargetExt>.exe</TargetExt>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
     <OutDir>..\..\debug\</OutDir>
-    <IntDir>..\..\build\.objs\x64\debug\playcenter\windows\x64\debug\</IntDir>
-    <TargetName>playcenter</TargetName>
-    <TargetExt>.dll</TargetExt>
+    <IntDir>..\..\build\.objs\x64\debug\test_flib\windows\x64\debug\</IntDir>
+    <TargetName>test_flib</TargetName>
+    <TargetExt>.exe</TargetExt>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
     <Link>
       <AdditionalLibraryDirectories>..\..\libs;..\..\libs\release;..\..\release;..\..\release\plugins;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>FLib.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalOptions>-nologo %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>FLib.lib;ws2_32.lib;-nodefaultlib:"LIBCMT.lib";-nodefaultlib:"LIBC.lib";-nodefaultlib:"msvcrt.lib";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>-nologo -dynamicbase -nxcompat %(AdditionalOptions)</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <ProgramDatabaseFile>..\..\release\playcenter.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>..\..\release\test_flib.pdb</ProgramDatabaseFile>
+      <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <ClCompile>
@@ -98,12 +103,12 @@
       <WarningLevel>Level3</WarningLevel>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";PLAYCENTER_EXPORTS;BUILD_AS_DLL;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>..\..\thirdpart\vlc\include;..\..\thirdpart\FLib\src</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>..\..\thirdpart\vlc\include;..\..\thirdpart\FLib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";PLAYCENTER_EXPORTS;BUILD_AS_DLL;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\thirdpart\FLib\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\thirdpart\FLib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>-EHsc -nologo -FS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -120,10 +125,11 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
     <Link>
       <AdditionalLibraryDirectories>..\..\libs;..\..\libs\release;..\..\release;..\..\release\plugins;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>FLib.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalOptions>-nologo %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>FLib.lib;ws2_32.lib;-nodefaultlib:"LIBCMT.lib";-nodefaultlib:"LIBC.lib";-nodefaultlib:"msvcrt.lib";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>-nologo -dynamicbase -nxcompat %(AdditionalOptions)</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <ProgramDatabaseFile>..\..\release\playcenter.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>..\..\release\test_flib.pdb</ProgramDatabaseFile>
+      <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <ClCompile>
@@ -131,12 +137,12 @@
       <WarningLevel>Level3</WarningLevel>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";PLAYCENTER_EXPORTS;BUILD_AS_DLL;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>..\..\thirdpart\vlc\include;..\..\thirdpart\FLib\src</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>..\..\thirdpart\vlc\include;..\..\thirdpart\FLib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";PLAYCENTER_EXPORTS;BUILD_AS_DLL;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\thirdpart\FLib\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\thirdpart\FLib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>-EHsc -nologo -FS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -153,10 +159,11 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
     <Link>
       <AdditionalLibraryDirectories>..\..\libs;..\..\libs\debug;..\..\debug;..\..\debug\plugins;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>FLib.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalOptions>-nologo %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>FLib.lib;ws2_32.lib;-nodefaultlib:"LIBCMT.lib";-nodefaultlib:"LIBC.lib";-nodefaultlib:"msvcrt.lib";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>-nologo -dynamicbase -nxcompat %(AdditionalOptions)</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>..\..\debug\playcenter.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>..\..\debug\test_flib.pdb</ProgramDatabaseFile>
+      <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <ClCompile>
@@ -164,12 +171,12 @@
       <WarningLevel>Level3</WarningLevel>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
-      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";PLAYCENTER_EXPORTS;BUILD_AS_DLL;__config_debug__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";__config_debug__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>..\..\thirdpart\vlc\include;..\..\thirdpart\FLib\src</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>..\..\thirdpart\vlc\include;..\..\thirdpart\FLib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";PLAYCENTER_EXPORTS;BUILD_AS_DLL;__config_debug__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\thirdpart\FLib\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\thirdpart\FLib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";__config_debug__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>-EHsc -nologo %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -186,10 +193,11 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
     <Link>
       <AdditionalLibraryDirectories>..\..\libs;..\..\libs\debug;..\..\debug;..\..\debug\plugins;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>FLib.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalOptions>-nologo %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>FLib.lib;ws2_32.lib;-nodefaultlib:"LIBCMT.lib";-nodefaultlib:"LIBC.lib";-nodefaultlib:"msvcrt.lib";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>-nologo -dynamicbase -nxcompat %(AdditionalOptions)</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>..\..\debug\playcenter.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>..\..\debug\test_flib.pdb</ProgramDatabaseFile>
+      <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <ClCompile>
@@ -197,12 +205,12 @@
       <WarningLevel>Level3</WarningLevel>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
-      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";PLAYCENTER_EXPORTS;BUILD_AS_DLL;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>None</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>..\..\thirdpart\vlc\include;..\..\thirdpart\FLib\src</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>..\..\thirdpart\vlc\include;..\..\thirdpart\FLib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";PLAYCENTER_EXPORTS;BUILD_AS_DLL;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\thirdpart\FLib\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\thirdpart\FLib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>-EHsc -nologo %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -217,17 +225,16 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\thirdpart\vlc\src\AVPlayer.cpp">
+    <ClCompile Include="..\..\examples\test_flib\main.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\playcenter\windows\x64\debug\thirdpart\vlc\src\AVPlayer.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\playcenter\windows\x86\release\thirdpart\vlc\src\AVPlayer.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\playcenter\windows\x86\debug\thirdpart\vlc\src\AVPlayer.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\playcenter\windows\x64\release\thirdpart\vlc\src\AVPlayer.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\test_flib\windows\x64\debug\examples\test_flib\main.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\test_flib\windows\x64\release\examples\test_flib\main.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\test_flib\windows\x86\release\examples\test_flib\main.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\test_flib\windows\x86\debug\examples\test_flib\main.cpp.obj</ObjectFileName>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\thirdpart\vlc\src\AVPlayer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

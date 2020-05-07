@@ -343,14 +343,14 @@ FBuffer& FBuffer::operator<<(const char *str)
 {
     assert(str);
     size_t len = strlen(str);
-    Write<uint32>(len);
+    Write<uint32>((uint32)len);
     Write((uint8 const *)str, len);
     return *this;
 }
 FBuffer& FBuffer::operator<<(char v[])
 {
     size_t len = strlen(v);
-    Write<uint32>(len);
+    Write<uint32>((uint32)len);
     Write((uint8 const *)v, len);
     return *this;
 }

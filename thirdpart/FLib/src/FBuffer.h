@@ -161,7 +161,7 @@ protected:
 inline FBuffer& operator<<(FBuffer& buffer, const std::string &v)
 {
 	size_t len = v.size();
-	buffer.Write<uint32>(len);
+	buffer.Write<uint32>((uint32)len);
 	buffer.Write((const uint8 *)v.c_str(), len);
 	return buffer;
 }

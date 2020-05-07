@@ -175,7 +175,7 @@ typedef long							int32;
 typedef unsigned long                   uint32;
 #else
 typedef int								int32;
-typedef uint                            uint32;
+typedef unsigned int                    uint32;
 #endif
 
 #if FLIB_COMPILER_WINDOWS

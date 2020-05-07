@@ -261,9 +261,6 @@
     <ClCompile Include="..\..\Demos\YMusic\src\Utility\win_io\FileMgr.cpp">
       <Filter>src\Utility\win_io</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Demos\YMusic\stdafx.cpp" />
-    <ClCompile Include="..\..\Demos\YMusic\WinMain.cpp" />
-    <ClCompile Include="..\..\Demos\YMusic\YMusic.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Demos\YMusic\src\GUI\AddingSong.h">
@@ -506,12 +503,5 @@
     <ClInclude Include="..\..\Demos\YMusic\src\skin_change_event.hpp">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Demos\YMusic\Resource.h" />
-    <ClInclude Include="..\..\Demos\YMusic\stdafx.h" />
-    <ClInclude Include="..\..\Demos\YMusic\targetver.h" />
-    <ClInclude Include="..\..\Demos\YMusic\YMusic.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="..\..\Demos\YMusic\YMusic.rc" />
   </ItemGroup>
 </Project>

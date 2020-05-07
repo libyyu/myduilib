@@ -206,3 +206,5 @@ else
         , "Demos"
     )
 end
+
+includes("examples")

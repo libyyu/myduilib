@@ -10,7 +10,11 @@
 #ifndef _WINSOCK_DEPRECATED_NO_WARNINGS
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #endif
+#if FLIB_COMPILER_64BITS
+#define F_SOCKET unsigned __int64
+#else
 #define F_SOCKET unsigned int
+#endif
 #define F_SOCK_STREAM 1
 #define F_INVALID_SOCKET (F_SOCKET)(~0)
 #define socklen_t int
