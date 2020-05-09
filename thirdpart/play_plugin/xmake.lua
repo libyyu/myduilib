@@ -45,17 +45,5 @@ target("play_plugin")
         --os.cp(path.join(wdk.sdkdir, "Redist", "wdf", config.arch(), "*.dll"), target:targetdir())     
     end)
 
-target("play_plugin_test")
-    set_kind("binary")
-    add_deps("play_plugin", {inherit = false})
-    add_files("test.cpp")
-
-    -- header files
-    add_options("genproj")
-    if has_config("genproj") then
-        add_headerfiles("test.h")
-    end
-
-    set_values("vs.folder", "thirdpart/play_plugins")
 
 end

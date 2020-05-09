@@ -20,9 +20,9 @@
 #else
 #define   XIMAPI __declspec(dllimport)
 #ifdef _DEBUG
-#pragma comment(lib, "Debug\\p2plib.lib")
+#pragma comment(lib, "p2plib.lib")
 #else
-#pragma comment(lib, "Release\\p2plib.lib")
+#pragma comment(lib, "p2plib.lib")
 #endif
 #endif
 #else

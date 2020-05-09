@@ -269,6 +269,9 @@ namespace DuiLib
 
 			lua_pushboolean(*globalLuaEnv, true);
 			lua_setfield(*globalLuaEnv, LUA_GLOBALSINDEX, "INIT");
+			const char* s = ROOT_DIR;
+			lua_pushstring(*globalLuaEnv, s);
+			lua_setfield(*globalLuaEnv, LUA_GLOBALSINDEX, "ROOT_DIR");
 		}
 		return true;
 	}

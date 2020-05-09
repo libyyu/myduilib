@@ -86,12 +86,24 @@ elseif is_plat("macosx") then
 end
 
 --设置最终文件目录
-set_targetdir("$(projectdir)/$(mode)")
+if is_plat("windows") then
+    add_defines("ROOT_DIR=\"" .. os.projectdir():gsub("\\", "\\\\") .. "\"")
+    set_targetdir("$(projectdir)/$(mode)/$(plat)/$(arch)")
+else
+    add_defines("ROOT_DIR=\"" .. os.projectdir() .. "\"")
+    set_targetdir("$(projectdir)/$(mode)/$(plat)")
+end
 --设置中间输出目录
-set_objectdir("$(buildir)/.objs/$(arch)/$(mode)")
+set_objectdir("$(buildir)/.objs/$(plat)/$(arch)/$(mode)")
 --设置链接目录
-add_linkdirs("$(projectdir)/libs", "$(projectdir)/libs/$(mode)", "$(projectdir)/$(mode)", "$(projectdir)/$(mode)/plugins")
-add_defines("ROOT_DIR=\"" .. "$(projectdir)" .. "\"")
+add_linkdirs("$(projectdir)/libs/$(plat)/$(mode)/$(arch)", --第一优先级
+    "$(projectdir)/libs/$(plat)/$(mode)/$(arch)", 
+    "$(projectdir)/libs/$(plat)/$(mode)",
+    "$(projectdir)/libs/$(plat)", 
+    "$(projectdir)/$(mode)/$(plat)/$(arch)",
+    "$(projectdir)/$(mode)/$(plat)",
+    "$(projectdir)/$(mode)/$(plat)/$(arch)/plugins",
+    "$(projectdir)/$(mode)/$(plat)/plugins")
 
 option("genproj")
     set_default(false)
@@ -130,19 +142,31 @@ rule_end()
 
 rule("app.dll")
     after_load(function (target)
-    	target:set("targetdir", "$(projectdir)/$(mode)")
+        if is_plat("windows") then
+            target:set("targetdir", "$(projectdir)/$(mode)/$(plat)/$(arch)")
+        else
+            target:set("targetdir", "$(projectdir)/$(mode)/$(plat)")
+        end
     end)
 rule_end()
 
 rule("thirdpart.shared")
     after_load(function (target)
-    	target:set("targetdir", "$(projectdir)/$(mode)")
+        if is_plat("windows") then
+            target:set("targetdir", "$(projectdir)/$(mode)/$(plat)/$(arch)")
+        else
+            target:set("targetdir", "$(projectdir)/$(mode)/$(plat)")
+        end
     end)
 rule_end()
 
 rule("thirdpart.static")
     after_load(function (target)
-    	target:set("targetdir", "$(projectdir)/libs/$(mode)")
+        if is_plat("windows") then
+            target:set("targetdir", "$(projectdir)/libs/$(plat)/$(mode)/$(arch)")
+        else
+            target:set("targetdir", "$(projectdir)/libs/$(plat)/$(mode)")
+        end
     end)
 rule_end()
 
@@ -180,7 +204,11 @@ rule_end()
 
 rule("decoder.shared")
     after_load(function (target)
-        target:set("targetdir", "$(projectdir)/$(mode)/plugins")
+        if is_plat("windows") then
+            target:set("targetdir", "$(projectdir)/$(mode)/$(plat)/$(arch)/plugins")
+        else
+            target:set("targetdir", "$(projectdir)/$(mode)/$(plat)/plugins")
+        end
     end)
 rule_end()
 

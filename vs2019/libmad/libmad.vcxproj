@@ -61,26 +61,26 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
-    <OutDir>..\..\libs\release\</OutDir>
-    <IntDir>..\..\build\.objs\x86\release\libmad\windows\x86\release\</IntDir>
+    <OutDir>..\..\libs\windows\release\x86\</OutDir>
+    <IntDir>..\..\build\.objs\windows\x86\release\libmad\windows\x86\release\</IntDir>
     <TargetName>libmad</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
-    <OutDir>..\..\libs\release\</OutDir>
-    <IntDir>..\..\build\.objs\x64\release\libmad\windows\x64\release\</IntDir>
+    <OutDir>..\..\libs\windows\release\x64\</OutDir>
+    <IntDir>..\..\build\.objs\windows\x64\release\libmad\windows\x64\release\</IntDir>
     <TargetName>libmad</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
-    <OutDir>..\..\libs\debug\</OutDir>
-    <IntDir>..\..\build\.objs\x86\debug\libmad\windows\x86\debug\</IntDir>
+    <OutDir>..\..\libs\windows\debug\x86\</OutDir>
+    <IntDir>..\..\build\.objs\windows\x86\debug\libmad\windows\x86\debug\</IntDir>
     <TargetName>libmad</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
-    <OutDir>..\..\libs\debug\</OutDir>
-    <IntDir>..\..\build\.objs\x64\debug\libmad\windows\x64\debug\</IntDir>
+    <OutDir>..\..\libs\windows\debug\x64\</OutDir>
+    <IntDir>..\..\build\.objs\windows\x64\debug\libmad\windows\x64\debug\</IntDir>
     <TargetName>libmad</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
@@ -96,12 +96,12 @@
       <WarningLevel>Level3</WarningLevel>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";FPM_DEFAULT;HAVE_CONFIG_H;ASO_ZEROCHECK;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";FPM_DEFAULT;HAVE_CONFIG_H;ASO_ZEROCHECK;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>..\..\thirdpart\play_plugin\libmad-0.15.1b\msvc++</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>..\..\thirdpart\play_plugin\libmad-0.15.1b\msvc++;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";FPM_DEFAULT;HAVE_CONFIG_H;ASO_ZEROCHECK;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";FPM_DEFAULT;HAVE_CONFIG_H;ASO_ZEROCHECK;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>-EHsc -nologo -FS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -127,12 +127,12 @@
       <WarningLevel>Level3</WarningLevel>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";FPM_DEFAULT;HAVE_CONFIG_H;ASO_ZEROCHECK;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";FPM_DEFAULT;HAVE_CONFIG_H;ASO_ZEROCHECK;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>..\..\thirdpart\play_plugin\libmad-0.15.1b\msvc++</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>..\..\thirdpart\play_plugin\libmad-0.15.1b\msvc++;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";FPM_DEFAULT;HAVE_CONFIG_H;ASO_ZEROCHECK;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";FPM_DEFAULT;HAVE_CONFIG_H;ASO_ZEROCHECK;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>-EHsc -nologo -FS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -158,12 +158,12 @@
       <WarningLevel>Level3</WarningLevel>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
-      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";FPM_DEFAULT;HAVE_CONFIG_H;ASO_ZEROCHECK;__config_debug__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";FPM_DEFAULT;HAVE_CONFIG_H;ASO_ZEROCHECK;__config_debug__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>..\..\thirdpart\play_plugin\libmad-0.15.1b\msvc++</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>..\..\thirdpart\play_plugin\libmad-0.15.1b\msvc++;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";FPM_DEFAULT;HAVE_CONFIG_H;ASO_ZEROCHECK;__config_debug__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";FPM_DEFAULT;HAVE_CONFIG_H;ASO_ZEROCHECK;__config_debug__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>-EHsc -nologo %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -189,12 +189,12 @@
       <WarningLevel>Level3</WarningLevel>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
-      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";FPM_DEFAULT;HAVE_CONFIG_H;ASO_ZEROCHECK;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";FPM_DEFAULT;HAVE_CONFIG_H;ASO_ZEROCHECK;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>None</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>..\..\thirdpart\play_plugin\libmad-0.15.1b\msvc++</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>..\..\thirdpart\play_plugin\libmad-0.15.1b\msvc++;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";FPM_DEFAULT;HAVE_CONFIG_H;ASO_ZEROCHECK;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";FPM_DEFAULT;HAVE_CONFIG_H;ASO_ZEROCHECK;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>-EHsc -nologo %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -212,90 +212,90 @@
     <ClCompile Include="..\..\thirdpart\play_plugin\libmad-0.15.1b\timer.c">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\libmad\windows\x64\debug\thirdpart\play_plugin\libmad-0.15.1b\timer.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\libmad\windows\x64\release\thirdpart\play_plugin\libmad-0.15.1b\timer.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\libmad\windows\x86\release\thirdpart\play_plugin\libmad-0.15.1b\timer.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\libmad\windows\x86\debug\thirdpart\play_plugin\libmad-0.15.1b\timer.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\libmad\windows\x86\debug\thirdpart\play_plugin\libmad-0.15.1b\timer.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\libmad\windows\x64\release\thirdpart\play_plugin\libmad-0.15.1b\timer.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\libmad\windows\x64\debug\thirdpart\play_plugin\libmad-0.15.1b\timer.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\libmad\windows\x86\release\thirdpart\play_plugin\libmad-0.15.1b\timer.c.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\play_plugin\libmad-0.15.1b\frame.c">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\libmad\windows\x64\debug\thirdpart\play_plugin\libmad-0.15.1b\frame.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\libmad\windows\x64\release\thirdpart\play_plugin\libmad-0.15.1b\frame.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\libmad\windows\x86\release\thirdpart\play_plugin\libmad-0.15.1b\frame.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\libmad\windows\x86\debug\thirdpart\play_plugin\libmad-0.15.1b\frame.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\libmad\windows\x86\debug\thirdpart\play_plugin\libmad-0.15.1b\frame.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\libmad\windows\x64\release\thirdpart\play_plugin\libmad-0.15.1b\frame.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\libmad\windows\x64\debug\thirdpart\play_plugin\libmad-0.15.1b\frame.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\libmad\windows\x86\release\thirdpart\play_plugin\libmad-0.15.1b\frame.c.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\play_plugin\libmad-0.15.1b\stream.c">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\libmad\windows\x64\debug\thirdpart\play_plugin\libmad-0.15.1b\stream.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\libmad\windows\x64\release\thirdpart\play_plugin\libmad-0.15.1b\stream.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\libmad\windows\x86\debug\thirdpart\play_plugin\libmad-0.15.1b\stream.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\libmad\windows\x86\release\thirdpart\play_plugin\libmad-0.15.1b\stream.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\libmad\windows\x86\debug\thirdpart\play_plugin\libmad-0.15.1b\stream.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\libmad\windows\x86\release\thirdpart\play_plugin\libmad-0.15.1b\stream.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\libmad\windows\x64\debug\thirdpart\play_plugin\libmad-0.15.1b\stream.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\libmad\windows\x64\release\thirdpart\play_plugin\libmad-0.15.1b\stream.c.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\play_plugin\libmad-0.15.1b\bit.c">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\libmad\windows\x64\debug\thirdpart\play_plugin\libmad-0.15.1b\bit.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\libmad\windows\x86\debug\thirdpart\play_plugin\libmad-0.15.1b\bit.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\libmad\windows\x86\release\thirdpart\play_plugin\libmad-0.15.1b\bit.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\libmad\windows\x64\release\thirdpart\play_plugin\libmad-0.15.1b\bit.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\libmad\windows\x86\release\thirdpart\play_plugin\libmad-0.15.1b\bit.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\libmad\windows\x86\debug\thirdpart\play_plugin\libmad-0.15.1b\bit.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\libmad\windows\x64\debug\thirdpart\play_plugin\libmad-0.15.1b\bit.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\libmad\windows\x64\release\thirdpart\play_plugin\libmad-0.15.1b\bit.c.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\play_plugin\libmad-0.15.1b\decoder.c">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\libmad\windows\x86\debug\thirdpart\play_plugin\libmad-0.15.1b\decoder.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\libmad\windows\x64\release\thirdpart\play_plugin\libmad-0.15.1b\decoder.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\libmad\windows\x64\debug\thirdpart\play_plugin\libmad-0.15.1b\decoder.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\libmad\windows\x86\release\thirdpart\play_plugin\libmad-0.15.1b\decoder.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\libmad\windows\x64\debug\thirdpart\play_plugin\libmad-0.15.1b\decoder.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\libmad\windows\x86\release\thirdpart\play_plugin\libmad-0.15.1b\decoder.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\libmad\windows\x86\debug\thirdpart\play_plugin\libmad-0.15.1b\decoder.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\libmad\windows\x64\release\thirdpart\play_plugin\libmad-0.15.1b\decoder.c.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\play_plugin\libmad-0.15.1b\huffman.c">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\libmad\windows\x86\debug\thirdpart\play_plugin\libmad-0.15.1b\huffman.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\libmad\windows\x64\release\thirdpart\play_plugin\libmad-0.15.1b\huffman.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\libmad\windows\x64\debug\thirdpart\play_plugin\libmad-0.15.1b\huffman.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\libmad\windows\x86\release\thirdpart\play_plugin\libmad-0.15.1b\huffman.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\libmad\windows\x64\debug\thirdpart\play_plugin\libmad-0.15.1b\huffman.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\libmad\windows\x86\release\thirdpart\play_plugin\libmad-0.15.1b\huffman.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\libmad\windows\x86\debug\thirdpart\play_plugin\libmad-0.15.1b\huffman.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\libmad\windows\x64\release\thirdpart\play_plugin\libmad-0.15.1b\huffman.c.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\play_plugin\libmad-0.15.1b\layer12.c">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\libmad\windows\x86\debug\thirdpart\play_plugin\libmad-0.15.1b\layer12.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\libmad\windows\x64\release\thirdpart\play_plugin\libmad-0.15.1b\layer12.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\libmad\windows\x64\debug\thirdpart\play_plugin\libmad-0.15.1b\layer12.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\libmad\windows\x86\release\thirdpart\play_plugin\libmad-0.15.1b\layer12.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\libmad\windows\x64\debug\thirdpart\play_plugin\libmad-0.15.1b\layer12.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\libmad\windows\x86\release\thirdpart\play_plugin\libmad-0.15.1b\layer12.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\libmad\windows\x86\debug\thirdpart\play_plugin\libmad-0.15.1b\layer12.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\libmad\windows\x64\release\thirdpart\play_plugin\libmad-0.15.1b\layer12.c.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\play_plugin\libmad-0.15.1b\layer3.c">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\libmad\windows\x64\debug\thirdpart\play_plugin\libmad-0.15.1b\layer3.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\libmad\windows\x64\release\thirdpart\play_plugin\libmad-0.15.1b\layer3.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\libmad\windows\x86\debug\thirdpart\play_plugin\libmad-0.15.1b\layer3.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\libmad\windows\x86\release\thirdpart\play_plugin\libmad-0.15.1b\layer3.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\libmad\windows\x86\debug\thirdpart\play_plugin\libmad-0.15.1b\layer3.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\libmad\windows\x86\release\thirdpart\play_plugin\libmad-0.15.1b\layer3.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\libmad\windows\x64\debug\thirdpart\play_plugin\libmad-0.15.1b\layer3.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\libmad\windows\x64\release\thirdpart\play_plugin\libmad-0.15.1b\layer3.c.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\play_plugin\libmad-0.15.1b\fixed.c">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\libmad\windows\x64\debug\thirdpart\play_plugin\libmad-0.15.1b\fixed.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\libmad\windows\x64\release\thirdpart\play_plugin\libmad-0.15.1b\fixed.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\libmad\windows\x86\release\thirdpart\play_plugin\libmad-0.15.1b\fixed.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\libmad\windows\x86\debug\thirdpart\play_plugin\libmad-0.15.1b\fixed.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\libmad\windows\x86\debug\thirdpart\play_plugin\libmad-0.15.1b\fixed.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\libmad\windows\x64\release\thirdpart\play_plugin\libmad-0.15.1b\fixed.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\libmad\windows\x64\debug\thirdpart\play_plugin\libmad-0.15.1b\fixed.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\libmad\windows\x86\release\thirdpart\play_plugin\libmad-0.15.1b\fixed.c.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\play_plugin\libmad-0.15.1b\synth.c">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\libmad\windows\x64\debug\thirdpart\play_plugin\libmad-0.15.1b\synth.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\libmad\windows\x64\release\thirdpart\play_plugin\libmad-0.15.1b\synth.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\libmad\windows\x86\release\thirdpart\play_plugin\libmad-0.15.1b\synth.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\libmad\windows\x86\debug\thirdpart\play_plugin\libmad-0.15.1b\synth.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\libmad\windows\x86\debug\thirdpart\play_plugin\libmad-0.15.1b\synth.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\libmad\windows\x64\release\thirdpart\play_plugin\libmad-0.15.1b\synth.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\libmad\windows\x64\debug\thirdpart\play_plugin\libmad-0.15.1b\synth.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\libmad\windows\x86\release\thirdpart\play_plugin\libmad-0.15.1b\synth.c.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\play_plugin\libmad-0.15.1b\version.c">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\libmad\windows\x86\debug\thirdpart\play_plugin\libmad-0.15.1b\version.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\libmad\windows\x64\release\thirdpart\play_plugin\libmad-0.15.1b\version.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\libmad\windows\x64\debug\thirdpart\play_plugin\libmad-0.15.1b\version.c.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\libmad\windows\x86\release\thirdpart\play_plugin\libmad-0.15.1b\version.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\libmad\windows\x64\debug\thirdpart\play_plugin\libmad-0.15.1b\version.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\libmad\windows\x86\release\thirdpart\play_plugin\libmad-0.15.1b\version.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\libmad\windows\x86\debug\thirdpart\play_plugin\libmad-0.15.1b\version.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\libmad\windows\x64\release\thirdpart\play_plugin\libmad-0.15.1b\version.c.obj</ObjectFileName>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

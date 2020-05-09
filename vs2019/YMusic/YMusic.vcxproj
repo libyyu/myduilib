@@ -61,40 +61,40 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
-    <OutDir>..\..\release\</OutDir>
-    <IntDir>..\..\build\.objs\x86\release\YMusic\windows\x86\release\</IntDir>
+    <OutDir>..\..\release\windows\x86\</OutDir>
+    <IntDir>..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\</IntDir>
     <TargetName>YMusic</TargetName>
     <TargetExt>.exe</TargetExt>
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
-    <OutDir>..\..\release\</OutDir>
-    <IntDir>..\..\build\.objs\x64\release\YMusic\windows\x64\release\</IntDir>
+    <OutDir>..\..\release\windows\x64\</OutDir>
+    <IntDir>..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\</IntDir>
     <TargetName>YMusic</TargetName>
     <TargetExt>.exe</TargetExt>
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
-    <OutDir>..\..\debug\</OutDir>
-    <IntDir>..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\</IntDir>
+    <OutDir>..\..\debug\windows\x86\</OutDir>
+    <IntDir>..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\</IntDir>
     <TargetName>YMusic</TargetName>
     <TargetExt>.exe</TargetExt>
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
-    <OutDir>..\..\debug\</OutDir>
-    <IntDir>..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\</IntDir>
+    <OutDir>..\..\debug\windows\x64\</OutDir>
+    <IntDir>..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\</IntDir>
     <TargetName>YMusic</TargetName>
     <TargetExt>.exe</TargetExt>
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
     <Link>
-      <AdditionalLibraryDirectories>..\..\release;..\..\libs;..\..\libs\release;..\..\release\plugins;D:\boost_1_70_0\stage\msvc\x86\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\release\windows\x86;..\..\libs\windows\release\x86;..\..\libs\windows\release;..\..\libs\windows;..\..\release\windows;..\..\release\windows\x86\plugins;..\..\release\windows\plugins;D:\boost_1_70_0\stage\msvc\x86\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>MyControls.lib;http_plugin.lib;curl_a.lib;ssleay32.lib;libeay32.lib;taglib_plugin.lib;taglib.lib;playcenter.lib;FLib.lib;database.lib;sqlite3cpp.lib;sqlite3.lib;webservice.lib;network.lib;zlib.lib;DuiLib.lib;StackDump.lib;ws2_32.lib;wldap32.lib;Crypt32.lib;-nodefaultlib:"LIBCMT.lib";-nodefaultlib:"LIBC.lib";-nodefaultlib:"msvcrt.lib";%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>-nologo -dynamicbase -nxcompat %(AdditionalOptions)</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <ProgramDatabaseFile>..\..\release\YMusic.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>..\..\release\windows\x86\YMusic.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
@@ -103,12 +103,12 @@
       <WarningLevel>Level3</WarningLevel>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";BUILD_AS_DLL;WIN32_LEAN_AND_MEAN;CURL_STATICLIB;_AFXDLL;_USEIMM;UILIB_STACK_DUMP;HAVE_BOOST;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;WIN32_LEAN_AND_MEAN;CURL_STATICLIB;_AFXDLL;_USEIMM;UILIB_STACK_DUMP;HAVE_BOOST;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>..\..\thirdpart;..\..\thirdpart\sqlite3cpp\src;..\..\thirdpart\vlc\include;..\..\Demos;..\..\DuiLib;..\..\Demos\YMusic\src;..\..\Demos\YMusic;D:\boost_1_70_0</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>..\..\thirdpart;..\..\thirdpart\sqlite3cpp\src;..\..\thirdpart\vlc\include;..\..\Demos;..\..\DuiLib;..\..\Demos\YMusic\src;..\..\Demos\YMusic;D:\boost_1_70_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";BUILD_AS_DLL;WIN32_LEAN_AND_MEAN;CURL_STATICLIB;_AFXDLL;_USEIMM;UILIB_STACK_DUMP;HAVE_BOOST;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;WIN32_LEAN_AND_MEAN;CURL_STATICLIB;_AFXDLL;_USEIMM;UILIB_STACK_DUMP;HAVE_BOOST;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>-EHsc -nologo -FS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -124,11 +124,11 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
     <Link>
-      <AdditionalLibraryDirectories>..\..\release;..\..\libs;..\..\libs\release;..\..\release\plugins;D:\boost_1_70_0\stage\msvc\x64\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\release\windows\x64;..\..\libs\windows\release\x64;..\..\libs\windows\release;..\..\libs\windows;..\..\release\windows;..\..\release\windows\x64\plugins;..\..\release\windows\plugins;D:\boost_1_70_0\stage\msvc\x64\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>MyControls.lib;http_plugin.lib;curl_a.lib;ssleay32.lib;libeay32.lib;taglib_plugin.lib;taglib.lib;playcenter.lib;FLib.lib;database.lib;sqlite3cpp.lib;sqlite3.lib;webservice.lib;network.lib;zlib.lib;DuiLib.lib;StackDump.lib;ws2_32.lib;wldap32.lib;Crypt32.lib;-nodefaultlib:"LIBCMT.lib";-nodefaultlib:"LIBC.lib";-nodefaultlib:"msvcrt.lib";%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>-nologo -dynamicbase -nxcompat %(AdditionalOptions)</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <ProgramDatabaseFile>..\..\release\YMusic.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>..\..\release\windows\x64\YMusic.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
@@ -137,12 +137,12 @@
       <WarningLevel>Level3</WarningLevel>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";BUILD_AS_DLL;WIN32_LEAN_AND_MEAN;CURL_STATICLIB;_AFXDLL;_USEIMM;UILIB_STACK_DUMP;HAVE_BOOST;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;WIN32_LEAN_AND_MEAN;CURL_STATICLIB;_AFXDLL;_USEIMM;UILIB_STACK_DUMP;HAVE_BOOST;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>..\..\thirdpart;..\..\thirdpart\sqlite3cpp\src;..\..\thirdpart\vlc\include;..\..\Demos;..\..\DuiLib;..\..\Demos\YMusic\src;..\..\Demos\YMusic;D:\boost_1_70_0</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>..\..\thirdpart;..\..\thirdpart\sqlite3cpp\src;..\..\thirdpart\vlc\include;..\..\Demos;..\..\DuiLib;..\..\Demos\YMusic\src;..\..\Demos\YMusic;D:\boost_1_70_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";BUILD_AS_DLL;WIN32_LEAN_AND_MEAN;CURL_STATICLIB;_AFXDLL;_USEIMM;UILIB_STACK_DUMP;HAVE_BOOST;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;WIN32_LEAN_AND_MEAN;CURL_STATICLIB;_AFXDLL;_USEIMM;UILIB_STACK_DUMP;HAVE_BOOST;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>-EHsc -nologo -FS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -158,11 +158,11 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
     <Link>
-      <AdditionalLibraryDirectories>..\..\debug;..\..\libs;..\..\libs\debug;..\..\debug\plugins;D:\boost_1_70_0\stage\msvc\x86\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\debug\windows\x86;..\..\libs\windows\debug\x86;..\..\libs\windows\debug;..\..\libs\windows;..\..\debug\windows;..\..\debug\windows\x86\plugins;..\..\debug\windows\plugins;D:\boost_1_70_0\stage\msvc\x86\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>MyControls.lib;http_plugin.lib;curl_a.lib;ssleay32.lib;libeay32.lib;taglib_plugin.lib;taglib.lib;playcenter.lib;FLib.lib;database.lib;sqlite3cpp.lib;sqlite3.lib;webservice.lib;network.lib;zlib.lib;DuiLib.lib;StackDump.lib;ws2_32.lib;wldap32.lib;Crypt32.lib;-nodefaultlib:"LIBCMT.lib";-nodefaultlib:"LIBC.lib";-nodefaultlib:"msvcrt.lib";%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>-nologo -dynamicbase -nxcompat %(AdditionalOptions)</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>..\..\debug\YMusic.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>..\..\debug\windows\x86\YMusic.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
@@ -171,12 +171,12 @@
       <WarningLevel>Level3</WarningLevel>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
-      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";BUILD_AS_DLL;WIN32_LEAN_AND_MEAN;CURL_STATICLIB;_AFXDLL;_USEIMM;UILIB_STACK_DUMP;HAVE_BOOST;__config_debug__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;WIN32_LEAN_AND_MEAN;CURL_STATICLIB;_AFXDLL;_USEIMM;UILIB_STACK_DUMP;HAVE_BOOST;__config_debug__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>..\..\thirdpart;..\..\thirdpart\sqlite3cpp\src;..\..\thirdpart\vlc\include;..\..\Demos;..\..\DuiLib;..\..\Demos\YMusic\src;..\..\Demos\YMusic;D:\boost_1_70_0</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>..\..\thirdpart;..\..\thirdpart\sqlite3cpp\src;..\..\thirdpart\vlc\include;..\..\Demos;..\..\DuiLib;..\..\Demos\YMusic\src;..\..\Demos\YMusic;D:\boost_1_70_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";BUILD_AS_DLL;WIN32_LEAN_AND_MEAN;CURL_STATICLIB;_AFXDLL;_USEIMM;UILIB_STACK_DUMP;HAVE_BOOST;__config_debug__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;WIN32_LEAN_AND_MEAN;CURL_STATICLIB;_AFXDLL;_USEIMM;UILIB_STACK_DUMP;HAVE_BOOST;__config_debug__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>-EHsc -nologo %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -192,11 +192,11 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
     <Link>
-      <AdditionalLibraryDirectories>..\..\debug;..\..\libs;..\..\libs\debug;..\..\debug\plugins;D:\boost_1_70_0\stage\msvc\x64\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\debug\windows\x64;..\..\libs\windows\debug\x64;..\..\libs\windows\debug;..\..\libs\windows;..\..\debug\windows;..\..\debug\windows\x64\plugins;..\..\debug\windows\plugins;D:\boost_1_70_0\stage\msvc\x64\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>MyControls.lib;http_plugin.lib;curl_a.lib;ssleay32.lib;libeay32.lib;taglib_plugin.lib;taglib.lib;playcenter.lib;FLib.lib;database.lib;sqlite3cpp.lib;sqlite3.lib;webservice.lib;network.lib;zlib.lib;DuiLib.lib;StackDump.lib;ws2_32.lib;wldap32.lib;Crypt32.lib;-nodefaultlib:"LIBCMT.lib";-nodefaultlib:"LIBC.lib";-nodefaultlib:"msvcrt.lib";%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>-nologo -dynamicbase -nxcompat %(AdditionalOptions)</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>..\..\debug\YMusic.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>..\..\debug\windows\x64\YMusic.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
@@ -205,12 +205,12 @@
       <WarningLevel>Level3</WarningLevel>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
-      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";BUILD_AS_DLL;WIN32_LEAN_AND_MEAN;CURL_STATICLIB;_AFXDLL;_USEIMM;UILIB_STACK_DUMP;HAVE_BOOST;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;WIN32_LEAN_AND_MEAN;CURL_STATICLIB;_AFXDLL;_USEIMM;UILIB_STACK_DUMP;HAVE_BOOST;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>None</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>..\..\thirdpart;..\..\thirdpart\sqlite3cpp\src;..\..\thirdpart\vlc\include;..\..\Demos;..\..\DuiLib;..\..\Demos\YMusic\src;..\..\Demos\YMusic;D:\boost_1_70_0</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>..\..\thirdpart;..\..\thirdpart\sqlite3cpp\src;..\..\thirdpart\vlc\include;..\..\Demos;..\..\DuiLib;..\..\Demos\YMusic\src;..\..\Demos\YMusic;D:\boost_1_70_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\Workspace\MyDuiLib";BUILD_AS_DLL;WIN32_LEAN_AND_MEAN;CURL_STATICLIB;_AFXDLL;_USEIMM;UILIB_STACK_DUMP;HAVE_BOOST;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;WIN32_LEAN_AND_MEAN;CURL_STATICLIB;_AFXDLL;_USEIMM;UILIB_STACK_DUMP;HAVE_BOOST;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>-EHsc -nologo %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -228,578 +228,578 @@
     <ClCompile Include="..\..\Demos\YMusic\src\Utility\Thread.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\Thread.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\Thread.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\Thread.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\Thread.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\Thread.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\Thread.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\Thread.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\Thread.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\GUI\SearchLrcWindow.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\SearchLrcWindow.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\SearchLrcWindow.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\SearchLrcWindow.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\SearchLrcWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\SearchLrcWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\SearchLrcWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\SearchLrcWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\SearchLrcWindow.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\GUI\LoginWindow.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\LoginWindow.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\LoginWindow.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\LoginWindow.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\LoginWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\LoginWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\LoginWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\LoginWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\LoginWindow.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Web\HTTPprotocol.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Web\HTTPprotocol.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Web\HTTPprotocol.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Web\HTTPprotocol.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Web\HTTPprotocol.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Web\HTTPprotocol.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Web\HTTPprotocol.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Web\HTTPprotocol.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Web\HTTPprotocol.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Utility\mt_helper.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\mt_helper.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\mt_helper.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\mt_helper.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\mt_helper.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\mt_helper.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\mt_helper.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\mt_helper.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\mt_helper.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Utility\tinyxml\tinyxml.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\tinyxml\tinyxml.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\tinyxml\tinyxml.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\tinyxml\tinyxml.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\tinyxml\tinyxml.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\tinyxml\tinyxml.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\tinyxml\tinyxml.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\tinyxml\tinyxml.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\tinyxml\tinyxml.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\RuntimeState.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\RuntimeState.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\RuntimeState.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\RuntimeState.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\RuntimeState.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\RuntimeState.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\RuntimeState.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\RuntimeState.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\RuntimeState.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Mgr\ConfigMgr\ConfigMgr.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Mgr\ConfigMgr\ConfigMgr.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Mgr\ConfigMgr\ConfigMgr.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Mgr\ConfigMgr\ConfigMgr.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Mgr\ConfigMgr\ConfigMgr.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Mgr\ConfigMgr\ConfigMgr.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Mgr\ConfigMgr\ConfigMgr.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Mgr\ConfigMgr\ConfigMgr.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Mgr\ConfigMgr\ConfigMgr.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Mgr\DB\ISerialize.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Mgr\DB\ISerialize.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Mgr\DB\ISerialize.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Mgr\DB\ISerialize.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Mgr\DB\ISerialize.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Mgr\DB\ISerialize.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Mgr\DB\ISerialize.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Mgr\DB\ISerialize.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Mgr\DB\ISerialize.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\GUI\Controls\MySkinLayout.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\Controls\MySkinLayout.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\Controls\MySkinLayout.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\Controls\MySkinLayout.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\Controls\MySkinLayout.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\Controls\MySkinLayout.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\Controls\MySkinLayout.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\Controls\MySkinLayout.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\Controls\MySkinLayout.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\YMainWindow.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\YMainWindow.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\YMainWindow.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\YMainWindow.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\YMainWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\YMainWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\YMainWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\YMainWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\YMainWindow.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\GUI\TagModifyWin.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\TagModifyWin.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\TagModifyWin.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\TagModifyWin.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\TagModifyWin.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\TagModifyWin.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\TagModifyWin.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\TagModifyWin.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\TagModifyWin.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Mgr\DB\ShareData.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Mgr\DB\ShareData.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Mgr\DB\ShareData.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Mgr\DB\ShareData.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Mgr\DB\ShareData.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Mgr\DB\ShareData.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Mgr\DB\ShareData.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Mgr\DB\ShareData.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Mgr\DB\ShareData.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Web\HttpManager.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Web\HttpManager.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Web\HttpManager.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Web\HttpManager.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Web\HttpManager.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Web\HttpManager.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Web\HttpManager.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Web\HttpManager.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Web\HttpManager.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Utility\json\lib_json\json_reader.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\json\lib_json\json_reader.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\json\lib_json\json_reader.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\json\lib_json\json_reader.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\json\lib_json\json_reader.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\json\lib_json\json_reader.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\json\lib_json\json_reader.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\json\lib_json\json_reader.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\json\lib_json\json_reader.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Web\UrlPraser.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Web\UrlPraser.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Web\UrlPraser.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Web\UrlPraser.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Web\UrlPraser.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Web\UrlPraser.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Web\UrlPraser.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Web\UrlPraser.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Web\UrlPraser.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Utility\tinyxml\tinyxmlerror.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\tinyxml\tinyxmlerror.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\tinyxml\tinyxmlerror.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\tinyxml\tinyxmlerror.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\tinyxml\tinyxmlerror.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\tinyxml\tinyxmlerror.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\tinyxml\tinyxmlerror.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\tinyxml\tinyxmlerror.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\tinyxml\tinyxmlerror.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Var.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Var.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Var.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Var.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Var.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Var.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Var.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Var.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Var.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\GUI\Controls\LrcView.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\Controls\LrcView.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\Controls\LrcView.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\Controls\LrcView.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\Controls\LrcView.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\Controls\LrcView.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\Controls\LrcView.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\Controls\LrcView.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\Controls\LrcView.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\GUI\SettingWindow.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\SettingWindow.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\SettingWindow.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\SettingWindow.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\SettingWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\SettingWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\SettingWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\SettingWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\SettingWindow.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\GUI\LrcMask.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\LrcMask.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\LrcMask.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\LrcMask.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\LrcMask.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\LrcMask.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\LrcMask.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\LrcMask.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\LrcMask.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\GUI\WebLoginWindow.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\WebLoginWindow.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\WebLoginWindow.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\WebLoginWindow.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\WebLoginWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\WebLoginWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\WebLoginWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\WebLoginWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\WebLoginWindow.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Utility\Convert.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\Convert.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\Convert.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\Convert.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\Convert.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\Convert.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\Convert.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\Convert.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\Convert.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Utility\json\lib_json\json_value.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\json\lib_json\json_value.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\json\lib_json\json_value.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\json\lib_json\json_value.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\json\lib_json\json_value.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\json\lib_json\json_value.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\json\lib_json\json_value.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\json\lib_json\json_value.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\json\lib_json\json_value.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Web\down_http_file.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Web\down_http_file.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Web\down_http_file.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Web\down_http_file.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Web\down_http_file.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Web\down_http_file.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Web\down_http_file.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Web\down_http_file.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Web\down_http_file.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Mgr\DB\DB.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Mgr\DB\DB.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Mgr\DB\DB.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Mgr\DB\DB.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Mgr\DB\DB.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Mgr\DB\DB.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Mgr\DB\DB.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Mgr\DB\DB.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Mgr\DB\DB.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\GUI\BaseWindow.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\BaseWindow.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\BaseWindow.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\BaseWindow.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\BaseWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\BaseWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\BaseWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\BaseWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\BaseWindow.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Utility\win_io\FileMgr.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\win_io\FileMgr.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\win_io\FileMgr.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\win_io\FileMgr.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\win_io\FileMgr.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\win_io\FileMgr.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\win_io\FileMgr.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\win_io\FileMgr.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\win_io\FileMgr.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Utility\tinyxml\tinystr.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\tinyxml\tinystr.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\tinyxml\tinystr.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\tinyxml\tinystr.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\tinyxml\tinystr.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\tinyxml\tinystr.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\tinyxml\tinystr.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\tinyxml\tinystr.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\tinyxml\tinystr.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Utility\ThreadHelper.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\ThreadHelper.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\ThreadHelper.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\ThreadHelper.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\ThreadHelper.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\ThreadHelper.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\ThreadHelper.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\ThreadHelper.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\ThreadHelper.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\GUI\YLogin.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\YLogin.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\YLogin.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\YLogin.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\YLogin.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\YLogin.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\YLogin.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\YLogin.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\YLogin.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Utility\log.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\log.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\log.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\log.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\log.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\log.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\log.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\log.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\log.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Mgr\PlayMgr\PlayListMgr.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Mgr\PlayMgr\PlayListMgr.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Mgr\PlayMgr\PlayListMgr.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Mgr\PlayMgr\PlayListMgr.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Mgr\PlayMgr\PlayListMgr.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Mgr\PlayMgr\PlayListMgr.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Mgr\PlayMgr\PlayListMgr.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Mgr\PlayMgr\PlayListMgr.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Mgr\PlayMgr\PlayListMgr.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\stdafx.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\stdafx.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\stdafx.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\stdafx.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\stdafx.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\stdafx.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\stdafx.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\stdafx.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\stdafx.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Utility\jsHandler.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\jsHandler.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\jsHandler.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\jsHandler.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\jsHandler.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\jsHandler.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\jsHandler.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\jsHandler.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\jsHandler.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Mgr\LrcMgr\ParseTrackFile.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Mgr\LrcMgr\ParseTrackFile.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Mgr\LrcMgr\ParseTrackFile.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Mgr\LrcMgr\ParseTrackFile.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Mgr\LrcMgr\ParseTrackFile.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Mgr\LrcMgr\ParseTrackFile.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Mgr\LrcMgr\ParseTrackFile.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Mgr\LrcMgr\ParseTrackFile.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Mgr\LrcMgr\ParseTrackFile.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Utility\json\DataParser.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\json\DataParser.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\json\DataParser.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\json\DataParser.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\json\DataParser.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\json\DataParser.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\json\DataParser.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\json\DataParser.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\json\DataParser.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\GUI\InfoWindow.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\InfoWindow.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\InfoWindow.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\InfoWindow.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\InfoWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\InfoWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\InfoWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\InfoWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\InfoWindow.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\GUI\DesktopLrcWindow.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\DesktopLrcWindow.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\DesktopLrcWindow.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\DesktopLrcWindow.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\DesktopLrcWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\DesktopLrcWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\DesktopLrcWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\DesktopLrcWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\DesktopLrcWindow.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\YApp.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\YApp.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\YApp.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\YApp.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\YApp.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\YApp.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\YApp.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\YApp.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\YApp.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Utility\tinyxml\tinyxmlparser.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\tinyxml\tinyxmlparser.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\tinyxml\tinyxmlparser.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\tinyxml\tinyxmlparser.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\tinyxml\tinyxmlparser.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\tinyxml\tinyxmlparser.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\tinyxml\tinyxmlparser.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\tinyxml\tinyxmlparser.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\tinyxml\tinyxmlparser.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\GUI\PropertyWin.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\PropertyWin.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\PropertyWin.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\PropertyWin.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\PropertyWin.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\PropertyWin.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\PropertyWin.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\PropertyWin.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\PropertyWin.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Mgr\LrcMgr\lrcFileReader.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Mgr\LrcMgr\lrcFileReader.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Mgr\LrcMgr\lrcFileReader.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Mgr\LrcMgr\lrcFileReader.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Mgr\LrcMgr\lrcFileReader.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Mgr\LrcMgr\lrcFileReader.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Mgr\LrcMgr\lrcFileReader.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Mgr\LrcMgr\lrcFileReader.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Mgr\LrcMgr\lrcFileReader.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\GUI\Controls\SysSkinLayout.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\Controls\SysSkinLayout.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\Controls\SysSkinLayout.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\Controls\SysSkinLayout.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\Controls\SysSkinLayout.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\Controls\SysSkinLayout.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\Controls\SysSkinLayout.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\Controls\SysSkinLayout.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\Controls\SysSkinLayout.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Mgr\CacheMgr\CacheMgr.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Mgr\CacheMgr\CacheMgr.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Mgr\CacheMgr\CacheMgr.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Mgr\CacheMgr\CacheMgr.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Mgr\CacheMgr\CacheMgr.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Mgr\CacheMgr\CacheMgr.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Mgr\CacheMgr\CacheMgr.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Mgr\CacheMgr\CacheMgr.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Mgr\CacheMgr\CacheMgr.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Utility\win_io\win_io_base.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\win_io\win_io_base.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\win_io\win_io_base.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\win_io\win_io_base.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\win_io\win_io_base.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\win_io\win_io_base.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\win_io\win_io_base.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\win_io\win_io_base.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\win_io\win_io_base.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Mgr\DB\DatabaseManager.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Mgr\DB\DatabaseManager.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Mgr\DB\DatabaseManager.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Mgr\DB\DatabaseManager.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Mgr\DB\DatabaseManager.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Mgr\DB\DatabaseManager.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Mgr\DB\DatabaseManager.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Mgr\DB\DatabaseManager.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Mgr\DB\DatabaseManager.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Utility\xml_wrapper.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\xml_wrapper.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\xml_wrapper.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\xml_wrapper.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\xml_wrapper.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\xml_wrapper.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\xml_wrapper.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\xml_wrapper.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\xml_wrapper.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\GUI\trayIcon.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\trayIcon.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\trayIcon.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\trayIcon.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\trayIcon.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\trayIcon.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\trayIcon.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\trayIcon.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\trayIcon.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\GUI\Controls\DownloadItem.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\Controls\DownloadItem.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\Controls\DownloadItem.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\Controls\DownloadItem.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\Controls\DownloadItem.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\Controls\DownloadItem.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\Controls\DownloadItem.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\Controls\DownloadItem.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\Controls\DownloadItem.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\GUI\MainMenu.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\MainMenu.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\MainMenu.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\MainMenu.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\MainMenu.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\MainMenu.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\MainMenu.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\MainMenu.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\MainMenu.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\GUI\ShareWin.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\ShareWin.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\ShareWin.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\ShareWin.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\ShareWin.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\ShareWin.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\ShareWin.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\ShareWin.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\ShareWin.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\GUI\Controls\UIMedia.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\Controls\UIMedia.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\Controls\UIMedia.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\Controls\UIMedia.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\Controls\UIMedia.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\Controls\UIMedia.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\Controls\UIMedia.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\Controls\UIMedia.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\Controls\UIMedia.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\GUI\MediaPlayerWnd.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\MediaPlayerWnd.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\MediaPlayerWnd.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\MediaPlayerWnd.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\MediaPlayerWnd.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\MediaPlayerWnd.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\MediaPlayerWnd.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\MediaPlayerWnd.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\MediaPlayerWnd.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\GUI\MusicLib.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\MusicLib.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\MusicLib.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\MusicLib.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\MusicLib.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\MusicLib.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\MusicLib.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\MusicLib.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\MusicLib.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\GUI\DownLoadWin.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\DownLoadWin.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\DownLoadWin.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\DownLoadWin.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\DownLoadWin.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\DownLoadWin.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\DownLoadWin.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\DownLoadWin.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\DownLoadWin.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\WinMain.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\WinMain.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\WinMain.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\WinMain.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\WinMain.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\WinMain.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\WinMain.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\WinMain.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\WinMain.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Utility\win_io\io_interface.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\win_io\io_interface.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\win_io\io_interface.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\win_io\io_interface.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\win_io\io_interface.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\win_io\io_interface.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\win_io\io_interface.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\win_io\io_interface.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\win_io\io_interface.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\GUI\Controls\LrcPreview.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\Controls\LrcPreview.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\Controls\LrcPreview.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\Controls\LrcPreview.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\Controls\LrcPreview.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\Controls\LrcPreview.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\Controls\LrcPreview.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\Controls\LrcPreview.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\Controls\LrcPreview.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Utility\json\lib_json\json_writer.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\json\lib_json\json_writer.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\json\lib_json\json_writer.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\json\lib_json\json_writer.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\json\lib_json\json_writer.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Utility\json\lib_json\json_writer.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Utility\json\lib_json\json_writer.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Utility\json\lib_json\json_writer.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Utility\json\lib_json\json_writer.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\GUI\Controls\YPlayListItem.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\Controls\YPlayListItem.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\Controls\YPlayListItem.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\Controls\YPlayListItem.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\Controls\YPlayListItem.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\Controls\YPlayListItem.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\Controls\YPlayListItem.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\Controls\YPlayListItem.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\Controls\YPlayListItem.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\GUI\LrcSelectWnd.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\LrcSelectWnd.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\LrcSelectWnd.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\LrcSelectWnd.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\LrcSelectWnd.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\LrcSelectWnd.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\LrcSelectWnd.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\LrcSelectWnd.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\LrcSelectWnd.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Mgr\FilePathMgr\FilePathMgr.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Mgr\FilePathMgr\FilePathMgr.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Mgr\FilePathMgr\FilePathMgr.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Mgr\FilePathMgr\FilePathMgr.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Mgr\FilePathMgr\FilePathMgr.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Mgr\FilePathMgr\FilePathMgr.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Mgr\FilePathMgr\FilePathMgr.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Mgr\FilePathMgr\FilePathMgr.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Mgr\FilePathMgr\FilePathMgr.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Mgr\LrcMgr\LrcMgr.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Mgr\LrcMgr\LrcMgr.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Mgr\LrcMgr\LrcMgr.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Mgr\LrcMgr\LrcMgr.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Mgr\LrcMgr\LrcMgr.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Mgr\LrcMgr\LrcMgr.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Mgr\LrcMgr\LrcMgr.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Mgr\LrcMgr\LrcMgr.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Mgr\LrcMgr\LrcMgr.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\GUI\AddingSong.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\AddingSong.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\AddingSong.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\AddingSong.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\AddingSong.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\AddingSong.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\AddingSong.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\AddingSong.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\AddingSong.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Mgr\ConfigMgr\ConfigBase.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Mgr\ConfigMgr\ConfigBase.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Mgr\ConfigMgr\ConfigBase.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Mgr\ConfigMgr\ConfigBase.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Mgr\ConfigMgr\ConfigBase.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Mgr\ConfigMgr\ConfigBase.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Mgr\ConfigMgr\ConfigBase.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Mgr\ConfigMgr\ConfigBase.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Mgr\ConfigMgr\ConfigBase.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\YMusic.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\YMusic.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\YMusic.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\YMusic.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\YMusic.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\YMusic.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\YMusic.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\YMusic.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\YMusic.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Mgr\PlayMgr\audioinfo.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Mgr\PlayMgr\audioinfo.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Mgr\PlayMgr\audioinfo.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Mgr\PlayMgr\audioinfo.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Mgr\PlayMgr\audioinfo.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Mgr\PlayMgr\audioinfo.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Mgr\PlayMgr\audioinfo.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Mgr\PlayMgr\audioinfo.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Mgr\PlayMgr\audioinfo.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\GUI\Controls\YSongListItem.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\Controls\YSongListItem.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\Controls\YSongListItem.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\Controls\YSongListItem.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\Controls\YSongListItem.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\Controls\YSongListItem.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\Controls\YSongListItem.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\Controls\YSongListItem.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\Controls\YSongListItem.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\GUI\LrcToolBar.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\LrcToolBar.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\LrcToolBar.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\LrcToolBar.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\LrcToolBar.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\LrcToolBar.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\LrcToolBar.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\LrcToolBar.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\LrcToolBar.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\GUI\SkinWindow.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\SkinWindow.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\SkinWindow.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\SkinWindow.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\SkinWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\GUI\SkinWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\GUI\SkinWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\GUI\SkinWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\GUI\SkinWindow.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\Demos\YMusic\src\Mgr\LrcMgr\SearchLrcFromWeb.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Mgr\LrcMgr\SearchLrcFromWeb.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Mgr\LrcMgr\SearchLrcFromWeb.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Mgr\LrcMgr\SearchLrcFromWeb.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Mgr\LrcMgr\SearchLrcFromWeb.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\YMusic\windows\x86\release\Demos\YMusic\src\Mgr\LrcMgr\SearchLrcFromWeb.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\YMusic\windows\x64\debug\Demos\YMusic\src\Mgr\LrcMgr\SearchLrcFromWeb.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\YMusic\windows\x64\release\Demos\YMusic\src\Mgr\LrcMgr\SearchLrcFromWeb.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\YMusic\windows\x86\debug\Demos\YMusic\src\Mgr\LrcMgr\SearchLrcFromWeb.cpp.obj</ObjectFileName>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
