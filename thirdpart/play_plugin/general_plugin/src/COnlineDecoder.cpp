@@ -20,9 +20,9 @@ COnlineDecoder::~COnlineDecoder()
 bool COnlineDecoder::open(const char* pszFileName,int nBegin,int nEnd)
 {
 	_hWrite = ::CreateFileA(pszFileName,GENERIC_WRITE, FILE_SHARE_READ|FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-	sLog("CDecoderBase::open fun,CreateFile to write,Error=%d",::GetLastError());
+	sLog("COnlineDecoder::open fun,CreateFile to write,Error=%d",::GetLastError());
 	_hRead  = ::CreateFileA(pszFileName,GENERIC_READ,FILE_SHARE_READ|FILE_SHARE_WRITE,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
-	sLog("CDecoderBase::open fun,CreateFile to read Error=%d",::GetLastError());
+	sLog("COnlineDecoder::open fun,CreateFile to read Error=%d",::GetLastError());
 	return (INVALID_HANDLE_VALUE != _hWrite) && (INVALID_HANDLE_VALUE != _hRead);
 }
 void COnlineDecoder::close()

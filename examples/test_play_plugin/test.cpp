@@ -290,7 +290,7 @@ int main()
 			const str_ansi u8[] = "D:\\Workspace\\test\\t\\Debug\\birthday.mp3";// 相思.mp3";
 			const str_utf16 u16[] = L"D:\\Workspace\\test\\t\\Debug\\相思.mp3";
 			const TCHAR pwstr[] = _T("D:\\Workspace\\test\\t\\Debug\\相思.mp3");
-			const char* urlpath = "http://www.libyyu.com/static/sound/happy-birthday.mp3";
+			const char* urlpath = "http://www.libyyu.com/sound/happy-birthday";
 			int ret = pfunc(u8, urlpath, -1);// "");
 			
 			if (ret == 0)
