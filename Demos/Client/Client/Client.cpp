@@ -12,12 +12,13 @@ namespace DuiLib
 
 int RunApp(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
+	CDuiString szRootPath = TODUISTRING(ROOT_DIR).c_str();
 	CPaintManagerUI::SetInstance(hInstance);
 #ifdef _DEBUG
-	CPaintManagerUI::SetResourcePath(CPaintManagerUI::GetInstancePath() + _T("\\..\\skin\\Cli"));
+	CPaintManagerUI::SetResourcePath(Path::CombinePath(szRootPath.GetData(), _T("skin\\Cli")));
 	CPaintManagerUI::SetResourceType(UILIB_RESOURCETYPE::UILIB_FILE);
 #else
-	CPaintManagerUI::SetResourcePath(CPaintManagerUI::GetInstancePath() + _T("\\..\\skin"));
+	CPaintManagerUI::SetResourcePath(Path::CombinePath(szRootPath.GetData(), _T("skin")));
 	CPaintManagerUI::SetResourceZip(_T("Cli.dat"));
 	CPaintManagerUI::SetResourceType(UILIB_RESOURCETYPE::UILIB_ZIP);
 #endif

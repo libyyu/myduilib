@@ -27,9 +27,9 @@ int RunApp(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nC
 		}
 		return -1;
 	}
-
+	CDuiString szRootPath = TODUISTRING(ROOT_DIR).c_str();
 	CPaintManagerUI::SetInstance(hInstance);
-	CPaintManagerUI::SetResourcePath(CPaintManagerUI::GetInstancePath() + _T("\\..\\skin"));
+	CPaintManagerUI::SetResourcePath(Path::CombinePath(szRootPath.GetData(), _T("skin")));
 	CPaintManagerUI::SetResourceZip(_T("Srv.dat"));
 	CPaintManagerUI::SetResourceType(UILIB_RESOURCETYPE::UILIB_ZIP);
 

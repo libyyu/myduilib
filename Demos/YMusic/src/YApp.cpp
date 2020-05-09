@@ -150,10 +150,10 @@ int CApp::Run(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, in
 //	CWSAStartup wsa(2,1);
 
 	
-
+	DuiLib::CDuiString szRootPath = TODUISTRING(ROOT_DIR).c_str();
 	DuiLib::CPaintManagerUI::SetInstance(hInstance);
 	DuiLib::CPaintManagerUI::SetResourceType(DuiLib::UILIB_FILE);
-	DuiLib::CPaintManagerUI::SetResourcePath(DuiLib::CPaintManagerUI::GetInstancePath() + _T("/../skin/ymusic"));
+	DuiLib::CPaintManagerUI::SetResourcePath(DuiLib::Path::CombinePath(szRootPath.GetData(), _T("skin/ymusic")));
 	//¥¶¿Ì√¸¡Ó––
 	HandleCmdLine(lpCmdLine);
 	

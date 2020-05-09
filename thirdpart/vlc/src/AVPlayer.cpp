@@ -217,7 +217,7 @@ bool CAVPlayer::PlayFile(const std::string &strPath)
 			pfn_libvlc_media_player_event_manager pfunc_event_manager = plugin->Get< pfn_libvlc_media_player_event_manager >("libvlc_media_player_event_manager");
 
 			pfunc_set_hwnd(m_pVLC_Player, m_hWnd);
-			pfunc_play(m_pVLC_Player);
+			int code = pfunc_play(m_pVLC_Player);
 			m_bStatus = em_play;//播放状态
             // 事件管理
             void *vlc_evt_man = pfunc_event_manager(m_pVLC_Player);
@@ -631,8 +631,16 @@ extern "C" {
 	PLAYCENTER_API void test_player()
 	{
 		CAVPlayer* player = new CAVPlayer();
+#if FLIB_COMPILER_WINDOWS
+		bool ret = player->PlayFile("d:\\Workspace\\test\\t\\Debug\\aaaa.mp3");
+		printf("playfile ret = %d\n", ret);
+#elif FLIB_COMPILER_MACOSX
 		bool ret = player->PlayFile("/Volumes/SHARED/WorkSpace/duilib/1-07 生日快乐 (Live).mp3");
 		printf("playfile ret = %d\n", ret);
+#else
+		printf("platform not implement")
+#endif
+		
 		printf("exit \n");
 	}
 

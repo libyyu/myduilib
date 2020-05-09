@@ -7,7 +7,6 @@ if is_plat("windows") then
 		'LuaDuiLibApp',
 		--'QQDemo',
 		--'RichListDemo',
-		'WebService',
 		--'ScrCapture',
 		--'360SafeDemo',
 		--'GameDemo',
@@ -15,9 +14,4 @@ if is_plat("windows") then
 		'YMusic'
 	)
 else
-	if has_config("boost_dir") then
-		includes(
-			'WebService'
-		)
-	end
 end
