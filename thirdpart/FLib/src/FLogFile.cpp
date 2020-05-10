@@ -19,6 +19,7 @@ FAutoFile::~FAutoFile()
 		fflush(_file);
 		fclose(_file);
 	}
+	_file = nullptr;
 }
 
 
@@ -29,7 +30,7 @@ void FSetLogFileLevel(FLIB_LOGLEVEL level)
 	_logfile_level = level;
 }
 
-FLogFile::FLogFile(FAutoFile* fp, FLIB_LOGLEVEL level) : m_level(level), m_flog(fp)
+FLogFile::FLogFile(FAutoFile& fp, FLIB_LOGLEVEL level) : m_level(level), m_flog(fp)
 {
 	char buff[200] = { 0 };
 	tm* aTm = FGetNowTime();
@@ -46,7 +47,7 @@ FLogFile::FLogFile(FAutoFile* fp, FLIB_LOGLEVEL level) : m_level(level), m_flog(
 		<< buff << "|"
 		<< "]";
 }
-FLogFile::FLogFile(FAutoFile* fp, FLIB_LOGLEVEL level, const char* filename, int32 line/* = -1*/)
+FLogFile::FLogFile(FAutoFile& fp, FLIB_LOGLEVEL level, const char* filename, int32 line/* = -1*/)
 	:m_level(level), m_flog(fp)
 {
 	char buff[200] = { 0 };
@@ -63,7 +64,7 @@ FLogFile::FLogFile(FAutoFile* fp, FLIB_LOGLEVEL level, const char* filename, int
 		<< FGetCurrentThreadId() << "|"
 		<< buff << "|"
 		<< (filename ? filename : "<unknow source>") << ":"
-		<< line
+		<< (int32)(line)
 		<< "]";
 }
 FLogFile::~FLogFile() { m_message.clear(); }
@@ -80,8 +81,8 @@ void FLogFile::_LogImpl()
 {
 	assert(m_flog && "log file handle is null.");
 	if (!m_flog) return;
-	lock_wrapper lock(*m_flog);
-	FILE* fp = *m_flog;
+	lock_wrapper lock(m_flog);
+	FILE* fp = m_flog;
 	if (!fp) return;
 	fwrite(m_message.c_str(), m_message.size(), sizeof(char), fp);
 }

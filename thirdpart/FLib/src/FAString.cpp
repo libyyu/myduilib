@@ -397,16 +397,16 @@ bool FAString::operator <  (const char* str) const { return (Compare(str) < 0); 
 bool FAString::operator >= (const char* str) const { return (Compare(str) >= 0); };
 bool FAString::operator >  (const char* str) const { return (Compare(str) > 0); };
 
-inline FAString& operator<<(FAString& str,const std::string &v)
-{
-	str << (v.c_str());
-    return str;
-}
-
-inline FAString& endl(FAString& v)
+FAString& endl(FAString& v)
 {
 	v += _T('\n');
 	return v;
+}
+
+FAString& operator<<(FAString& str,const std::string &v)
+{
+	str << (v.c_str());
+    return str;
 }
 
 template<typename T>
@@ -504,7 +504,7 @@ FAString& FAString::operator<<(char str[])
 	Append(str);
 	return *this;
 }
-FAString& FAString::operator<<(std::string& str)
+FAString& FAString::operator<<(const std::string& str)
 {
 	(*this) << (str.c_str());
 	return *this;

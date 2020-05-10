@@ -255,21 +255,23 @@ void FThreadPool::taskRunner()
 }
 ////////////////////////////////////////////////////
 ////
-FAsync::FAsync(const std::function<void()>& action) : _thread(action)
+FAsync::FAsync(const std::function<void()>& action) : _thread(nullptr)
 {
-	_thread.start();
+	_thread = new FThread(action);
+	_thread->start();
 }
 FAsync::~FAsync()
 {
-	_thread.join();
-	delete this;
+	_thread->join();
+	delete _thread;
 }
 
 std::function<void()> AsyncCallback(const std::function<void()>& action)
 {
 	auto func = [action]()
 	{
-		new FAsync(action);
+		auto s = new FAsync(action);
+		delete s;
 	};
 	return func;
 }

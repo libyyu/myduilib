@@ -110,7 +110,7 @@ public:
     FAString& operator<<(double v);
     FAString& operator<<(const char *str);
 	FAString& operator<<(char v[]);
-	FAString& operator<<(std::string& str);
+	FAString& operator<<(const std::string& str);
     FAString& operator<<(FAString &v);
 	FAString& operator<< (FAString& (*_f)(FAString&));
 

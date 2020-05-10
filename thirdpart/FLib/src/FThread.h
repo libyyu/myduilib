@@ -149,7 +149,7 @@ public:
 	explicit FAsync(const std::function<void()>& action);
 	~FAsync();
 protected:
-    FThread _thread;
+    FThread* _thread;
 };
 std::function<void()> F_DLL_API AsyncCallback(const std::function<void()>& action);
 

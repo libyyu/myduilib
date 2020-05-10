@@ -14,38 +14,37 @@ public:
 	FConsole(FLIB_LOGLEVEL level);
 	FConsole(FLIB_LOGLEVEL level, const char* filename, int32 line = -1);
 	virtual ~FConsole();
-public:
-	FConsole& operator<<(char v[]);
-	FConsole& operator<< (FConsole& (*_f)(FConsole&));
-	friend FConsole& endl(FConsole& v);
-	
-	template<typename T>
-    inline FConsole& operator<< (T v); // will generate link error
-#define TRMPLATE_DECLARE(T) \
-    inline FConsole& operator<< (T v);
+public:	
 
-    TRMPLATE_DECLARE(int8)
-    TRMPLATE_DECLARE(int16)
-    TRMPLATE_DECLARE(int32)
-    TRMPLATE_DECLARE(int64)
-    TRMPLATE_DECLARE(uint8)
-    TRMPLATE_DECLARE(uint16)
-    TRMPLATE_DECLARE(uint32)
-    TRMPLATE_DECLARE(uint64)
+	template<typename T>
+    FConsole& operator<<(T v); // will generate link error
+	FConsole& operator<<(int8 v);
+	FConsole& operator<<(int16 v);
+	FConsole& operator<<(int32 v);
+	FConsole& operator<<(int64 v);
+	FConsole& operator<<(uint8 v);
+	FConsole& operator<<(uint16 v);
+	FConsole& operator<<(uint32 v);
+	FConsole& operator<<(uint64 v);
+
 #if FLIB_COMPILER_64BITS
-    TRMPLATE_DECLARE(int)
-    TRMPLATE_DECLARE(uint)
+	FConsole& operator<<(int v);
+	FConsole& operator<<(uint v);
 #else
-	TRMPLATE_DECLARE(long)
-	TRMPLATE_DECLARE(ulong)
+	FConsole& operator<<(long v);
+	FConsole& operator<<(ulong v);
 #endif
-    TRMPLATE_DECLARE(bool)
-    TRMPLATE_DECLARE(float)
-    TRMPLATE_DECLARE(double)
-    TRMPLATE_DECLARE(const char *)
-    TRMPLATE_DECLARE(void *)
-    TRMPLATE_DECLARE(const std::string&)
-#undef TRMPLATE_DECLARE
+	FConsole& operator<<(void* v);
+	FConsole& operator<<(bool v);
+	FConsole& operator<<(float v);
+	FConsole& operator<<(double v);
+	FConsole& operator<<(const char* v);
+	FConsole& operator<<(char v[]);
+	FConsole& operator<<(const std::string& v);
+	FConsole& operator<< (FConsole& (*_f)(FConsole&));
+
+	friend FConsole& endl(FConsole& v);
+	friend FConsole& operator<<(FConsole& str, const std::string& v);
 private:
 	FLock     m_lock;
 	std::string m_message;
@@ -91,6 +90,6 @@ _FStdEnd
 #define F_CONSOLE_TRACE  \
 	FStd::FConsole f_console_trace(FStd::FLIB_LOGLEVEL::FLIB_LOGLEVEL_TRACE, __FILE__, __LINE__);  \
 	FStd::FConsoleTraceFunction f_consoleTraceFunction(f_console_trace, __FUNCTION__, __FILE__, __LINE__); \
-	f_consoleTraceFunction = f_console_trace << __FUNCTION__ << "() enter " << endl;
+	f_consoleTraceFunction = f_console_trace << __FUNCTION__ << "() enter " << FStd::endl;
 
 #endif//__FLIB_CONSOLE_H_

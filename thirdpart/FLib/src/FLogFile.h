@@ -13,6 +13,7 @@ public:
 
     inline operator FILE*(){ return _file; }
     inline operator FLock*() { return &_lock; }
+    inline operator bool() { return !!_file; }
 private:
     FILE* _file;
     FLock _lock;
@@ -23,8 +24,8 @@ class FLogFileTraceFunction;
 class F_DLL_API FLogFile
 {
 public:
-	FLogFile(FAutoFile* fp, FLIB_LOGLEVEL level);
-	FLogFile(FAutoFile* fp, FLIB_LOGLEVEL level, const char* filename, int32 line = -1);
+	FLogFile(FAutoFile& fp, FLIB_LOGLEVEL level);
+	FLogFile(FAutoFile& fp, FLIB_LOGLEVEL level, const char* filename, int32 line = -1);
 	virtual ~FLogFile();
 public:
     FLogFile& operator<<(char v[]);
@@ -63,8 +64,8 @@ protected:
 	void Finish();
 	void _LogImpl();
 protected:
-    FAutoFile* m_flog;
-    FLock     m_lock;
+    FAutoFile& m_flog;
+    FLock      m_lock;
 	std::string m_message;
     FLIB_LOGLEVEL m_level;
     friend class FLogFileFinisher;
@@ -103,8 +104,8 @@ _FStdEnd
 #define F_LOGFILE(LEVEL, file) F_LOG_TO_FILE(FStd::FLIB_LOGLEVEL::FLIB_LOGLEVEL_##LEVEL, file)
 
 #define F_LOGFILE_TRACE(file)  \
-	FStd::FLogFile f_logfile_trace(file, FStd::FLIB_LOGLEVEL::FLIB_LOGLEVEL_TRACE, __FILE__, __LINE__);  \
+    FStd::FLogFile f_logfile_trace(file, FStd::FLIB_LOGLEVEL::FLIB_LOGLEVEL_TRACE, __FILE__, __LINE__);  \
 	FStd::FLogFileTraceFunction f_logfileTraceFunction(f_logfile_trace, __FUNCTION__, __FILE__, __LINE__); \
-	f_logfileTraceFunction = f_logfile_trace << __FUNCTION__ << "() enter " << endl;
+	f_logfileTraceFunction = f_logfile_trace << __FUNCTION__ << "() enter " << FStd::endl;
 
 #endif//__FLIB_LOGFILE_H__

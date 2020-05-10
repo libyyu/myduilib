@@ -185,59 +185,176 @@ FConsole& endl(FConsole& v)
 	return v;
 }
 
-FConsole& FConsole::operator<<(const char* str)
+FConsole& operator<<(FConsole& str, const std::string& v)
 {
-	_Logout(str);
+	str << (v.c_str());
+	return str;
+}
+
+FConsole& FConsole::operator<<(int8 v)
+{
+	if (m_level < _console_level)
+		return *this;
+	std::stringstream str;
+	str << v;
+	_Logout(str.str().c_str());
 	return *this;
 }
-FConsole& FConsole::operator<<(const std::string& str)
+FConsole& FConsole::operator<<(int16 v)
 {
-	_Logout(str.c_str());
+	if (m_level < _console_level)
+		return *this;
+	std::stringstream str;
+	str << v;
+	_Logout(str.str().c_str());
 	return *this;
 }
-FConsole& FConsole::operator<<(char v[])
+FConsole& FConsole::operator<<(int32 v)
 {
-    _Logout((char*)v);
+	if (m_level < _console_level)
+		return *this;
+	std::stringstream str;
+	str << v;
+	_Logout(str.str().c_str());
 	return *this;
 }
-FConsole& FConsole::operator<<(void *p)
+FConsole& FConsole::operator<<(int64 v)
+{
+	if (m_level < _console_level)
+		return *this;
+	std::stringstream str;
+	str << v;
+	_Logout(str.str().c_str());
+	return *this;
+}
+FConsole& FConsole::operator<<(uint8 v)
+{
+	if (m_level < _console_level)
+		return *this;
+	std::stringstream str;
+	str << v;
+	_Logout(str.str().c_str());
+	return *this;
+}
+FConsole& FConsole::operator<<(uint16 v)
+{
+	if (m_level < _console_level)
+		return *this;
+	std::stringstream str;
+	str << v;
+	_Logout(str.str().c_str());
+	return *this;
+}
+FConsole& FConsole::operator<<(uint32 v)
+{
+	if (m_level < _console_level)
+		return *this;
+	std::stringstream str;
+	str << v;
+	_Logout(str.str().c_str());
+	return *this;
+}
+FConsole& FConsole::operator<<(uint64 v)
+{
+	if (m_level < _console_level)
+		return *this;
+	std::stringstream str;
+	str << v;
+	_Logout(str.str().c_str());
+	return *this;
+}
+#if FLIB_COMPILER_64BITS
+FConsole& FConsole::operator<<(int v)
+{
+	if (m_level < _console_level)
+		return *this;
+	std::stringstream str;
+	str << v;
+	_Logout(str.str().c_str());
+	return *this;
+}
+FConsole& FConsole::operator<<(uint v)
+{
+	if (m_level < _console_level)
+		return *this;
+	std::stringstream str;
+	str << v;
+	_Logout(str.str().c_str());
+	return *this;
+}
+#else
+FConsole& FConsole::operator<<(long v)
+{
+	if (m_level < _console_level)
+		return *this;
+	std::stringstream str;
+	str << v;
+	_Logout(str.str().c_str());
+	return *this;
+}
+FConsole& FConsole::operator<<(ulong v)
+{
+	if (m_level < _console_level)
+		return *this;
+	std::stringstream str;
+	str << v;
+	_Logout(str.str().c_str());
+	return *this;
+}
+#endif
+
+FConsole& FConsole::operator<<(void* p)
 {
 	_Logout(FFormat("%p", p).c_str());
+	return *this;
+}
+FConsole& FConsole::operator<<(bool v)
+{
+	if (m_level < _console_level)
+		return *this;
+	std::stringstream str;
+	str << v;
+	_Logout(str.str().c_str());
+	return *this;
+}
+FConsole& FConsole::operator<<(float v)
+{
+	if (m_level < _console_level)
+		return *this;
+	std::stringstream str;
+	str << v;
+	_Logout(str.str().c_str());
+	return *this;
+}
+FConsole& FConsole::operator<<(double v)
+{
+	if (m_level < _console_level)
+		return *this;
+	std::stringstream str;
+	str << v;
+	_Logout(str.str().c_str());
+	return *this;
+}
+
+FConsole& FConsole::operator<<(char v[])
+{
+	_Logout((char*)v);
+	return *this;
+}
+FConsole& FConsole::operator<<(const char* v)
+{
+	_Logout(v);
+	return *this;
+}
+FConsole& FConsole::operator<<(const std::string& v)
+{
+	_Logout(v.c_str());
 	return *this;
 }
 FConsole& FConsole::operator<< (FConsole& (*_f)(FConsole&))
 {
 	return _f(*this);
 }
-
-#define TRMPLATE_METHOD(T) \
-	FConsole& FConsole::operator<<(T v) \
-	{ \
-		if(m_level<_console_level) \
-			return *this; \
-		std::stringstream str;	\
-		str << v; \
-        _Logout(str.str().c_str()); \
-		return *this; \
-	}
-TRMPLATE_METHOD(int8)
-TRMPLATE_METHOD(int16)
-TRMPLATE_METHOD(int32)
-TRMPLATE_METHOD(int64)
-TRMPLATE_METHOD(uint8)
-TRMPLATE_METHOD(uint16)
-TRMPLATE_METHOD(uint32)
-TRMPLATE_METHOD(uint64)
-#if FLIB_COMPILER_64BITS
-    TRMPLATE_METHOD(int)
-    TRMPLATE_METHOD(uint)
-#else
-TRMPLATE_METHOD(long)
-TRMPLATE_METHOD(ulong)
-#endif
-TRMPLATE_METHOD(float)
-TRMPLATE_METHOD(double)
-TRMPLATE_METHOD(bool)
 #undef TRMPLATE_METHOD
 /////////////////////////////////////////////////////////////////////////////////////////
 ////

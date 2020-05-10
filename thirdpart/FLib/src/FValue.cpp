@@ -1,7 +1,7 @@
 #define FLIB_DLL
 #include "FValue.h"
 #include "FMemory.h"
-
+_FStdBegin
 _flib_object_t::_flib_object_t(void* o, const char* n) :ref_count(0)
 {
 	ref_count++;
@@ -414,3 +414,5 @@ flib_enum_t* FValue::get_enum() const
 	assert(type == VALUE_TYPE_ENUM);
 	return value.e;
 }
+
+_FStdEnd

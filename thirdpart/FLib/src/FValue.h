@@ -2,7 +2,7 @@
 #define _FLIB_VALUE_H__
 #pragma once
 #include "FType.h"
-
+_FStdBegin
 typedef enum _flib_value_type_t {
   /**
    * @const VALUE_TYPE_INVALID
@@ -179,4 +179,5 @@ public:
 	flib_enum_t* get_enum() const;
 };
 
+_FStdEnd
 #endif//_FLIB_VALUE_H__

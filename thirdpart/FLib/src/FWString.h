@@ -104,7 +104,7 @@ public:
     FWString& operator<<(double v);
     FWString& operator<<(const wchar_t *str);
 	FWString& operator<<(wchar_t v[]);
-	FWString& operator<<(std::wstring& str);
+	FWString& operator<<(const std::wstring& str);
     FWString& operator<<(FWString &v);
 	FWString& operator<< (FWString& (*_f)(FWString&));
 

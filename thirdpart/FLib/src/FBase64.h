@@ -14,6 +14,6 @@ F_DLL_API std::string Fbase64_decode(char const* bytes_encoded, unsigned int in_
 _FStdEnd
 
 #define F_BASE64_ENCODE(str) _FStd(Fbase64_encode)(str, strlen(str))
-#define F_BASE64_DECODE(str) _FStd(Fbase64_decode)(str)
+#define F_BASE64_DECODE(str) _FStd(Fbase64_decode)(str, strlen(str))
 
 #endif//_FLIB_BASE64_H__

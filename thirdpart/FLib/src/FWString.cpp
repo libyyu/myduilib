@@ -414,13 +414,13 @@ bool FWString::operator >= (const wchar_t* str) const { return (Compare(str) >= 
 bool FWString::operator >  (const wchar_t* str) const { return (Compare(str) > 0); };
 
 
-inline FWString& operator<<(FWString& str,const std::wstring &v)
+FWString& operator<<(FWString& str,const std::wstring &v)
 {
 	str << (v.c_str());
     return str;
 }
 
-inline FWString& endl(FWString& v)
+FWString& endl(FWString& v)
 {
 	v += L'\n';
 	return v;
@@ -521,7 +521,7 @@ FWString& FWString::operator<<(wchar_t str[])
 	Append(str);
 	return *this;
 }
-FWString& FWString::operator<<(std::wstring& str)
+FWString& FWString::operator<<(const std::wstring& str)
 {
 	(*this) << (str.c_str());
 	return *this;
