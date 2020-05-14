@@ -179,12 +179,6 @@ void FConsole::_LogImpl()
 #endif
 }
 
-FConsole& endl(FConsole& v)
-{
-	v._Logout("\n");
-	return v;
-}
-
 FConsole& operator<<(FConsole& str, const std::string& v)
 {
 	str << (v.c_str());
@@ -389,7 +383,7 @@ FConsoleTraceFunction::~FConsoleTraceFunction()
 		<< _line
 		<< "]"
 		<< _func << "() leave "
-		<< endl;
+		<< "\n";
 
 	*this = _log;
 }

@@ -420,12 +420,6 @@ FWString& operator<<(FWString& str,const std::wstring &v)
     return str;
 }
 
-FWString& endl(FWString& v)
-{
-	v += L'\n';
-	return v;
-}
-
 template<typename T>
 void FWString::Write(const T &src)
 {

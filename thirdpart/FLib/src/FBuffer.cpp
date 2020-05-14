@@ -373,11 +373,6 @@ FBuffer& FBuffer::operator<< (FBuffer& (*_f)(FBuffer&))
 {
 	return _f(*this);
 }
-inline FBuffer& endl(FBuffer& v)
-{
-    v << '\n';
-	return v;
-}
 
 //////////////////////////////////////////////////////////////////////////
 FBuffer& FBuffer::operator>>(int8 &v)

@@ -1,8 +1,12 @@
 #include "flib.h"
 #include <iostream>
+
+#ifdef FLIB_COMPILER_WINDOWS
 #include <Windows.h>
+#endif // FLIB_COMPILER_WINDOWS
 
 static _FStd(FAutoFile) fGlobalLog("log.txt");
+#define WRAP_LINE "\n"
 
 void test_buffer()
 {
@@ -26,7 +30,7 @@ void test_string()
 	_FStd(FString) fString;
 	fString += _T(" nihao ");
 	fString.Trim();
-	fString << 456 << _FStd(endl);
+	fString << 456 << WRAP_LINE;
 	const Fchar* pBuf = fString;
 	std::cout << fString << std::endl;
 	printf("fString = %s, length=%d,\n", pBuf, fString.GetLength());
@@ -36,7 +40,7 @@ void thread_foo()
 {
 	int i = 0;
 	while (++i < 10)
-		F_CONSOLE(DEBUG) << i << "this is a thread function output threadid:" << _FStd(FGetCurrentThreadId()) << _FStd(endl);
+		F_CONSOLE(DEBUG) << i << "this is a thread function output threadid:" << _FStd(FGetCurrentThreadId()) << WRAP_LINE;
 }
 
 void test_thread()
@@ -69,10 +73,10 @@ void test_socket()
 	sock.Create();
 	bool ret = sock.Connect(&addr);
 	if (!ret) {
-		F_CONSOLE(ERROR) << "Connect Return " << (F_ERRNO) << _FStd(endl);
+		F_CONSOLE(ERROR) << "Connect Return " << (F_ERRNO) << WRAP_LINE;
 	}
 	else {
-		F_CONSOLE(DEBUG) << "Connect Success " << _FStd(endl);
+		F_CONSOLE(DEBUG) << "Connect Success " << WRAP_LINE;
 	}
 }
 
@@ -82,7 +86,7 @@ void test_base64()
 	F_LOGFILE_TRACE(fGlobalLog)
 	const char* str = "helloworld";
 	std::string code = F_BASE64_ENCODE(str);
-	F_CONSOLE(DEBUG) << "base64:" << code.c_str() << "," << F_BASE64_DECODE(code.c_str()).c_str() << _FStd(endl);
+	F_CONSOLE(DEBUG) << "base64:" << code.c_str() << "," << F_BASE64_DECODE(code.c_str()).c_str() << WRAP_LINE;
 }
 
 void test_md5()
@@ -92,9 +96,9 @@ void test_md5()
 
 	char buff[200];
 	_FStd(FMD5String)("hello world", buff);
-	F_CONSOLE(DEBUG) << "md5:" << buff << _FStd(endl);
-	F_LOGFILE(DEBUG, fGlobalLog) << "md5:" << buff << _FStd(endl);
-	F_LOGFILE(DEBUG, fGlobalLog) << "test md5" << _FStd(endl);
+	F_CONSOLE(DEBUG) << "md5:" << buff << WRAP_LINE;
+	F_LOGFILE(DEBUG, fGlobalLog) << "md5:" << buff << WRAP_LINE;
+	F_LOGFILE(DEBUG, fGlobalLog) << "test md5" << WRAP_LINE;
 }
 
 void test_file()
@@ -133,7 +137,7 @@ void test_file()
 		int64 i64;
 		char ib[1024] = { 0 };
 		br >> i32 >> i16 >> i64 >> ib;
-		F_CONSOLE(WARN) << i32 << "," << i16 << "," << i64 << "," << ib << _FStd(endl);
+		F_CONSOLE(WARN) << i32 << "," << i16 << "," << i64 << "," << ib << WRAP_LINE;
 		delete[] bytes;
 	}
 }
@@ -147,7 +151,7 @@ void test_plugin()
 	typedef void*(*pf_gethostbyname)(const char*);
 	pf_gethostbyname pf = plugin.Get<pf_gethostbyname>("gethostbyname");
 	if (!pf) {
-		F_CONSOLE(ERROR) << "Failed Find Function gethostbyname. error = " << (F_ERRNO) << _FStd(endl);
+		F_CONSOLE(ERROR) << "Failed Find Function gethostbyname. error = " << (F_ERRNO) << WRAP_LINE;
 	}
 }
 
@@ -189,7 +193,7 @@ int main()
 {
 	F_CONSOLE_TRACE
 	F_LOGFILE_TRACE(fGlobalLog)
-	F_LOGFILE(DEBUG, fGlobalLog) << F_FORMAT("ModulePath = %s", _FStd(FGetModulePath())) << _FStd(endl);
+	F_LOGFILE(DEBUG, fGlobalLog) << F_FORMAT("ModulePath = %s", _FStd(FGetModulePath())) << WRAP_LINE;
 
 	F_SOCKET_STARTUP
 	{

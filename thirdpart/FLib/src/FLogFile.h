@@ -30,7 +30,6 @@ public:
 public:
     FLogFile& operator<<(char v[]);
 	FLogFile& operator<< (FLogFile& (*_f)(FLogFile&));
-	friend FLogFile& endl(FLogFile& v);
 
 	template<typename T>
     FLogFile& operator<< (T v); // will generate link error
@@ -106,6 +105,6 @@ _FStdEnd
 #define F_LOGFILE_TRACE(file)  \
     FStd::FLogFile f_logfile_trace(file, FStd::FLIB_LOGLEVEL::FLIB_LOGLEVEL_TRACE, __FILE__, __LINE__);  \
 	FStd::FLogFileTraceFunction f_logfileTraceFunction(f_logfile_trace, __FUNCTION__, __FILE__, __LINE__); \
-	f_logfileTraceFunction = f_logfile_trace << __FUNCTION__ << "() enter " << FStd::endl;
+	f_logfileTraceFunction = f_logfile_trace << __FUNCTION__ << "() enter \n";
 
 #endif//__FLIB_LOGFILE_H__

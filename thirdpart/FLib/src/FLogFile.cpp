@@ -87,12 +87,6 @@ void FLogFile::_LogImpl()
 	fwrite(m_message.c_str(), m_message.size(), sizeof(char), fp);
 }
 
-inline FLogFile& endl(FLogFile& v)
-{
-	v._Logout("\n");
-	return v;
-}
-
 FLogFile& FLogFile::operator<<(const char* str)
 {
 	_Logout(str);
@@ -180,7 +174,7 @@ FLogFileTraceFunction::~FLogFileTraceFunction()
 		<< _line
 		<< "]"
 		<< _func << "() leave "
-		<< endl;
+		<< "\n";
 
 	*this = _log;
 }

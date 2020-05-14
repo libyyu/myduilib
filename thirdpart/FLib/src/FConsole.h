@@ -43,7 +43,6 @@ public:
 	FConsole& operator<<(const std::string& v);
 	FConsole& operator<< (FConsole& (*_f)(FConsole&));
 
-	friend FConsole& endl(FConsole& v);
 	friend FConsole& operator<<(FConsole& str, const std::string& v);
 private:
 	FLock     m_lock;
@@ -90,6 +89,6 @@ _FStdEnd
 #define F_CONSOLE_TRACE  \
 	FStd::FConsole f_console_trace(FStd::FLIB_LOGLEVEL::FLIB_LOGLEVEL_TRACE, __FILE__, __LINE__);  \
 	FStd::FConsoleTraceFunction f_consoleTraceFunction(f_console_trace, __FUNCTION__, __FILE__, __LINE__); \
-	f_consoleTraceFunction = f_console_trace << __FUNCTION__ << "() enter " << FStd::endl;
+	f_consoleTraceFunction = f_console_trace << __FUNCTION__ << "() enter \n";
 
 #endif//__FLIB_CONSOLE_H_

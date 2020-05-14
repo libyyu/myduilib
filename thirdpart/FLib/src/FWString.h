@@ -108,7 +108,6 @@ public:
     FWString& operator<<(FWString &v);
 	FWString& operator<< (FWString& (*_f)(FWString&));
 
-	friend FWString& endl(FWString& v);
 	friend FWString& operator<<(FWString& str, const std::wstring& v);
 protected:
 	template<typename T>

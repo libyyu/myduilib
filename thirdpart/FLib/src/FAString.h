@@ -114,7 +114,6 @@ public:
     FAString& operator<<(FAString &v);
 	FAString& operator<< (FAString& (*_f)(FAString&));
 
-	friend FAString& endl(FAString& v);
 	friend FAString& operator<<(FAString& str, const std::string& v);
 protected:
 	template<typename T>

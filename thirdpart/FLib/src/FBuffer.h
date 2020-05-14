@@ -107,8 +107,6 @@ public:
     FBuffer& operator<<(FBuffer &v);
     FBuffer& operator<< (FBuffer& (*_f)(FBuffer&));
 
-	friend FBuffer& endl(FBuffer& v);
-
     //
     template<typename T>
     FBuffer& operator>>(T &t); // will generate link error

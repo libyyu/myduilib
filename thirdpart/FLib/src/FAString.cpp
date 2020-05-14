@@ -397,12 +397,6 @@ bool FAString::operator <  (const char* str) const { return (Compare(str) < 0); 
 bool FAString::operator >= (const char* str) const { return (Compare(str) >= 0); };
 bool FAString::operator >  (const char* str) const { return (Compare(str) > 0); };
 
-FAString& endl(FAString& v)
-{
-	v += _T('\n');
-	return v;
-}
-
 FAString& operator<<(FAString& str,const std::string &v)
 {
 	str << (v.c_str());
