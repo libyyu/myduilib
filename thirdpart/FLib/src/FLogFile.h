@@ -98,7 +98,7 @@ _FStdEnd
 
 //////////////////////////////////////////////////////////////////////
 #define F_LOG_TO_FILE(LEVEL, file) \
-	FStd::FLogFileFinisher() = FStd::FLogFile(file, LEVEL)
+	FStd::FLogFileFinisher() = FStd::FLogFile(file, LEVEL, __FILE__, __LINE__)
 
 #define F_LOGFILE(LEVEL, file) F_LOG_TO_FILE(FStd::FLIB_LOGLEVEL::FLIB_LOGLEVEL_##LEVEL, file)
 

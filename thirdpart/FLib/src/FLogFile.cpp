@@ -44,7 +44,7 @@ FLogFile::FLogFile(FAutoFile& fp, FLIB_LOGLEVEL level) : m_level(level), m_flog(
 	*this << "["
 		<< FLIB_LogLevelName[m_level] << "|"
 		<< FGetCurrentThreadId() << "|"
-		<< buff << "|"
+		<< buff
 		<< "]";
 }
 FLogFile::FLogFile(FAutoFile& fp, FLIB_LOGLEVEL level, const char* filename, int32 line/* = -1*/)
@@ -63,7 +63,7 @@ FLogFile::FLogFile(FAutoFile& fp, FLIB_LOGLEVEL level, const char* filename, int
 		<< FLIB_LogLevelName[m_level] << "|"
 		<< FGetCurrentThreadId() << "|"
 		<< buff << "|"
-		<< (filename ? filename : "<unknow source>") << ":"
+		<< (filename ? FGetFilename(filename).c_str() : "<unknow source>") << ":"
 		<< (int32)(line)
 		<< "]";
 }
@@ -115,8 +115,6 @@ FLogFile& FLogFile::operator<< (FLogFile& (*_f)(FLogFile&))
 #define TRMPLATE_METHOD(T) \
 	FLogFile& FLogFile::operator<<(T v) \
 	{ \
-        if(m_level<_logfile_level) \
-			return *this; \
 		std::stringstream str;	\
 		str << v; \
         _Logout(str.str().c_str()); \
@@ -170,7 +168,7 @@ FLogFileTraceFunction::~FLogFileTraceFunction()
 		<< FLIB_LogLevelName[_log.m_level] << "|"
 		<< FGetCurrentThreadId() << "|"
 		<< buff << "|"
-		<< (_file ? _file : "<unknow source>") << ":"
+		<< (_file ? FGetFilename(_file).c_str() : "<unknow source>") << ":"
 		<< _line
 		<< "]"
 		<< _func << "() leave "

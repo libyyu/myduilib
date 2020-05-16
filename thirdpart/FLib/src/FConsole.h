@@ -84,7 +84,7 @@ _FStdEnd
 /////////////////////////////////////////////////////////////////////////////////////////
 ////
 #define F_CONSOLE(LEVEL) \
-	FStd::FConsoleFinisher() = FStd::FConsole(FStd::FLIB_LOGLEVEL::FLIB_LOGLEVEL_##LEVEL)
+	FStd::FConsoleFinisher() = FStd::FConsole(FStd::FLIB_LOGLEVEL::FLIB_LOGLEVEL_##LEVEL, __FILE__, __LINE__)
 
 #define F_CONSOLE_TRACE  \
 	FStd::FConsole f_console_trace(FStd::FLIB_LOGLEVEL::FLIB_LOGLEVEL_TRACE, __FILE__, __LINE__);  \

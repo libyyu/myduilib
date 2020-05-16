@@ -117,7 +117,7 @@ FConsole::FConsole(FLIB_LOGLEVEL level) :m_level(level)
 	*this << "["
 		<< FLIB_LogLevelName[m_level] << "|"
 		<< FGetCurrentThreadId() << "|"
-		<< buff << "|"
+		<< buff
 		<< "]";
 }
 FConsole::FConsole(FLIB_LOGLEVEL level, const char* filename, int32 line/* = -1*/) :m_level(level)
@@ -135,7 +135,7 @@ FConsole::FConsole(FLIB_LOGLEVEL level, const char* filename, int32 line/* = -1*
 		<< FLIB_LogLevelName[m_level] << "|"
 		<< FGetCurrentThreadId() << "|"
 		<< buff << "|"
-		<< (filename ? filename : "<unknow source>") << ":"
+		<< (filename ? FGetFilename(filename).c_str() : "<unknow source>") << ":"
 		<< line
 		<< "]";
 }
@@ -187,8 +187,6 @@ FConsole& operator<<(FConsole& str, const std::string& v)
 
 FConsole& FConsole::operator<<(int8 v)
 {
-	if (m_level < _console_level)
-		return *this;
 	std::stringstream str;
 	str << v;
 	_Logout(str.str().c_str());
@@ -196,8 +194,6 @@ FConsole& FConsole::operator<<(int8 v)
 }
 FConsole& FConsole::operator<<(int16 v)
 {
-	if (m_level < _console_level)
-		return *this;
 	std::stringstream str;
 	str << v;
 	_Logout(str.str().c_str());
@@ -205,8 +201,6 @@ FConsole& FConsole::operator<<(int16 v)
 }
 FConsole& FConsole::operator<<(int32 v)
 {
-	if (m_level < _console_level)
-		return *this;
 	std::stringstream str;
 	str << v;
 	_Logout(str.str().c_str());
@@ -214,8 +208,6 @@ FConsole& FConsole::operator<<(int32 v)
 }
 FConsole& FConsole::operator<<(int64 v)
 {
-	if (m_level < _console_level)
-		return *this;
 	std::stringstream str;
 	str << v;
 	_Logout(str.str().c_str());
@@ -223,8 +215,6 @@ FConsole& FConsole::operator<<(int64 v)
 }
 FConsole& FConsole::operator<<(uint8 v)
 {
-	if (m_level < _console_level)
-		return *this;
 	std::stringstream str;
 	str << v;
 	_Logout(str.str().c_str());
@@ -232,8 +222,6 @@ FConsole& FConsole::operator<<(uint8 v)
 }
 FConsole& FConsole::operator<<(uint16 v)
 {
-	if (m_level < _console_level)
-		return *this;
 	std::stringstream str;
 	str << v;
 	_Logout(str.str().c_str());
@@ -241,8 +229,6 @@ FConsole& FConsole::operator<<(uint16 v)
 }
 FConsole& FConsole::operator<<(uint32 v)
 {
-	if (m_level < _console_level)
-		return *this;
 	std::stringstream str;
 	str << v;
 	_Logout(str.str().c_str());
@@ -250,8 +236,6 @@ FConsole& FConsole::operator<<(uint32 v)
 }
 FConsole& FConsole::operator<<(uint64 v)
 {
-	if (m_level < _console_level)
-		return *this;
 	std::stringstream str;
 	str << v;
 	_Logout(str.str().c_str());
@@ -260,8 +244,6 @@ FConsole& FConsole::operator<<(uint64 v)
 #if FLIB_COMPILER_64BITS
 FConsole& FConsole::operator<<(int v)
 {
-	if (m_level < _console_level)
-		return *this;
 	std::stringstream str;
 	str << v;
 	_Logout(str.str().c_str());
@@ -269,8 +251,6 @@ FConsole& FConsole::operator<<(int v)
 }
 FConsole& FConsole::operator<<(uint v)
 {
-	if (m_level < _console_level)
-		return *this;
 	std::stringstream str;
 	str << v;
 	_Logout(str.str().c_str());
@@ -279,8 +259,6 @@ FConsole& FConsole::operator<<(uint v)
 #else
 FConsole& FConsole::operator<<(long v)
 {
-	if (m_level < _console_level)
-		return *this;
 	std::stringstream str;
 	str << v;
 	_Logout(str.str().c_str());
@@ -288,8 +266,6 @@ FConsole& FConsole::operator<<(long v)
 }
 FConsole& FConsole::operator<<(ulong v)
 {
-	if (m_level < _console_level)
-		return *this;
 	std::stringstream str;
 	str << v;
 	_Logout(str.str().c_str());
@@ -304,8 +280,6 @@ FConsole& FConsole::operator<<(void* p)
 }
 FConsole& FConsole::operator<<(bool v)
 {
-	if (m_level < _console_level)
-		return *this;
 	std::stringstream str;
 	str << v;
 	_Logout(str.str().c_str());
@@ -313,8 +287,6 @@ FConsole& FConsole::operator<<(bool v)
 }
 FConsole& FConsole::operator<<(float v)
 {
-	if (m_level < _console_level)
-		return *this;
 	std::stringstream str;
 	str << v;
 	_Logout(str.str().c_str());
@@ -322,8 +294,6 @@ FConsole& FConsole::operator<<(float v)
 }
 FConsole& FConsole::operator<<(double v)
 {
-	if (m_level < _console_level)
-		return *this;
 	std::stringstream str;
 	str << v;
 	_Logout(str.str().c_str());
@@ -349,7 +319,7 @@ FConsole& FConsole::operator<< (FConsole& (*_f)(FConsole&))
 {
 	return _f(*this);
 }
-#undef TRMPLATE_METHOD
+
 /////////////////////////////////////////////////////////////////////////////////////////
 ////
 void FConsoleFinisher::operator=(FConsole &other)
@@ -379,7 +349,7 @@ FConsoleTraceFunction::~FConsoleTraceFunction()
 		<< FLIB_LogLevelName[_log.m_level] << "|"
 		<< FGetCurrentThreadId() << "|"
 		<< buff << "|"
-		<< (_file ? _file : "<unknow source>") << ":"
+		<< (_file ? FGetFilename(_file).c_str() : "<unknow source>") << ":"
 		<< _line
 		<< "]"
 		<< _func << "() leave "

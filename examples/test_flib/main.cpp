@@ -4,8 +4,8 @@
 #ifdef FLIB_COMPILER_WINDOWS
 #include <Windows.h>
 #endif // FLIB_COMPILER_WINDOWS
-
-static _FStd(FAutoFile) fGlobalLog("log.txt");
+std::string path = _FStd(FGetDirectory)(_FStd(FGetModulePath()));
+static _FStd(FAutoFile) fGlobalLog((path+"/log.txt").c_str());
 #define WRAP_LINE "\n"
 
 void test_buffer()
@@ -194,6 +194,7 @@ int main()
 	F_CONSOLE_TRACE
 	F_LOGFILE_TRACE(fGlobalLog)
 	F_LOGFILE(DEBUG, fGlobalLog) << F_FORMAT("ModulePath = %s", _FStd(FGetModulePath())) << WRAP_LINE;
+	F_CONSOLE(DEBUG) << F_FORMAT("ModulePath = %s", _FStd(FGetModulePath())) << WRAP_LINE;
 
 	F_SOCKET_STARTUP
 	{
