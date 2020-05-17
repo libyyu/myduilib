@@ -197,11 +197,19 @@ FConsoleTraceFunction::FConsoleTraceFunction(FOStream& other, const char *func, 
 	, _func(func)
 	, _file(file)
 	, _line(line) 
-{}
+{
+	time_t tt;
+	time(&tt);
+	_begin_time = tt;
+}
 FConsoleTraceFunction::~FConsoleTraceFunction()
 {
 	char buff[200] = { 0 };
-	tm* aTm = FGetNowTime();
+	time_t tt;
+	time(&tt);
+	tm* aTm = localtime(&tt);
+	double cost_time = difftime(tt, (time_t)_begin_time);
+	//tm* aTm = FGetNowTime();
 	sprintf(buff, "%-4d-%02d-%02d %02d:%02d:%02d",
 		aTm->tm_year + 1900,
 		aTm->tm_mon + 1,
@@ -218,6 +226,7 @@ FConsoleTraceFunction::~FConsoleTraceFunction()
 		<< _line
 		<< "] "
 		<< _func << "() leave "
+		<< "cost time " << cost_time
 		<< "\n";
 
 	*this = _log;

@@ -47,23 +47,41 @@ void thread_foo()
 		F_CONSOLE(DEBUG) << i << "this is a thread function output threadid:" << _FStd(FGetCurrentThreadId()) << WRAP_LINE;
 }
 
+class thread_proc
+{
+public:
+	thread_proc() {}
+
+	void thread_foo(const char* name)
+	{
+		int32 i = 0;
+		while (++i < 10)
+			F_CONSOLE(DEBUG) << name <<" " << i << " this is a thread function output threadid:" << _FStd(FGetCurrentThreadId()) << WRAP_LINE;
+	}
+};
+
 void test_thread()
 {
 	F_CONSOLE_TRACE
 	F_LOGFILE_TRACE(fGlobalLog)
 
-	_FStd(FThread) thread(&thread_foo);
+	thread_proc proc;
+
+	_FStd(FThread) thread(std::bind(&thread_proc::thread_foo, &proc, "thread-1"));
 	thread.start();
 	thread.join();
 
 	printf("--- ThreadGroup ---\r\n");
 	_FStd(FThreadGroup) tg;
-	_FStd(FThread) t1(&thread_foo);
+	_FStd(FThread) t1(std::bind(&thread_proc::thread_foo, &proc, "thread-2"));
 	tg.addThread(&t1);
-	tg.createThread(&thread_foo);
-	tg.createThread(&thread_foo);
+	tg.createThread(std::bind(&thread_proc::thread_foo, &proc, "thread-3"));
+	tg.createThread(std::bind(&thread_proc::thread_foo, &proc, "thread-4"));
 	tg.startAll();
 	tg.joinAll();
+
+	_FStd(FAsync) action(std::bind(&thread_proc::thread_foo, &proc, "thread-5"));
+
 }
 
 void test_socket()

@@ -61,6 +61,7 @@ private:
 	const char *_func;
 	const char *_file;
 	int32 _line;
+	int64 _begin_time;
 };
 
 F_DLL_API void FSetLogFileLevel(FLIB_LOGLEVEL level);
