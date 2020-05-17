@@ -26,19 +26,19 @@ if is_plat("windows") then
     , "-nodefaultlib:\"msvcrt.lib\""
     )
     if is_mode("debug") then
-        add_cxflags("-MDd", "-FS")
-        if is_arch("x86") then
-            add_cxflags("-ZI")
-        else
-            add_cxflags("-Zi")
-        end
+        add_cxflags("-ZI", "-MDd", "-FS")
+        -- if is_arch("x86") then
+        --     add_cxflags("-ZI")
+        -- else
+        --     add_cxflags("-Zi")
+        -- end
         add_defines("_DEBUG","DEBUG")
         --if not is_kind("static") then
             set_symbols("debug")
     -- end
     else
         add_cxflags("-Zi", "-MD", "-FS")
-        add_defines("NDEBUG")
+        add_defines("_NDEBUG", "NDEBUG")
         --if not is_kind("static") then
             --set_symbols("debug")
     -- end

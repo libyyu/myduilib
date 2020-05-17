@@ -98,11 +98,11 @@
       <WarningLevel>Level3</WarningLevel>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";WIN32_LEAN_AND_MEAN;WIN32;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";WIN32_LEAN_AND_MEAN;WIN32;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";WIN32_LEAN_AND_MEAN;WIN32;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";WIN32_LEAN_AND_MEAN;WIN32;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>-EHsc -nologo -FS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -130,11 +130,11 @@
       <WarningLevel>Level3</WarningLevel>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";WIN32_LEAN_AND_MEAN;WIN32;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";WIN32_LEAN_AND_MEAN;WIN32;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";WIN32_LEAN_AND_MEAN;WIN32;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";WIN32_LEAN_AND_MEAN;WIN32;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>-EHsc -nologo -FS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -195,7 +195,7 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
       <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";WIN32_LEAN_AND_MEAN;WIN32;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <DebugInformationFormat>None</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";WIN32_LEAN_AND_MEAN;WIN32;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -214,16 +214,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\thirdpart\StackDump\MiniDump.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\StackDump\windows\x64\debug\thirdpart\StackDump\MiniDump.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\StackDump\windows\x86\release\thirdpart\StackDump\MiniDump.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\StackDump\windows\x86\debug\thirdpart\StackDump\MiniDump.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\StackDump\windows\x64\release\thirdpart\StackDump\MiniDump.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\StackDump\StackWalker.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\StackDump\windows\x64\debug\thirdpart\StackDump\StackWalker.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\StackDump\windows\x86\release\thirdpart\StackDump\StackWalker.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\StackDump\windows\x86\debug\thirdpart\StackDump\StackWalker.cpp.obj</ObjectFileName>

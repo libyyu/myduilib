@@ -42,25 +42,28 @@
     <ClCompile Include="..\..\thirdpart\FLib\src\FMemory.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FMD5.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FDoStructFile.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FAlloctor.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\thirdpart\FLib\src\FMD5.cpp">
+    <ClCompile Include="..\..\thirdpart\FLib\src\FLogFile.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FDataTable.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\thirdpart\FLib\src\FLogFile.cpp">
+    <ClCompile Include="..\..\thirdpart\FLib\src\FLock.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FDReadAWriteLock.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\thirdpart\FLib\src\FLock.cpp">
+    <ClCompile Include="..\..\thirdpart\FLib\src\FBase64.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FDequeAddLock.cpp">
@@ -70,9 +73,6 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FListAddLock.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\thirdpart\FLib\src\FBase64.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FConsole.cpp">
@@ -87,10 +87,10 @@
     <ClCompile Include="..\..\thirdpart\FLib\src\FConvert.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\thirdpart\FLib\src\FBuffer.cpp">
+    <ClCompile Include="..\..\thirdpart\FLib\src\FEncoding.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\thirdpart\FLib\src\FEncoding.cpp">
+    <ClCompile Include="..\..\thirdpart\FLib\src\FBuffer.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FIOStream.cpp">
@@ -141,6 +141,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\thirdpart\FLib\src\FIni.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FIOStream.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\thirdpart\FLib\src\flib.h">
@@ -195,9 +198,6 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\thirdpart\FLib\src\FWString.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\thirdpart\FLib\src\FIOStream.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

@@ -98,11 +98,11 @@
       <WarningLevel>Level3</WarningLevel>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;FLIB_DLL_EXPORTS;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;FLIB_DLL_EXPORTS;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;FLIB_DLL_EXPORTS;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;FLIB_DLL_EXPORTS;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>-EHsc -nologo -FS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -130,11 +130,11 @@
       <WarningLevel>Level3</WarningLevel>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;FLIB_DLL_EXPORTS;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;FLIB_DLL_EXPORTS;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;FLIB_DLL_EXPORTS;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;FLIB_DLL_EXPORTS;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>-EHsc -nologo -FS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -195,7 +195,7 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
       <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;FLIB_DLL_EXPORTS;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <DebugInformationFormat>None</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;FLIB_DLL_EXPORTS;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -214,244 +214,214 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\thirdpart\FLib\src\FValue.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FValue.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FValue.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FValue.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FValue.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FFile.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FFile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FFile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FFile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FFile.cpp.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="..\..\thirdpart\FLib\src\FEncoding.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FEncoding.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FEncoding.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FEncoding.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FEncoding.cpp.obj</ObjectFileName>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FIOStream.cpp">
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FIOStream.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FIOStream.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FIOStream.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FIOStream.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FBuffer.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FBuffer.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FBuffer.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FBuffer.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FBuffer.cpp.obj</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FEncoding.cpp">
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FEncoding.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FEncoding.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FEncoding.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FEncoding.cpp.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FIni.cpp">
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FIni.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FIni.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FIni.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FIni.cpp.obj</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FConvert.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FConvert.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FConvert.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FConvert.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FConvert.cpp.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="..\..\thirdpart\FLib\src\FMD5.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FMD5.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FMD5.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FMD5.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FMD5.cpp.obj</ObjectFileName>
-    </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FAString.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FAString.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FAString.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FAString.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FAString.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FFunc.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FFunc.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FFunc.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FFunc.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FFunc.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FConsole.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FConsole.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FConsole.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FConsole.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FConsole.cpp.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="..\..\thirdpart\FLib\src\FBase64.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FBase64.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FBase64.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FBase64.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FBase64.cpp.obj</ObjectFileName>
-    </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FThread.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FThread.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FThread.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FThread.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FThread.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FCounter.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FCounter.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FCounter.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FCounter.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FCounter.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FDequeAddLock.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FDequeAddLock.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FDequeAddLock.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FDequeAddLock.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FDequeAddLock.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FDoStructFile.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FDoStructFile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FDoStructFile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FDoStructFile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FDoStructFile.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FAlloctor.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FAlloctor.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FAlloctor.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FAlloctor.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FAlloctor.cpp.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="..\..\thirdpart\FLib\src\FLock.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FLock.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FLock.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FLock.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FLock.cpp.obj</ObjectFileName>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FBase64.cpp">
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FBase64.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FBase64.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FBase64.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FBase64.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FSemaphore.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FSemaphore.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FSemaphore.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FSemaphore.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FSemaphore.cpp.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="..\..\thirdpart\FLib\src\FLogFile.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FLogFile.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FLogFile.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FLogFile.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FLogFile.cpp.obj</ObjectFileName>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FLock.cpp">
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FLock.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FLock.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FLock.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FLock.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FDReadAWriteLock.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FDReadAWriteLock.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FDReadAWriteLock.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FDReadAWriteLock.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FDReadAWriteLock.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FDataTable.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FDataTable.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FDataTable.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FDataTable.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FDataTable.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FSocket.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FSocket.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FSocket.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FSocket.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FSocket.cpp.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="..\..\thirdpart\FLib\src\FProcess.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FProcess.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FProcess.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FProcess.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FProcess.cpp.obj</ObjectFileName>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FLogFile.cpp">
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FLogFile.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FLogFile.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FLogFile.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FLogFile.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FListAddLock.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FListAddLock.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FListAddLock.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FListAddLock.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FListAddLock.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FWString.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FWString.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FWString.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FWString.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FWString.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FPool.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FPool.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FPool.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FPool.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FPool.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FPlugin.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FPlugin.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FPlugin.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FPlugin.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FPlugin.cpp.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="..\..\thirdpart\FLib\src\FOStream.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FOStream.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FOStream.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FOStream.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FOStream.cpp.obj</ObjectFileName>
-    </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FMemPool.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FMemPool.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FMemPool.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FMemPool.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FMemPool.cpp.obj</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FProcess.cpp">
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FProcess.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FProcess.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FProcess.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FProcess.cpp.obj</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FMemory.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FMemory.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FMemory.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FMemory.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FMemory.cpp.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="..\..\thirdpart\FLib\src\FIni.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FIni.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FIni.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FIni.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FIni.cpp.obj</ObjectFileName>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FMD5.cpp">
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\FLib\windows\x64\debug\thirdpart\FLib\src\FMD5.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\FLib\windows\x64\release\thirdpart\FLib\src\FMD5.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\FLib\windows\x86\release\thirdpart\FLib\src\FMD5.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\FLib\windows\x86\debug\thirdpart\FLib\src\FMD5.cpp.obj</ObjectFileName>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -470,6 +440,7 @@
     <ClInclude Include="..\..\thirdpart\FLib\src\FFile.h" />
     <ClInclude Include="..\..\thirdpart\FLib\src\FFunc.h" />
     <ClInclude Include="..\..\thirdpart\FLib\src\FIni.h" />
+    <ClInclude Include="..\..\thirdpart\FLib\src\FIOStream.h" />
     <ClInclude Include="..\..\thirdpart\FLib\src\flib.h" />
     <ClInclude Include="..\..\thirdpart\FLib\src\FListAddLock.h" />
     <ClInclude Include="..\..\thirdpart\FLib\src\FLock.h" />
@@ -478,7 +449,6 @@
     <ClInclude Include="..\..\thirdpart\FLib\src\FMemory.h" />
     <ClInclude Include="..\..\thirdpart\FLib\src\FMemPool.h" />
     <ClInclude Include="..\..\thirdpart\FLib\src\FObserver.h" />
-    <ClInclude Include="..\..\thirdpart\FLib\src\FOStream.h" />
     <ClInclude Include="..\..\thirdpart\FLib\src\FPlatform.h" />
     <ClInclude Include="..\..\thirdpart\FLib\src\FPlugin.h" />
     <ClInclude Include="..\..\thirdpart\FLib\src\FPool.h" />

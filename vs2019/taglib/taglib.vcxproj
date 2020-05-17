@@ -96,11 +96,11 @@
       <WarningLevel>Level3</WarningLevel>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";TAGLIB_STATIC;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";TAGLIB_STATIC;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";TAGLIB_STATIC;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";TAGLIB_STATIC;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>-EHsc -nologo -FS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -126,11 +126,11 @@
       <WarningLevel>Level3</WarningLevel>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";TAGLIB_STATIC;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";TAGLIB_STATIC;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";TAGLIB_STATIC;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";TAGLIB_STATIC;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>-EHsc -nologo -FS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -187,7 +187,7 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
       <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";TAGLIB_STATIC;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <DebugInformationFormat>None</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";TAGLIB_STATIC;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -206,768 +206,672 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\toolkit\tpropertymap.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\toolkit\tpropertymap.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\toolkit\tpropertymap.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\toolkit\tpropertymap.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\toolkit\tpropertymap.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\toolkit\tbytevectorstream.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\toolkit\tbytevectorstream.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\toolkit\tbytevectorstream.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\toolkit\tbytevectorstream.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\toolkit\tbytevectorstream.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\fileref.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\fileref.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\fileref.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\fileref.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\fileref.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\frames\textidentificationframe.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mpeg\id3v2\frames\textidentificationframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mpeg\id3v2\frames\textidentificationframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mpeg\id3v2\frames\textidentificationframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mpeg\id3v2\frames\textidentificationframe.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\wavpack\wavpackproperties.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\wavpack\wavpackproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\wavpack\wavpackproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\wavpack\wavpackproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\wavpack\wavpackproperties.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\tag.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\tag.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\tag.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\tag.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\tag.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\ogg\flac\oggflacfile.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\ogg\flac\oggflacfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\ogg\flac\oggflacfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\ogg\flac\oggflacfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\ogg\flac\oggflacfile.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\frames\ownershipframe.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mpeg\id3v2\frames\ownershipframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mpeg\id3v2\frames\ownershipframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mpeg\id3v2\frames\ownershipframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mpeg\id3v2\frames\ownershipframe.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\frames\relativevolumeframe.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mpeg\id3v2\frames\relativevolumeframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mpeg\id3v2\frames\relativevolumeframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mpeg\id3v2\frames\relativevolumeframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mpeg\id3v2\frames\relativevolumeframe.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mp4\mp4atom.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mp4\mp4atom.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mp4\mp4atom.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mp4\mp4atom.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mp4\mp4atom.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\ogg\vorbis\vorbisfile.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\ogg\vorbis\vorbisfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\ogg\vorbis\vorbisfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\ogg\vorbis\vorbisfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\ogg\vorbis\vorbisfile.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\id3v2frame.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mpeg\id3v2\id3v2frame.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mpeg\id3v2\id3v2frame.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mpeg\id3v2\id3v2frame.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mpeg\id3v2\id3v2frame.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\wavpack\wavpackfile.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\wavpack\wavpackfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\wavpack\wavpackfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\wavpack\wavpackfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\wavpack\wavpackfile.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\toolkit\tdebuglistener.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\toolkit\tdebuglistener.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\toolkit\tdebuglistener.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\toolkit\tdebuglistener.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\toolkit\tdebuglistener.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\ogg\opus\opusproperties.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\ogg\opus\opusproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\ogg\opus\opusproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\ogg\opus\opusproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\ogg\opus\opusproperties.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\frames\unsynchronizedlyricsframe.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mpeg\id3v2\frames\unsynchronizedlyricsframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mpeg\id3v2\frames\unsynchronizedlyricsframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mpeg\id3v2\frames\unsynchronizedlyricsframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mpeg\id3v2\frames\unsynchronizedlyricsframe.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\riff\rifffile.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\riff\rifffile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\riff\rifffile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\riff\rifffile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\riff\rifffile.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\ogg\speex\speexfile.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\ogg\speex\speexfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\ogg\speex\speexfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\ogg\speex\speexfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\ogg\speex\speexfile.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\asf\asftag.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\asf\asftag.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\asf\asftag.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\asf\asftag.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\asf\asftag.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\id3v2header.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mpeg\id3v2\id3v2header.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mpeg\id3v2\id3v2header.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mpeg\id3v2\id3v2header.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mpeg\id3v2\id3v2header.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\toolkit\tbytevectorlist.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\toolkit\tbytevectorlist.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\toolkit\tbytevectorlist.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\toolkit\tbytevectorlist.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\toolkit\tbytevectorlist.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\ogg\oggpageheader.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\ogg\oggpageheader.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\ogg\oggpageheader.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\ogg\oggpageheader.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\ogg\oggpageheader.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\ogg\oggpage.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\ogg\oggpage.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\ogg\oggpage.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\ogg\oggpage.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\ogg\oggpage.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\ogg\oggfile.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\ogg\oggfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\ogg\oggfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\ogg\oggfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\ogg\oggfile.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\mpegproperties.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mpeg\mpegproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mpeg\mpegproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mpeg\mpegproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mpeg\mpegproperties.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\flac\flacmetadatablock.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\flac\flacmetadatablock.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\flac\flacmetadatablock.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\flac\flacmetadatablock.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\flac\flacmetadatablock.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mod\modproperties.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mod\modproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mod\modproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mod\modproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mod\modproperties.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\riff\wav\wavproperties.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\riff\wav\wavproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\riff\wav\wavproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\riff\wav\wavproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\riff\wav\wavproperties.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\xingheader.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mpeg\xingheader.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mpeg\xingheader.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mpeg\xingheader.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mpeg\xingheader.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mp4\mp4tag.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mp4\mp4tag.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mp4\mp4tag.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mp4\mp4tag.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mp4\mp4tag.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\frames\attachedpictureframe.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mpeg\id3v2\frames\attachedpictureframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mpeg\id3v2\frames\attachedpictureframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mpeg\id3v2\frames\attachedpictureframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mpeg\id3v2\frames\attachedpictureframe.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\mpegfile.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mpeg\mpegfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mpeg\mpegfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mpeg\mpegfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mpeg\mpegfile.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\ape\apefooter.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\ape\apefooter.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\ape\apefooter.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\ape\apefooter.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\ape\apefooter.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\ape\apetag.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\ape\apetag.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\ape\apetag.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\ape\apetag.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\ape\apetag.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\id3v2tag.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mpeg\id3v2\id3v2tag.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mpeg\id3v2\id3v2tag.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mpeg\id3v2\id3v2tag.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mpeg\id3v2\id3v2tag.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\id3v2framefactory.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mpeg\id3v2\id3v2framefactory.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mpeg\id3v2\id3v2framefactory.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mpeg\id3v2\id3v2framefactory.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mpeg\id3v2\id3v2framefactory.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\id3v2footer.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mpeg\id3v2\id3v2footer.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mpeg\id3v2\id3v2footer.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mpeg\id3v2\id3v2footer.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mpeg\id3v2\id3v2footer.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\id3v2extendedheader.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mpeg\id3v2\id3v2extendedheader.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mpeg\id3v2\id3v2extendedheader.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mpeg\id3v2\id3v2extendedheader.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mpeg\id3v2\id3v2extendedheader.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mpc\mpcfile.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mpc\mpcfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mpc\mpcfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mpc\mpcfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mpc\mpcfile.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\xm\xmproperties.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\xm\xmproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\xm\xmproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\xm\xmproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\xm\xmproperties.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\xm\xmfile.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\xm\xmfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\xm\xmfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\xm\xmfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\xm\xmfile.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\frames\urllinkframe.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mpeg\id3v2\frames\urllinkframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mpeg\id3v2\frames\urllinkframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mpeg\id3v2\frames\urllinkframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mpeg\id3v2\frames\urllinkframe.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\riff\wav\infotag.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\riff\wav\infotag.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\riff\wav\infotag.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\riff\wav\infotag.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\riff\wav\infotag.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\frames\privateframe.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mpeg\id3v2\frames\privateframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mpeg\id3v2\frames\privateframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mpeg\id3v2\frames\privateframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mpeg\id3v2\frames\privateframe.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\id3v2synchdata.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mpeg\id3v2\id3v2synchdata.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mpeg\id3v2\id3v2synchdata.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mpeg\id3v2\id3v2synchdata.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mpeg\id3v2\id3v2synchdata.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\frames\unknownframe.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mpeg\id3v2\frames\unknownframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mpeg\id3v2\frames\unknownframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mpeg\id3v2\frames\unknownframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mpeg\id3v2\frames\unknownframe.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\toolkit\trefcounter.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\toolkit\trefcounter.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\toolkit\trefcounter.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\toolkit\trefcounter.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\toolkit\trefcounter.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\flac\flacfile.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\flac\flacfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\flac\flacfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\flac\flacfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\flac\flacfile.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\frames\popularimeterframe.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mpeg\id3v2\frames\popularimeterframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mpeg\id3v2\frames\popularimeterframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mpeg\id3v2\frames\popularimeterframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mpeg\id3v2\frames\popularimeterframe.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\frames\generalencapsulatedobjectframe.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mpeg\id3v2\frames\generalencapsulatedobjectframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mpeg\id3v2\frames\generalencapsulatedobjectframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mpeg\id3v2\frames\generalencapsulatedobjectframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mpeg\id3v2\frames\generalencapsulatedobjectframe.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mp4\mp4properties.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mp4\mp4properties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mp4\mp4properties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mp4\mp4properties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mp4\mp4properties.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v1\id3v1tag.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mpeg\id3v1\id3v1tag.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mpeg\id3v1\id3v1tag.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mpeg\id3v1\id3v1tag.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mpeg\id3v1\id3v1tag.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\flac\flacproperties.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\flac\flacproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\flac\flacproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\flac\flacproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\flac\flacproperties.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\asf\asfpicture.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\asf\asfpicture.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\asf\asfpicture.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\asf\asfpicture.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\asf\asfpicture.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\ape\apeitem.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\ape\apeitem.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\ape\apeitem.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\ape\apeitem.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\ape\apeitem.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\trueaudio\trueaudiofile.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\trueaudio\trueaudiofile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\trueaudio\trueaudiofile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\trueaudio\trueaudiofile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\trueaudio\trueaudiofile.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\flac\flacunknownmetadatablock.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\flac\flacunknownmetadatablock.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\flac\flacunknownmetadatablock.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\flac\flacunknownmetadatablock.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\flac\flacunknownmetadatablock.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\tagunion.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\tagunion.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\tagunion.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\tagunion.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\tagunion.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\asf\asfproperties.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\asf\asfproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\asf\asfproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\asf\asfproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\asf\asfproperties.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\riff\aiff\aifffile.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\riff\aiff\aifffile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\riff\aiff\aifffile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\riff\aiff\aifffile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\riff\aiff\aifffile.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\frames\uniquefileidentifierframe.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mpeg\id3v2\frames\uniquefileidentifierframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mpeg\id3v2\frames\uniquefileidentifierframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mpeg\id3v2\frames\uniquefileidentifierframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mpeg\id3v2\frames\uniquefileidentifierframe.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v2\frames\commentsframe.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mpeg\id3v2\frames\commentsframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mpeg\id3v2\frames\commentsframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mpeg\id3v2\frames\commentsframe.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mpeg\id3v2\frames\commentsframe.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\ape\apeproperties.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\ape\apeproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\ape\apeproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\ape\apeproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\ape\apeproperties.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\ogg\vorbis\vorbisproperties.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\ogg\vorbis\vorbisproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\ogg\vorbis\vorbisproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\ogg\vorbis\vorbisproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\ogg\vorbis\vorbisproperties.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mp4\mp4coverart.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mp4\mp4coverart.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mp4\mp4coverart.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mp4\mp4coverart.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mp4\mp4coverart.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\asf\asfattribute.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\asf\asfattribute.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\asf\asfattribute.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\asf\asfattribute.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\asf\asfattribute.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\ape\apefile.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\ape\apefile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\ape\apefile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\ape\apefile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\ape\apefile.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\it\itproperties.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\it\itproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\it\itproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\it\itproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\it\itproperties.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\id3v1\id3v1genres.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mpeg\id3v1\id3v1genres.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mpeg\id3v1\id3v1genres.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mpeg\id3v1\id3v1genres.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mpeg\id3v1\id3v1genres.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mod\modfile.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mod\modfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mod\modfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mod\modfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mod\modfile.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\toolkit\tstring.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\toolkit\tstring.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\toolkit\tstring.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\toolkit\tstring.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\toolkit\tstring.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\toolkit\tstringlist.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\toolkit\tstringlist.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\toolkit\tstringlist.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\toolkit\tstringlist.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\toolkit\tstringlist.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\toolkit\tiostream.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\toolkit\tiostream.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\toolkit\tiostream.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\toolkit\tiostream.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\toolkit\tiostream.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\trueaudio\trueaudioproperties.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\trueaudio\trueaudioproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\trueaudio\trueaudioproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\trueaudio\trueaudioproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\trueaudio\trueaudioproperties.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\ogg\opus\opusfile.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\ogg\opus\opusfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\ogg\opus\opusfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\ogg\opus\opusfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\ogg\opus\opusfile.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\toolkit\unicode.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\toolkit\unicode.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\toolkit\unicode.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\toolkit\unicode.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\toolkit\unicode.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\asf\asffile.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\asf\asffile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\asf\asffile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\asf\asffile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\asf\asffile.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\toolkit\tfilestream.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\toolkit\tfilestream.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\toolkit\tfilestream.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\toolkit\tfilestream.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\toolkit\tfilestream.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\toolkit\tfile.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\toolkit\tfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\toolkit\tfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\toolkit\tfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\toolkit\tfile.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\riff\wav\wavfile.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\riff\wav\wavfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\riff\wav\wavfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\riff\wav\wavfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\riff\wav\wavfile.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mp4\mp4file.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mp4\mp4file.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mp4\mp4file.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mp4\mp4file.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mp4\mp4file.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\audioproperties.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\audioproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\audioproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\audioproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\audioproperties.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\it\itfile.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\it\itfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\it\itfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\it\itfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\it\itfile.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\s3m\s3mproperties.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\s3m\s3mproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\s3m\s3mproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\s3m\s3mproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\s3m\s3mproperties.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\flac\flacpicture.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\flac\flacpicture.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\flac\flacpicture.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\flac\flacpicture.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\flac\flacpicture.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\s3m\s3mfile.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\s3m\s3mfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\s3m\s3mfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\s3m\s3mfile.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\s3m\s3mfile.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\toolkit\tbytevector.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\toolkit\tbytevector.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\toolkit\tbytevector.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\toolkit\tbytevector.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\toolkit\tbytevector.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mp4\mp4item.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mp4\mp4item.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mp4\mp4item.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mp4\mp4item.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mp4\mp4item.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\riff\aiff\aiffproperties.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\riff\aiff\aiffproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\riff\aiff\aiffproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\riff\aiff\aiffproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\riff\aiff\aiffproperties.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\toolkit\tdebug.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\toolkit\tdebug.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\toolkit\tdebug.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\toolkit\tdebug.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\toolkit\tdebug.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mod\modfilebase.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mod\modfilebase.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mod\modfilebase.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mod\modfilebase.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mod\modfilebase.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\ogg\xiphcomment.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\ogg\xiphcomment.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\ogg\xiphcomment.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\ogg\xiphcomment.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\ogg\xiphcomment.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mpc\mpcproperties.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mpc\mpcproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mpc\mpcproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mpc\mpcproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mpc\mpcproperties.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mpeg\mpegheader.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mpeg\mpegheader.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mpeg\mpegheader.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mpeg\mpegheader.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mpeg\mpegheader.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\mod\modtag.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\taglib\windows\x64\debug\thirdpart\taglib\taglib\mod\modtag.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\mod\modtag.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\mod\modtag.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\mod\modtag.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\taglib\taglib\ogg\speex\speexproperties.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\taglib\windows\x64\release\thirdpart\taglib\taglib\ogg\speex\speexproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\taglib\windows\x86\debug\thirdpart\taglib\taglib\ogg\speex\speexproperties.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\taglib\windows\x86\release\thirdpart\taglib\taglib\ogg\speex\speexproperties.cpp.obj</ObjectFileName>

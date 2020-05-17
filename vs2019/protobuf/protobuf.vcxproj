@@ -96,12 +96,12 @@
       <WarningLevel>Level3</WarningLevel>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>..\..\thirdpart;..\..\thirdpart\protobuf</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>..\..\thirdpart;..\..\thirdpart\protobuf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>-EHsc -nologo -FS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -127,12 +127,12 @@
       <WarningLevel>Level3</WarningLevel>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>..\..\thirdpart;..\..\thirdpart\protobuf</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>..\..\thirdpart;..\..\thirdpart\protobuf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>-EHsc -nologo -FS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -190,7 +190,7 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
       <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <DebugInformationFormat>None</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>..\..\thirdpart;..\..\thirdpart\protobuf</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>..\..\thirdpart;..\..\thirdpart\protobuf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -210,448 +210,392 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\struct.pb.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\struct.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\struct.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\struct.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\struct.pb.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\service.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\service.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\service.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\service.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\service.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\io\gzip_stream.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\io\gzip_stream.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\io\gzip_stream.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\io\gzip_stream.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\io\gzip_stream.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\arena.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\arena.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\arena.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\arena.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\arena.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\stubs\status.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\stubs\status.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\stubs\status.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\stubs\status.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\stubs\status.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\stubs\substitute.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\stubs\substitute.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\stubs\substitute.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\stubs\substitute.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\stubs\substitute.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\generated_message_table_driven_lite.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\generated_message_table_driven_lite.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\generated_message_table_driven_lite.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\generated_message_table_driven_lite.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\generated_message_table_driven_lite.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\stubs\structurally_valid.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\stubs\structurally_valid.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\stubs\structurally_valid.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\stubs\structurally_valid.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\stubs\structurally_valid.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\wire_format.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\wire_format.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\wire_format.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\wire_format.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\wire_format.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\type.pb.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\type.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\type.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\type.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\type.pb.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\empty.pb.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\empty.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\empty.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\empty.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\empty.pb.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\generated_message_reflection.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\generated_message_reflection.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\generated_message_reflection.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\generated_message_reflection.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\generated_message_reflection.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\extension_set.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\extension_set.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\extension_set.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\extension_set.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\extension_set.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\message_lite.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\message_lite.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\message_lite.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\message_lite.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\message_lite.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\io\zero_copy_stream.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\io\zero_copy_stream.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\io\zero_copy_stream.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\io\zero_copy_stream.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\io\zero_copy_stream.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\message.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\message.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\message.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\message.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\message.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\io\tokenizer.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\io\tokenizer.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\io\tokenizer.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\io\tokenizer.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\io\tokenizer.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\any.pb.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\any.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\any.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\any.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\any.pb.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\descriptor.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\descriptor.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\descriptor.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\descriptor.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\descriptor.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\duration.pb.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\duration.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\duration.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\duration.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\duration.pb.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\io\zero_copy_stream_impl_lite.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\io\zero_copy_stream_impl_lite.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\io\zero_copy_stream_impl_lite.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\io\zero_copy_stream_impl_lite.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\io\zero_copy_stream_impl_lite.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\stubs\time.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\stubs\time.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\stubs\time.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\stubs\time.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\stubs\time.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\timestamp.pb.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\timestamp.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\timestamp.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\timestamp.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\timestamp.pb.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\repeated_field.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\repeated_field.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\repeated_field.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\repeated_field.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\repeated_field.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\io\strtod.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\io\strtod.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\io\strtod.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\io\strtod.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\io\strtod.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\api.pb.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\api.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\api.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\api.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\api.pb.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\descriptor.pb.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\descriptor.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\descriptor.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\descriptor.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\descriptor.pb.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\stubs\stringprintf.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\stubs\stringprintf.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\stubs\stringprintf.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\stubs\stringprintf.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\stubs\stringprintf.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\stubs\stringpiece.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\stubs\stringpiece.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\stubs\stringpiece.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\stubs\stringpiece.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\stubs\stringpiece.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\wire_format_lite.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\wire_format_lite.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\wire_format_lite.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\wire_format_lite.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\wire_format_lite.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\descriptor_database.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\descriptor_database.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\descriptor_database.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\descriptor_database.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\descriptor_database.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\source_context.pb.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\source_context.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\source_context.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\source_context.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\source_context.pb.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\field_mask.pb.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\field_mask.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\field_mask.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\field_mask.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\field_mask.pb.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\implicit_weak_message.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\implicit_weak_message.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\implicit_weak_message.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\implicit_weak_message.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\implicit_weak_message.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\wrappers.pb.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\wrappers.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\wrappers.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\wrappers.pb.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\wrappers.pb.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\io\zero_copy_stream_impl.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\io\zero_copy_stream_impl.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\io\zero_copy_stream_impl.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\io\zero_copy_stream_impl.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\io\zero_copy_stream_impl.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\io\printer.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\io\printer.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\io\printer.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\io\printer.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\io\printer.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\stubs\io_win32.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\stubs\io_win32.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\stubs\io_win32.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\stubs\io_win32.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\stubs\io_win32.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\io\coded_stream.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\io\coded_stream.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\io\coded_stream.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\io\coded_stream.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\io\coded_stream.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\generated_message_util.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\generated_message_util.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\generated_message_util.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\generated_message_util.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\generated_message_util.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\stubs\statusor.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\stubs\statusor.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\stubs\statusor.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\stubs\statusor.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\stubs\statusor.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\generated_message_table_driven.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\generated_message_table_driven.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\generated_message_table_driven.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\generated_message_table_driven.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\generated_message_table_driven.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\arenastring.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\arenastring.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\arenastring.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\arenastring.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\arenastring.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\stubs\strutil.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\stubs\strutil.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\stubs\strutil.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\stubs\strutil.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\stubs\strutil.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\dynamic_message.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\dynamic_message.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\dynamic_message.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\dynamic_message.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\dynamic_message.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\extension_set_heavy.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\extension_set_heavy.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\extension_set_heavy.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\extension_set_heavy.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\extension_set_heavy.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\stubs\mathlimits.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\stubs\mathlimits.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\stubs\mathlimits.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\stubs\mathlimits.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\stubs\mathlimits.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\reflection_ops.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\reflection_ops.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\reflection_ops.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\reflection_ops.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\reflection_ops.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\unknown_field_set.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\unknown_field_set.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\unknown_field_set.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\unknown_field_set.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\unknown_field_set.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\stubs\common.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\stubs\common.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\stubs\common.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\stubs\common.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\stubs\common.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\compiler\importer.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\compiler\importer.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\compiler\importer.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\compiler\importer.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\compiler\importer.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\compiler\parser.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\compiler\parser.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\compiler\parser.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\compiler\parser.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\compiler\parser.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\map_field.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\map_field.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\map_field.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\map_field.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\map_field.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\text_format.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\text_format.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\text_format.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\text_format.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\text_format.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\stubs\int128.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\stubs\int128.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\stubs\int128.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protobuf\windows\x86\release\thirdpart\protobuf\google\protobuf\stubs\int128.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\stubs\int128.cc.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\protobuf\google\protobuf\any.cc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protobuf\windows\x64\debug\thirdpart\protobuf\google\protobuf\any.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protobuf\windows\x64\release\thirdpart\protobuf\google\protobuf\any.cc.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protobuf\windows\x86\debug\thirdpart\protobuf\google\protobuf\any.cc.obj</ObjectFileName>

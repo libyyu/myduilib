@@ -96,12 +96,12 @@
       <WarningLevel>Level3</WarningLevel>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";SQLITE3CPP_EXPORTS;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";SQLITE3CPP_EXPORTS;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>..\..\thirdpart\sqlite3\src</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>..\..\thirdpart\sqlite3\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";SQLITE3CPP_EXPORTS;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";SQLITE3CPP_EXPORTS;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>-EHsc -nologo -FS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -127,12 +127,12 @@
       <WarningLevel>Level3</WarningLevel>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";SQLITE3CPP_EXPORTS;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";SQLITE3CPP_EXPORTS;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>..\..\thirdpart\sqlite3\src</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>..\..\thirdpart\sqlite3\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";SQLITE3CPP_EXPORTS;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";SQLITE3CPP_EXPORTS;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>-EHsc -nologo -FS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -190,7 +190,7 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
       <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";SQLITE3CPP_EXPORTS;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <DebugInformationFormat>None</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>..\..\thirdpart\sqlite3\src</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>..\..\thirdpart\sqlite3\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -210,16 +210,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\thirdpart\sqlite3cpp\src\CppSQLite3.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\sqlite3cpp\windows\x64\release\thirdpart\sqlite3cpp\src\CppSQLite3.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\sqlite3cpp\windows\x64\debug\thirdpart\sqlite3cpp\src\CppSQLite3.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\sqlite3cpp\windows\x86\release\thirdpart\sqlite3cpp\src\CppSQLite3.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\sqlite3cpp\windows\x86\debug\thirdpart\sqlite3cpp\src\CppSQLite3.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\sqlite3cpp\src\CodingConv.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\sqlite3cpp\windows\x64\release\thirdpart\sqlite3cpp\src\CodingConv.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\sqlite3cpp\windows\x64\debug\thirdpart\sqlite3cpp\src\CodingConv.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\sqlite3cpp\windows\x86\release\thirdpart\sqlite3cpp\src\CodingConv.cpp.obj</ObjectFileName>
