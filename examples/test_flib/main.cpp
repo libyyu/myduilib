@@ -84,7 +84,7 @@ void test_base64()
 {
 	F_CONSOLE_TRACE
 	F_LOGFILE_TRACE(fGlobalLog)
-	const char* str = "helloworld";
+	const char* str = "hello world";
 	std::string code = F_BASE64_ENCODE(str);
 	F_CONSOLE(DEBUG) << "base64:" << code.c_str() << "," << F_BASE64_DECODE(code.c_str()).c_str() << WRAP_LINE;
 }
@@ -191,6 +191,7 @@ void test_value()
 
 int main()
 {
+	_FStd(FSetLogConsoleLevel)(FStd::FLIB_LOGLEVEL::FLIB_LOGLEVEL_TRACE);
 	F_CONSOLE_TRACE
 	F_LOGFILE_TRACE(fGlobalLog)
 	F_LOGFILE(DEBUG, fGlobalLog) << F_FORMAT("ModulePath = %s", _FStd(FGetModulePath())) << WRAP_LINE;
