@@ -2,48 +2,21 @@
 #define __FLIB_CONSOLE_H_
 #pragma once
 #include "FLock.h"
+#include "FIOStream.h"
 
 _FStdBegin
 //static FLIB_LOGLEVEL _console_level = FLIB_LOGLEVEL::FLIB_LOGLEVEL_DEBUG;
 
 class FConsoleFinisher;
 class FConsoleTraceFunction;
-class F_DLL_API FConsole
+class F_DLL_API FConsole : public FOStreamMaker
 {
+	virtual void output(const char* data);
 public:
 	FConsole(FLIB_LOGLEVEL level);
 	FConsole(FLIB_LOGLEVEL level, const char* filename, int32 line = -1);
 	virtual ~FConsole();
-public:	
 
-	template<typename T>
-    FConsole& operator<<(T v); // will generate link error
-	FConsole& operator<<(int8 v);
-	FConsole& operator<<(int16 v);
-	FConsole& operator<<(int32 v);
-	FConsole& operator<<(int64 v);
-	FConsole& operator<<(uint8 v);
-	FConsole& operator<<(uint16 v);
-	FConsole& operator<<(uint32 v);
-	FConsole& operator<<(uint64 v);
-
-#if FLIB_COMPILER_64BITS
-	FConsole& operator<<(int v);
-	FConsole& operator<<(uint v);
-#else
-	FConsole& operator<<(long v);
-	FConsole& operator<<(ulong v);
-#endif
-	FConsole& operator<<(void* v);
-	FConsole& operator<<(bool v);
-	FConsole& operator<<(float v);
-	FConsole& operator<<(double v);
-	FConsole& operator<<(const char* v);
-	FConsole& operator<<(char v[]);
-	FConsole& operator<<(const std::string& v);
-	FConsole& operator<< (FConsole& (*_f)(FConsole&));
-
-	friend FConsole& operator<<(FConsole& str, const std::string& v);
 private:
 	FLock     m_lock;
 	std::string m_message;
@@ -61,17 +34,17 @@ protected:
 class F_DLL_API FConsoleFinisher
 {
 public:
-	void operator=(FConsole &other);
+	void operator=(FOStream&other);
 };
 
 class F_DLL_API FConsoleTraceFunction
 {
 public:
-	FConsoleTraceFunction(FConsole& other, const char *func, const char *file, int32 line);
+	FConsoleTraceFunction(FOStream& other, const char *func, const char *file, int32 line);
 	~FConsoleTraceFunction();
-	void operator=(FConsole &other);
+	void operator=(FOStream&other);
 private:
-    FConsole& _log;
+	FOStream& _log;
 	const char *_func;
 	const char *_file;
 	int32 _line;

@@ -205,6 +205,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FIOStream.cpp" />
     <ClCompile Include="..\..\thirdpart\FLib\src\FValue.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
@@ -413,14 +414,6 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\libFLib\windows\x86\release\thirdpart\FLib\src\FPlugin.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\libFLib\windows\x64\release\thirdpart\FLib\src\FPlugin.cpp.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="..\..\thirdpart\FLib\src\FOStream.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\libFLib\windows\x86\release\thirdpart\FLib\src\FOStream.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\libFLib\windows\x64\debug\thirdpart\FLib\src\FOStream.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\libFLib\windows\x86\debug\thirdpart\FLib\src\FOStream.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\libFLib\windows\x64\release\thirdpart\FLib\src\FOStream.cpp.obj</ObjectFileName>
-    </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FMemPool.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">-FS -Zi -FS -Zi %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
@@ -462,6 +455,7 @@
     <ClInclude Include="..\..\thirdpart\FLib\src\FFile.h" />
     <ClInclude Include="..\..\thirdpart\FLib\src\FFunc.h" />
     <ClInclude Include="..\..\thirdpart\FLib\src\FIni.h" />
+    <ClInclude Include="..\..\thirdpart\FLib\src\FIOStream.h" />
     <ClInclude Include="..\..\thirdpart\FLib\src\flib.h" />
     <ClInclude Include="..\..\thirdpart\FLib\src\FListAddLock.h" />
     <ClInclude Include="..\..\thirdpart\FLib\src\FLock.h" />
@@ -470,7 +464,6 @@
     <ClInclude Include="..\..\thirdpart\FLib\src\FMemory.h" />
     <ClInclude Include="..\..\thirdpart\FLib\src\FMemPool.h" />
     <ClInclude Include="..\..\thirdpart\FLib\src\FObserver.h" />
-    <ClInclude Include="..\..\thirdpart\FLib\src\FOStream.h" />
     <ClInclude Include="..\..\thirdpart\FLib\src\FPlatform.h" />
     <ClInclude Include="..\..\thirdpart\FLib\src\FPlugin.h" />
     <ClInclude Include="..\..\thirdpart\FLib\src\FPool.h" />

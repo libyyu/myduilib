@@ -261,101 +261,134 @@ uint8* FBuffer::operator[](size_t pos) const {
 }
 
 //////////////////////////////////////////////////////////////////////////
-FBuffer& FBuffer::operator<<(int8 v)
+FOStream& FBuffer::operator <<(int8 v)
 {
     Write<int8>(v);
     return *this;
 }
-FBuffer& FBuffer::operator<<(int16 v)
+FOStream& FBuffer::operator <<(uint8 v)
+{
+	Write<uint8>(v);
+	return *this;
+}
+FOStream& FBuffer::operator <<(int16 v)
 {
     Write<int16>(v);
     return *this;
 }
-FBuffer& FBuffer::operator<<(int32 v)
+FOStream& FBuffer::operator <<(uint16 v)
+{
+	Write<uint16>(v);
+	return *this;
+}
+FOStream& FBuffer::operator <<(int32 v)
 {
     Write<int32>(v);
     return *this;
 }
-FBuffer& FBuffer::operator<<(int64 v)
+FOStream& FBuffer::operator <<(uint32 v)
+{
+	Write<uint32>(v);
+	return *this;
+}
+FOStream& FBuffer::operator <<(int64 v)
 {
     Write<int64>(v);
     return *this;
 }
-FBuffer& FBuffer::operator<<(uint8 v)
-{
-    Write<uint8>(v);
-    return *this;
-}
-FBuffer& FBuffer::operator<<(uint16 v)
-{
-    Write<uint16>(v);
-    return *this;
-}
-FBuffer& FBuffer::operator<<(uint32 v)
-{
-    Write<uint32>(v);
-    return *this;
-}
-FBuffer& FBuffer::operator<<(uint64 v)
+FOStream& FBuffer::operator <<(uint64 v)
 {
     Write<uint64>(v);
     return *this;
 }
 #if FLIB_COMPILER_64BITS
-FBuffer& FBuffer::operator<<(int v)
+FOStream& FBuffer::operator <<(int v)
 {
     Write<int>(v);
     return *this;
 }
-FBuffer& FBuffer::operator<<(uint v)
+FOStream& FBuffer::operator <<(uint v)
 {
     Write<uint>(v);
     return *this;
 }
 #else
-FBuffer& FBuffer::operator<<(long v)
+FOStream& FBuffer::operator <<(long v)
 {
 	Write<long>(v);
 	return *this;
 }
-FBuffer& FBuffer::operator<<(ulong v)
+FOStream& FBuffer::operator <<(ulong v)
 {
 	Write<ulong>(v);
 	return *this;
 }
 #endif
-FBuffer& FBuffer::operator<<(bool v)
+FOStream& FBuffer::operator <<(bool v)
 {
     Write<bool>(v);
     return *this;
 }
-FBuffer& FBuffer::operator<<(float v)
+FOStream& FBuffer::operator <<(float v)
 {
     Write<float>(v);
     return *this;
 }
-FBuffer& FBuffer::operator<<(double v)
+FOStream& FBuffer::operator <<(double v)
 {
     Write<double>(v);
     return *this;
 }
-FBuffer& FBuffer::operator<<(const char *str)
+FOStream& FBuffer::operator <<(wchar_t v)
 {
-    assert(str);
-    size_t len = strlen(str);
-    Write<uint32>((uint32)len);
-    Write((uint8 const *)str, len);
-    return *this;
+	Write<wchar_t>(v);
+	return *this;
 }
-FBuffer& FBuffer::operator<<(char v[])
+FOStream& FBuffer::operator <<(wchar_t v[])
+{
+	size_t len = wcslen(v);
+	Write<uint32>((uint32)len);
+	Write((uint8 const*)v, len);
+	return *this;
+}
+FOStream& FBuffer::operator <<(const wchar_t* v)
+{
+	assert(v);
+	size_t len = wcslen(v);
+	Write<uint32>((uint32)len);
+	Write((uint8 const*)v, len);
+	return *this;
+}
+FOStream& FBuffer::operator <<(char v[])
 {
     size_t len = strlen(v);
     Write<uint32>((uint32)len);
     Write((uint8 const *)v, len);
     return *this;
 }
-
-FBuffer& FBuffer::operator<<(FBuffer &v)
+FOStream& FBuffer::operator <<(const char* str)
+{
+	assert(str);
+	size_t len = strlen(str);
+	Write<uint32>((uint32)len);
+	Write((uint8 const*)str, len);
+	return *this;
+}
+FOStream& FBuffer::operator <<(const std::string& v)
+{
+	size_t len = v.size();
+	Write<uint32>((uint32)len);
+	Write((const uint8*)v.c_str(), len);
+	return *this;
+}
+FOStream& FBuffer::operator <<(const std::wstring& v)
+{
+    size_t len = v.size();
+	Write<uint32>((uint32)len);
+	Write((const uint8*)v.c_str(), len*sizeof(wchar_t));
+	return *this;
+}
+FBuffer& FBuffer::operator <<(FBuffer &v)
 {
     if(v.empty()) return *this;
 
@@ -369,92 +402,117 @@ FBuffer& FBuffer::operator<<(FBuffer &v)
     v.rpos(pos,false);
     return *this;
 }
-FBuffer& FBuffer::operator<< (FBuffer& (*_f)(FBuffer&))
-{
-	return _f(*this);
-}
+
 
 //////////////////////////////////////////////////////////////////////////
-FBuffer& FBuffer::operator>>(int8 &v)
+FIStream& FBuffer::operator >>(int8 &v)
 {
     Read<int8>(v);
     return *this;
 }
-FBuffer& FBuffer::operator>>(int16 &v)
+FIStream& FBuffer::operator >>(uint8& v)
+{
+	Read<uint8>(v);
+	return *this;
+}
+FIStream& FBuffer::operator >>(int16 &v)
 {
     Read<int16>(v);
     return *this;
 }
-FBuffer& FBuffer::operator>>(int32 &v)
+FIStream& FBuffer::operator >>(uint16& v)
+{
+	Read<uint16>(v);
+	return *this;
+}
+FIStream& FBuffer::operator >>(int32 &v)
 {
     Read<int32>(v);
     return *this;
 }
-FBuffer& FBuffer::operator>>(int64 &v)
+FIStream& FBuffer::operator >>(uint32& v)
+{
+	Read<uint32>(v);
+	return *this;
+}
+FIStream& FBuffer::operator >>(int64 &v)
 {
     Read<int64>(v);
     return *this;
 }
-FBuffer& FBuffer::operator>>(uint8 &v)
-{
-    Read<uint8>(v);
-    return *this;
-}
-FBuffer& FBuffer::operator>>(uint16 &v)
-{
-    Read<uint16>(v);
-    return *this;
-}
-FBuffer& FBuffer::operator>>(uint32 &v)
-{
-    Read<uint32>(v);
-    return *this;
-}
-FBuffer& FBuffer::operator>>(uint64 &v)
+FIStream& FBuffer::operator >>(uint64 &v)
 {
     Read<uint64>(v);
     return *this;
 }
 #if FLIB_COMPILER_64BITS
-FBuffer& FBuffer::operator>>(int &v)
+FIStream& FBuffer::operator >>(int &v)
 {
     Read<int>(v);
     return *this;
 }
-FBuffer& FBuffer::operator>>(uint &v)
+FIStream& FBuffer::operator >>(uint &v)
 {
     Read<uint>(v);
     return *this;
 }
 #else
-FBuffer& FBuffer::operator>>(long &v)
+FIStream& FBuffer::operator >>(long &v)
 {
 	Read<long>(v);
 	return *this;
 }
-FBuffer& FBuffer::operator>>(ulong &v)
+FIStream& FBuffer::operator >>(ulong &v)
 {
 	Read<ulong>(v);
 	return *this;
 }
 #endif
-FBuffer& FBuffer::operator>>(bool &v)
+FIStream& FBuffer::operator >>(bool &v)
 {
     Read<bool>(v);
     return *this;
 }
-FBuffer& FBuffer::operator>>(float &v)
+FIStream& FBuffer::operator >>(float &v)
 {
     Read<float>(v);
     return *this;
 }
-FBuffer& FBuffer::operator>>(double &v)
+FIStream& FBuffer::operator >>(double &v)
 {
     Read<double>(v);
     return *this;
 }
-
-FBuffer& FBuffer::operator>>(const char *dst)
+FIStream& FBuffer::operator >>(wchar_t &v)
+{
+    Read<wchar_t>(v);
+	return *this;
+}
+FIStream& FBuffer::operator >>(wchar_t dst[])
+{
+	uint32 len;
+	Read<uint32>(len);
+	uint8* p = (uint8*)dst;
+	Read(p, len);
+	return *this;
+}
+FIStream& FBuffer::operator >>(const wchar_t* dst)
+{
+	uint32 len;
+	Read<uint32>(len);
+	uint8* p = (uint8*)dst;
+	Read(p, len);
+	return *this;
+}
+FIStream& FBuffer::operator >>(char dst[])
+{
+	uint32 len;
+	Read<uint32>(len);
+	uint8* p = (uint8*)dst;
+	Read(p, len);
+	return *this;
+}
+FIStream& FBuffer::operator >>(const char *dst)
 {
     uint32 len;
     Read<uint32>(len);
@@ -462,19 +520,38 @@ FBuffer& FBuffer::operator>>(const char *dst)
     Read(p, len);
     return *this;
 }
-FBuffer& FBuffer::operator>>(char dst[])
+FIStream& FBuffer::operator >>(std::string& dst)
 {
-    uint32 len;
-    Read<uint32>(len);
-    uint8* p = (uint8*)dst;
-    Read(p, len);
-    return *this;
+	dst.clear();
+	uint32 len;
+	Read<uint32>(len);
+	for (size_t i = 0; i < len; ++i)
+	{
+		uint8 c = '\0';
+		(*this) >> c;
+		dst += c;
+	}
+    return (*this);
 }
-FBuffer& FBuffer::operator>>(FBuffer &v)
+FIStream& FBuffer::operator >>(std::wstring& dst)
+{
+	dst.clear();
+	uint32 len;
+	Read<uint32>(len);
+	for (size_t i = 0; i < len; ++i)
+	{
+		wchar_t c = L'\0';
+		(*this) >> c;
+		dst += c;
+	}
+	return *this;
+}
+FBuffer& FBuffer::operator >>(FBuffer &v)
 {
     v<<*this;
     return *this;
 }
+
 void FBuffer::posShow() const
 {
     printf("size:%ld,cnt:%ld,rpos:%ld,wpos:%ld\n",

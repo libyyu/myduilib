@@ -2,6 +2,7 @@
 #define __FLIB_LOGFILE_H__
 #pragma once
 #include "FLock.h"
+#include "FIOStream.h"
 
 _FStdBegin
 class F_DLL_API FAutoFile
@@ -21,43 +22,13 @@ private:
 
 class FLogFileFinisher;
 class FLogFileTraceFunction;
-class F_DLL_API FLogFile
+class F_DLL_API FLogFile : public FOStreamMaker
 {
+	virtual void output(const char* data);
 public:
 	FLogFile(FAutoFile& fp, FLIB_LOGLEVEL level);
 	FLogFile(FAutoFile& fp, FLIB_LOGLEVEL level, const char* filename, int32 line = -1);
 	virtual ~FLogFile();
-public:
-    FLogFile& operator<<(char v[]);
-	FLogFile& operator<< (FLogFile& (*_f)(FLogFile&));
-
-	template<typename T>
-    FLogFile& operator<< (T v); // will generate link error
-#define TRMPLATE_DECLARE(T) \
-    FLogFile& operator<< (T v);
-
-    TRMPLATE_DECLARE(int8)
-    TRMPLATE_DECLARE(int16)
-    TRMPLATE_DECLARE(int32)
-    TRMPLATE_DECLARE(int64)
-    TRMPLATE_DECLARE(uint8)
-    TRMPLATE_DECLARE(uint16)
-    TRMPLATE_DECLARE(uint32)
-    TRMPLATE_DECLARE(uint64)
-#if FLIB_COMPILER_64BITS
-    TRMPLATE_DECLARE(int)
-    TRMPLATE_DECLARE(uint)
-#else
-	TRMPLATE_DECLARE(long)
-	TRMPLATE_DECLARE(ulong)
-#endif
-    TRMPLATE_DECLARE(bool)
-    TRMPLATE_DECLARE(float)
-    TRMPLATE_DECLARE(double)
-    TRMPLATE_DECLARE(const char *)
-    TRMPLATE_DECLARE(void *)
-    TRMPLATE_DECLARE(const std::string&)
-#undef TRMPLATE_DECLARE
 protected:
 	void _Logout(const char* str);
 	void Finish();
@@ -76,17 +47,17 @@ protected:
 class F_DLL_API FLogFileFinisher
 {
 public:
-	void operator=(FLogFile& other);
+	void operator=(FOStream& other);
 };
 
 class F_DLL_API FLogFileTraceFunction
 {
 public:
-	FLogFileTraceFunction(FLogFile& other, const char* func, const char* file, int32 line);
+	FLogFileTraceFunction(FOStream& other, const char* func, const char* file, int32 line);
 	~FLogFileTraceFunction();
-	void operator=(FLogFile& other);
+	void operator=(FOStream& other);
 private:
-    FLogFile& _log;
+	FOStream& _log;
 	const char *_func;
 	const char *_file;
 	int32 _line;

@@ -1,5 +1,5 @@
 #define FLIB_DLL
-#include "FOStream.h"
+#include "FIOStream.h"
 #if FLIB_COMPILER_WINDOWS
 #include <Windows.h>
 #endif
@@ -42,5 +42,29 @@ std::wstring multi_to_wide(const char* c)
 #endif
 	return wstr;
 }
+
+//FOStream& operator <<(FOStream& t, const std::string& v)
+//{
+//	t << v.c_str();
+//	return t;
+//}
+//FOStream& operator <<(FOStream& t, const std::wstring& v)
+//{
+//	t << v.c_str();
+//	return t;
+//}
+//
+//FIStream& operator >>(FIStream& t, std::string& v)
+//{
+//	const char* dst = v.c_str();
+//	t >> dst;
+//	return t;
+//}
+//FIStream& operator >>(FIStream& t, std::wstring& v)
+//{
+//	const wchar_t* dst = v.c_str();
+//	t >> dst;
+//	return t;
+//}
 
 _FStdEnd

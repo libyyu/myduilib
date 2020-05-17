@@ -25,7 +25,7 @@
 #include "FLogFile.h"
 #include "FConsole.h"
 #include "FValue.h"
-#include "FOStream.h"
+#include "FIOStream.h"
 #include "FSocket.h"
 ////////////////////////////////////
 ////

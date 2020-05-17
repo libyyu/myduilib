@@ -36,9 +36,6 @@
     <ClCompile Include="..\..\thirdpart\FLib\src\FPlugin.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\thirdpart\FLib\src\FOStream.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FMemPool.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -94,6 +91,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\FLib\src\FEncoding.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\FLib\src\FIOStream.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -167,9 +167,6 @@
     <ClInclude Include="..\..\thirdpart\FLib\src\FObserver.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\thirdpart\FLib\src\FOStream.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\thirdpart\FLib\src\FPlatform.h">
       <Filter>src</Filter>
     </ClInclude>
@@ -198,6 +195,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\thirdpart\FLib\src\FWString.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\thirdpart\FLib\src\FIOStream.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

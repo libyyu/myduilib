@@ -4,13 +4,14 @@
 #include "FFunc.h"
 #include "FAlloctor.h"
 #include "FConvert.h"
+#include "FIOStream.h"
 #include <map>
 #include <set>
 #include <list>
 
 _FStdBegin
 
-class F_DLL_API FBuffer
+class F_DLL_API FBuffer : public FIOStream
 {
 public:
     const static size_t DEFAULT_SIZE = 1024*10;
@@ -81,59 +82,61 @@ public:
     void                textShow() const;
     void                hexShow() const;
 
-    //
-    template<typename T>
-    FBuffer& operator<<(T v); // will generate link error
-    FBuffer& operator<<(int8 v);
-    FBuffer& operator<<(int16 v);
-    FBuffer& operator<<(int32 v);
-    FBuffer& operator<<(int64 v);
-    FBuffer& operator<<(uint8 v);
-    FBuffer& operator<<(uint16 v);
-    FBuffer& operator<<(uint32 v);
-    FBuffer& operator<<(uint64 v);
+	using FOStream::operator <<;
+	virtual FOStream& operator <<(int8);
+	virtual FOStream& operator <<(uint8);
+	virtual FOStream& operator <<(int16);
+	virtual FOStream& operator <<(uint16);
+	virtual FOStream& operator <<(int32);
+	virtual FOStream& operator <<(uint32);
+	virtual FOStream& operator <<(int64);
+	virtual FOStream& operator <<(uint64);
 #if FLIB_COMPILER_64BITS
-    FBuffer& operator<<(int v);
-    FBuffer& operator<<(uint v);
+	virtual FOStream& operator <<(int);
+	virtual FOStream& operator <<(uint);
 #else
-	FBuffer& operator<<(long v);
-	FBuffer& operator<<(ulong v);
+	virtual FOStream& operator <<(long);
+	virtual FOStream& operator <<(ulong);
 #endif
-    FBuffer& operator<<(bool v);
-    FBuffer& operator<<(float v);
-    FBuffer& operator<<(double v);
-    FBuffer& operator<<(const char *str);
-    FBuffer& operator<<(char v[]);
-    FBuffer& operator<<(FBuffer &v);
-    FBuffer& operator<< (FBuffer& (*_f)(FBuffer&));
-
-    //
-    template<typename T>
-    FBuffer& operator>>(T &t); // will generate link error
-    FBuffer& operator>>(int8 &v);
-    FBuffer& operator>>(int16 &v);
-    FBuffer& operator>>(int32 &v);
-    FBuffer& operator>>(int64 &v);
-    FBuffer& operator>>(uint8 &v);
-    FBuffer& operator>>(uint16 &v);
-    FBuffer& operator>>(uint32 &v);
-    FBuffer& operator>>(uint64 &v);
+	virtual FOStream& operator <<(bool);
+	virtual FOStream& operator <<(float);
+	virtual FOStream& operator <<(double);
+	virtual FOStream& operator <<(wchar_t);
+	virtual FOStream& operator <<(wchar_t[]);
+	virtual FOStream& operator <<(const wchar_t*);
+	virtual FOStream& operator <<(char[]);
+	virtual FOStream& operator <<(const char*);
+	virtual FOStream& operator <<(const std::string&);
+	virtual FOStream& operator <<(const std::wstring&);
+    FBuffer& operator <<(FBuffer &v);
+public:
+	using FIStream::operator >>;
+	virtual FIStream& operator >>(int8&);
+	virtual FIStream& operator >>(uint8&);
+	virtual FIStream& operator >>(int16&);
+	virtual FIStream& operator >>(uint16&);
+	virtual FIStream& operator >>(int32&);
+	virtual FIStream& operator >>(uint32&);
+	virtual FIStream& operator >>(int64&);
+	virtual FIStream& operator >>(uint64&);
 #if FLIB_COMPILER_64BITS
-    FBuffer& operator>>(int &v);
-    FBuffer& operator>>(uint &v);
+	virtual FIStream& operator >>(int&);
+	virtual FIStream& operator >>(uint&);
 #else
-	FBuffer& operator>>(long &v);
-	FBuffer& operator>>(ulong &v);
+	virtual FIStream& operator >>(long&);
+	virtual FIStream& operator >>(ulong&);
 #endif
-    FBuffer& operator>>(bool &v);
-    FBuffer& operator>>(float &v);
-    FBuffer& operator>>(double &v);
-    FBuffer& operator>>(const char *dst);
-    FBuffer& operator>>(char dst[]);
-    FBuffer& operator>>(FBuffer &v);
-
-    //
-
+	virtual FIStream& operator >>(bool&);
+	virtual FIStream& operator >>(float&);
+	virtual FIStream& operator >>(double&);
+	virtual FIStream& operator >>(wchar_t&);
+	virtual FIStream& operator >>(wchar_t[]);
+	virtual FIStream& operator >>(const wchar_t*);
+	virtual FIStream& operator >>(char[]);
+	virtual FIStream& operator >>(const char*);
+	virtual FIStream& operator >>(std::string&);
+	virtual FIStream& operator >>(std::wstring&);
+	FBuffer& operator >>(FBuffer& v);
 
 protected:
     FBuffer(const FBuffer& src){} 
@@ -156,27 +159,6 @@ protected:
     FAlloctorPoolBase*  _pool;
 };
 
-inline FBuffer& operator<<(FBuffer& buffer, const std::string &v)
-{
-	size_t len = v.size();
-	buffer.Write<uint32>((uint32)len);
-	buffer.Write((const uint8 *)v.c_str(), len);
-	return buffer;
-}
-inline FBuffer& operator>>(FBuffer& buffer, std::string &v)
-{
-	v.clear();
-	uint32 len;
-	buffer.Read<uint32>(len);
-	for (size_t i = 0; i<len; ++i)
-	{
-		uint8 c = '\0';
-		buffer >> c;
-		v += c;
-	}
-
-	return buffer;
-}
 template<class T>
 inline FBuffer& operator<<(FBuffer& buffer, std::set<T>& TSet)
 {
@@ -203,6 +185,7 @@ inline FBuffer& operator>>(FBuffer& buffer, std::set<T>& TSet)
 
 	return buffer;
 }
+
 template<class T>
 inline FBuffer& operator<<(FBuffer& buffer, std::vector<T>& TVector)
 {
@@ -229,6 +212,7 @@ inline FBuffer& operator>>(FBuffer& buffer, std::vector<T>& TVector)
 	}
 	return buffer;
 }
+
 template<class T>
 inline FBuffer& operator<<(FBuffer& buffer, std::list<T>& TList)
 {
@@ -240,7 +224,6 @@ inline FBuffer& operator<<(FBuffer& buffer, std::list<T>& TList)
 
 	return buffer;
 }
-
 template<class T>
 inline FBuffer& operator>>(FBuffer& buffer, std::list<T>& TList)
 {
@@ -257,6 +240,7 @@ inline FBuffer& operator>>(FBuffer& buffer, std::list<T>& TList)
 
 	return buffer;
 }
+
 template<class K, class V>
 inline FBuffer& operator<<(FBuffer& buffer, std::map<K, V>& TMap)
 {
@@ -270,7 +254,6 @@ inline FBuffer& operator<<(FBuffer& buffer, std::map<K, V>& TMap)
 
 	return buffer;
 }
-
 template<class K, class V>
 inline FBuffer& operator>>(FBuffer& buffer, std::map<K, V>& TMap)
 {

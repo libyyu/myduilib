@@ -87,76 +87,20 @@ void FLogFile::_LogImpl()
 	fwrite(m_message.c_str(), m_message.size(), sizeof(char), fp);
 }
 
-FLogFile& FLogFile::operator<<(const char* str)
+void FLogFile::output(const char* data)
 {
-	if (m_level < _logfile_level)
-		return *this;
-	_Logout(str);
-	return *this;
-}
-FLogFile& FLogFile::operator<<(const std::string& str)
-{
-	if (m_level < _logfile_level)
-		return *this;
-	_Logout(str.c_str());
-	return *this;
-}
-FLogFile& FLogFile::operator<<(char v[])
-{
-	if (m_level < _logfile_level)
-		return *this;
-    _Logout((char*)v);
-	return *this;
-}
-FLogFile& FLogFile::operator<<(void *p)
-{
-	if (m_level < _logfile_level)
-		return *this;
-	_Logout(FFormat("%p", p).c_str());
-	return *this;
-}
-FLogFile& FLogFile::operator<< (FLogFile& (*_f)(FLogFile&))
-{
-	return _f(*this);
+	_Logout(data);
 }
 
-#define TRMPLATE_METHOD(T) \
-	FLogFile& FLogFile::operator<<(T v) \
-	{ \
-		if (m_level < _logfile_level) \
-			return *this; \
-		std::stringstream str;	\
-		str << v; \
-        _Logout(str.str().c_str()); \
-		return *this; \
-	}
-TRMPLATE_METHOD(int8)
-TRMPLATE_METHOD(int16)
-TRMPLATE_METHOD(int32)
-TRMPLATE_METHOD(int64)
-TRMPLATE_METHOD(uint8)
-TRMPLATE_METHOD(uint16)
-TRMPLATE_METHOD(uint32)
-TRMPLATE_METHOD(uint64)
-#if FLIB_COMPILER_64BITS
-TRMPLATE_METHOD(int)
-TRMPLATE_METHOD(uint)
-#else
-TRMPLATE_METHOD(long)
-TRMPLATE_METHOD(ulong)
-#endif
-TRMPLATE_METHOD(float)
-TRMPLATE_METHOD(double)
-TRMPLATE_METHOD(bool)
-#undef TRMPLATE_METHOD
 /////////////////////////////////////////////////////////////////////////////////////////
 ////
-void FLogFileFinisher::operator=(FLogFile& other)
+void FLogFileFinisher::operator=(FOStream& other)
 {
-	other.Finish();
+	FLogFile* pFile = static_cast<FLogFile*>(&other);
+	pFile->Finish();
 }
 
-FLogFileTraceFunction::FLogFileTraceFunction(FLogFile& other, const char* func, const char* file, int32 line)
+FLogFileTraceFunction::FLogFileTraceFunction(FOStream& other, const char* func, const char* file, int32 line)
 	: _log(other)
 	, _func(func)
 	, _file(file)
@@ -173,9 +117,9 @@ FLogFileTraceFunction::~FLogFileTraceFunction()
 		aTm->tm_hour,
 		aTm->tm_min,
 		aTm->tm_sec);
-
+	FLogFile* pFile = static_cast<FLogFile*>(&_log);
 	_log << "["
-		<< FLIB_LogLevelName[_log.m_level] << "|"
+		<< FLIB_LogLevelName[pFile->m_level] << "|"
 		<< FGetCurrentThreadId() << "|"
 		<< buff << "|"
 		<< (_file ? FGetFilename(_file).c_str() : "<unknow source>") << ":"
@@ -186,9 +130,10 @@ FLogFileTraceFunction::~FLogFileTraceFunction()
 
 	*this = _log;
 }
-void FLogFileTraceFunction::operator=(FLogFile& other)
+void FLogFileTraceFunction::operator=(FOStream& other)
 {
-	other.Finish();
+	FLogFile* pFile = static_cast<FLogFile*>(&other);
+	pFile->Finish();
 }
 
 

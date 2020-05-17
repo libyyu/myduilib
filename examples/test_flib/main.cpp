@@ -13,12 +13,16 @@ void test_buffer()
 	F_CONSOLE_TRACE
 	F_LOGFILE_TRACE(fGlobalLog)
 
+	std::string as = "this is std::string";
+	std::wstring ws = L"this is std::wstring";
 	_FStd(FBuffer) buffer;
-	buffer << 1 << "hello world" << true;
+	buffer << 1 << "hello world" << true << as << ws;
 	int v;
 	char buf[100] = { 0 };
 	bool b;
-	buffer >> v >> buf >> b;
+	std::string oas;
+	std::wstring ows;
+	buffer >> v >> buf >> b >> oas >> ows;
 	printf("v=%d,buf=%s, b = %d\n", v, buf, b);
 }
 
@@ -38,7 +42,7 @@ void test_string()
 
 void thread_foo()
 {
-	int i = 0;
+	int32 i = 0;
 	while (++i < 10)
 		F_CONSOLE(DEBUG) << i << "this is a thread function output threadid:" << _FStd(FGetCurrentThreadId()) << WRAP_LINE;
 }
