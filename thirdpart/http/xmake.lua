@@ -12,7 +12,7 @@ target("http_plugin")
 	-- links
 	if is_plat("windows") then
 		add_syslinks("ws2_32", "wldap32", "Crypt32")
-		add_links('curl_a', 'ssleay32', 'libeay32')
+		add_links('libcurl', 'ssleay32', 'libeay32')
 	elseif is_plat("android") then
 	elseif is_plat("macosx") then
 		add_links("ldap", "curl")

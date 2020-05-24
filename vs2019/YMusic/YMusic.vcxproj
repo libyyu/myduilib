@@ -91,7 +91,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
     <Link>
       <AdditionalLibraryDirectories>..\..\release\windows\x86;..\..\libs\windows\release\x86;..\..\libs\windows\release;..\..\libs\windows;..\..\release\windows;..\..\release\windows\x86\plugins;..\..\release\windows\plugins;D:\boost_1_70_0\stage\msvc\x86\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>MyControls.lib;http_plugin.lib;curl_a.lib;ssleay32.lib;libeay32.lib;taglib_plugin.lib;taglib.lib;playcenter.lib;FLib.lib;database.lib;sqlite3cpp.lib;sqlite3.lib;webservice.lib;network.lib;zlib.lib;DuiLib.lib;StackDump.lib;ws2_32.lib;wldap32.lib;Crypt32.lib;-nodefaultlib:"LIBCMT.lib";-nodefaultlib:"LIBC.lib";-nodefaultlib:"msvcrt.lib";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>MyControls.lib;http_plugin.lib;libcurl.lib;ssleay32.lib;libeay32.lib;taglib_plugin.lib;taglib.lib;playcenter.lib;FLib.lib;database.lib;sqlite3cpp.lib;sqlite3.lib;webservice.lib;network.lib;zlib.lib;DuiLib.lib;StackDump.lib;ws2_32.lib;wldap32.lib;Crypt32.lib;-nodefaultlib:"LIBCMT.lib";-nodefaultlib:"LIBC.lib";-nodefaultlib:"msvcrt.lib";%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>-nologo -dynamicbase -nxcompat %(AdditionalOptions)</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <ProgramDatabaseFile>..\..\release\windows\x86\YMusic.pdb</ProgramDatabaseFile>
@@ -125,7 +125,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
     <Link>
       <AdditionalLibraryDirectories>..\..\release\windows\x64;..\..\libs\windows\release\x64;..\..\libs\windows\release;..\..\libs\windows;..\..\release\windows;..\..\release\windows\x64\plugins;..\..\release\windows\plugins;D:\boost_1_70_0\stage\msvc\x64\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>MyControls.lib;http_plugin.lib;curl_a.lib;ssleay32.lib;libeay32.lib;taglib_plugin.lib;taglib.lib;playcenter.lib;FLib.lib;database.lib;sqlite3cpp.lib;sqlite3.lib;webservice.lib;network.lib;zlib.lib;DuiLib.lib;StackDump.lib;ws2_32.lib;wldap32.lib;Crypt32.lib;-nodefaultlib:"LIBCMT.lib";-nodefaultlib:"LIBC.lib";-nodefaultlib:"msvcrt.lib";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>MyControls.lib;http_plugin.lib;libcurl.lib;ssleay32.lib;libeay32.lib;taglib_plugin.lib;taglib.lib;playcenter.lib;FLib.lib;database.lib;sqlite3cpp.lib;sqlite3.lib;webservice.lib;network.lib;zlib.lib;DuiLib.lib;StackDump.lib;ws2_32.lib;wldap32.lib;Crypt32.lib;-nodefaultlib:"LIBCMT.lib";-nodefaultlib:"LIBC.lib";-nodefaultlib:"msvcrt.lib";%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>-nologo -dynamicbase -nxcompat %(AdditionalOptions)</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <ProgramDatabaseFile>..\..\release\windows\x64\YMusic.pdb</ProgramDatabaseFile>
@@ -159,7 +159,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
     <Link>
       <AdditionalLibraryDirectories>..\..\debug\windows\x86;..\..\libs\windows\debug\x86;..\..\libs\windows\debug;..\..\libs\windows;..\..\debug\windows;..\..\debug\windows\x86\plugins;..\..\debug\windows\plugins;D:\boost_1_70_0\stage\msvc\x86\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>MyControls.lib;http_plugin.lib;curl_a.lib;ssleay32.lib;libeay32.lib;taglib_plugin.lib;taglib.lib;playcenter.lib;FLib.lib;database.lib;sqlite3cpp.lib;sqlite3.lib;webservice.lib;network.lib;zlib.lib;DuiLib.lib;StackDump.lib;ws2_32.lib;wldap32.lib;Crypt32.lib;-nodefaultlib:"LIBCMT.lib";-nodefaultlib:"LIBC.lib";-nodefaultlib:"msvcrt.lib";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>MyControls.lib;http_plugin.lib;libcurl.lib;ssleay32.lib;libeay32.lib;taglib_plugin.lib;taglib.lib;playcenter.lib;FLib.lib;database.lib;sqlite3cpp.lib;sqlite3.lib;webservice.lib;network.lib;zlib.lib;DuiLib.lib;StackDump.lib;ws2_32.lib;wldap32.lib;Crypt32.lib;-nodefaultlib:"LIBCMT.lib";-nodefaultlib:"LIBC.lib";-nodefaultlib:"msvcrt.lib";%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>-nologo -dynamicbase -nxcompat %(AdditionalOptions)</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>..\..\debug\windows\x86\YMusic.pdb</ProgramDatabaseFile>
@@ -193,7 +193,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
     <Link>
       <AdditionalLibraryDirectories>..\..\debug\windows\x64;..\..\libs\windows\debug\x64;..\..\libs\windows\debug;..\..\libs\windows;..\..\debug\windows;..\..\debug\windows\x64\plugins;..\..\debug\windows\plugins;D:\boost_1_70_0\stage\msvc\x64\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>MyControls.lib;http_plugin.lib;curl_a.lib;ssleay32.lib;libeay32.lib;taglib_plugin.lib;taglib.lib;playcenter.lib;FLib.lib;database.lib;sqlite3cpp.lib;sqlite3.lib;webservice.lib;network.lib;zlib.lib;DuiLib.lib;StackDump.lib;ws2_32.lib;wldap32.lib;Crypt32.lib;-nodefaultlib:"LIBCMT.lib";-nodefaultlib:"LIBC.lib";-nodefaultlib:"msvcrt.lib";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>MyControls.lib;http_plugin.lib;libcurl.lib;ssleay32.lib;libeay32.lib;taglib_plugin.lib;taglib.lib;playcenter.lib;FLib.lib;database.lib;sqlite3cpp.lib;sqlite3.lib;webservice.lib;network.lib;zlib.lib;DuiLib.lib;StackDump.lib;ws2_32.lib;wldap32.lib;Crypt32.lib;-nodefaultlib:"LIBCMT.lib";-nodefaultlib:"LIBC.lib";-nodefaultlib:"msvcrt.lib";%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>-nologo -dynamicbase -nxcompat %(AdditionalOptions)</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>..\..\debug\windows\x64\YMusic.pdb</ProgramDatabaseFile>

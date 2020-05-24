@@ -87,7 +87,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
     <Link>
       <AdditionalLibraryDirectories>..\..\libs\windows\release\x86;..\..\libs\windows\release;..\..\libs\windows;..\..\release\windows\x86;..\..\release\windows;..\..\release\windows\x86\plugins;..\..\release\windows\plugins;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>curl_a.lib;ssleay32.lib;libeay32.lib;ws2_32.lib;wldap32.lib;Crypt32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libcurl.lib;ssleay32.lib;libeay32.lib;ws2_32.lib;wldap32.lib;Crypt32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>-nologo %(AdditionalOptions)</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <ProgramDatabaseFile>..\..\release\windows\x86\http_plugin.pdb</ProgramDatabaseFile>
@@ -120,7 +120,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
     <Link>
       <AdditionalLibraryDirectories>..\..\libs\windows\release\x64;..\..\libs\windows\release;..\..\libs\windows;..\..\release\windows\x64;..\..\release\windows;..\..\release\windows\x64\plugins;..\..\release\windows\plugins;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>curl_a.lib;ssleay32.lib;libeay32.lib;ws2_32.lib;wldap32.lib;Crypt32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libcurl.lib;ssleay32.lib;libeay32.lib;ws2_32.lib;wldap32.lib;Crypt32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>-nologo %(AdditionalOptions)</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <ProgramDatabaseFile>..\..\release\windows\x64\http_plugin.pdb</ProgramDatabaseFile>
@@ -153,7 +153,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
     <Link>
       <AdditionalLibraryDirectories>..\..\libs\windows\debug\x86;..\..\libs\windows\debug;..\..\libs\windows;..\..\debug\windows\x86;..\..\debug\windows;..\..\debug\windows\x86\plugins;..\..\debug\windows\plugins;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>curl_a.lib;ssleay32.lib;libeay32.lib;ws2_32.lib;wldap32.lib;Crypt32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libcurl.lib;ssleay32.lib;libeay32.lib;ws2_32.lib;wldap32.lib;Crypt32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>-nologo %(AdditionalOptions)</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>..\..\debug\windows\x86\http_plugin.pdb</ProgramDatabaseFile>
@@ -186,7 +186,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
     <Link>
       <AdditionalLibraryDirectories>..\..\libs\windows\debug\x64;..\..\libs\windows\debug;..\..\libs\windows;..\..\debug\windows\x64;..\..\debug\windows;..\..\debug\windows\x64\plugins;..\..\debug\windows\plugins;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>curl_a.lib;ssleay32.lib;libeay32.lib;ws2_32.lib;wldap32.lib;Crypt32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libcurl.lib;ssleay32.lib;libeay32.lib;ws2_32.lib;wldap32.lib;Crypt32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>-nologo %(AdditionalOptions)</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>..\..\debug\windows\x64\http_plugin.pdb</ProgramDatabaseFile>
