@@ -80,9 +80,20 @@ public:
     ~HTTPHelper()
     {
         s_request_lock->Lock();
+        
+        std::set<HTTPRequest*>::iterator p;
+        for (p = s_async_requests.begin(); p != s_async_requests.end(); ++p)
+        {
+            HTTPRequest* request = *p;
+            request->Stop();
+			if (request->IsAutoDestroy())
+			{
+				HTTPRequest::Destroy(request);
+			}
+        }
         s_async_requests.clear();
         s_request_lock->UnLock();
-        
+
         curl_share_cleanup(s_share_handle);
         curl_global_cleanup();
         s_share_handle = nullptr;
@@ -282,8 +293,7 @@ public:
         printf("[%d] ~HTTPImpl\n", m_id);
     }
     void Release()
-    {
-        printf("[%d] HTTPImpl::Release\n", m_id);
+    {    
         Close();
 
         if (m_http_headers)
@@ -303,8 +313,9 @@ public:
         m_result_callback = nullptr;
         m_progress_callback = nullptr;
         m_request_handle = nullptr;
+        printf("[%d] HTTPImpl::Release\n", m_id);
     }
-    int GetRequestId()
+    int  GetRequestId()
     {
         return m_id;
     }
@@ -404,7 +415,7 @@ public:
         m_proxy_port = proxy_port;
     }
 
-    bool    GetHeader(std::string* header)
+    bool     GetHeader(std::string* header)
     {
         if (m_receive_header.empty()) return false;
         else if (header) *header = m_receive_header;
@@ -462,7 +473,8 @@ public:
         {
             return;
         }
-        Close();
+        Abort();
+        printf("thread stoped.\n");
     }
     int Resume()
     {
@@ -470,37 +482,28 @@ public:
     }
     void Close()
     {
+		if (!m_is_running)
+		{
+			return;
+		}
+
         if(HTTPHelper::Instance()->FindRequest(m_owner))
         {
 #ifdef _MSC_VER
-            if (WaitForSingleObject(m_perform_thread, 10) == WAIT_OBJECT_0)
+            if (WaitForSingleObject(m_perform_thread, INFINITE) != WAIT_OBJECT_0)
 #else
-            if(pthread_kill(m_perform_thread, 0) != 0)
+            if(pthread_join(m_perform_thread) != 0)
 #endif
             {
-                printf("Failed to close thread.\n");
+                printf("Failed to join thread.\n");
             }
-            {
-                HTTPHelper::Instance()->RemoveRequest(m_owner);
-                m_is_cancel = true;
-            }
+
+			HTTPHelper::Instance()->RemoveRequest(m_owner);	
         }
 
-        try {
-#ifdef _MSC_VER
-            if (m_perform_thread)
-            {
-                CloseHandle(m_perform_thread);
-                m_perform_thread = nullptr;
-            }
-#else
-            pthread_kill(m_perform_thread, 0);
-#endif
-        } catch(std::exception e) {
-            printf("exception\n");
-        }
-        
+        m_is_cancel = true;
         m_is_running = false;
+        printf("close thread.\n");
     }
 protected:
     void    ReqeustResultDefault(bool success, const std::string& content)
@@ -758,9 +761,33 @@ protected:
         return curl_code;
     }
 protected:
+    void Abort()
+    {
+		try
+		{
+#ifdef _MSC_VER
+			if (m_perform_thread)
+			{
+				CloseHandle(m_perform_thread);
+				m_perform_thread = nullptr;
+			}
+#else
+			pthread_kill(m_perform_thread, 0);
+#endif
+		}
+		catch (std::exception e) 
+        {
+			printf("close thread exception\n");
+		}
+
+		HTTPHelper::Instance()->RemoveRequest(m_owner);
+		m_is_cancel = true;
+        m_is_running = false;
+        printf("abort thread.\n");
+    }
     int Perform()
     {
-		printf("[%d] Start Perform\n", m_id);
+		printf("[%d] Start Perform request:%d, download:%d \n", m_id, m_is_download?0:1, m_is_download?1:0);
         m_is_running = true;
         m_is_cancel = false;
         m_receive_header.clear();
