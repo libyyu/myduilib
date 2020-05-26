@@ -40,6 +40,15 @@ private:
 #endif
 };
 
+static unsigned long get_current_threadid()
+{
+#if _MSC_VER
+	return (unsigned long)::GetCurrentThreadId();
+#else
+    return static_cast<unsigned long>(reinterpret_cast<long>(pthread_self()));
+#endif
+}
+
 class DoHTTPLock
 {
 public:
@@ -290,7 +299,7 @@ public:
             m_request_handle->OnDelete(m_owner);
         }
         Release();
-        printf("[%d] ~HTTPImpl\n", m_id);
+        printf("[%d %x] ~HTTPImpl\n", m_id, get_current_threadid());
     }
     void Release()
     {    
@@ -313,7 +322,7 @@ public:
         m_result_callback = nullptr;
         m_progress_callback = nullptr;
         m_request_handle = nullptr;
-        printf("[%d] HTTPImpl::Release\n", m_id);
+        printf("[%d %x] HTTPImpl::Release\n", m_id, get_current_threadid());
     }
     int  GetRequestId()
     {
@@ -474,7 +483,7 @@ public:
             return;
         }
         Abort();
-        printf("thread stoped.\n");
+        printf("[%d %x] thread stoped.\n", m_id, get_current_threadid());
     }
     int Resume()
     {
@@ -503,7 +512,7 @@ public:
 
         m_is_cancel = true;
         m_is_running = false;
-        printf("close thread.\n");
+        printf("[%d %x] close thread.\n", m_id, get_current_threadid());
     }
 protected:
     void    ReqeustResultDefault(bool success, const std::string& content)
@@ -715,7 +724,7 @@ protected:
 			if (!down_range.empty())
 			{
 				curl_easy_setopt(curl_handle, CURLOPT_RANGE, down_range.c_str());
-				printf("[%d] DoDownload[thread id:%d] load range: %s\n", thread_chunk->_download->m_id, thread_chunk->_id, down_range.c_str());
+				printf("[%d] DoDownload[thread id:%d %x] load range: %s\n", thread_chunk->_download->m_id, thread_chunk->_id, get_current_threadid(), down_range.c_str());
 			}
         }
 		
@@ -725,9 +734,10 @@ protected:
             int retry_count = thread_chunk->_download->m_retry_times;
             while (retry_count > 0 && thread_chunk->_download->m_is_running)
             {
-                printf("[%d] DoDownload[thread id:%d] Connect Timeout, Will Try %d/%d\n",
+                printf("[%d] DoDownload[thread id:%d %x] Connect Timeout, Will Try %d/%d\n",
 					   thread_chunk->_download->m_id,
                        thread_chunk->_id,
+                       get_current_threadid(),
                        1+thread_chunk->_download->m_retry_times-retry_count,
                        thread_chunk->_download->m_retry_times);
                 curl_code = curl_easy_perform(curl_handle);
@@ -737,7 +747,7 @@ protected:
         }
         if (curl_code == CURLE_OPERATION_TIMEDOUT)
         {
-            printf("[%d] DoDownload[thread id:%d] Connect Timeout\n", thread_chunk->_download->m_id, thread_chunk->_id);
+            printf("[%d] DoDownload[thread id:%d %x] Connect Timeout\n", thread_chunk->_download->m_id, thread_chunk->_id, get_current_threadid());
         }
         
         long http_code;
@@ -756,7 +766,7 @@ protected:
         }
         
         curl_easy_cleanup(curl_handle);
-		printf("[%d] DoDownload[thread id:%d] exit.\n", thread_chunk->_download->m_id, thread_chunk->_id);
+		printf("[%d] DoDownload[thread id:%d %x] exit.\n", thread_chunk->_download->m_id, thread_chunk->_id, get_current_threadid());
         delete thread_chunk;
         return curl_code;
     }
@@ -775,19 +785,19 @@ protected:
 			pthread_kill(m_perform_thread, 0);
 #endif
 		}
-		catch (std::exception e) 
+		catch (std::exception& e) 
         {
-			printf("close thread exception\n");
+			printf("close thread exception %s\n", e.what());
 		}
 
 		HTTPHelper::Instance()->RemoveRequest(m_owner);
 		m_is_cancel = true;
         m_is_running = false;
-        printf("abort thread.\n");
+        printf("[%d %x] abort thread.\n", m_id, get_current_threadid());
     }
     int Perform()
     {
-		printf("[%d] Start Perform request:%d, download:%d \n", m_id, m_is_download?0:1, m_is_download?1:0);
+		printf("[%d %x] Start Perform request:%d, download:%d \n", m_id, get_current_threadid(), m_is_download?0:1, m_is_download?1:0);
         m_is_running = true;
         m_is_cancel = false;
         m_receive_header.clear();
@@ -801,7 +811,7 @@ protected:
         {
             code = PerformRequest();
         }
-        printf("[%d] Perform Finish %d\n", m_id, code);
+        printf("[%d %x] Perform Finish %d\n", m_id, get_current_threadid(), code);
         return code;
     }
     int PerformRequest()
@@ -868,7 +878,7 @@ protected:
                 int retry_count = m_retry_times;
                 while (retry_count > 0)
                 {
-                    printf("[%d] PerformRequest Connect Timeout, Will Try %d/%d\n", m_id, 1+m_retry_times-retry_count, m_retry_times);
+                    printf("[%d %x] PerformRequest Connect Timeout, Will Try %d/%d\n", m_id, get_current_threadid(), 1+m_retry_times-retry_count, m_retry_times);
                     curl_code = curl_easy_perform(curl_handle);
                     if (curl_code != CURLE_OPERATION_TIMEDOUT) break;
                     retry_count--;
@@ -876,7 +886,7 @@ protected:
             }
             if (curl_code == CURLE_OPERATION_TIMEDOUT)
             {
-                printf("[%d] PerformRequest Connect Timeout\n", m_id);
+                printf("[%d %x] PerformRequest Connect Timeout\n", m_id, get_current_threadid());
             }
             
             curl_easy_getinfo(curl_handle, CURLINFO_RESPONSE_CODE, &m_http_code);
@@ -912,7 +922,7 @@ protected:
         if(!m_download_lock)
             m_download_lock = new HTTPLock;
         bool success = GetDownloadFileSize(m_total_size);
-        printf("[%d] GetDownloadFileSize size:%f, success:%s\n", m_id, m_total_size, success ? "true" : "false");
+        printf("[%d %x] GetDownloadFileSize size:%f, success:%s\n", m_id, get_current_threadid(), m_total_size, success ? "true" : "false");
         if (!success)
         {
             m_is_running = false;
@@ -944,7 +954,7 @@ protected:
         int thread_count = SplitDownloadCount(m_total_size);
         
         m_thread_count = thread_count > m_thread_count ? m_thread_count : thread_count;
-		printf("[%d] split thread count %d\n", m_id, m_thread_count);
+		printf("[%d %x] split thread count %d\n", m_id, get_current_threadid(), m_thread_count);
         //文件大小有分开下载的必要并且服务器支持多线程下载时，启用多线程下载
         if (m_multi_download && m_thread_count > 1)
         {
@@ -1383,7 +1393,7 @@ HTTPRequest::~HTTPRequest()
 	int id = _impl ? _impl->GetRequestId() : -1;
     delete _impl;
     _impl = nullptr;
-	printf("[%d] ~HTTPRequest\n", id);
+	printf("[%d %x] ~HTTPRequest\n", id, get_current_threadid());
 }
 
 void         HTTPRequest::Init()
@@ -1455,7 +1465,7 @@ namespace
 		void OnDelete(void* userdata)
 		{
 			HTTPRequest* pOwner = (HTTPRequest*)userdata;
-			printf("[%d] Need Destroy MyRequestHandle\n", pOwner->GetRequestId());
+			printf("[%d %x] Need Destroy MyRequestHandle\n", pOwner->GetRequestId(), get_current_threadid());
 		}
 		void OnRequestFinished(bool success, const std::string& content, void* userdata)
 		{
@@ -1473,7 +1483,7 @@ namespace
 		{
 			HTTPRequest* pOwner = (HTTPRequest*)userdata;
 			long tmp = static_cast<long>(handle_size / total_size * 100);
-			printf("\r[%d] download progress:%ld%%\n", pOwner->GetRequestId(), tmp);
+			printf("\r[%d %x] download progress:%ld%%\n", pOwner->GetRequestId(), get_current_threadid(), tmp);
 
 			return 0;
 		}
@@ -1541,8 +1551,8 @@ extern "C" {
 	{
 		TestHTTPRequest();
 		TestHTTPRequestDownload();
-		TestHTTPRequestDownload2();
-		HTTPRequest::Tick(0);
+		//TestHTTPRequestDownload2();
+		//HTTPRequest::Tick(0);
 		printf("exit \n");
 	}
 
