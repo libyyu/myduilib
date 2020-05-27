@@ -1,4 +1,10 @@
 #include "StdAfx.h"
+#include <io.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <sys/locking.h>
+#include <share.h>
+#include <fcntl.h>
 
 extern HANDLE ghModuleDuiLib;
 namespace DuiLib
@@ -201,5 +207,16 @@ namespace DuiLib
 		return ((dwValue & MOD_ALT) ? HOTKEYF_ALT : 0) \
 			| ((dwValue & MOD_CONTROL) ? HOTKEYF_CONTROL : 0) \
 			| ((dwValue & MOD_SHIFT) ? HOTKEYF_SHIFT : 0);
+	}
+
+	bool CSystem::IsFileUsed(LPCTSTR lpszFileName)
+	{
+		bool ret = false;
+		int fh = _tsopen(lpszFileName, _O_WRONLY, _SH_DENYRW, _S_IWRITE);
+		if (-1 == fh)
+			ret = true;
+		else
+			_close(fh);
+		return ret;
 	}
 }

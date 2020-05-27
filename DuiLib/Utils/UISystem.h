@@ -31,6 +31,7 @@ namespace DuiLib
 		bool IsWindow7();
 		bool IsVista();
 		bool IsAdmin();
+		bool IsFileUsed(LPCTSTR lpszFileName);
 		bool OpenUrl(LPCTSTR lpUrl);
 		bool ReStartApp(LPCTSTR lpCmd, BOOL isAdmin = FALSE);
 

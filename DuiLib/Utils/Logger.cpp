@@ -41,7 +41,7 @@ namespace DuiLib
 
 		//bool b = _Open();
 		//assert(b && "open log file error!");
-
+		
 		time_t t = time(NULL);
 		tm* aTm = localtime(&t);
 		_NewLog(aTm);
@@ -128,7 +128,38 @@ namespace DuiLib
 
 		string_type sfilename(_timename);
 		sfilename += _filename;
+		int nCursor = 1;
+		string_type ext = Path::GetExtension(sfilename.c_str());
+		string_type s(sfilename);
+		std::replace(s.begin(), s.end(), _T('\\'), _T('/'));
+		string_type::size_type index = s.find_last_of(_T('.'));
+		string_type _name;
+		if (string_type::npos != index)
+		{
+			_name = s.substr(0, index);
+		}
+		else
+			_name = s;
 
+		while (true)
+		{
+			if (nCursor > 1)
+			{
+				sfilename = _name + string_type("_.") + TODUISTRING(nCursor);
+				sfilename += ext;
+			}
+
+			if(!Path::IsFileExist(sfilename.c_str()))
+				break;
+
+			
+			if (!CSystem::Instance()->IsFileUsed(sfilename.c_str()))
+			{
+				break;
+			}
+
+			nCursor++;
+		}
 		_file = _tfopen(sfilename.c_str(), "wb");
 		if (!_file)
 		{
@@ -149,15 +180,15 @@ namespace DuiLib
 			write(szTime);
 #ifdef _UNICODE
 #ifdef _DEBUG
-			write( _T("Target = WIN32, CharSet = UNICODE, Mode = Debug\r\n"));
+			write( _T("        Target = WIN32, CharSet = UNICODE, Mode = Debug\r\n"));
 #else
-			write( _T("Target = WIN32, CharSet = UNICODE, Mode = Release\r\n"));
+			write( _T("        Target = WIN32, CharSet = UNICODE, Mode = Release\r\n"));
 #endif
 #else
 #ifdef _DEBUG
-			write( _T("Target = WIN32, CharSet = MutiChar, Mode = Debug\r\n"));
+			write( _T("        Target = WIN32, CharSet = MutiChar, Mode = Debug\r\n"));
 #else
-			write( _T("Target = WIN32, CharSet = MutiChar, Mode = Release\r\n"));
+			write( _T("        Target = WIN32, CharSet = MutiChar, Mode = Release\r\n"));
 #endif
 #endif
 			write(_T("---------------------------------LogBegin--------------------------------\r\n"));
@@ -172,7 +203,7 @@ namespace DuiLib
 		{
 			CDuiAutoLocker lock(_plock);
 			{
-				this->write(_T("\r\n-----------------------------------LogEnd--------------------------------\r\n"));
+				this->write(_T("\r\n\n-----------------------------------LogEnd--------------------------------\r\n"));
 				fclose(_file);
 				_file = NULL;
 			}
