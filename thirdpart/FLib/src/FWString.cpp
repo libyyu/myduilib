@@ -228,7 +228,7 @@ int FWString::SmallFormat(const wchar_t* pstrFormat, ...)
 FWString FWString::Printf(const wchar_t* pstrFormat, ...)
 {
 	FWString strOut;
-	wchar_t szBuffer[20480] = { 0 };
+	wchar_t szBuffer[2048] = { 0 };
 	va_list argList;
 	va_start(argList, pstrFormat);
 #if FLIB_COMPILER_CYGWIN		

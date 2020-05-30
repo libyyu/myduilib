@@ -220,7 +220,7 @@ int FAString::SmallFormat(const char* pstrFormat, ...)
 FAString FAString::Printf(const char* pstrFormat, ...)
 {
 	FAString strOut;
-	char szBuffer[20480] = { 0 };
+	char szBuffer[2048] = { 0 };
 	va_list argList;
 	va_start(argList, pstrFormat);
 

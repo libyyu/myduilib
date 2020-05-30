@@ -5,6 +5,9 @@
 #include <stdarg.h>
 #include <sstream> 
 #include <time.h>
+#if FLIB_DEBUG && FLIB_COMPILER_WINDOWS
+#include <windows.h>
+#endif
 _FStdBegin
 
 FAutoFile::FAutoFile(FILE* fp) :_file(fp) {}
@@ -79,6 +82,10 @@ void FLogFile::Finish()
 
 void FLogFile::_LogImpl()
 {
+#if FLIB_DEBUG && FLIB_COMPILER_WINDOWS
+	::OutputDebugStringA(m_message.c_str());
+#endif
+
 	assert(m_flog && "log file handle is null.");
 	if (!m_flog) return;
 	lock_wrapper lock(m_flog);

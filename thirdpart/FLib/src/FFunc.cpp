@@ -12,6 +12,7 @@
 #include <direct.h>
 #include <io.h>
 #include <algorithm>
+#include <fcntl.h>
 #else
 #include <unistd.h>
 #include <errno.h>
@@ -310,6 +311,27 @@ int FGetAllFiles(const char* path, bool reversal /*= true*/, const std::function
 	}
 	closedir(dir);
 	return ret;
+#endif
+}
+
+bool FFileCanWrite(const char* filename)
+{
+	if (!FFileExists(filename))
+		return true;
+#if FLIB_COMPILER_WINDOWS
+	int r = sopen(filename, _O_RDWR, _SH_DENYRW, _S_IWRITE);
+	if (-1 == r) {
+		return false;
+	}
+	_close(r);
+	return true;
+#else
+	int r = open(filename, O_RDWR, S_IREAD | S_IWRITE);
+	if (-1 == r){
+		return false;
+	}
+	close(r);
+	return true;
 #endif
 }
 

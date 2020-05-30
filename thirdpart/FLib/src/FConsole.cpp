@@ -144,6 +144,10 @@ FConsole::~FConsole() { m_message.clear(); }
 void FConsole::_Logout(const char* str) { m_message += str; }
 void FConsole::Finish()
 {
+//#if FLIB_DEBUG && FLIB_COMPILER_WINDOWS
+//	::OutputDebugStringA(m_message.c_str());
+//#endif
+
 	_LogImpl();
 	m_message.clear();
 }

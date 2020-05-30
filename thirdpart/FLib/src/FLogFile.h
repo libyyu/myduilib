@@ -70,13 +70,13 @@ _FStdEnd
 
 //////////////////////////////////////////////////////////////////////
 #define F_LOG_TO_FILE(LEVEL, file) \
-	FStd::FLogFileFinisher() = FStd::FLogFile(file, LEVEL, __FILE__, __LINE__)
+	_FStd(FLogFileFinisher)() = _FStd(FLogFile)(file, LEVEL, __FILE__, __LINE__)
 
-#define F_LOGFILE(LEVEL, file) F_LOG_TO_FILE(FStd::FLIB_LOGLEVEL::FLIB_LOGLEVEL_##LEVEL, file)
+#define F_LOGFILE(LEVEL, file) F_LOG_TO_FILE(_FStd(FLIB_LOGLEVEL)::FLIB_LOGLEVEL_##LEVEL, file)
 
 #define F_LOGFILE_TRACE(file)  \
-    FStd::FLogFile f_logfile_trace(file, FStd::FLIB_LOGLEVEL::FLIB_LOGLEVEL_TRACE, __FILE__, __LINE__);  \
-	FStd::FLogFileTraceFunction f_logfileTraceFunction(f_logfile_trace, __FUNCTION__, __FILE__, __LINE__); \
+    _FStd(FLogFile) f_logfile_trace(file, _FStd(FLIB_LOGLEVEL)::FLIB_LOGLEVEL_TRACE, __FILE__, __LINE__);  \
+	_FStd(FLogFileTraceFunction) f_logfileTraceFunction(f_logfile_trace, __FUNCTION__, __FILE__, __LINE__); \
 	f_logfileTraceFunction = f_logfile_trace << __FUNCTION__ << "() enter \n";
 
 #endif//__FLIB_LOGFILE_H__

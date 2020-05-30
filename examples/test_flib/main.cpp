@@ -144,7 +144,7 @@ void test_file()
 		file.Close();
 	}
 	else 
-		F_CONSOLE(WARN) << F_FORMAT("file is invalid\n");
+		F_CONSOLE(WARN) << FFORMAT("file is invalid\n");
 	file.Open("hello.txt", true);
 	if (file)
 	{
@@ -213,11 +213,11 @@ void test_value()
 
 int main()
 {
-	_FStd(FSetLogConsoleLevel)(FStd::FLIB_LOGLEVEL::FLIB_LOGLEVEL_TRACE);
+	_FStd(FSetLogConsoleLevel)(_FStd(FLIB_LOGLEVEL::FLIB_LOGLEVEL_TRACE));
 	F_CONSOLE_TRACE
 	F_LOGFILE_TRACE(fGlobalLog)
-	F_LOGFILE(DEBUG, fGlobalLog) << F_FORMAT("ModulePath = %s", _FStd(FGetModulePath())) << WRAP_LINE;
-	F_CONSOLE(DEBUG) << F_FORMAT("ModulePath = %s", _FStd(FGetModulePath())) << WRAP_LINE;
+	F_LOGFILE(DEBUG, fGlobalLog) << FFORMAT("ModulePath = %s", _FStd(FGetModulePath())) << WRAP_LINE;
+	F_CONSOLE(DEBUG) << FFORMAT("ModulePath = %s", _FStd(FGetModulePath())) << WRAP_LINE;
 
 	F_SOCKET_STARTUP
 	{

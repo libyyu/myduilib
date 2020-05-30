@@ -30,21 +30,21 @@
 ////////////////////////////////////
 ////
 _FStdBegin
-#if defined( UNICODE ) || defined( _UNICODE )
+#if FLIB_UNICODE
 typedef  FWString  FString;
 #else
 typedef  FAString  FString;
-#endif
+#endif//FLIB_UNICODE
 
 typedef std::basic_string<char, std::char_traits<char>, FSTLAllocator<char> > fstring;
 typedef std::basic_string<wchar_t, std::char_traits<wchar_t>, FSTLAllocator<wchar_t> > fwstring;
 
-#if defined( UNICODE ) || defined( _UNICODE )
-#define FLIB_TOSTRING  to_wstring
-#else
-#define FLIB_TOSTRING  to_string
-#endif // UNICODE
-
 _FStdEnd
+
+#if FLIB_UNICODE
+#define FLIB_TOSTRING  _FStd(to_wstring)
+#else
+#define FLIB_TOSTRING  _FStd(to_string)
+#endif //FLIB_UNICODE
 
 #endif//_FLIB_H_

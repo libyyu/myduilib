@@ -139,10 +139,20 @@
 
 #if defined(_UNICODE) || defined(UNICODE)
 #define FLIB_UNICODE	1
+#else
+#define FLIB_UNICODE	0
+#endif
+
+#if defined( _DEBUG ) || defined( DEBUG )
+#define FLIB_DEBUG	1
+#else
+#define FLIB_DEBUG	0
 #endif
 
 #if FLIB_COMPILER_MSVC || FLIB_COMPILER_CYGWIN
 #define FLIB_COMPILER_WINDOWS	1
+#else
+#define FLIB_COMPILER_WINDOWS	0
 #endif
 
 #if FLIB_COMPILER_MSVC

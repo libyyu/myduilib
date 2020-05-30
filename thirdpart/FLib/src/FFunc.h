@@ -44,6 +44,8 @@ F_DLL_API bool FDirExists(const char* path);
 
 F_DLL_API int FGetAllFiles(const char* path, bool reversal = true, const std::function<void(const char*, bool)>& action = nullptr);
 
+F_DLL_API bool FFileCanWrite(const char* filename);
+
 F_DLL_API void FUnitPath(char *path);
 
 F_DLL_API void FUnitPath(std::string& path);
@@ -92,9 +94,9 @@ F_DLL_API int memfind(const void* src, size_t srcsize, const void* dst, size_t d
 
 _FStdEnd
 
-#define F_FORMAT _FStd(FFormat)
+#define FFORMAT _FStd(FFormat)
 
-#if defined( _DEBUG ) || defined( DEBUG )
+#if FLIB_DEBUG
 #if FLIB_COMPILER_WINDOWS
 #define FLIB_ASSERTX(x,fmt,...) { \
 		static bool _ignoreAssert = false; \
@@ -123,9 +125,9 @@ _FStdEnd
 #endif//FLIB_COMPILER_WINDOWS
 #else
 	#define FLIB_ASSERTX(x, fmt, ...)
-#endif//_DEBUG
+#endif//FLIB_DEBUG
 
-#if defined(_DEBUG) || defined(DEBUG)
+#if FLIB_DEBUG
 #	define FLIB_ASSERT(x)		FLIB_ASSERTX(x, "")
 #else
 #	define FLIB_ASSERT(x)
