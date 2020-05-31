@@ -501,7 +501,7 @@ public:
 #ifdef _MSC_VER
             if (WaitForSingleObject(m_perform_thread, INFINITE) != WAIT_OBJECT_0)
 #else
-            if(pthread_join(m_perform_thread) != 0)
+            if(pthread_join(m_perform_thread, NULL) != 0)
 #endif
             {
                 printf("Failed to join thread.\n");

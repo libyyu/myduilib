@@ -1,7 +1,8 @@
 #include "flib.h"
 #include <iostream>
+#include <algorithm>
 
-#ifdef FLIB_COMPILER_WINDOWS
+#if FLIB_COMPILER_WINDOWS
 #include <Windows.h>
 #endif // FLIB_COMPILER_WINDOWS
 std::string path = _FStd(FGetDirectory)(_FStd(FGetModulePath()));

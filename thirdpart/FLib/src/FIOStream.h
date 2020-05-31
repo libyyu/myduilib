@@ -257,7 +257,7 @@ template<>
 inline std::wstring to_wstring(int c)
 {
 	wchar_t buf[10] = { 0 };
-	swprintf(buf, L"%d", c);
+	swprintf(buf, 10, L"%d", c);
 	std::wstring result = buf;
 	return result;
 }
@@ -265,7 +265,7 @@ template<>
 inline std::wstring to_wstring(uint c)
 {
 	wchar_t buf[10] = { 0 };
-	swprintf(buf, L"%d", c);
+	swprintf(buf, 10, L"%d", c);
 	std::wstring result = buf;
 	return result;
 }
@@ -274,7 +274,7 @@ template<>
 inline std::wstring to_wstring(long c)
 {
 	wchar_t buf[10] = { 0 };
-	swprintf(buf, L"%ld", c);
+	swprintf(buf, 10, L"%ld", c);
 	std::wstring result = buf;
 	return result;
 }
@@ -282,7 +282,7 @@ template<>
 inline std::wstring to_wstring(ulong c)
 {
 	wchar_t buf[10] = { 0 };
-	swprintf(buf, L"%lu", c);
+	swprintf(buf, 10, L"%lu", c);
 	std::wstring result = buf;
 	return result;
 }
