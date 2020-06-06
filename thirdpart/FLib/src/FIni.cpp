@@ -70,7 +70,7 @@ FIni::FINI_SECTION* FIni::operator[](const FIni::stringtype& section)
 	return (*this)[section.c_str()];
 }
 
-bool FIni::OpenIni(const char* pFile)
+bool FIni::OpenIni(const chartype* pFile)
 {
 	assert(pFile);
 	if (NULL == pFile)
@@ -90,7 +90,7 @@ bool FIni::OpenIni(const char* pFile)
 		getline(ifs, buf);
 		filebuf.push_back(buf);
 	}
-	stringtype curSection = "";
+	stringtype curSection;
 	size_t nblank = 0;
 	std::vector<stringtype> comments;
 	for (itor = filebuf.begin(); itor != filebuf.end(); ++itor)
@@ -120,7 +120,7 @@ bool FIni::OpenFromString(const chartype* content)
 		}
 		p++;
 	}
-	stringtype curSection = "";
+	stringtype curSection;
 	std::vector<stringtype> comments;
 	size_t nblank = 0;
 	for (itor = filebuf.begin(); itor != filebuf.end(); ++itor)
@@ -130,7 +130,7 @@ bool FIni::OpenFromString(const chartype* content)
 	return true;
 }
 
-bool FIni::SaveIni(const char* pFile)
+bool FIni::SaveIni(const chartype* pFile)
 {
 	assert(pFile);
 	if (NULL == pFile)

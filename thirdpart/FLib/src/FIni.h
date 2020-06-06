@@ -47,9 +47,9 @@ public:
 	FINI_SECTION * operator[] (const chartype* psection);
 	FINI_SECTION* operator[](const stringtype& section);
 
-	bool OpenIni(const char* pFile);
+	bool OpenIni(const chartype* pFile);
 	bool OpenFromString(const chartype* content);
-	bool SaveIni(const char* pFile);
+	bool SaveIni(const chartype* pFile);
 	
 	stringtype GetStr(const chartype* SectionStr, const chartype* KeyStr, const chartype* DefaultStr = "") const;
 
