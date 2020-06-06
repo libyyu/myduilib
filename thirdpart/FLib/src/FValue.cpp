@@ -2,7 +2,7 @@
 #include "FValue.h"
 #include "FMemory.h"
 _FStdBegin
-_flib_object_t::_flib_object_t(void* o, const char* n) :ref_count(0)
+_flib_object_t::_flib_object_t(void* o, const char* n) :ref_count(0), name(0)
 {
 	ref_count++;
 	object = o;
@@ -16,7 +16,7 @@ _flib_object_t::_flib_object_t(void* o, const char* n) :ref_count(0)
 	}
 	name = s;
 }
-_flib_object_t::_flib_object_t(_flib_object_t& other) :ref_count(0)
+_flib_object_t::_flib_object_t(_flib_object_t& other) :ref_count(0), name(0)
 {
 	ref_count++;
 	other.ref_count++;
@@ -44,7 +44,7 @@ _flib_object_t::~_flib_object_t()
 	}
 }
 
-_flib_enum_t::_flib_enum_t(int32 v, const char* n) :ref_count(0)
+_flib_enum_t::_flib_enum_t(int32 v, const char* n) :ref_count(0), name(0)
 {
 	ref_count++;
 	value = v;
@@ -58,7 +58,7 @@ _flib_enum_t::_flib_enum_t(int32 v, const char* n) :ref_count(0)
 	}
 	name = s;
 }
-_flib_enum_t::_flib_enum_t(_flib_enum_t& other) :ref_count(0)
+_flib_enum_t::_flib_enum_t(_flib_enum_t& other) :ref_count(0), name(0)
 {
 	ref_count++;
 	other.ref_count++;
@@ -125,7 +125,9 @@ void FValue::reset()
 			break;
 		}
 	}
-	memset(this, 0x00, sizeof(FValue));
+	memset(&value, 0x00, sizeof(value));
+	type = VALUE_TYPE_INVALID;
+	free_handle = 0;
 }
 
 FValue::FValue()
@@ -134,6 +136,7 @@ FValue::FValue()
 	free_handle = 0;
 	memset(&value, 0x00, sizeof(value));
 }
+
 FValue::~FValue()
 {
 	this->reset();
@@ -148,8 +151,8 @@ FValue* FValue::clone()
 FValue& FValue::copy(const FValue& ths)
 {
 	reset();
-	memcpy(this, &ths, sizeof(FValue));
-	free_handle = 0;
+	free_handle = ths.free_handle;
+	type = ths.type;
 	switch (ths.type)
 	{
 	case VALUE_TYPE_STRING:
@@ -183,16 +186,52 @@ FValue& FValue::copy(const FValue& ths)
 	}
 	case VALUE_TYPE_OBJECT:
 	{
-		value.object = ths.value.object;
+		value.object = new flib_object_t(*(ths.value.object));
 		free_handle = value.object != NULL ? 1 : 0;
 		break;
 	}
 	case VALUE_TYPE_ENUM:
 	{
-		value.e = new flib_enum_t(ths.value.e->value, ths.value.e->name);
+		value.e = new flib_enum_t(*(ths.value.e));
 		free_handle = value.e != NULL ? 1 : 0;
 		break;
 	}
+	case VALUE_TYPE_POINTER:
+		value.ptr = ths.value.ptr;
+		break;
+	case VALUE_TYPE_BOOL:
+		value.b = ths.value.b;
+		break;
+	case VALUE_TYPE_INT8:
+		value.i8 = ths.value.i8;
+		break;
+	case VALUE_TYPE_UINT8:
+		value.u8 = ths.value.u8;
+		break;
+	case VALUE_TYPE_INT16:
+		value.i16 = ths.value.i16;
+		break;
+	case VALUE_TYPE_UINT16:
+		value.u16 = ths.value.u16;
+		break;
+	case VALUE_TYPE_INT32:
+		value.i32 = ths.value.i32;
+		break;
+	case VALUE_TYPE_UINT32:
+		value.u32 = ths.value.u32;
+		break;
+	case VALUE_TYPE_INT64:
+		value.i64 = ths.value.i64;
+		break;
+	case VALUE_TYPE_UINT64:
+		value.u64 = ths.value.u64;
+		break;
+	case VALUE_TYPE_FLOAT:
+		value.f = ths.value.f;
+		break;
+	case VALUE_TYPE_DOUBLE:
+		value.f64 = ths.value.f64;
+		break;
 	default:
 		break;
 	}
@@ -318,14 +357,14 @@ void FValue::set(void* ptr)
 void FValue::set(flib_object_t* o)
 {
 	reset();
-	value.object = o;
+	value.object = new flib_object_t(*o);
 	type = VALUE_TYPE_OBJECT;
-	free_handle = 0;
+	free_handle = 1;
 }
 void FValue::set(flib_enum_t* e)
 {
 	reset();
-	value.e = new flib_enum_t(e->value, e->name);
+	value.e = new flib_enum_t(*e);
 	type = VALUE_TYPE_ENUM;
 	free_handle = 1;
 }

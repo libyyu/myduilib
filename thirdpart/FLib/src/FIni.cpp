@@ -8,12 +8,13 @@ _FStdBegin
 FIni::stringtype FIni::FINI_KEYVALUE::ToString()
 {
 	stringtype result;
-	if (hasComment)
-	{
+	for (size_t i = 0; i < nblank; ++i) result += "\n";
+	for (size_t i = 0; i < comments.size(); ++i) {
 		result += ";";
-		result += strComment;
+		result += comments[i];
 		result += "\n";
 	}
+
 	result += strKey + "=" + strValue;
 	return result;
 }
@@ -21,10 +22,10 @@ FIni::stringtype FIni::FINI_KEYVALUE::ToString()
 FIni::stringtype FIni::FINI_SECTION::ToString()
 {
 	stringtype result;
-	if (hasComment)
-	{
+	for (size_t i = 0; i < nblank; ++i) result += "\n";
+	for (size_t i = 0; i < comments.size(); ++i) {
 		result += ";";
-		result += strComment;
+		result += comments[i];
 		result += "\n";
 	}
 	result += "[" + strSession + "]";
@@ -45,12 +46,13 @@ FIni::~FIni() { Clear(); };
 
 void FIni::Clear()
 {
-	for (FINI_SectionMap::iterator itor = _SessionArr.begin(); itor != _SessionArr.end(); ++itor)
+	for (FINI_Type::iterator itor = _SessionArr.begin(); itor != _SessionArr.end(); ++itor)
 	{
-		FINI_SECTION * pKeyMap = (itor->second);
+		FINI_SECTION* pKeyMap = *itor;
 		for (std::vector<FINI_KEYVALUE*>::iterator it = pKeyMap->values.begin(); it != pKeyMap->values.end(); ++it)
 		{
 			FINI_KEYVALUE* pKV = *it;
+			pKV->comments.clear();
 			delete pKV;
 		}
 		pKeyMap->values.clear();
@@ -89,11 +91,11 @@ bool FIni::OpenIni(const char* pFile)
 		filebuf.push_back(buf);
 	}
 	stringtype curSection = "";
-	stringtype curComment = "";
-	bool bComment = false;
+	size_t nblank = 0;
+	std::vector<stringtype> comments;
 	for (itor = filebuf.begin(); itor != filebuf.end(); ++itor)
 	{
-		curSection = DoSwitchALine(*itor, curSection, curComment, bComment);
+		curSection = DoSwitchALine(*itor, curSection, comments, nblank);
 	}
 	return true;
 }
@@ -119,11 +121,11 @@ bool FIni::OpenFromString(const char* content)
 		p++;
 	}
 	stringtype curSection = "";
-	stringtype curComment = "";
-	bool bComment = false;
+	std::vector<stringtype> comments;
+	size_t nblank = 0;
 	for (itor = filebuf.begin(); itor != filebuf.end(); ++itor)
 	{
-		curSection = DoSwitchALine(*itor, curSection, curComment, bComment);
+		curSection = DoSwitchALine(*itor, curSection, comments, nblank);
 	}
 	return true;
 }
@@ -210,18 +212,18 @@ FIni::FINI_SECTION* FIni::GetSession(const FIni::chartype* SectionStr)
 {
 	return FindSession(SectionStr);
 }
-FIni::FINI_SECTION* FIni::CreateIfNoSession(const FIni::chartype* SectionStr, const FIni::chartype* strComment/* = NULL*/)
+FIni::FINI_SECTION* FIni::CreateIfNoSession(const FIni::chartype* SectionStr, const FIni::chartype* strComment/* = NULL*/, size_t nblank/* = 0*/)
 {
-	return AddSection(SectionStr, strComment);
+	return AddSection(SectionStr, strComment, nblank);
 }
 
 FIni::stringtype FIni::ToString()
 {
 	size_t cursor = 0;
 	std::stringstream str;
-	for (FINI_SectionMap::iterator itor = _SessionArr.begin(); itor != _SessionArr.end(); ++itor, ++cursor)
+	for (FINI_Type::iterator itor = _SessionArr.begin(); itor != _SessionArr.end(); ++itor, ++cursor)
 	{
-		FINI_SECTION * pKeyMap = (itor->second);
+		FINI_SECTION* pKeyMap = *itor;
 		str << pKeyMap->ToString();
 		if (cursor < _SessionArr.size() - 1) str << std::endl;
 	}
@@ -229,40 +231,57 @@ FIni::stringtype FIni::ToString()
 	return str.str();
 }
 
-FIni::stringtype FIni::DoSwitchALine(const FIni::stringtype &aLineStr, FIni::stringtype &curSection, FIni::stringtype& curComment, bool& bComment)
+FIni::stringtype FIni::DoSwitchALine(const FIni::stringtype &aLineStr, FIni::stringtype &curSection, std::vector<stringtype>& comments, size_t& nblank)
 {
-	if (aLineStr.empty()) return curSection;  //空行，不考虑
-	if (';' == aLineStr.at(0)) //注释
-	{
-		bComment = true;
-		curComment = aLineStr.substr(1);
+	if (aLineStr.empty()) 
+	{ //空行
+		nblank++;
+		return curSection; 
+	}
+	if (';' == aLineStr.at(0))
+	{ //注释
+		comments.push_back(aLineStr.substr(1));
 		return curSection;
 	}
 
 	stringtype::size_type n;
-	if ('[' == aLineStr.at(0)) //section开始
-	{
+	if ('[' == aLineStr.at(0))
+	{ //section开始
 		n = aLineStr.find(']', 1);
 		curSection = aLineStr.substr(1, n - 1);
-		AddSection(curSection.c_str(), bComment ? curComment.c_str() : NULL);
-		bComment = false;
-		curComment = "";
+		FIni::stringtype strComment;
+		for (size_t i=0;i<comments.size();++i)
+		{
+			strComment += comments[i];
+			if (i < comments.size() - 1) strComment += "\n";
+		}
+		AddSection(curSection.c_str(), !comments.empty() ? strComment.c_str() : NULL, nblank);
+		comments.clear();
+		nblank = 0;
 		return curSection;
 	}
 
 	stringtype strKey;
 	stringtype strVaule;
 	n = aLineStr.find('=', 0);
-	if (stringtype::npos == n) return curSection; //不是一个正确的key=value 
+	if (stringtype::npos == n) {
+		return curSection; //不是一个正确的key=value 
+	}
 
 	strKey = aLineStr.substr(0, n);
 	if (stringtype::npos == n + 1)
 		strVaule = "";
 	else
 		strVaule = aLineStr.substr(n + 1);
-	AddKey(curSection.c_str(), strKey.c_str(), strVaule.c_str(), bComment ? curComment.c_str() : NULL);
-	bComment = false;
-	curComment = "";
+	stringtype strComment;
+	for (size_t i = 0; i < comments.size(); ++i)
+	{
+		strComment += comments[i];
+		if (i < comments.size() - 1) strComment += "\n";
+	}
+	AddKey(curSection.c_str(), strKey.c_str(), strVaule.c_str(), !comments.empty() ? strComment.c_str() : NULL, nblank);
+	comments.clear();
+	nblank = 0;
 	return curSection;
 }
 
@@ -270,46 +289,77 @@ FIni::FINI_SECTION* FIni::FindSession(const FIni::chartype* SectionStr) const
 {
 	std::string strSession(SectionStr);
 	FINI_SECTION* pSession = nullptr;
-	auto it = _SessionArr.find(strSession);
-	if (it != _SessionArr.end())
+	for (auto it= _SessionArr.begin(); it != _SessionArr.end(); ++it)
 	{
-		pSession = it->second;
+		if ((*it)->strSession == strSession) {
+			pSession = *it;
+			break;
+		}
 	}
 	return pSession;
 }
 
-FIni::FINI_SECTION* FIni::AddSection(const FIni::chartype* SectionStr, const FIni::chartype* CommentStr/* = NULL*/)
+FIni::FINI_SECTION* FIni::AddSection(const FIni::chartype* SectionStr, const FIni::chartype* CommentStr/* = NULL*/, size_t nblank/*=0*/)
 {
-	std::string strSession(SectionStr);
+	FIni::stringtype strSession(SectionStr);
 	FINI_SECTION* pSession = FindSession(SectionStr);
 	if (!pSession)
 	{
 		pSession = new FINI_SECTION;
-		_SessionArr.insert(std::pair<stringtype, FINI_SECTION*>(strSession, pSession));
+		pSession->strSession = strSession;
+		_SessionArr.push_back(pSession);
 	}
+	pSession->nblank = nblank;
 
-	if (CommentStr) {
-		pSession->strComment = CommentStr;
-		pSession->hasComment = true;
-	}
-	else {
-		pSession->strComment = "";
-		pSession->hasComment = false;
+	if (!!CommentStr) {
+		FIni::stringtype strComment;
+		while (*CommentStr)
+		{
+			if (*CommentStr == '\n') {
+				pSession->comments.push_back(strComment);
+				strComment.clear();
+			}
+			else {
+				strComment += *CommentStr;
+			}
+			CommentStr++;
+		}
+		if (!strComment.empty()) {
+			pSession->comments.push_back(strComment);
+			strComment.clear();
+		}
 	}
 	pSession->strSession = strSession;
 
 	return pSession;
 }
 
-FIni::FINI_KEYVALUE* FIni::AddKey(const FIni::chartype *SectionStr, const FIni::chartype* KeyStr, const FIni::chartype* VauleStr, const FIni::chartype* strComment/* = NULL*/)
+FIni::FINI_KEYVALUE* FIni::AddKey(const FIni::chartype *SectionStr, const FIni::chartype* KeyStr, const FIni::chartype* VauleStr, const FIni::chartype* CommentStr/* = NULL*/, size_t nblank/* = 0*/)
 {
 	FINI_SECTION* pSession = FindSession(SectionStr);
 	if (!pSession) return nullptr;
 	FINI_KEYVALUE* pKV = new FINI_KEYVALUE;
 	pKV->strKey = KeyStr;
 	pKV->strValue = VauleStr;
-	pKV->hasComment = !!strComment;
-	if (!!strComment) pKV->strComment = strComment;
+	pKV->nblank = nblank;
+	if (!!CommentStr) {
+		FIni::stringtype strComment;
+		while (*CommentStr)
+		{
+			if (*CommentStr == '\n') {
+				pKV->comments.push_back(strComment);
+				strComment.clear();
+			}
+			else {
+				strComment += *CommentStr;
+			}
+			CommentStr++;
+		}
+		if (!strComment.empty()) {
+			pKV->comments.push_back(strComment);
+			strComment.clear();
+		}
+	}
 
 	pSession->values.push_back(pKV);
 
