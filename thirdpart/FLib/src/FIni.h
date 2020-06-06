@@ -2,7 +2,7 @@
 #define __FLIB_INI_H__
 #pragma once
 #include "FType.h"
-#include <map> 
+#include <list> 
 #include <fstream>
 #include <sstream>
 #include <iostream>
@@ -18,8 +18,8 @@ public:
 	typedef std::stringstream                                           stringstreamtype;
 	struct FINI_KEYVALUE
 	{
-		bool			hasComment;	//	true, Comment
-		stringtype		strComment;	//	comment
+		size_t          nblank;
+		std::vector<stringtype> comments;
 		stringtype		strKey;		//	Key name
 		stringtype		strValue;	//	Value string
 
@@ -28,17 +28,17 @@ public:
 
 	struct FINI_SECTION
 	{
-		bool					hasComment;
-		stringtype				strComment;	
+		size_t          nblank;
+		std::vector<stringtype> comments;
 		stringtype				strSession;
 		std::vector<FINI_KEYVALUE*>	values;	//	Keys
 		
 		stringtype ToString();
 	};
 
-	typedef std::map<stringtype, FINI_SECTION*, std::less<stringtype> >          FINI_SectionMap;
+	typedef std::list<FINI_SECTION*>          FINI_Type;
 private:
-    FINI_SectionMap _SessionArr;
+	FINI_Type _SessionArr;
 public:
 	FIni();
 	~FIni();
@@ -63,18 +63,18 @@ public:
 	void AddBool(const chartype* pSection, const chartype* pKey, bool bValue, const chartype* strSessionComment = NULL, const chartype* strValueComment = NULL);
 
 	inline FINI_SECTION* GetSession(const chartype* SectionStr);
-	inline FINI_SECTION* CreateIfNoSession(const chartype* SectionStr, const chartype* strComment = NULL);
+	inline FINI_SECTION* CreateIfNoSession(const chartype* SectionStr, const chartype* strComment = NULL, size_t nblank = 0);
 
 	stringtype ToString();
 
  private:  
-	stringtype DoSwitchALine(const stringtype &aLineStr, stringtype &curSection, stringtype& curComment, bool& bComment);
+	stringtype DoSwitchALine(const stringtype &aLineStr, stringtype &curSection, std::vector<stringtype>& comments, size_t& nblank);
   
 	FINI_SECTION* FindSession(const chartype* SectionStr) const;
 
-    FINI_SECTION* AddSection(const chartype* SectionStr, const chartype* CommentStr = NULL);
+    FINI_SECTION* AddSection(const chartype* SectionStr, const chartype* CommentStr = NULL, size_t nblank=0);
    
-	FINI_KEYVALUE* AddKey(const chartype *SectionStr, const chartype* KeyStr, const chartype* VauleStr, const chartype* strComment = NULL);
+	FINI_KEYVALUE* AddKey(const chartype *SectionStr, const chartype* KeyStr, const chartype* VauleStr, const chartype* strComment = NULL, size_t nblank = 0);
 
     bool GetString(const chartype* SectionStr, const chartype* KeyStr, stringtype &value)  const;
 };
