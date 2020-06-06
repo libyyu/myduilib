@@ -35,7 +35,7 @@ FIni::stringtype FIni::FINI_SECTION::ToString()
 	for (std::vector<FINI_KEYVALUE*>::const_iterator it = values.begin(); it != values.end(); ++it, ++cursor)
 	{
 		result += (*it)->ToString();
-		/*if(cursor < values.size()-1) */result += "\n";
+		result += "\n";
 	}
 
 	return result;
@@ -61,7 +61,7 @@ void FIni::Clear()
 	_SessionArr.clear();
 }
 
-FIni::FINI_SECTION* FIni::operator[] (const char* psection)
+FIni::FINI_SECTION* FIni::operator[] (const chartype* psection)
 {
 	return GetSession(psection);
 }
@@ -100,7 +100,7 @@ bool FIni::OpenIni(const char* pFile)
 	return true;
 }
 
-bool FIni::OpenFromString(const char* content)
+bool FIni::OpenFromString(const chartype* content)
 {
 	assert(content);
 	if (!content) return false;

@@ -44,11 +44,11 @@ public:
 	~FIni();
 	void Clear();
 public:
-	FINI_SECTION * operator[] (const char* psection);
+	FINI_SECTION * operator[] (const chartype* psection);
 	FINI_SECTION* operator[](const stringtype& section);
 
 	bool OpenIni(const char* pFile);
-	bool OpenFromString(const char* content);
+	bool OpenFromString(const chartype* content);
 	bool SaveIni(const char* pFile);
 	
 	stringtype GetStr(const chartype* SectionStr, const chartype* KeyStr, const chartype* DefaultStr = "") const;
