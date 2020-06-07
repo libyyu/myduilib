@@ -3,7 +3,7 @@
 <VerticalLayout>
   	<HorizontalLayout height="95" mouse="false">
              <Control />
-             <Control width="109" bkimage="YTing/FavoriteLoginBkg.png" />
+             <Control width="109" bkimage="res/FavoriteLoginBkg.png" />
              <Control />
       </HorizontalLayout>
      <VerticalLayout height="60">
@@ -13,7 +13,7 @@
      <HorizontalLayout height="10"/>
      <HorizontalLayout name="favoriteloginlayout" inset="0,5,0,0">
            <Control mouse="false" />
-           <Button name="favoriteloginbtn" text="立即登录" width="100" height="29" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file=&apos;YTing/playlistloginbtn.png&apos; source=&apos;0,0,7,29&apos; corner=&apos;3,0,3,0&apos;" hotimage="file=&apos;YTing/playlistloginbtn.png&apos; source=&apos;8,0,15,29&apos; corner=&apos;3,0,3,0&apos;" pushedimage="file=&apos;YTing/playlistloginbtn.png&apos; source=&apos;16,0,23,29&apos; corner=&apos;3,0,3,0&apos;" />
+           <Button name="favoriteloginbtn" text="立即登录" width="100" height="29" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file=&apos;res/playlistloginbtn.png&apos; source=&apos;0,0,7,29&apos; corner=&apos;3,0,3,0&apos;" hotimage="file=&apos;res/playlistloginbtn.png&apos; source=&apos;8,0,15,29&apos; corner=&apos;3,0,3,0&apos;" pushedimage="file=&apos;res/playlistloginbtn.png&apos; source=&apos;16,0,23,29&apos; corner=&apos;3,0,3,0&apos;" />
            <Control mouse="false" />
       </HorizontalLayout>
   </VerticalLayout>

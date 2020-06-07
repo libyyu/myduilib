@@ -3,7 +3,7 @@
    <VerticalLayout  inset="15,10,5,5">
    	<HorizontalLayout height="20">
              <Label text="下列格式默认使用虾听打开" width="150" height="20" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" />
-             <Control bkimage="file='YTing/line-point.png'" height="1" padding="0,10,0,0"/>
+             <Control bkimage="file='res/line-point.png'" height="1" padding="0,10,0,0"/>
         </HorizontalLayout>
         <VerticalLayout>
         	 <HorizontalLayout height="30" inset="10,1,1,1">

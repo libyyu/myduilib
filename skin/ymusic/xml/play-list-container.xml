@@ -7,10 +7,10 @@
         </TemplList>
         <FadeButton name="new_list" text="新建列表" tooltip="新建列表" padding="10,0,10,0" 
                     width="76" height="24" textcolor="#00FFFBF0" hottextcolor="0xFF00FFAA"
-                    normalimage="file='YTing/main/btn-list-add.png' source='0,0,11,13' dest='0,5,11,18'"
-                    hotimage="file='YTing/main/btn-list-add.png' source='0,13,11,26' dest='0,5,11,18'"
-                    pushedimage="file='YTing/main/btn-list-add.png' source='0,26,11,39' dest='0,5,11,18'"/>
+                    normalimage="file='res/main/btn-list-add.png' source='0,0,11,13' dest='0,5,11,18'"
+                    hotimage="file='res/main/btn-list-add.png' source='0,13,11,26' dest='0,5,11,18'"
+                    pushedimage="file='res/main/btn-list-add.png' source='0,26,11,39' dest='0,5,11,18'"/>
       </VerticalLayout>
-      <VerticalLayout width="2" bkimage="YTing/line_v.png" mouse="false"/>
+      <VerticalLayout width="2" bkimage="res/line_v.png" mouse="false"/>
     </HorizontalLayout>
 </Window>

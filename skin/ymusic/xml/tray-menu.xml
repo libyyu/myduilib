@@ -4,23 +4,23 @@
     <Font name="宋体" size="11" bold="false" italic="false" />
     <Font name="宋体" size="12" bold="false" italic="false" default="true" />
    <Default name="Control" value="bkcolor=&quot;#FFDDDDDD&quot; height=&quot;1&quot;"/>
-   <Default name="Menu" value="bordersize=&quot;0&quot; borderround=&quot;0,0&quot; bordercolor=&quot;#FFCCCCCC&quot; inset=&quot;2,2,2,2&quot; itemtextpadding=&quot;30,0,0,0&quot; bkimage=&quot;file='YTing/Menu/bg.png' corner='5,5,5,5'&quot; itemselectedimage=&quot;file='YTing/Menu/hover.png' corner='5,5,5,5'&quot; itemhotimage=&quot;file='YTing/Menu/hover.png' corner='5,5,5,5'&quot; itemselectedbkcolor=&quot;#FFEE6746&quot; itemhotbkcolor=&quot;#00000000&quot; itemdisabledbkcolor=&quot;#00000000&quot; itemselectedtextcolor=&quot;#FFFFFFFF&quot;" />
+   <Default name="Menu" value="bordersize=&quot;0&quot; borderround=&quot;0,0&quot; bordercolor=&quot;#FFCCCCCC&quot; inset=&quot;2,2,2,2&quot; itemtextpadding=&quot;30,0,0,0&quot; bkimage=&quot;file='res/Menu/bg.png' corner='5,5,5,5'&quot; itemselectedimage=&quot;file='res/Menu/hover.png' corner='5,5,5,5'&quot; itemhotimage=&quot;file='res/Menu/hover.png' corner='5,5,5,5'&quot; itemselectedbkcolor=&quot;#FFEE6746&quot; itemhotbkcolor=&quot;#00000000&quot; itemdisabledbkcolor=&quot;#00000000&quot; itemselectedtextcolor=&quot;#FFFFFFFF&quot;" />
   <Default name="MenuElement" value="height=&quot;24&quot;"/>
-  <Default name="Option" value="name=&quot;checkbox&quot; width=&quot;16&quot; height=&quot;16&quot; notfilterselected=&quot;true&quot; selectedimage=&quot;file='YTing/Menu/selected.png' dest='1,4,17,20'&quot;" />
+  <Default name="Option" value="name=&quot;checkbox&quot; width=&quot;16&quot; height=&quot;16&quot; notfilterselected=&quot;true&quot; selectedimage=&quot;file='res/Menu/selected.png' dest='1,4,17,20'&quot;" />
 
   <Style name="linestyle" height="1" padding="30,0,0,0" enabled="false"/>
   <Style name="line" height="1" bordersize="1" bkcolor="#FFDDDDDD" />
-  <Style name="arr" width="24" bkimage="file=&apos;YTing/Menu/arrow.png&apos; source=&apos;0,0,24,24&apos;" />
+  <Style name="arr" width="24" bkimage="file=&apos;res/Menu/arrow.png&apos; source=&apos;0,0,24,24&apos;" />
  
   <Style name="topcheck_menu"  textpadding="0,0,0,0"  width="16"  height="16"  selected="false"  mouse="false"
-         normalimage="file='YTing/Menu/nottop_hot.png' dest='1,4,17,20'"
-         selectedimage="file='YTing/Menu/top_hot.png' dest='1,4,17,20'"/>
-    <Style name="login" width="16" height="16"  mouse="false" bkimage="file='YTing/Menu/login_hot.png' dest='1,4,17,20'"/>
-  <Style name="setopt" width="16" height="16"  mouse="false" bkimage="file='YTing/Menu/set_hot.png' dest='1,4,17,20'"/>
-  <Style name="help" width="16" height="16"  mouse="false" bkimage="file='YTing/Menu/help_hot.png' dest='1,4,17,20'"/>
-    <Style name="about" width="16" height="16"  mouse="false" bkimage="file='YTing/Menu/about_hot.png' dest='1,4,17,20'"/>
-  <Style name="exit" width="16" height="16"  mouse="false" bkimage="file='YTing/Menu/exit_hot.png' dest='1,4,17,20'"/>
- <Style name="ie" width="16" height="16"  mouse="false" bkimage="file='YTing/Menu/ie.png' dest='1,4,17,20'"/>
+         normalimage="file='res/Menu/nottop_hot.png' dest='1,4,17,20'"
+         selectedimage="file='res/Menu/top_hot.png' dest='1,4,17,20'"/>
+    <Style name="login" width="16" height="16"  mouse="false" bkimage="file='res/Menu/login_hot.png' dest='1,4,17,20'"/>
+  <Style name="setopt" width="16" height="16"  mouse="false" bkimage="file='res/Menu/set_hot.png' dest='1,4,17,20'"/>
+  <Style name="help" width="16" height="16"  mouse="false" bkimage="file='res/Menu/help_hot.png' dest='1,4,17,20'"/>
+    <Style name="about" width="16" height="16"  mouse="false" bkimage="file='res/Menu/about_hot.png' dest='1,4,17,20'"/>
+  <Style name="exit" width="16" height="16"  mouse="false" bkimage="file='res/Menu/exit_hot.png' dest='1,4,17,20'"/>
+ <Style name="ie" width="16" height="16"  mouse="false" bkimage="file='res/Menu/ie.png' dest='1,4,17,20'"/>
  <Menu>
     <MenuElement name="playorpause" text="播放/暂停   Ctrl+AltF5"/>  
     <MenuElement name="Sep" style="linestyle">

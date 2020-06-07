@@ -1,4 +1,5 @@
 require "preload"
+require "client"
 
 local App = FLua.Class("App")
 do

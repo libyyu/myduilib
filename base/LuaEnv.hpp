@@ -238,6 +238,22 @@ public:
 	}
 	
 	template <typename ... Args>
+	inline bool doFunc(int refFunc, const Args&... args)
+	{
+		lua_State* l = m_L;
+		assert(m_L != nullptr && "lua vm is closed.");
+
+		lua_rawgeti(l, (int)LUA_REGISTRYINDEX, refFunc); //f
+		if (!lua_isfunction(l, -1))
+		{
+			lua_pop(l, 1);
+			return false;
+		}
+		int n = lua::push(l, args...);
+		return doCall(n, -1);
+	}
+
+	template <typename ... Args>
 	inline bool doTableFunc(int refTable, const char* method, const Args &... args)
 	{
 		lua_State* l = m_L;

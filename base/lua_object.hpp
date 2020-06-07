@@ -136,7 +136,7 @@ namespace lua
 					lua_pushnil(l);
 					return 1;
 				}
-				tryGetUserdataFromWeakTable(l, obj);
+				tryGetUserdataFromWeakTable(l, obj);//t, ud
 				if (lua_isnil(l, -1) || ((LuaUserData*)lua_touserdata(l, -1) == nullptr))
 				{
 					lua_pop(l, 1); //t
@@ -152,6 +152,7 @@ namespace lua
 						if (lua_isnil(l, -1))
 						{
 							printf("metatable %s not register!\n", mtname);
+							assert(false);
 						}
 						lua_setmetatable(l, -2);//t,ud
 						lua_pushlightuserdata(l, obj); //t,ud,obj

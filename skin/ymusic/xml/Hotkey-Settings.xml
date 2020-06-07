@@ -5,7 +5,7 @@
               <VerticalLayout inset="25,10,5,5">
                 <HorizontalLayout height="20" >
                   <Label text="窗口" width="30" font="1" textcolor="#FF000000"/>
-                  <Control bkimage="file='YTing/line-point.png'" height="1" padding="0,10,0,0"/>
+                  <Control bkimage="file='res/line-point.png'" height="1" padding="0,10,0,0"/>
                 </HorizontalLayout>
                 <HorizontalLayout height="30">
                   <Label text="最小化/正常模式" width="150" height="23"  align="right" />
@@ -17,7 +17,7 @@
                 </HorizontalLayout>
                 <HorizontalLayout height="20" >
                   <Label text="播放控制" width="60" font="1" textcolor="#FF000000"/>
-                  <Control bkimage="file='YTing/line-point.png'" height="1" padding="0,10,0,0"/>
+                  <Control bkimage="file='res/line-point.png'" height="1" padding="0,10,0,0"/>
                 </HorizontalLayout>
                 <HorizontalLayout height="30">
                   <Label text="播放/暂停" width="150" height="23" padding="0,10,0,0" align="right" />

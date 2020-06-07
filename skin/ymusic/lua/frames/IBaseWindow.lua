@@ -150,7 +150,7 @@ function IBaseWindow:CreateWindow(parent)
 	self:TouchMsgTable()
 
 	local hParentWnd = self.m_parent and self.m_parent:GetHWND() or nil
-	warn(">>>>>>>>>>>>hParentWnd", hParentWnd)
+	print(">>>>>>>>>>>>hParentWnd", hParentWnd)
 	local pos = self:WindowInitPos()
 	win:Create(hParentWnd, self:WindowName(),self:WindowStyle(),self:WindowStyleEx(), pos)
 

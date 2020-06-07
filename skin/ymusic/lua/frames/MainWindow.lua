@@ -68,8 +68,10 @@ end
 function MainWindow:OnSysCommand(wParam,lParam)
 	--warn("OnSysCommand", wParam, lParam, type(wParam),DuiLib.SC_CLOSE,DuiLib.IntToUInt64(DuiLib.SC_CLOSE) )
 	if type(wParam) == "number" and wParam == DuiLib.SC_CLOSE then
+		_G.CLOSING = true
 		self:PostMessage(DuiLib.MsgArgs.WM_QUIT, 0, 0)
 	elseif( wParam == helper.IntToUInt64(DuiLib.SC_CLOSE) ) then
+		_G.CLOSING = true
 		self:PostMessage(DuiLib.MsgArgs.WM_QUIT, 0, 0)
 	end
 end
@@ -157,8 +159,11 @@ function MainWindow:OnNotify(msg)
 end
 
 function MainWindow:OnInitWindow()
+	Application.SetMainWindow(self.m_hWin)
+
+
 	local PaintManagerUI = DuiLib.CPaintManagerUI
-	local path = PaintManagerUI.GetResourcePath() .. "/YTing"
+	local path = PaintManagerUI.GetResourcePath() .. "/res"
 	print(path)
 	local hIcon = win32.LoadIconFromFile(path.."/YMusic.ico", nil)
 	-- if hIcon then
@@ -176,7 +181,14 @@ function MainWindow:OnInitWindow()
 	self:UpdatePlayList()
 
 	-- 强制进行一次垃圾收集
-    collectgarbage("collect")
+	collectgarbage("collect")
+	
+	Timer.AddGlobalTimer(2, function()
+		print("1111>2222")
+		MainThreadTask.tick()
+	end)
+
+	--self:ShowInfo("Hello", 1)
 end
 
 function MainWindow:OnClick(msg)

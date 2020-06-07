@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Window>
 <VerticalLayout>
-  <HorizontalLayout height="2" bkimage="YTing/line_h.png" mouse="false" />
+  <HorizontalLayout height="2" bkimage="res/line_h.png" mouse="false" />
   <HorizontalLayout>
     <Include source="xml/play-list-container.xml" />
     <Include source="xml/song-list-container.xml" />

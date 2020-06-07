@@ -8,6 +8,7 @@ if is_plat("windows") then
 end
 
 includes(
+	'MainThreadTask',
 	'lua51',
 	'protobuf',
 	'protos',

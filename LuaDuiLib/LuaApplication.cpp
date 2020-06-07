@@ -183,11 +183,12 @@ namespace DuiLib
 			return lua_gettop(L) - n;
 		}
 	}
-
+	static DuiObjectHandler _obj_handler;
 	///////////////////////////////////////////////////////////////
 	////
-	LuaApplication::LuaApplication(): valid(false)
+	LuaApplication::LuaApplication(): valid(false), exiting(false), m_pMainWindow(NULL)
 	{
+		CDuiObjectMgr::Get().SetObjectHandler(&_obj_handler);
 		Initialize();
 	}
 	LuaApplication::~LuaApplication()
@@ -223,6 +224,7 @@ namespace DuiLib
 	{
 		if (!valid) return;
 		valid = false;
+		exiting = true;
 		cmd_lines.Empty();
 		ShutdownLua();
 		CPaintManagerUI::Term();
@@ -264,7 +266,7 @@ namespace DuiLib
 			lua_pushcfunction(*globalLuaEnv, on_import_luadll);
 			lua_setfield(*globalLuaEnv, LUA_GLOBALSINDEX, "importdll");
 			
-			lua_pushboolean(*globalLuaEnv, false);
+			lua_pushboolean(*globalLuaEnv, exiting);
 			lua_setfield(*globalLuaEnv, LUA_GLOBALSINDEX, "CLOSING");
 
 			lua_pushboolean(*globalLuaEnv, true);
@@ -279,9 +281,21 @@ namespace DuiLib
 	{
 		if (globalLuaEnv != NULL)
 		{
+			CDuiPtrArray arr = TimerSource.GetAllDuiTimers();
+			for (int i = 0; i < arr.GetSize(); ++i)
+			{
+				IDuiTimer* pDuiTimer = (IDuiTimer*)(arr.GetAt(i));
+				if (pDuiTimer && pDuiTimer->GetUserData().iInt) {
+					if (globalLuaEnv) {
+						luaL_unref(*globalLuaEnv, LUA_REGISTRYINDEX, pDuiTimer->GetUserData().iInt);
+					}
+				}
+			}
+
 			lua_pushboolean(*globalLuaEnv, true);
 			lua_setfield(*globalLuaEnv, LUA_GLOBALSINDEX, "CLOSING");
-	
+
+
 			delete globalLuaEnv;
 			globalLuaEnv = NULL;
 
@@ -293,13 +307,82 @@ namespace DuiLib
 
 			lua_plugins.Empty();
 		}
+		TimerSource.RemoveTimerAll();
 		return true;
 	}
 
+	void LuaApplication::OnGlobalTimer(IDuiTimer* pTimer, HWND, CLuaWindow*, WPARAM)
+	{
+		int iref = pTimer->GetUserData().iInt;
+		if (globalLuaEnv && iref)
+		{
+			lua::stack_gurad guard(*globalLuaEnv);
+			globalLuaEnv->doFunc(iref);
+		}
+	}
+
+	static int lua_AddGlobalTimer(lua_State* l)
+	{
+		int iInterval; lua::get(l, 1, &iInterval);
+		lua_pushvalue(l, 2);
+		int iref = luaL_ref(l, LUA_REGISTRYINDEX);
+		IDuiTimer* pDuiTimer = MakeDuiTimer(LuaApplication::Instance(), &LuaApplication::OnGlobalTimer, LuaApplication::Instance()->GetMainWindow()->GetHWND(), LuaApplication::Instance()->GetMainWindow(), NULL, iInterval);
+		unUserData ud;
+		ud.iInt = iref;
+		pDuiTimer->SetUserData(ud);
+		LuaApplication::Instance()->TimerSource += pDuiTimer;
+		lua_pushlightuserdata(l, pDuiTimer);
+		return 1;
+	}
+
+	static int lua_RemoveGlobalTimer(lua_State* l)
+	{
+		IDuiTimer* pDuiTimer = (IDuiTimer*)lua_touserdata(l, 1);
+		assert(pDuiTimer);
+		if (pDuiTimer)
+		{
+			pDuiTimer->KillDuiTimer();
+			if (pDuiTimer && pDuiTimer->GetUserData().iInt) {
+				if (globalLuaEnv) {
+					luaL_unref(*globalLuaEnv, LUA_REGISTRYINDEX, pDuiTimer->GetUserData().iInt);
+				}
+			}
+			LuaApplication::Instance()->TimerSource -= pDuiTimer;
+		}
+		return 0;
+	}
+
+	static int lua_SetMainWindow(lua_State* l)
+	{
+		CLuaWindow* pWindow = nullptr;
+		lua::get(l, 1, &pWindow);
+		LuaApplication::Instance()->SetMainWindow(pWindow);
+		return 0;
+	}
+
+	static bool RegisterTimerAPIToLua(lua_State* l)
+	{
+		//Timer
+		lua::lua_register_t<void>(l, "Timer")
+			.def("AddGlobalTimer", lua_AddGlobalTimer)
+			.def("RemoveGlobalTimer", lua_RemoveGlobalTimer);
+
+		return true;
+	}
+
+	static bool RegisterAppAPIToLua(lua_State* l)
+	{
+		//_G
+		lua::lua_register_t<void>(l, "Application")
+			.def("SetMainWindow", lua_SetMainWindow);
+
+		return true;
+	}
+	
 	extern bool register_lua_scripts(lua_State*);
 	bool LuaApplication::RegisterScript()
 	{
-		return register_lua_scripts(*globalLuaEnv);
+		return register_lua_scripts(*globalLuaEnv) && RegisterTimerAPIToLua(*globalLuaEnv) && RegisterAppAPIToLua(*globalLuaEnv);
 	}
 	bool LuaApplication::ImportLuaDLL(LPCTSTR dllName, LPCTSTR dllEntry)
 	{
@@ -356,8 +439,6 @@ namespace DuiLib
 		return true;
 	}
 
-	static DuiObjectHandler _obj_handler;
-
 	bool LuaApplication::RunInternal(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR lpCmdLine, int nCmdShow)
 	{		
 		if (!valid)
@@ -366,7 +447,6 @@ namespace DuiLib
 			return false;
 		}
 
-		CDuiObjectMgr::Get().SetObjectHandler(&_obj_handler);
 		CPaintManagerUI::SetInstance(hInstance);
 
 		CDuiString szEntryFile = Path::CombinePath(CPaintManagerUI::GetInstancePath(), "entry.lua");
@@ -431,7 +511,6 @@ namespace DuiLib
 	bool LuaApplication::Run(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 	{
 		bool b = RunInternal(hInstance, hPrevInstance, lpCmdLine, nCmdShow);
-		Unitialize();
 		return b;
 	}
 }

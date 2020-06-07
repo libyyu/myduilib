@@ -2,8 +2,8 @@
 <!--maxinfo="650,750"-->
 <Window  size="330,620" sizebox="4,4,4,4" mininfo="330,520"  caption="0,0,0,154" bottom_caption="0,0,0,25" roundcorner="5,5" maxinfo="330,750">
   <Include source="xml/config.xml"/>
-  <HorizontalLayout name="BK" bkimage="file=&apos;YTing/bg_007.jpg&apos; corner=&apos;5,5,5,5&apos;">
-     <VerticalLayout bordersize="0"   inset="1,1,1,1" bkimage="file='YTing/border.png' corner='5,5,5,5' hole='true'">
+  <HorizontalLayout name="BK" bkimage="file=&apos;res/bg_007.jpg&apos; corner=&apos;5,5,5,5&apos;">
+     <VerticalLayout bordersize="0"   inset="1,1,1,1" bkimage="file='res/border.png' corner='5,5,5,5' hole='true'">
        <!--Caption-->
        <VerticalLayout height="154">
          <!--Title-->
@@ -22,14 +22,14 @@
            <Include source="xml/play-control.xml" />
          </HorizontalLayout>
          <!--End Control-->
-         <!--HorizontalLayout height="2" bkimage="YTing/line_h.png" mouse="false" /-->
+         <!--HorizontalLayout height="2" bkimage="res/line_h.png" mouse="false" /-->
        </VerticalLayout>
        <!--End Caption-->
        <VerticalLayout >
          <Include source="xml/main-container.xml" />
        </VerticalLayout>
-       <HorizontalLayout height="1" bkimage="YTing/line_h.png" mouse="false" />
-       <HorizontalLayout name="info" height="25" inset="10,5,10,5" bkimage="file='YTing/info_bg.bmp'" visible="false">
+       <HorizontalLayout height="1" bkimage="res/line_h.png" mouse="false" />
+       <HorizontalLayout name="info" height="25" inset="10,5,10,5" bkimage="file='res/info_bg.bmp'" visible="false">
        	<Label name="info_label" text="" />
        </HorizontalLayout>
        <HorizontalLayout height="30" inset="10,5,10,5">

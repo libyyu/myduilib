@@ -5,7 +5,7 @@
               <VerticalLayout inset="20,10,10,5">
                 <HorizontalLayout height="20" >
                   <Label text="缓存设置" width="60" font="1" textcolor="#FF000000"/>
-                  <Control bkimage="file='YTing/line-point.png'" height="1" padding="0,10,0,0"/>
+                  <Control bkimage="file='res/line-point.png'" height="1" padding="0,10,0,0"/>
                 </HorizontalLayout>
                 <Label text="将虾米音乐的缓存存放在此目录下" width="200"  textcolor="#FF000000"/>
                 <HorizontalLayout inset="0,10,0,0" height="40">

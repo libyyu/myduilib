@@ -5,7 +5,7 @@
       <VerticalLayout inset="25,10,20,5">
         <HorizontalLayout height="20" >
           <Label text="字体样式" width="60" font="1" textcolor="#FF000000"/>
-          <Control bkimage="file='YTing/line-point.png'" height="1" padding="0,10,0,0"/>
+          <Control bkimage="file='res/line-point.png'" height="1" padding="0,10,0,0"/>
         </HorizontalLayout>
         <HorizontalLayout  height="26">
           <HorizontalLayout>
@@ -83,27 +83,27 @@
           <HorizontalLayout>
           	<Label text="已播放歌词" width="75" font="0" textcolor="#FF000000"/>
           	<HorizontalLayout name="color4"  width="98" height="25" 
-                                          bkimage="file='YTing/cfg_edit.png' source='0,0,13,24' corner='6,0,6,0'">
+                                          bkimage="file='res/cfg_edit.png' source='0,0,13,24' corner='6,0,6,0'">
                      <Label name="font_color4" padding="2,5,2,5" bkcolor="#FF00FF00" />
                      <Control width="2" />
                      <Button name="color_picker4" width="15" height="15" padding="0,5,1,5" tooltip="颜色采集器"
-                                   bkimage="file='YTing/skin.png'"
-                                   normalimage="file='YTing/skin.png'"
-                                   hotimage="file='YTing/skin.png'"
-                                   pushedimage="file='YTing/skin.png'"/>
+                                   bkimage="file='res/skin.png'"
+                                   normalimage="file='res/skin.png'"
+                                   hotimage="file='res/skin.png'"
+                                   pushedimage="file='res/skin.png'"/>
 		</HorizontalLayout>
           </HorizontalLayout>
           <HorizontalLayout>
           	<Label text="未播放歌词" width="75" font="0" textcolor="#FF000000"/>
           	<HorizontalLayout name="color5" width="98" height="25" 
-                                          bkimage="file='YTing/cfg_edit.png' source='0,0,13,24' corner='6,0,6,0'">
+                                          bkimage="file='res/cfg_edit.png' source='0,0,13,24' corner='6,0,6,0'">
                      <Label name="font_color5" padding="2,5,2,5" bkcolor="#FF00FF00" />
                      <Control width="2" />
                      <Button name="color_picker5" width="15" height="15" padding="0,5,1,5" tooltip="颜色采集器"
-                                   bkimage="file='YTing/skin.png'"
-                                   normalimage="file='YTing/skin.png'"
-                                   hotimage="file='YTing/skin.png'"
-                                   pushedimage="file='YTing/skin.png'"/>
+                                   bkimage="file='res/skin.png'"
+                                   normalimage="file='res/skin.png'"
+                                   hotimage="file='res/skin.png'"
+                                   pushedimage="file='res/skin.png'"/>
 		</HorizontalLayout>
           </HorizontalLayout>
         </HorizontalLayout>

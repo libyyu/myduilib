@@ -212,8 +212,9 @@ int  CMiniDumper::GetCallStackAddr(PEXCEPTION_POINTERS pException, TCHAR* Str)
 
 	for (std::vector<std::string>::iterator it = call_stacks.begin(); it != call_stacks.end(); ++it)
 	{
-		Str_Len += wsprintf(Str + Str_Len, _T("%s\r\n"), Convert((*it).c_str()));
+		Str_Len += _stprintf(Str + Str_Len, _T("%s"), Convert((*it).c_str()));
 	}
+	Str_Len += _stprintf(Str + Str_Len, _T("\r\n"));
 
 	return Str_Len;
 
@@ -254,9 +255,9 @@ TCHAR* CMiniDumper::GetExceptionInfo(PEXCEPTION_POINTERS pException, TCHAR* dump
 	Str_Len = 0;
 	Str_Len += GetVersionStr(Str + Str_Len);
 
-	Str_Len += wsprintf(Str + Str_Len, _T("\r\nProcess:  "));
+	Str_Len += _stprintf(Str + Str_Len, _T("\r\nProcess:  "));
 	GetModuleFileName(NULL, Str + Str_Len, MAX_PATH);
-	Str_Len = lstrlen(Str);
+	Str_Len = _tcslen(Str);
 
 	// If exception occurred.
 	if (pException)
@@ -267,7 +268,7 @@ TCHAR* CMiniDumper::GetExceptionInfo(PEXCEPTION_POINTERS pException, TCHAR* dump
 		// If module with E.ExceptionAddress found - save its path and date.
 		if (GetModuleByAddr((PBYTE)E.ExceptionAddress, Module_Name, Module_Addr))
 		{
-			Str_Len += wsprintf(Str + Str_Len, _T("\r\nModule:  %s"), Module_Name);
+			Str_Len += _stprintf(Str + Str_Len, _T("\r\nModule:  %s"), Module_Name);
 
 			if ((hFile = CreateFile(Module_Name, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING,
 				FILE_ATTRIBUTE_NORMAL, NULL)) != INVALID_HANDLE_VALUE)
@@ -277,48 +278,48 @@ TCHAR* CMiniDumper::GetExceptionInfo(PEXCEPTION_POINTERS pException, TCHAR* dump
 					FileTimeToLocalFileTime(&Last_Write_Time, &Local_File_Time);
 					FileTimeToSystemTime(&Local_File_Time, &T);
 
-					Str_Len += wsprintf(Str + Str_Len, _T("\r\nDate Modified:  %02d/%02d/%d"), T.wMonth, T.wDay, T.wYear);
+					Str_Len += _stprintf(Str + Str_Len, _T("\r\nDate Modified:  %02d/%02d/%d"), T.wMonth, T.wDay, T.wYear);
 				}
 				CloseHandle(hFile);
 			}
 		}
 		else
 		{
-			Str_Len += wsprintf(Str + Str_Len, _T("\r\nException Addr:  %08X"), E.ExceptionAddress);
+			Str_Len += _stprintf(Str + Str_Len, _T("\r\nException Addr:  %08X"), E.ExceptionAddress);
 		}
 
-		Str_Len += wsprintf(Str + Str_Len, _T("\r\nException Code:  %08X"), E.ExceptionCode);
+		Str_Len += _stprintf(Str + Str_Len, _T("\r\nException Code:  %08X"), E.ExceptionCode);
 
 		if (E.ExceptionCode == EXCEPTION_ACCESS_VIOLATION)
 		{
 			// Access violation type - Write/Read.
-			Str_Len += wsprintf(Str + Str_Len,
+			Str_Len += _stprintf(Str + Str_Len,
 				_T("\r\n%s Address:  %08X"),
 				(E.ExceptionInformation[0]) ? _T("Write") : _T("Read"), E.ExceptionInformation[1]);
 		}
 
 		// Save instruction that caused exception.
-		Str_Len += wsprintf(Str + Str_Len, _T("\r\nInstruction: "));
+		Str_Len += _stprintf(Str + Str_Len, _T("\r\nInstruction: "));
 		for (i = 0; i < 16; i++)
-			Str_Len += wsprintf(Str + Str_Len, _T(" %02X"), PBYTE(E.ExceptionAddress)[i]);
+			Str_Len += _stprintf(Str + Str_Len, _T(" %02X"), PBYTE(E.ExceptionAddress)[i]);
 
 		// Save registers at exception.
 #ifdef _WIN64
 #else
-		Str_Len += wsprintf(Str + Str_Len, _T("\r\nRegisters:"));
-		Str_Len += wsprintf(Str + Str_Len, _T("\r\nEAX: %08X  EBX: %08X  ECX: %08X  EDX: %08X"), C.Eax, C.Ebx, C.Ecx, C.Edx);
-		Str_Len += wsprintf(Str + Str_Len, _T("\r\nESI: %08X  EDI: %08X  ESP: %08X  EBP: %08X"), C.Esi, C.Edi, C.Esp, C.Ebp);
-		Str_Len += wsprintf(Str + Str_Len, _T("\r\nEIP: %08X  EFlags: %08X"), C.Eip, C.EFlags);
+		Str_Len += _stprintf(Str + Str_Len, _T("\r\nRegisters:"));
+		Str_Len += _stprintf(Str + Str_Len, _T("\r\nEAX: %08X  EBX: %08X  ECX: %08X  EDX: %08X"), C.Eax, C.Ebx, C.Ecx, C.Edx);
+		Str_Len += _stprintf(Str + Str_Len, _T("\r\nESI: %08X  EDI: %08X  ESP: %08X  EBP: %08X"), C.Esi, C.Edi, C.Esp, C.Ebp);
+		Str_Len += _stprintf(Str + Str_Len, _T("\r\nEIP: %08X  EFlags: %08X"), C.Eip, C.EFlags);
 #endif
 	} //if (pException)
 
 	// Save call stack info.
-	Str_Len += wsprintf(Str + Str_Len, _T("\r\nDUMPFILE: %s"), dumpfile);
-	Str_Len += wsprintf(Str + Str_Len, _T("\r\nCall Stack:\r\n"));
+	Str_Len += _stprintf(Str + Str_Len, _T("\r\nDUMPFILE: %s"), dumpfile);
+	Str_Len += _stprintf(Str + Str_Len, _T("\r\nCall Stack:\r\n"));
 	GetCallStackAddr(pException, Str + Str_Len);
 
 	if (Str[0] == NL[0])
-		lstrcpy(Str, Str + sizeof(NL)-1);
+		_tcscpy(Str, Str + sizeof(NL)-1);
 
 	return Str;
 }
@@ -338,9 +339,9 @@ void  CMiniDumper::CreateDump(PEXCEPTION_POINTERS pException, BOOL File_Flag, BO
 	s_format[0] = 0x0;
 	_tcsftime(s_format, 255, _T("%Y.%m.%d %H-%M-%S"), p_time);
 
-	wsprintf(strDir, _T("%s\\Log"), szDirPath);
-	wsprintf(strTXTFile, _T("%s\\Log\\%s.txt"), szDirPath, s_format);
-	wsprintf(strDMPFile, _T("%s\\Log\\%s.dmp"), szDirPath, s_format);
+	_stprintf(strDir, _T("%s\\Log"), szDirPath);
+	_stprintf(strTXTFile, _T("%s\\Log\\%s.txt"), szDirPath, s_format);
+	_stprintf(strDMPFile, _T("%s\\Log\\%s.dmp"), szDirPath, s_format);
 
 	if (!PathFileExists(strDir))
 		CreateDirectory(strDir, NULL);
@@ -351,7 +352,7 @@ void  CMiniDumper::CreateDump(PEXCEPTION_POINTERS pException, BOOL File_Flag, BO
 	{
 		TCHAR s_title[256];
 		s_title[0] = 0x0;
-		wsprintf(s_title, _T("%s-MiniDump"), GetAppName());
+		_stprintf(s_title, _T("%s-MiniDump"), GetAppName());
 		MessageBox(NULL, Str, s_title, MB_ICONHAND | MB_OK);
 	}
 
@@ -362,14 +363,10 @@ void  CMiniDumper::CreateDump(PEXCEPTION_POINTERS pException, BOOL File_Flag, BO
 			hDump_File = CreateFile(strTXTFile,
 				GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
-			nLen = lstrlen(Str);
+			nLen = _tcslen(Str);
 			Str[nLen] = '\0';
-#ifndef _UNICODE
-			WriteFile(hDump_File, Str, lstrlen(Str) + 1, &Bytes, NULL);
-#else
-			char* text = Convert(Str);
-			WriteFile(hDump_File, text, strlen(text) + 1, &Bytes, NULL);
-#endif
+
+			WriteFile(hDump_File, Str, _tcslen(Str) + 1, &Bytes, NULL);
 
 			CloseHandle(hDump_File);
 		}

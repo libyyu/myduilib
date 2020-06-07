@@ -85,6 +85,9 @@ namespace DuiLib
 		if (luaRef == LUA_NOREF || objRef == LUA_NOREF)
 			return true;
 
+		LuaEnv* env = GetLuaEnv();
+		lua::stack_gurad g(*env);
+
 		const TEventUI* pEvent = static_cast<TEventUI*>(param);
 		if (CallLuaObject("OnUIEvent", pEvent))
 		{
@@ -102,6 +105,9 @@ namespace DuiLib
 	{
 		if (luaRef == LUA_NOREF || objRef == LUA_NOREF)
 			return true;
+
+		LuaEnv* env = GetLuaEnv();
+		lua::stack_gurad g(*env);
 
 		CControlUI* pControl = static_cast<CControlUI*>(param);
 		if (CallLuaObject("OnUIDestroy", pControl))
@@ -121,6 +127,9 @@ namespace DuiLib
 		if (luaRef == LUA_NOREF || objRef == LUA_NOREF)
 			return true;
 
+		LuaEnv* env = GetLuaEnv();
+		lua::stack_gurad g(*env);
+
 		CControlUI* pControl = static_cast<CControlUI*>(param);
 		if (CallLuaObject("OnUISize", pControl))
 		{
@@ -137,6 +146,9 @@ namespace DuiLib
 	{
 		if (luaRef == LUA_NOREF || objRef == LUA_NOREF)
 			return true;
+		
+		LuaEnv* env = GetLuaEnv();
+		lua::stack_gurad g(*env);
 
 		const TNotifyUI* pNotify = static_cast<TNotifyUI*>(param);
 		if (CallLuaObject("OnUINotify", pNotify))
@@ -154,6 +166,9 @@ namespace DuiLib
 	{
 		if (luaRef == LUA_NOREF || objRef == LUA_NOREF)
 			return true;
+		
+		LuaEnv* env = GetLuaEnv();
+		lua::stack_gurad g(*env);
 
 		CControlUI* pControl = static_cast<CControlUI*>(param);
 		if (CallLuaObject("OnUIPaint", pControl))
@@ -172,7 +187,8 @@ namespace DuiLib
 	{
 		if (luaRef == LUA_NOREF || objRef == LUA_NOREF)
 			return;
-
+		LuaEnv* env = GetLuaEnv();
+		lua::stack_gurad g(*env);
 		//ToLuaMsgNotify.dwTimestamp = msg.dwTimestamp;
 		//ToLuaMsgNotify.lParam = msg.lParam;
 		//ToLuaMsgNotify.pSender = msg.pSender;
@@ -199,7 +215,8 @@ namespace DuiLib
 		{
 			return FALSE;
 		}
-
+		LuaEnv* env = GetLuaEnv();
+		lua::stack_gurad g(*env);
 		if (CallLuaObject("MessageHandler", msg, wparam, lparam))
 		{
 			bool b;
@@ -212,7 +229,8 @@ namespace DuiLib
 	{
 		if (luaRef == LUA_NOREF || objRef == LUA_NOREF)
 			return NULL;
-
+		LuaEnv* env = GetLuaEnv();
+		lua::stack_gurad g(*env);
 		CControlUI* pControl = nullptr;
 		if (CallLuaObject("CreateControl", pstrClass))
 		{
@@ -225,6 +243,8 @@ namespace DuiLib
 	{
 		if (luaRef == LUA_NOREF || objRef == LUA_NOREF)
 			text = _T("");
+		LuaEnv* env = GetLuaEnv();
+		lua::stack_gurad g(*env);
 		if (CallLuaObject("GetItemText", pControl, iIndex, iSubItem))
 		{			
 			lua::pop(*GetLuaEnv(), &text);
@@ -235,6 +255,10 @@ namespace DuiLib
 	{
 		if (luaRef == LUA_NOREF || objRef == LUA_NOREF)
 			return;
+		
+		LuaEnv* env = GetLuaEnv();
+		lua::stack_gurad g(*env);
+
 		if (CallLuaObject("GetProcessWindowMessage"))
 		{
 			std::vector<int> message_list;
@@ -266,7 +290,8 @@ namespace DuiLib
 		{
 			return FALSE;
 		}
-
+		LuaEnv* env = GetLuaEnv();
+		lua::stack_gurad g(*env);
 		if (CallLuaObject("ProcessWindowMessage", uMsg, wParam, lParam))
 		{
 			bool b;
@@ -281,7 +306,8 @@ namespace DuiLib
 		
 		if (luaRef == LUA_NOREF || objRef == LUA_NOREF)
 			return FALSE;
-
+		LuaEnv* env = GetLuaEnv();
+		lua::stack_gurad g(*env);
 		if (CallLuaObject("OnCreate", wParam, lParam))
 		{
 			bHandled = TRUE;
@@ -306,7 +332,8 @@ namespace DuiLib
 		
 		if (luaRef == LUA_NOREF || objRef == LUA_NOREF)
 			return TRUE;
-
+		LuaEnv* env = GetLuaEnv();
+		lua::stack_gurad g(*env);
 		if (CallLuaObject("OnDestroy", wParam, lParam))
 		{
 			bHandled = TRUE;
@@ -318,7 +345,8 @@ namespace DuiLib
 		LRESULT ret = __super::OnSysCommand(msg, wParam, lParam, bHandled);
 		if (luaRef == LUA_NOREF || objRef == LUA_NOREF)
 			return ret;
-
+		LuaEnv* env = GetLuaEnv();
+		lua::stack_gurad g(*env);
 		if (CallLuaObject("OnSysCommand", wParam, lParam))
 		{
 			bHandled = TRUE;
@@ -328,6 +356,8 @@ namespace DuiLib
 
 	LRESULT CLuaWindow::OnMenuCommand(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 	{
+		LuaEnv* env = GetLuaEnv();
+		lua::stack_gurad g(*env);
 		MenuCmdMsg* pMsg = (MenuCmdMsg*)wParam;
 		if (CallLuaObject("OnMenuCommand", pMsg))
 		{

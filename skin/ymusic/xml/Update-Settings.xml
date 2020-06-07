@@ -5,7 +5,7 @@
               <VerticalLayout inset="25,10,5,5">
                 <HorizontalLayout height="20" >
                   <Label text="软件更新" width="56" font="1" textcolor="#FF000000"/>
-                  <Control bkimage="file='YTing/line-point.png'" height="1" padding="0,10,0,0"/>
+                  <Control bkimage="file='res/line-point.png'" height="1" padding="0,10,0,0"/>
                 </HorizontalLayout>
                 <CheckBox name="AutoUpdate" text="自动接受更新提示(推荐)"/>
                 <Label padding="17,0,0,0" text="有新版本则提示通知，你可以选择安装。" height="23"/>

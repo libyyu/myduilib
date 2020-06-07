@@ -87,7 +87,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
     <Link>
       <AdditionalLibraryDirectories>..\..\release\windows\x86;..\..\libs\windows\release\x86;..\..\libs\windows\release;..\..\libs\windows;..\..\release\windows;..\..\release\windows\x86\plugins;..\..\release\windows\plugins;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>lua51.lib;taglib_plugin.lib;taglib.lib;playcenter.lib;FLib.lib;database.lib;sqlite3cpp.lib;sqlite3.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>lua51.lib;MainThreadTask.lib;taglib_plugin.lib;taglib.lib;playcenter.lib;FLib.lib;database.lib;sqlite3cpp.lib;sqlite3.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>-nologo %(AdditionalOptions)</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <ProgramDatabaseFile>..\..\release\windows\x86\luaext.pdb</ProgramDatabaseFile>
@@ -101,8 +101,8 @@
       <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;LUA_BUILD_AS_DLL;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>..\..\thirdpart\database;..\..\thirdpart\sqlite3cpp\src;..\..\thirdpart\taglib;..\..\thirdpart\taglib_plugin\taglib_plugin\src;..\..\thirdpart\vlc\src;..\..\thirdpart\lua51\src;..\..\thirdpart\FLib\src</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>..\..\thirdpart\database;..\..\thirdpart\sqlite3cpp\src;..\..\thirdpart\taglib;..\..\thirdpart\taglib_plugin\taglib_plugin\src;..\..\thirdpart\vlc\src;..\..\thirdpart\lua51\src;..\..\thirdpart\FLib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\thirdpart\database;..\..\thirdpart\sqlite3cpp\src;..\..\thirdpart\taglib;..\..\thirdpart\taglib_plugin\taglib_plugin\src;..\..\thirdpart\vlc\src;..\..\thirdpart;..\..\thirdpart\lua51\src;..\..\thirdpart\FLib\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\thirdpart\database;..\..\thirdpart\sqlite3cpp\src;..\..\thirdpart\taglib;..\..\thirdpart\taglib_plugin\taglib_plugin\src;..\..\thirdpart\vlc\src;..\..\thirdpart;..\..\thirdpart\lua51\src;..\..\thirdpart\FLib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;LUA_BUILD_AS_DLL;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>-EHsc -nologo -FS %(AdditionalOptions)</AdditionalOptions>
@@ -120,7 +120,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
     <Link>
       <AdditionalLibraryDirectories>..\..\release\windows\x64;..\..\libs\windows\release\x64;..\..\libs\windows\release;..\..\libs\windows;..\..\release\windows;..\..\release\windows\x64\plugins;..\..\release\windows\plugins;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>lua51.lib;taglib_plugin.lib;taglib.lib;playcenter.lib;FLib.lib;database.lib;sqlite3cpp.lib;sqlite3.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>lua51.lib;MainThreadTask.lib;taglib_plugin.lib;taglib.lib;playcenter.lib;FLib.lib;database.lib;sqlite3cpp.lib;sqlite3.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>-nologo %(AdditionalOptions)</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <ProgramDatabaseFile>..\..\release\windows\x64\luaext.pdb</ProgramDatabaseFile>
@@ -134,8 +134,8 @@
       <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;LUA_BUILD_AS_DLL;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>..\..\thirdpart\database;..\..\thirdpart\sqlite3cpp\src;..\..\thirdpart\taglib;..\..\thirdpart\taglib_plugin\taglib_plugin\src;..\..\thirdpart\vlc\src;..\..\thirdpart\lua51\src;..\..\thirdpart\FLib\src</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>..\..\thirdpart\database;..\..\thirdpart\sqlite3cpp\src;..\..\thirdpart\taglib;..\..\thirdpart\taglib_plugin\taglib_plugin\src;..\..\thirdpart\vlc\src;..\..\thirdpart\lua51\src;..\..\thirdpart\FLib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\thirdpart\database;..\..\thirdpart\sqlite3cpp\src;..\..\thirdpart\taglib;..\..\thirdpart\taglib_plugin\taglib_plugin\src;..\..\thirdpart\vlc\src;..\..\thirdpart;..\..\thirdpart\lua51\src;..\..\thirdpart\FLib\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\thirdpart\database;..\..\thirdpart\sqlite3cpp\src;..\..\thirdpart\taglib;..\..\thirdpart\taglib_plugin\taglib_plugin\src;..\..\thirdpart\vlc\src;..\..\thirdpart;..\..\thirdpart\lua51\src;..\..\thirdpart\FLib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;LUA_BUILD_AS_DLL;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>-EHsc -nologo -FS %(AdditionalOptions)</AdditionalOptions>
@@ -153,7 +153,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
     <Link>
       <AdditionalLibraryDirectories>..\..\debug\windows\x86;..\..\libs\windows\debug\x86;..\..\libs\windows\debug;..\..\libs\windows;..\..\debug\windows;..\..\debug\windows\x86\plugins;..\..\debug\windows\plugins;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>lua51.lib;taglib_plugin.lib;taglib.lib;playcenter.lib;FLib.lib;database.lib;sqlite3cpp.lib;sqlite3.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>lua51.lib;MainThreadTask.lib;taglib_plugin.lib;taglib.lib;playcenter.lib;FLib.lib;database.lib;sqlite3cpp.lib;sqlite3.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>-nologo %(AdditionalOptions)</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>..\..\debug\windows\x86\luaext.pdb</ProgramDatabaseFile>
@@ -167,8 +167,8 @@
       <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;LUA_BUILD_AS_DLL;__config_debug__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>..\..\thirdpart\database;..\..\thirdpart\sqlite3cpp\src;..\..\thirdpart\taglib;..\..\thirdpart\taglib_plugin\taglib_plugin\src;..\..\thirdpart\vlc\src;..\..\thirdpart\lua51\src;..\..\thirdpart\FLib\src</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>..\..\thirdpart\database;..\..\thirdpart\sqlite3cpp\src;..\..\thirdpart\taglib;..\..\thirdpart\taglib_plugin\taglib_plugin\src;..\..\thirdpart\vlc\src;..\..\thirdpart\lua51\src;..\..\thirdpart\FLib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\thirdpart\database;..\..\thirdpart\sqlite3cpp\src;..\..\thirdpart\taglib;..\..\thirdpart\taglib_plugin\taglib_plugin\src;..\..\thirdpart\vlc\src;..\..\thirdpart;..\..\thirdpart\lua51\src;..\..\thirdpart\FLib\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\thirdpart\database;..\..\thirdpart\sqlite3cpp\src;..\..\thirdpart\taglib;..\..\thirdpart\taglib_plugin\taglib_plugin\src;..\..\thirdpart\vlc\src;..\..\thirdpart;..\..\thirdpart\lua51\src;..\..\thirdpart\FLib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;LUA_BUILD_AS_DLL;__config_debug__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>-EHsc -nologo %(AdditionalOptions)</AdditionalOptions>
@@ -186,7 +186,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
     <Link>
       <AdditionalLibraryDirectories>..\..\debug\windows\x64;..\..\libs\windows\debug\x64;..\..\libs\windows\debug;..\..\libs\windows;..\..\debug\windows;..\..\debug\windows\x64\plugins;..\..\debug\windows\plugins;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>lua51.lib;taglib_plugin.lib;taglib.lib;playcenter.lib;FLib.lib;database.lib;sqlite3cpp.lib;sqlite3.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>lua51.lib;MainThreadTask.lib;taglib_plugin.lib;taglib.lib;playcenter.lib;FLib.lib;database.lib;sqlite3cpp.lib;sqlite3.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>-nologo %(AdditionalOptions)</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>..\..\debug\windows\x64\luaext.pdb</ProgramDatabaseFile>
@@ -200,8 +200,8 @@
       <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;LUA_BUILD_AS_DLL;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>..\..\thirdpart\database;..\..\thirdpart\sqlite3cpp\src;..\..\thirdpart\taglib;..\..\thirdpart\taglib_plugin\taglib_plugin\src;..\..\thirdpart\vlc\src;..\..\thirdpart\lua51\src;..\..\thirdpart\FLib\src</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>..\..\thirdpart\database;..\..\thirdpart\sqlite3cpp\src;..\..\thirdpart\taglib;..\..\thirdpart\taglib_plugin\taglib_plugin\src;..\..\thirdpart\vlc\src;..\..\thirdpart\lua51\src;..\..\thirdpart\FLib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\thirdpart\database;..\..\thirdpart\sqlite3cpp\src;..\..\thirdpart\taglib;..\..\thirdpart\taglib_plugin\taglib_plugin\src;..\..\thirdpart\vlc\src;..\..\thirdpart;..\..\thirdpart\lua51\src;..\..\thirdpart\FLib\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\thirdpart\database;..\..\thirdpart\sqlite3cpp\src;..\..\thirdpart\taglib;..\..\thirdpart\taglib_plugin\taglib_plugin\src;..\..\thirdpart\vlc\src;..\..\thirdpart;..\..\thirdpart\lua51\src;..\..\thirdpart\FLib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;LUA_BUILD_AS_DLL;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>-EHsc -nologo %(AdditionalOptions)</AdditionalOptions>

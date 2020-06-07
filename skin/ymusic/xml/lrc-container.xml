@@ -2,7 +2,7 @@
 <Window>
 	<Include source="xml/style004.xml"/>
 	<HorizontalLayout>
-		<VerticalLayout bkimage="file='YTing/Main/lyric-bg.png' source='0,0,320,200' corner='2,25,2,2' mask='#FFFF00FF'">			  
+		<VerticalLayout bkimage="file='res/Main/lyric-bg.png' source='0,0,320,200' corner='2,25,2,2' mask='#FFFF00FF'">			  
 			<HorizontalLayout height ="20" padding="0,4,0,0">
 				<Control width="10"/>
 				<Button name="GoBack" style="goback" tag="-1"/>

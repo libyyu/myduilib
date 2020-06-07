@@ -3,8 +3,8 @@
 
   <Include source="104" />
 	
-	<HorizontalLayout name="BK" colorhsl="true" bkimage="file=&apos;YTing/bg_007.jpg&apos; corner=&apos;5,5,5,5&apos;">
-		<VerticalLayout name="root"  bordersize="1"  inset="1,1,1,2" bkimage="file='YTing/border.png' corner='5,5,5,5' hole='true'">
+	<HorizontalLayout name="BK" colorhsl="true" bkimage="file=&apos;res/bg_007.jpg&apos; corner=&apos;5,5,5,5&apos;">
+		<VerticalLayout name="root"  bordersize="1"  inset="1,1,1,2" bkimage="file='res/border.png' corner='5,5,5,5' hole='true'">
 			
 			<!---caption-->
 			<HorizontalLayout name="title" height="29">
@@ -16,9 +16,9 @@
 				   tooltip="关闭"
 				   width="17"
 				   height="17"
-				   normalimage="file=&apos;YTing/system-close.png&apos; source=&apos;0,0,17,17&apos; "
-				   pushedimage="file=&apos;YTing/system-close.png&apos; source=&apos;0,17,17,34&apos; "
-				   hotimage="file=&apos;YTing/system-close.png&apos; source=&apos;0,34,17,51&apos; "/>
+				   normalimage="file=&apos;res/system-close.png&apos; source=&apos;0,0,17,17&apos; "
+				   pushedimage="file=&apos;res/system-close.png&apos; source=&apos;0,17,17,34&apos; "
+				   hotimage="file=&apos;res/system-close.png&apos; source=&apos;0,34,17,51&apos; "/>
 
 			</HorizontalLayout>
 
