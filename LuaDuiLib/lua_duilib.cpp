@@ -17,124 +17,19 @@ extern LuaEnv* globalLuaEnv;
 
 namespace DuiLib
 {
-	class LuaControlDelegate
-	{
-		int luaFunc = LUA_NOREF;
-		CControlUI* pControl = nullptr;
-	public:
-		LuaControlDelegate(CControlUI* _pControl, int pos):pControl(_pControl)
-		{
-			assert(globalLuaEnv);
-			if (globalLuaEnv)
-			{
-				lua_pushvalue(*globalLuaEnv, pos);
-				luaFunc = luaL_ref(*globalLuaEnv, LUA_REGISTRYINDEX);
-			}
-		}
-		~LuaControlDelegate()
-		{
-			pControl = nullptr;
-			if (globalLuaEnv && luaFunc != LUA_NOREF)
-			{
-				luaL_unref(*globalLuaEnv, LUA_REGISTRYINDEX, luaFunc);
-			}
-			luaFunc = LUA_NOREF;
-		}
-	public:
-		bool OnHandleEvent(void* event)
-		{
-			return OnAction<TEventUI>(event);
-		}
-		bool OnHandleNotify(void* msg)
-		{
-			return OnAction<TNotifyUI>(msg);
-		}
-		bool OnHandleControl(void* param)
-		{
-			return OnAction<CControlUI>(param);
-		}
-	private:
-		template<typename T>
-		inline bool OnAction(void* param)
-		{
-			if (!globalLuaEnv) return true;
-			T* pdata = (T*)param;
-			lua::stack_gurad g(*globalLuaEnv);
-			{
-				if (globalLuaEnv->doFunc(luaFunc, pdata))
-				{
-					if (lua_isboolean(*globalLuaEnv, -1))
-					{
-						bool ret;
-						lua::pop(*globalLuaEnv, &ret);
-						return ret;
-					}
-				}
-			}
-			return true;
-		}
-	};
-
-	class AllLuaControlDelegate
-	{
-		std::set<LuaControlDelegate*> m_all_delegates;
-	public:
-		AllLuaControlDelegate() {}
-		~AllLuaControlDelegate()
-		{
-			for (auto it = m_all_delegates.begin(); it != m_all_delegates.end(); ++it)
-			{
-				LuaControlDelegate* d = *it;
-				delete d;
-			}
-			m_all_delegates.clear();
-		}
-
-		void add_delegate(LuaControlDelegate* d)
-		{
-			if (m_all_delegates.find(d) == m_all_delegates.end())
-				m_all_delegates.insert(d);
-		}
-		void del_delegate(LuaControlDelegate* d)
-		{
-			auto it = m_all_delegates.find(d);
-			if (it != m_all_delegates.end())
-			{
-				m_all_delegates.erase(it);
-				delete d;
-			}
-		}
-	};
-
-	static AllLuaControlDelegate all_delegates;
-
 	class CDelegateStaticEx : public CDelegateBase
 	{
-		typedef std::function<bool(void*)> Fn;
+		typedef std::function<bool(void*, int)> Fn;
 		Fn pfunc;
+		int nLuaRef;
 	public:
-		CDelegateStaticEx(Fn pFn) : pfunc(pFn), CDelegateBase((void*)(&pFn), NULL) { }
-		CDelegateStaticEx(const CDelegateStaticEx& rhs) : pfunc(rhs.pfunc), CDelegateBase(rhs) { }
+		CDelegateStaticEx(Fn pFn, int LuaRef = LUA_NOREF) : pfunc(pFn), nLuaRef(LuaRef), CDelegateBase((void*)(&pFn), NULL) { }
+		CDelegateStaticEx(const CDelegateStaticEx& rhs) : pfunc(rhs.pfunc), nLuaRef(rhs.nLuaRef), CDelegateBase(rhs) { }
 		virtual CDelegateBase* Copy() const { return new CDelegateStaticEx(*this); }
 	protected:
 		virtual bool Invoke(void* param)
 		{
-			return (pfunc)(param);
-		}
-	};
-
-	class CLuaDelegateStatic : public CDelegateStatic
-	{
-		int nLuaRef;
-	public:
-		CLuaDelegateStatic(int LuaRef = LUA_NOREF) : nLuaRef(LuaRef), CDelegateStatic(NULL) { }
-		CLuaDelegateStatic(const CLuaDelegateStatic& rhs) : nLuaRef(rhs.nLuaRef), CDelegateStatic(rhs) { }
-		virtual CDelegateBase* Copy() const { return new CLuaDelegateStatic(*this); }
-	protected:
-		virtual bool Invoke(void* param)
-		{
-
-			return true;
+			return (pfunc)(param, nLuaRef);
 		}
 	};
 }
@@ -202,198 +97,177 @@ namespace DuiLib
 		return 0;
 	}
 
-	inline CDelegateStaticEx MakeStaticDelegateEx(const std::function<bool(void*)>& pStdFn)
+	inline CDelegateStaticEx MakeStaticDelegateEx(int r, const std::function<bool(void*, int)>& pStdFn)
 	{
-		return CDelegateStaticEx(pStdFn);
+		return CDelegateStaticEx(pStdFn, r);
 	}
 
 	static int CControlUI_OnInitAdd(lua_State* l)
 	{
 		CControlUI* pControl = nullptr;
 		lua::get(l, 1, &pControl);
-		LuaControlDelegate* pDelegate = new LuaControlDelegate(pControl, 2);
-		all_delegates.add_delegate(pDelegate);
-		pControl->OnInit += MakeDelegate(pDelegate, &LuaControlDelegate::OnHandleControl);
-		pControl->OnDestroy += MakeStaticDelegateEx([pDelegate](void* param)->bool
+		lua_pushvalue(*globalLuaEnv, 2);
+		int luaFunc = luaL_ref(*globalLuaEnv, LUA_REGISTRYINDEX);
+		pControl->OnInit += MakeStaticDelegateEx(luaFunc, [=](void* param, int luaFunc)->bool
 		{
+			if (!globalLuaEnv) return true;
 			CControlUI* pTargetControl = (CControlUI*)param;
-			pTargetControl->OnInit -= MakeDelegate(pDelegate, &LuaControlDelegate::OnHandleControl);
-			all_delegates.del_delegate(pDelegate);
+			lua::stack_gurad g(*globalLuaEnv);
+			if (globalLuaEnv->doFunc(luaFunc, pTargetControl))
+			{
+				if (lua_isboolean(*globalLuaEnv, -1))
+				{
+					bool ret;
+					lua::pop(*globalLuaEnv, &ret);
+					return ret;
+				}
+			}
 			return true;
 		});
-		lua::push(l, pDelegate);
-		return 1;
-	}
-	static int CControlUI_OnInitRemove(lua_State* l)
-	{
-		CControlUI* pControl = nullptr;
-		LuaControlDelegate* pDelegate = nullptr;
-		lua::get(l, 1, &pControl, &pDelegate);
-		assert(pDelegate);
-		if (!pDelegate) return 0;
-		pControl->OnInit -= MakeDelegate(pDelegate, &LuaControlDelegate::OnHandleControl);
-		all_delegates.del_delegate(pDelegate);
 		return 0;
 	}
 	static int CControlUI_OnDestroyAdd(lua_State* l)
 	{
 		CControlUI* pControl = nullptr;
 		lua::get(l, 1, &pControl);
-		LuaControlDelegate* pDelegate = new LuaControlDelegate(pControl, 2);
-		all_delegates.add_delegate(pDelegate);
-		pControl->OnDestroy += MakeDelegate(pDelegate, &LuaControlDelegate::OnHandleControl);
-		lua::push(l, pDelegate);
-		return 1;
-	}
-	static int CControlUI_OnDestroyRemove(lua_State* l)
-	{
-		CControlUI* pControl = nullptr;
-		LuaControlDelegate* pDelegate = nullptr;
-		lua::get(l, 1, &pControl, &pDelegate);
-		assert(pDelegate);
-		if (!pDelegate) return 0;
-		pControl->OnDestroy -= MakeDelegate(pDelegate, &LuaControlDelegate::OnHandleControl);
-		all_delegates.del_delegate(pDelegate);
+		lua_pushvalue(*globalLuaEnv, 2);
+		int luaFunc = luaL_ref(*globalLuaEnv, LUA_REGISTRYINDEX);
+		pControl->OnDestroy += MakeStaticDelegateEx(luaFunc, [=](void* param, int luaFunc)->bool
+			{
+				if (!globalLuaEnv) return true;
+				CControlUI* pTargetControl = (CControlUI*)param;
+				lua::stack_gurad g(*globalLuaEnv);
+				if (globalLuaEnv->doFunc(luaFunc, pTargetControl))
+				{
+					if (lua_isboolean(*globalLuaEnv, -1))
+					{
+						bool ret;
+						lua::pop(*globalLuaEnv, &ret);
+						return ret;
+					}
+				}
+				return true;
+			});
 		return 0;
 	}
 	static int CControlUI_OnSizeAdd(lua_State* l)
 	{
 		CControlUI* pControl = nullptr;
 		lua::get(l, 1, &pControl);
-		LuaControlDelegate* pDelegate = new LuaControlDelegate(pControl, 2);
-		all_delegates.add_delegate(pDelegate);
-		pControl->OnSize += MakeDelegate(pDelegate, &LuaControlDelegate::OnHandleControl);
-		pControl->OnDestroy += MakeStaticDelegateEx([pDelegate](void* param)->bool
+		lua_pushvalue(*globalLuaEnv, 2);
+		int luaFunc = luaL_ref(*globalLuaEnv, LUA_REGISTRYINDEX);
+		pControl->OnSize += MakeStaticDelegateEx(luaFunc, [=](void* param, int luaFunc)->bool
 			{
+				if (!globalLuaEnv) return true;
 				CControlUI* pTargetControl = (CControlUI*)param;
-				pTargetControl->OnSize -= MakeDelegate(pDelegate, &LuaControlDelegate::OnHandleControl);
-				all_delegates.del_delegate(pDelegate);
+				lua::stack_gurad g(*globalLuaEnv);
+				if (globalLuaEnv->doFunc(luaFunc, pTargetControl))
+				{
+					if (lua_isboolean(*globalLuaEnv, -1))
+					{
+						bool ret;
+						lua::pop(*globalLuaEnv, &ret);
+						return ret;
+					}
+				}
 				return true;
 			});
-		lua::push(l, pDelegate);
-		return 1;
-	}
-	static int CControlUI_OnSizeRemove(lua_State* l)
-	{
-		CControlUI* pControl = nullptr;
-		LuaControlDelegate* pDelegate = nullptr;
-		lua::get(l, 1, &pControl, &pDelegate);
-		assert(pDelegate);
-		if (!pDelegate) return 0;
-		pControl->OnSize -= MakeDelegate(pDelegate, &LuaControlDelegate::OnHandleControl);
-		all_delegates.del_delegate(pDelegate);
 		return 0;
 	}
 	static int CControlUI_OnEventAdd(lua_State* l)
 	{
 		CControlUI* pControl = nullptr;
 		lua::get(l, 1, &pControl);
-		LuaControlDelegate* pDelegate = new LuaControlDelegate(pControl, 2);
-		all_delegates.add_delegate(pDelegate);
-		pControl->OnEvent += MakeDelegate(pDelegate, &LuaControlDelegate::OnHandleEvent);
-		pControl->OnDestroy += MakeStaticDelegateEx([pDelegate](void* param)->bool
+		lua_pushvalue(*globalLuaEnv, 2);
+		int luaFunc = luaL_ref(*globalLuaEnv, LUA_REGISTRYINDEX);
+		pControl->OnEvent += MakeStaticDelegateEx(luaFunc, [=](void* param, int luaFunc)->bool
 			{
-				CControlUI* pTargetControl = (CControlUI*)param;
-				pTargetControl->OnEvent -= MakeDelegate(pDelegate, &LuaControlDelegate::OnHandleEvent);
-				all_delegates.del_delegate(pDelegate);
+				if (!globalLuaEnv) return true;
+				TEventUI* pEvent = (TEventUI*)param;
+				lua::stack_gurad g(*globalLuaEnv);
+				if (globalLuaEnv->doFunc(luaFunc, pEvent))
+				{
+					if (lua_isboolean(*globalLuaEnv, -1))
+					{
+						bool ret;
+						lua::pop(*globalLuaEnv, &ret);
+						return ret;
+					}
+				}
 				return true;
 			});
-		lua::push(l, pDelegate);
-		return 1;
-	}
-	static int CControlUI_OnEventRemove(lua_State* l)
-	{
-		CControlUI* pControl = nullptr;
-		LuaControlDelegate* pDelegate = nullptr;
-		lua::get(l, 1, &pControl, &pDelegate);
-		assert(pDelegate);
-		if (!pDelegate) return 0;
-		pControl->OnEvent -= MakeDelegate(pDelegate, &LuaControlDelegate::OnHandleEvent);
-		all_delegates.del_delegate(pDelegate);
 		return 0;
 	}
 	static int CControlUI_OnNotifyAdd(lua_State* l)
 	{
 		CControlUI* pControl = nullptr;
 		lua::get(l, 1, &pControl);
-		LuaControlDelegate* pDelegate = new LuaControlDelegate(pControl, 2);
-		all_delegates.add_delegate(pDelegate);
-		pControl->OnNotify += MakeDelegate(pDelegate, &LuaControlDelegate::OnHandleNotify);
-		pControl->OnDestroy += MakeStaticDelegateEx([pDelegate](void* param)->bool
+		lua_pushvalue(*globalLuaEnv, 2);
+		int luaFunc = luaL_ref(*globalLuaEnv, LUA_REGISTRYINDEX);
+		pControl->OnNotify += MakeStaticDelegateEx(luaFunc, [=](void* param, int luaFunc)->bool
 			{
-				CControlUI* pTargetControl = (CControlUI*)param;
-				pTargetControl->OnNotify -= MakeDelegate(pDelegate, &LuaControlDelegate::OnHandleNotify);
-				all_delegates.del_delegate(pDelegate);
+				if (!globalLuaEnv) return true;
+				TNotifyUI* pMsg = (TNotifyUI*)param;
+				lua::stack_gurad g(*globalLuaEnv);
+				if (globalLuaEnv->doFunc(luaFunc, pMsg))
+				{
+					if (lua_isboolean(*globalLuaEnv, -1))
+					{
+						bool ret;
+						lua::pop(*globalLuaEnv, &ret);
+						return ret;
+					}
+				}
 				return true;
 			});
-		lua::push(l, pDelegate);
-		return 1;
-	}
-	static int CControlUI_OnNotifyRemove(lua_State* l)
-	{
-		CControlUI* pControl = nullptr;
-		LuaControlDelegate* pDelegate = nullptr;
-		lua::get(l, 1, &pControl, &pDelegate);
-		assert(pDelegate);
-		if (!pDelegate) return 0;
-		pControl->OnNotify -= MakeDelegate(pDelegate, &LuaControlDelegate::OnHandleNotify);
-		all_delegates.del_delegate(pDelegate);
 		return 0;
 	}
 	static int CControlUI_OnPaintAdd(lua_State* l)
 	{
 		CControlUI* pControl = nullptr;
 		lua::get(l, 1, &pControl);
-		LuaControlDelegate* pDelegate = new LuaControlDelegate(pControl, 2);
-		all_delegates.add_delegate(pDelegate);
-		pControl->OnPaint += MakeDelegate(pDelegate, &LuaControlDelegate::OnHandleControl);
-		pControl->OnDestroy += MakeStaticDelegateEx([pDelegate](void* param)->bool
+		lua_pushvalue(*globalLuaEnv, 2);
+		int luaFunc = luaL_ref(*globalLuaEnv, LUA_REGISTRYINDEX);
+		pControl->OnPaint += MakeStaticDelegateEx(luaFunc, [=](void* param, int luaFunc)->bool
 			{
+				if (!globalLuaEnv) return true;
 				CControlUI* pTargetControl = (CControlUI*)param;
-				pTargetControl->OnPaint -= MakeDelegate(pDelegate, &LuaControlDelegate::OnHandleControl);
-				all_delegates.del_delegate(pDelegate);
+				lua::stack_gurad g(*globalLuaEnv);
+				if (globalLuaEnv->doFunc(luaFunc, pTargetControl))
+				{
+					if (lua_isboolean(*globalLuaEnv, -1))
+					{
+						bool ret;
+						lua::pop(*globalLuaEnv, &ret);
+						return ret;
+					}
+				}
 				return true;
 			});
-		lua::push(l, pDelegate);
-		return 1;
-	}
-	static int CControlUI_OnPaintRemove(lua_State* l)
-	{
-		CControlUI* pControl = nullptr;
-		LuaControlDelegate* pDelegate = nullptr;
-		lua::get(l, 1, &pControl, &pDelegate);
-		assert(pDelegate);
-		if (!pDelegate) return 0;
-		pControl->OnPaint -= MakeDelegate(pDelegate, &LuaControlDelegate::OnHandleControl);
-		all_delegates.del_delegate(pDelegate);
 		return 0;
 	}
 	static int CControlUI_OnPostPaintAdd(lua_State* l)
 	{
 		CControlUI* pControl = nullptr;
 		lua::get(l, 1, &pControl);
-		LuaControlDelegate* pDelegate = new LuaControlDelegate(pControl, 2);
-		all_delegates.add_delegate(pDelegate);
-		pControl->OnPostPaint += MakeDelegate(pDelegate, &LuaControlDelegate::OnHandleControl);
-		pControl->OnDestroy += MakeStaticDelegateEx([pDelegate](void* param)->bool
+		lua_pushvalue(*globalLuaEnv, 2);
+		int luaFunc = luaL_ref(*globalLuaEnv, LUA_REGISTRYINDEX);
+		pControl->OnPostPaint += MakeStaticDelegateEx(luaFunc, [=](void* param, int luaFunc)->bool
 			{
+				if (!globalLuaEnv) return true;
 				CControlUI* pTargetControl = (CControlUI*)param;
-				pTargetControl->OnPostPaint -= MakeDelegate(pDelegate, &LuaControlDelegate::OnHandleControl);
-				all_delegates.del_delegate(pDelegate);
+				lua::stack_gurad g(*globalLuaEnv);
+				if (globalLuaEnv->doFunc(luaFunc, pTargetControl))
+				{
+					if (lua_isboolean(*globalLuaEnv, -1))
+					{
+						bool ret;
+						lua::pop(*globalLuaEnv, &ret);
+						return ret;
+					}
+				}
 				return true;
 			});
-		lua::push(l, pDelegate);
-		return 1;
-	}
-	static int CControlUI_OnPostPaintRemove(lua_State* l)
-	{
-		CControlUI* pControl = nullptr;
-		LuaControlDelegate* pDelegate = nullptr;
-		lua::get(l, 1, &pControl, &pDelegate);
-		assert(pDelegate);
-		if (!pDelegate) return 0;
-		pControl->OnPostPaint -= MakeDelegate(pDelegate, &LuaControlDelegate::OnHandleControl);
-		all_delegates.del_delegate(pDelegate);
 		return 0;
 	}
 
@@ -403,7 +277,7 @@ namespace DuiLib
 		CControlUI* pControl = nullptr;
 		CControlUI* pOther = nullptr;
 		lua::get(l, 1, &pControl, &pOther);
-		pControl->OnEvent += MakeStaticDelegateEx([pOther](void* param)->bool
+		pControl->OnEvent += MakeStaticDelegateEx(-1, [pOther](void* param, int r)->bool
 		{
 			pOther->DoEvent(*(TEventUI*)param);
 			return true;
@@ -753,19 +627,12 @@ namespace DuiLib
 			WRAP_METHOD(SetBindEventCtrl)
 			LAMBDA_METHOD2("DoEvent", CControlUI_DoEvent)
 			LAMBDA_METHOD2("OnInitAdd", CControlUI_OnInitAdd)
-			LAMBDA_METHOD2("OnInitRemove", CControlUI_OnInitRemove)
 			LAMBDA_METHOD2("OnDestroyAdd", CControlUI_OnDestroyAdd)
-			LAMBDA_METHOD2("OnDestroyRemove", CControlUI_OnDestroyRemove)
 			LAMBDA_METHOD2("OnSizeAdd", CControlUI_OnSizeAdd)
-			LAMBDA_METHOD2("OnSizeRemove", CControlUI_OnSizeRemove)
 			LAMBDA_METHOD2("OnEventAdd", CControlUI_OnEventAdd)
-			LAMBDA_METHOD2("OnEventRemove", CControlUI_OnEventRemove)
 			LAMBDA_METHOD2("OnNotifyAdd", CControlUI_OnNotifyAdd)
-			LAMBDA_METHOD2("OnNotifyRemove", CControlUI_OnNotifyRemove)
 			LAMBDA_METHOD2("OnPaintAdd", CControlUI_OnPaintAdd)
-			LAMBDA_METHOD2("OnPaintRemove", CControlUI_OnPaintRemove)
 			LAMBDA_METHOD2("OnPostPaintAdd", CControlUI_OnPostPaintAdd)
-			LAMBDA_METHOD2("OnPostPaintRemove", CControlUI_OnPostPaintRemove)
 			LAMBDA_METHOD2("BindEventTo", CControlUI_BindEventTo);
 #undef WRAP_METHOD
 		//CContainerUI
