@@ -56,10 +56,10 @@ end
 function CFilePathMgr:GetLrcFilePath()
 end
 function CFilePathMgr:GetAppPath()
-	return win32.GetModulePath()
+	return Application.GetModulePath()
 end
 function CFilePathMgr:GetDataPath()
-	return win32.GetModulePath() .. "YTing/"
+	return Application.GetModulePath() .. "YTing/"
 end
 function CFilePathMgr:GetWebServiceCatchPath()
 end

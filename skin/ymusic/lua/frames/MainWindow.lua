@@ -54,11 +54,11 @@ end
 
 function MainWindow:OnDestroy(wParam,lParam)
 	if _hOnlineIcon then
-		win32.DestroyIcon(_hOnlineIcon)
+		Application.DestroyIcon(_hOnlineIcon)
 		_hOnlineIcon = nil
 	end
 	if _hOfflineIcon then
-		win32.DestroyIcon(_hOfflineIcon)
+		Application.DestroyIcon(_hOfflineIcon)
 		_hOfflineIcon = nil
 	end
 	self:Stop()
@@ -165,16 +165,16 @@ function MainWindow:OnInitWindow()
 	local PaintManagerUI = DuiLib.CPaintManagerUI
 	local path = PaintManagerUI.GetResourcePath() .. "/res"
 	print(path)
-	local hIcon = win32.LoadIconFromFile(path.."/YMusic.ico", nil)
+	local hIcon = Application.LoadIconFromFile(path.."/YMusic.ico", nil)
 	-- if hIcon then
 	-- 	self:SendMessage(DuiLib.WM_SETICON, true, hIcon)
 	-- 	self:SendMessage(DuiLib.WM_SETICON, false, hIcon)
 	-- end
 
-	_uTaskbarCreatedMsg 	 = win32.RegisterWindowMessage("TaskbarCreated")
-	_uTaskbarButtonCreateMsg = win32.RegisterWindowMessage("TaskbarButtonCreated")
-	_hOnlineIcon        	 = win32.LoadIconFromFile(path.."/YMusic.ico", nil)
-	_hOfflineIcon       	 = win32.LoadIconFromFile(path.."/YMusic.ico", nil)
+	_uTaskbarCreatedMsg 	 = Application.RegisterWindowMessage("TaskbarCreated")
+	_uTaskbarButtonCreateMsg = Application.RegisterWindowMessage("TaskbarButtonCreated")
+	_hOnlineIcon        	 = Application.LoadIconFromFile(path.."/YMusic.ico", nil)
+	_hOfflineIcon       	 = Application.LoadIconFromFile(path.."/YMusic.ico", nil)
 	--增加托盘图标
 	self:AddTracyIcon()
 	--初始化播放列表
@@ -183,8 +183,7 @@ function MainWindow:OnInitWindow()
 	-- 强制进行一次垃圾收集
 	collectgarbage("collect")
 	
-	Timer.AddGlobalTimer(2, function()
-		print("1111>2222")
+	Timer.AddGlobalTimer(100, function()
 		MainThreadTask.tick()
 	end)
 
@@ -473,19 +472,19 @@ function MainWindow:OnShowMainMenu()
 	local win = self.m_hWin
 	local pMenu = DuiLib.CMenuWnd.New(self:GetHWND())
 	pMenu:SetTag(_G.emMenuType.EMT_MAIN)
-	pMenu:Init(nil, "xml/main-menu.xml", "", win32.GetCursorPos())
+	pMenu:Init(nil, "xml/main-menu.xml", "", Application.GetCursorPos())
 end
 function MainWindow:OnShowSongListMenu(msg)
 	local win = self.m_hWin
 	local pMenu = DuiLib.CMenuWnd.New(self:GetHWND())
 	pMenu:SetTag(_G.emMenuType.EMT_SONGLIST)
-	pMenu:Init(nil, "xml/song-list-menu.xml", "", win32.GetCursorPos())
+	pMenu:Init(nil, "xml/song-list-menu.xml", "", Application.GetCursorPos())
 end
 function MainWindow:OnShowSongItemMenu(msg)
 	local win = self.m_hWin
 	local pMenu = DuiLib.CMenuWnd.New(self:GetHWND())
 	pMenu:SetTag(_G.emMenuType.EMT_SONGITEM)
-	pMenu:Init(nil, "xml/song-item-menu.xml", "", win32.GetCursorPos())
+	pMenu:Init(nil, "xml/song-item-menu.xml", "", Application.GetCursorPos())
 end
 
 function MainWindow:OnAddSongsToList(song_list)
@@ -633,7 +632,7 @@ function MainWindow:OnMenuCommandSongList(msg)
 			print("[End]新增歌曲")
 		end
 	elseif msg.sItemName == "addfolder" then
-		local tempfiles = win32.SHBrowseForFolder(self:GetHWND(), "选择本地歌曲目录")
+		local tempfiles = Application.SHBrowseForFolder(self:GetHWND(), "选择本地歌曲目录")
 
 	end
 end

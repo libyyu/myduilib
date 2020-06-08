@@ -25,21 +25,21 @@ function CConfigBase:Modify(b)
 	self.m_bModify = b
 end
 function CConfigBase:RegSet(hKey, cs_subkey, cs_value_name, cs_value)
-	return win32.RegSet(hKey, cs_subkey, cs_value_name, cs_value)
+	return Application.RegSet(hKey, cs_subkey, cs_value_name, cs_value)
 end
 --注册表设置，先检测是否存在，若存在则不写;
 function CConfigBase:RegSetEx(hKey, cs_subkey, cs_value_name, cs_value)
-	return win32.RegSetEx(hKey, cs_subkey, cs_value_name, cs_value)
+	return Application.RegSetEx(hKey, cs_subkey, cs_value_name, cs_value)
 end
 function CConfigBase:RegDelete( cs_subkey, cs_value_name)
-	return win32.RegDelete(cs_subkey, cs_value_name)
+	return Application.RegDelete(cs_subkey, cs_value_name)
 end
 --注册表项查询
 function CConfigBase:RegQuery(cs_subkey, cs_value_name)
-	return win32.RegQuery(cs_subkey, cs_value_name)
+	return Application.RegQuery(cs_subkey, cs_value_name)
 end
 function CConfigBase:GetAppName()
-	return win32.GetAppName()
+	return Application.GetAppName()
 end
 
 

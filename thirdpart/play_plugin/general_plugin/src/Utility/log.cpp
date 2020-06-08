@@ -56,5 +56,5 @@ void player_log(_FStd(FLIB_LOGLEVEL) level, const char* format, ...)
 	if (!getLog())
 		return;
 
-	F_LOG_TO_FILE(level, getLog()) << buff << "\n";
+	F_LOG_TO_FILE(level, *getLog()) << buff << "\n";
 }

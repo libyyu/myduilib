@@ -101,10 +101,10 @@ function CHotKeyConfig:RegAllHotKey()
 end
 
 function CHotKeyConfig:RegHotKey(dwkey)
-	return win32.RegisterHotKey(theApp:GetMainWindow():GetHWND(), dwkey)
+	return Application.RegisterHotKey(theApp:GetMainWindow():GetHWND(), dwkey)
 end
 function CHotKeyConfig:UnRegHotKey(dwkey)
-	return win32.UnregisterHotKey(theApp:GetMainWindow():GetHWND(), dwkey)
+	return Application.UnregisterHotKey(theApp:GetMainWindow():GetHWND(), dwkey)
 end
 
 function CHotKeyConfig:GetChangeModeHotKey()

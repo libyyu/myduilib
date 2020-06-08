@@ -2,6 +2,7 @@
 #include <lua.hpp>
 #include <assert.h>
 #include "luaext.h"
+#include "MainThreadTask/MainThreadTask.h"
 
 lua_State* gL = nullptr;
 
@@ -135,6 +136,12 @@ extern int lua_register_AudioTagInfo(lua_State* L);
 
 extern "C"
 {
+	static int lua_MainThreadTask_tick(lua_State* L) 
+	{
+		MainThreadTaskManager::instance().tick();
+		return 0;
+	}
+
 	LUALIB_API int luaopen_luaext(lua_State* L)
 	{
 		gL = L;
@@ -142,6 +149,17 @@ extern "C"
 		lua_register_Database(L);
 		lua_register_PlayCenter(L);
 		lua_register_AudioTagInfo(L);
+
+		{
+			int nTop = lua_gettop(L);
+			lua_createtable(L, 0, 0);
+			lua_pushstring(L, "tick");
+			lua_pushcfunction(L, lua_MainThreadTask_tick);
+			lua_rawset(L, -3);
+			lua_setglobal(L, "MainThreadTask");
+			lua_settop(L, nTop);
+		}
+
 		return 1;
 	}
 	LUALIB_API void unload_luaext(lua_State* L)

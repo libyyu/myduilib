@@ -4,19 +4,69 @@
 #include "luaext.h"
 #include "AVPlayer.h"
 #include <sstream>
+#include "MainThreadTask/MainThreadTask.h"
+
 #define Meta_AVPlayer "Meta_CAVPlayer"
 
 extern lua_State* gL;
 
+class MainThreadTask_OnAction : public MainThreadTask
+{
+	std::string name;
+	int luaRef;
+public:
+	MainThreadTask_OnAction(const char* s, int r) : name(s), luaRef(r)
+	{
+	}
+	virtual void doTask()
+	{
+		if (gL) {
+			int nTop = lua_gettop(gL);
+			lua_rawgeti(gL, LUA_REGISTRYINDEX, luaRef);
+			if (!lua_istable(gL, -1))
+			{
+				lua_settop(gL, nTop);
+				luaL_error(gL, "luaref is not a table!");
+//				goto RETURN;
+			}
+			lua_getfield(gL, -1, name.c_str());	//--> t, func
+			if (!lua_isfunction(gL, -1))
+			{
+				lua_settop(gL, nTop);
+				lua_pushfstring(gL, "Fail to find function: %s", name.c_str());
+				lua_error(gL);
+//				goto RETURN;
+			}
+			//lua_pushlightuserdata(gL, event);
+			int ret = lua_pcall(gL, 0, 0, 0);
+			if (0 != ret)
+			{
+				lua_error(gL);
+				lua_settop(gL, nTop);
+//				goto RETURN;
+			}
+			lua_settop(gL, nTop);
+		}
+//	RETURN:
+//		delete this;
+	}
+};
+
 class LuaAVPlayer : public CAVPlayer, public IAVPlayerCallBack
 {
+	MainThreadTask_OnAction* pOnPlaying;
+	MainThreadTask_OnAction* pOnPosChanged;
+	MainThreadTask_OnAction* pOnEndReached;
 public:
-	LuaAVPlayer() : CAVPlayer(), _luaRef(LUA_NOREF)
+	LuaAVPlayer() : CAVPlayer(), _luaRef(LUA_NOREF), pOnPlaying(NULL), pOnEndReached(NULL), pOnPosChanged(NULL)
 	{
 		SetCallback(this);
 	}
 	virtual ~LuaAVPlayer()
 	{
+		if (pOnPlaying) { delete pOnPlaying; pOnPlaying = NULL; }
+		if (pOnEndReached) { delete pOnEndReached; pOnEndReached = NULL; }
+		if (pOnPosChanged) { delete pOnPosChanged; pOnPosChanged = NULL; }
 		if (_luaRef != LUA_NOREF && gL)
 		{
 			luaL_unref(gL, LUA_REGISTRYINDEX, _luaRef);
@@ -30,52 +80,26 @@ public:
 			luaL_unref(gL, LUA_REGISTRYINDEX, _luaRef);
 		}
 		_luaRef = luaref;
+
+		pOnPlaying = new MainThreadTask_OnAction("OnPlaying", _luaRef);
+		pOnEndReached = new MainThreadTask_OnAction("OnEndReached", _luaRef);
+		pOnPosChanged = new MainThreadTask_OnAction("OnPosChanged", _luaRef);
 	}
 protected:
+	//多线程调用
 	virtual void OnPlaying(CAVPlayer* player, void* event)         // 设置文件头读取完毕时的回调函数
 	{
-		OnAction("OnPlaying", player, event);
+		if (pOnPlaying) MainThreadTaskManager::instance().addTask(pOnPlaying);
 	}
 	virtual void OnPosChanged(CAVPlayer* player, void* event)      // 设置文件位置改变时的回调函数
 	{
-		//OnAction("OnPosChanged", player, event);
+		if (pOnPosChanged) MainThreadTaskManager::instance().addTask(pOnPosChanged);
 	}
 	virtual void OnEndReached(CAVPlayer* player, void* event)      // 设置文件头读取完毕时的回调函数
 	{
-		OnAction("OnEndReached", player, event);
+		if(pOnEndReached) MainThreadTaskManager::instance().addTask(pOnEndReached);
 	}
 private:
-	void OnAction(const char* method, CAVPlayer* player, void* event)
-	{
-		if (gL && _luaRef != LUA_NOREF)
-		{
-			int nTop = lua_gettop(gL);
-			lua_rawgeti(gL, LUA_REGISTRYINDEX, _luaRef);
-			if (!lua_istable(gL, -1))
-			{
-				lua_settop(gL, nTop);
-				luaL_error(gL, "luaref is not a table!");
-				return;
-			}
-			lua_getfield(gL, -1, method);	//--> t, func
-			if (!lua_isfunction(gL, -1))
-			{
-				lua_settop(gL, nTop);
-				lua_pushfstring(gL, "Fail to find function: %s", method);
-				lua_error(gL);
-				return;
-			}
-			//lua_pushlightuserdata(gL, event);
-			int ret = lua_pcall(gL, 0, 0, 0);
-			if (0 != ret)
-			{
-				lua_error(gL);
-				lua_settop(gL, nTop);
-				return;
-			}
-			lua_settop(gL, nTop);
-		}
-	}
 private:
 	int _luaRef;
 };

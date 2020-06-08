@@ -47,7 +47,7 @@ function CDatabaseManager:SetDatabasePath(sDatabasePath)
 		self.m_sDatabasePath = self.m_sDatabasePath .. "/"
 	end
 
-	assert(win32.CreateDirectory(sDatabasePath))
+	assert(Application.CreateDirectory(sDatabasePath))
 end
 function CDatabaseManager:GetDatabasePath()
 	return self.m_sDatabasePath

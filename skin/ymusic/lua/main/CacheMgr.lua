@@ -9,7 +9,7 @@ function CCacheMgr:__ctor()
 	self.m_sWebPath = ""
 end
 function CCacheMgr:Init(path)
-	assert(win32.CreateDirectory(path))
+	assert(Application.CreateDirectory(path))
 	self.m_sCachePath = path:gsub("\\", "/")
 	if self.m_sCachePath:sub(-1,-1) ~= "/" then
 		self.m_sCachePath = self.m_sCachePath .. "/"
@@ -65,21 +65,21 @@ function CCacheMgr:GetFolderSize(sPath)
 		strPath = strPath .. "/"
 	end
 	local nTotalSize = 0
-	local data = win32.FindFirstFile(strPath .. "*.*")
+	local data = Application.FindFirstFile(strPath .. "*.*")
 	local bStop = false
 	while true do 
 		if not data or bStop then
 			break
 		end
 
-		local info = win32.GetFindData(data, strPath)
+		local info = Application.GetFindData(data, strPath)
 		local s_file_name = strPath .. info.cFileName
 		nTotalSize = nTotalSize + info.st_size
-		if not win32.FindNextFile(data) then
+		if not Application.FindNextFile(data) then
 			bStop = true
 		end
 	end
-	win32.FindClose(data)
+	Application.FindClose(data)
 	return nTotalSize
 end
 function CCacheMgr:CleanFolder(sPath)
@@ -88,21 +88,21 @@ function CCacheMgr:CleanFolder(sPath)
 		strPath = strPath .. "/"
 	end
 
-	local data = win32.FindFirstFile(strPath .. "*.*")
+	local data = Application.FindFirstFile(strPath .. "*.*")
 	local bStop = false
 	while true do 
 		if not data or bStop then
 			break
 		end
 
-		local info = win32.GetFindData(data, strPath)
+		local info = Application.GetFindData(data, strPath)
 		local s_file_name = strPath .. info.cFileName
 		os.remove(s_file_name)
-		if not win32.FindNextFile(data) then
+		if not Application.FindNextFile(data) then
 			bStop = true
 		end
 	end
-	win32.FindClose(data)
+	Application.FindClose(data)
 end
 function CCacheMgr:StatFolderSize(nNewFileSize)
 end

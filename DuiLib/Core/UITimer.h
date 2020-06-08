@@ -103,7 +103,7 @@ namespace DuiLib{
 		LONG  GetInterval() const {return m_iInterval;};
 		LONG  GetTotalTimer() const {return m_iTotalTimer;};
 		LONG  GetCurTimer() const {return m_iCurTimer;};
-		UINT  GetTimerID() const {return m_uTimerID;};
+		UINT  (GetTimerID)() const {return m_uTimerID;};
 		UINT  GetTimerAccuracy() const {return m_uTimerAccuracy;};
 		HWND  GetHwnd() const {return m_hWnd;};
 		LPARAM GetLParam() const {return m_lParam;};
@@ -150,7 +150,7 @@ namespace DuiLib{
 	};
 
 	template<class TObj,class TFun,class TParam = void*>
-	class DUILIB_API TDuiTimer : public CDuiTimerBase
+	class TDuiTimer : public CDuiTimerBase
 	{
 		typedef void (TFun::* TimerOnFnA)(IDuiTimer* pTimer);
 		typedef void (TFun::* TimerOnFnB)(IDuiTimer* pTimer,TParam param);
@@ -280,6 +280,7 @@ namespace DuiLib{
 		void ResetTimers();
 		void RemoveTimerAll();
 		bool RunTimers();
+		CDuiPtrArray GetAllDuiTimers() { return m_aDuiTimers; }
 	protected:
 		CDuiPtrArray m_aDuiTimers;
 	};

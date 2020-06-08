@@ -38,7 +38,7 @@ function CAVPlayer:PlayFile(strFile, strURL)
 	assert(self._pPlayer)
 	local ret
 	local isLocal
-	if win32.IsFileExist(strFile) then
+	if Application.IsFileExist(strFile) then
 		ret = self._pPlayer:PlayFile(strFile)
 		isLocal = true
 	else

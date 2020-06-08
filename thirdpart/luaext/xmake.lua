@@ -8,9 +8,10 @@ target("luaext")
     add_includedirs("../database", "../sqlite3cpp/src")
     add_includedirs("../taglib", "../taglib_plugin/taglib_plugin/src")
     add_includedirs("../vlc/src")
+    add_includedirs("$(projectdir)/thirdpart")
 	-- links
-	add_deps("database", "playcenter",  "taglib_plugin")
-    add_links("database", "playcenter",  "taglib_plugin")
+	add_deps("database", "playcenter",  "taglib_plugin", "MainThreadTask")
+    add_links("database", "playcenter",  "taglib_plugin", "MainThreadTask")
 	if has_config("luajit") then
         add_includedirs("../luajit/src")
         add_deps("luajit")

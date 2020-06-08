@@ -13,13 +13,14 @@ namespace DuiLib
 		virtual ~LuaApplication();
 		bool Run(HINSTANCE, HINSTANCE, LPSTR, int);
 		bool ImportLuaDLL(LPCTSTR dllName, LPCTSTR dllEntry = NULL);
-		void OnGlobalTimer(IDuiTimer*, HWND, CLuaWindow* , WPARAM );
 		CLuaWindow* GetMainWindow() { return m_pMainWindow; }
 		void SetMainWindow(CLuaWindow* pWindow) { m_pMainWindow = pWindow; }
+		IDuiTimer* AddTimer(CLuaWindow* pWindow, int iInterval, int iTotalTimer = NULL, bool bAutoRun = true, bool bLoop = false, bool bRevers = false, unUserData* userdata = NULL);
 	protected:
 		bool Initialize();
 		void Unitialize();
 		bool RunInternal(HINSTANCE, HINSTANCE, LPSTR, int);
+		void OnCallbackTimer(IDuiTimer*, HWND, CLuaWindow*, WPARAM);
 	private:
 		bool StartupLua();
 		bool ShutdownLua();

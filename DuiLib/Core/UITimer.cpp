@@ -12,18 +12,18 @@ namespace DuiLib{
 			return;
 		}
 
+		pTimerUI->CalInterval();
+
+		if (pTimerUI->FinshTimered()) {
+			pTimerUI->KillDuiTimer();
+		}
+
 		if(pTimerUI->GetObj() && pTimerUI->GetFun() && pTimerUI->GetParam() )
 			pTimerUI->OnTimer(pTimerUI,pTimerUI->GetParam());
 		else if(pTimerUI->GetHwnd() || pTimerUI->GetLParam())
 			pTimerUI->OnTimer(pTimerUI,pTimerUI->GetHwnd(),pTimerUI->GetLParam(),pTimerUI->GetWParam());
 		else
 			pTimerUI->OnTimer(pTimerUI);
-
-		pTimerUI->CalInterval();
-
-		if(pTimerUI->FinshTimered()){
-			pTimerUI->KillDuiTimer();
-		}
 	}
 
 	static void CALLBACK TimerWndProc(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTimer)
@@ -33,18 +33,18 @@ namespace DuiLib{
 		if(!pTimerUI)
 			return;
 
+		pTimerUI->CalInterval();
+
+		if (pTimerUI->FinshTimered()) {
+			pTimerUI->KillDuiTimer();
+		}
+
 		if(pTimerUI->GetObj() && pTimerUI->GetFun() && pTimerUI->GetParam() )
 			pTimerUI->OnTimer(pTimerUI,pTimerUI->GetParam());
 		else if(pTimerUI->GetHwnd() || pTimerUI->GetLParam())
 			pTimerUI->OnTimer(pTimerUI,pTimerUI->GetHwnd(),pTimerUI->GetLParam(),pTimerUI->GetWParam());
 		else
 			pTimerUI->OnTimer(pTimerUI);
-
-		pTimerUI->CalInterval();
-
-		if(pTimerUI->FinshTimered()){
-			pTimerUI->KillDuiTimer();
-		}
 	}
 	
 	//************************************

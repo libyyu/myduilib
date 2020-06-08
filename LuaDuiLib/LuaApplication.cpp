@@ -5,6 +5,7 @@
 #include "lua_dui_wrapper.hpp"
 #include "base/LuaEnv.hpp"
 #include <algorithm>
+#include <Shlobj.h>
 #ifdef USE_CUSTOM_MEMORY
 #define new FLIB_NEW
 #endif
@@ -136,7 +137,7 @@ namespace DuiLib
 			break;
 		}
 	}
-	
+
 	int on_lua_loader(lua_State* L)
 	{
 		int top = lua_gettop(L);
@@ -183,7 +184,625 @@ namespace DuiLib
 			return lua_gettop(L) - n;
 		}
 	}
+	
 	static DuiObjectHandler _obj_handler;
+}
+
+namespace DuiLib
+{
+	static int lua_RegisterWindowMessage(lua_State* l)
+	{
+		CDuiString message;
+		lua::get(l, 1, &message);
+		return lua::push(l, ::RegisterWindowMessage(message));
+	}
+	static int lua_LoadIconFromFile(lua_State* l)
+	{
+		HINSTANCE hInstance = nullptr;
+		CDuiString pstrFileName;
+		lua::get(l, 1, &pstrFileName, &hInstance);
+		HICON hIcon = ::LoadIcon(hInstance, pstrFileName);
+		if (!hIcon)
+		{
+			hIcon = (HICON)::LoadImage(NULL, pstrFileName, IMAGE_ICON, 0, 0, LR_LOADFROMFILE | LR_DEFAULTCOLOR);
+			//hIcon = (HICON)::LoadImage(hInstance, pstrFileName, IMAGE_ICON, (::GetSystemMetrics(SM_CXICON) + 15) & ~15, (::GetSystemMetrics(SM_CYICON) + 15) & ~15, LR_DEFAULTCOLOR);
+			return lua::push(l, hIcon);
+		}
+		else
+		{
+			return lua::push(l);
+		}
+	}
+	static int lua_DestroyIcon(lua_State* l)
+	{
+		HICON hIcon = nullptr;
+		lua::get(l, 1, &hIcon);
+		DuiAssert(hIcon);
+		::DestroyIcon(hIcon);
+		return 0;
+	}
+	static int lua_GetCursorPos(lua_State* l)
+	{
+		POINT pt;
+		::GetCursorPos(&pt);
+		return lua::push(l, pt);
+	}
+	static int lua_GetModulePath(lua_State* l)
+	{
+		TCHAR s_buf[MAX_PATH];
+		s_buf[0] = 0x0;
+		DWORD n_result = ::GetModuleFileName(NULL, s_buf, sizeof(TCHAR) * MAX_PATH);
+		TCHAR	s_drive[MAX_PATH];
+		s_drive[0] = 0x0;
+		TCHAR s_dir[MAX_PATH];
+		s_dir[0] = 0x0;
+		TCHAR s_filename[MAX_PATH];
+		s_filename[0] = 0x0;
+		TCHAR s_ext[MAX_PATH];
+		s_ext[0] = 0x0;
+		/*errno_t n_err_no =*/
+		_tsplitpath_s(s_buf, s_drive, MAX_PATH, s_dir, MAX_PATH, s_filename, MAX_PATH, s_ext, MAX_PATH);
+		//assert(n_err_no == 0);
+		_tcscpy_s(s_buf, s_drive);
+		_tcscat_s(s_buf, s_dir);
+
+		CDuiString strpath = s_buf;
+		strpath.Replace(_T("\\"), _T("/"));
+		if (strpath.GetAt(strpath.GetLength() - 1) != _T('/'))
+		{
+			strpath += _T("/");
+		}
+
+		lua::push(l, strpath);
+		return 1;
+	}
+	static int lua_GetAppName(lua_State* l)
+	{
+		TCHAR strAppName[MAX_PATH + 1];
+		GetModuleFileName(NULL, strAppName, MAX_PATH);
+		CDuiString sAppName(strAppName);
+		lua::push(l, sAppName);
+		return 1;
+	}
+	static int lua_GetAPPDATAPath(lua_State* l)
+	{
+		TCHAR Path[MAX_PATH] = { 0 };
+		SHGetFolderPath(NULL, CSIDL_APPDATA, NULL, SHGFP_TYPE_CURRENT, Path);
+		CDuiString sDataPath = Path;
+		sDataPath.Replace(_T("\\"), _T("/"));
+		if (sDataPath.GetAt(sDataPath.GetLength() - 1) != _T('/'))
+		{
+			sDataPath += _T("/");
+		}
+
+		lua::push(l, sDataPath);
+		return 1;
+	}
+	static int lua_CreateDirectory(lua_State* l)
+	{
+		CDuiString strPath;
+		lua::get(l, 1, &strPath);
+		bool ret = true;
+		if (!Path::IsDirectoryExist(strPath))
+		{
+			ret = Path::CreateDirectory(strPath, NULL);
+		}
+		return lua::push(l, ret);
+	}
+	static int lua_IsFileExist(lua_State* l)
+	{
+		CDuiString strPath;
+		lua::get(l, 1, &strPath);
+		bool ret = Path::IsFileExist(strPath);
+		return lua::push(l, ret);
+	}
+	static int lua_IsDirectoryExist(lua_State* l)
+	{
+		CDuiString strPath;
+		lua::get(l, 1, &strPath);
+		bool ret = Path::IsDirectoryExist(strPath);
+		return lua::push(l, ret);
+	}
+	static void FindImportFilesRaw(CDuiString strPath, std::vector<CDuiString>& importfiles)
+	{
+		WIN32_FIND_DATA find_data;
+		HANDLE h_find = INVALID_HANDLE_VALUE;
+		CDuiString dir = strPath;
+		if (strPath[strPath.GetLength() - 1] == _T('\\'))
+		{
+			dir = strPath.Left(strPath.GetLength() - 1);
+		}
+		CDuiString s_search_dir = dir;
+		s_search_dir += _T("\\*.*");
+		h_find = ::FindFirstFile(s_search_dir, &find_data);
+		s_search_dir = dir + _T("\\");
+		s_search_dir += find_data.cFileName;
+		if (find_data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) //目录
+		{
+			if (!(_tcscmp(find_data.cFileName, _T(".")) == 0 || _tcscmp(find_data.cFileName, _T("..")) == 0))	//非上层和自身目录
+			{
+				FindImportFilesRaw(s_search_dir, importfiles);
+			}
+		}
+		else
+		{
+			importfiles.push_back(s_search_dir);
+		}
+		while (::FindNextFile(h_find, &find_data))
+		{
+			s_search_dir = dir + _T("\\");
+			s_search_dir += find_data.cFileName;
+			if (find_data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) //目录
+			{
+				if (!(_tcscmp(find_data.cFileName, _T(".")) == 0 || _tcscmp(find_data.cFileName, _T("..")) == 0))	//非上层和自身目录
+				{
+					FindImportFilesRaw(s_search_dir, importfiles);
+				}
+			}
+			else
+			{
+				importfiles.push_back(s_search_dir);
+			}
+		}
+		::FindClose(h_find);
+	}
+	static int lua_SHBrowseForFolder(lua_State* l)
+	{
+		HWND hWnd = NULL;
+		CDuiString strTitle;
+		lua::get(l, 1, &hWnd, &strTitle);
+		std::vector<CDuiString> filelist;
+
+		TCHAR Buffer[MAX_PATH] = { 0 };
+		BROWSEINFO bi;
+		ZeroMemory(&bi, sizeof(BROWSEINFO));
+		bi.hwndOwner = hWnd;
+		bi.pidlRoot = NULL;
+		bi.pszDisplayName = Buffer;
+		bi.lpszTitle = strTitle.GetData();
+		bi.ulFlags = 0;
+		bi.lpfn = NULL;
+		LPITEMIDLIST pIDList = SHBrowseForFolder(&bi);
+		if (pIDList)
+		{
+			if (SHGetPathFromIDList(pIDList, Buffer))
+			{
+				FindImportFilesRaw(Buffer, filelist);
+			}
+		}
+
+		lua::push(l, filelist);
+		return 1;
+	}
+	static int lua_RegSet(lua_State* l)
+	{
+		HKEY hKey = NULL;
+		CDuiString cs_subkey;
+		CDuiString cs_value_name;
+		CDuiString cs_value;
+		HKEY hKEY;
+		lua::get(l, 1, &hKey, &cs_subkey, &cs_value_name, &cs_value);
+		long ret0 = ::RegOpenKeyEx(hKey, cs_subkey, 0, KEY_ALL_ACCESS, &hKEY);
+		if (ret0 != ERROR_SUCCESS)
+		{
+			ret0 = ::RegCreateKey(hKey, cs_subkey, &hKEY);
+			if (ret0 != ERROR_SUCCESS)
+			{
+				lua::push(l, false);
+				return 1;
+			}
+		}
+
+		long ret1 = ::RegSetValueEx(hKEY, cs_value_name, 0, REG_SZ, (CONST BYTE*)(LPCTSTR)(cs_value.GetData()), cs_value.GetLength() * 2);
+
+		long ret2 = ::RegCloseKey(hKEY);
+
+		if (ret1 != ERROR_SUCCESS)
+		{
+			lua::push(l, false);
+			return 1;
+		}
+		lua::push(l, true);
+		return 1;
+	}
+	static int lua_RegSetEx(lua_State* l)
+	{
+		HKEY hKey = NULL;
+		CDuiString cs_subkey;
+		CDuiString cs_value_name;
+		CDuiString cs_value;
+		HKEY hKEY;
+		lua::get(l, 1, &hKey, &cs_subkey, &cs_value_name, &cs_value);
+		bool b_OK = false;
+		long n_result = ::RegOpenKeyEx(hKey, cs_subkey, 0, KEY_ALL_ACCESS, &hKEY);
+		if (n_result != ERROR_SUCCESS)
+		{
+			n_result = RegCreateKey(hKey, cs_subkey, &hKEY);
+			if (n_result != ERROR_SUCCESS)
+			{
+				lua::push(l, false);
+				return 1;
+			}
+		}
+
+		TCHAR lpa[MAX_PATH];
+
+		DWORD dwAidSize = MAX_PATH;
+		DWORD type = REG_SZ;
+
+		n_result = ::RegQueryValueEx(hKEY, cs_value_name, NULL, &type, (LPBYTE)lpa, &dwAidSize);
+
+		if (n_result == ERROR_SUCCESS)
+		{
+			if (cs_value == lpa)
+			{
+				b_OK = true;
+			}
+		}
+
+		if (!b_OK)
+		{
+			n_result = ::RegSetValueEx(hKEY, cs_value_name, 0, REG_SZ, (CONST BYTE*)(LPCTSTR)(cs_value.GetData()), cs_value.GetLength() * 2);
+			if (n_result == ERROR_SUCCESS)
+			{
+				b_OK = true;
+			}
+
+		}
+		::RegCloseKey(hKEY);
+
+		lua::push(l, b_OK);
+		return 1;
+	}
+	static int lua_RegDelete(lua_State* l)
+	{
+		CDuiString cs_subkey, cs_value_name;
+		lua::get(l, 1, &cs_subkey, &cs_value_name);
+		HKEY hKEY;
+		long ret0 = ::RegOpenKeyEx(HKEY_LOCAL_MACHINE, cs_subkey, 0, KEY_ALL_ACCESS, &hKEY);
+		long ret1 = ::RegDeleteValue(hKEY, cs_value_name);
+		long ret2 = ::RegCloseKey(hKEY);
+
+		if (ret1 == ERROR_SUCCESS)
+			lua::push(l, true);
+		else
+			lua::push(l, false);
+		return 1;
+	}
+	static int lua_RegQuery(lua_State* l)
+	{
+		CDuiString cs_subkey, cs_value_name;
+		lua::get(l, 1, &cs_subkey, &cs_value_name);
+		HKEY hKEY;
+		long ret0 = ::RegOpenKeyEx(HKEY_LOCAL_MACHINE, cs_subkey, 0, KEY_ALL_ACCESS, &hKEY);
+
+		TCHAR lpa[_MAX_DIR];
+		CDuiString cs_value;
+
+		DWORD dwAidSize = MAX_PATH;
+		DWORD type = REG_SZ;
+		long ret1 = ::RegQueryValueEx(hKEY, cs_value_name, NULL, &type, (LPBYTE)lpa, &dwAidSize);
+		if (ret1 == ERROR_SUCCESS)
+		{
+			cs_value = lpa;
+		}
+		long ret2 = ::RegCloseKey(hKEY);
+
+		lua::push(l, cs_value);
+		return 1;
+	}
+	
+	static WORD _HKF2SDK(WORD mod)
+	{
+		return ((mod & HOTKEYF_ALT) ? MOD_ALT : 0) \
+			| ((mod & HOTKEYF_CONTROL) ? MOD_CONTROL : 0) \
+			| ((mod & HOTKEYF_SHIFT) ? MOD_SHIFT : 0);
+	}
+	static WORD _SDK2HKF(WORD mod)
+	{
+		return ((mod & MOD_ALT) ? HOTKEYF_ALT : 0) \
+			| ((mod & MOD_CONTROL) ? HOTKEYF_CONTROL : 0) \
+			| ((mod & MOD_SHIFT) ? HOTKEYF_SHIFT : 0);
+	}
+	static int lua_RegisterHotKey(lua_State* l)
+	{
+		DWORD dwkey;
+		HWND hWnd = nullptr;
+		lua::get(l, 1, &hWnd, &dwkey);
+		WORD wVirtualKeyCode = LOBYTE(LOWORD(dwkey));
+		WORD wModifiers = HIBYTE(LOWORD(dwkey));
+		UINT fsModifiers = _HKF2SDK(wModifiers);
+		bool ret = ::RegisterHotKey(hWnd, dwkey, fsModifiers, wVirtualKeyCode);
+		return lua::push(l, ret);
+	}
+	static int lua_UnregisterHotKey(lua_State* l)
+	{
+		DWORD dwkey;
+		HWND hWnd = nullptr;
+		lua::get(l, 1, &dwkey, &hWnd);
+		bool ret = ::UnregisterHotKey(hWnd, dwkey);
+		return lua::push(l, ret);
+	}
+	static int lua_FindFirstFile(lua_State* l)
+	{
+		CDuiString strPath;
+		lua::get(l, 1, &strPath);
+		WIN32_FIND_DATA* FIND_DATA = new WIN32_FIND_DATA();
+		HANDLE h_find = INVALID_HANDLE_VALUE;
+		h_find = ::FindFirstFile(strPath, FIND_DATA);
+		if (h_find == INVALID_HANDLE_VALUE)
+		{
+			delete FIND_DATA;
+			lua::push(l, lua::Nil);
+			return 1;
+		}
+
+		lua_newtable(l);
+		lua::push(l, "FIND_DATA");
+		lua_pushlightuserdata(l, FIND_DATA);
+		lua_settable(l, -3);
+
+		lua::push(l, "HFIND");
+		lua_pushlightuserdata(l, h_find);
+		lua_settable(l, -3);
+
+		return 1;
+	}
+	static int lua_FindNextFile(lua_State* l)
+	{
+		WIN32_FIND_DATA* FIND_DATA = NULL;
+		HANDLE h_find = INVALID_HANDLE_VALUE;
+
+		lua_pushnil(l);
+		int real_pos = 1;
+		while (lua_next(l, real_pos) != 0)
+		{
+			std::string key;
+			lua::get(l, -2, &key);
+			if (key == "FIND_DATA")
+				FIND_DATA = (WIN32_FIND_DATA*)lua_touserdata(l, -1);
+			else if (key == "HFIND")
+				h_find = (HANDLE)lua_touserdata(l, -1);
+			lua_pop(l, 1);
+		}
+
+		bool ret = false;
+		if (FIND_DATA && h_find)
+			ret = ::FindNextFile(h_find, FIND_DATA);
+
+		lua::push(l, ret);
+		return 1;
+	}
+	static int lua_GetFindData(lua_State* l)
+	{
+		WIN32_FIND_DATA* FIND_DATA = NULL;
+		lua_pushnil(l);
+		int real_pos = 1;
+		while (lua_next(l, real_pos) != 0)
+		{
+			std::string key;
+			lua::get(l, -2, &key);
+			if (key == "FIND_DATA")
+				FIND_DATA = (WIN32_FIND_DATA*)lua_touserdata(l, -1);
+			lua_pop(l, 1);
+		}
+
+		CDuiString strPath;
+		lua::get(l, 2, &strPath);
+
+		if (FIND_DATA)
+		{
+			lua_newtable(l);
+			lua::push(l, "cFileName");
+			lua::push(l, FIND_DATA->cFileName);
+			lua_settable(l, -3);
+
+			lua::push(l, "dwFileAttributes");
+			lua::push(l, FIND_DATA->dwFileAttributes);
+			lua_settable(l, -3);
+
+			lua::push(l, "nFileSizeHigh");
+			lua::push(l, FIND_DATA->nFileSizeHigh);
+			lua_settable(l, -3);
+
+			lua::push(l, "nFileSizeLow");
+			lua::push(l, FIND_DATA->nFileSizeLow);
+			lua_settable(l, -3);
+
+			CDuiString strFullPath = Path::CombinePath(strPath, FIND_DATA->cFileName);
+
+			lua::push(l, "cFullPath");
+			lua::push(l, strFullPath);
+			lua_settable(l, -3);
+
+			struct _tstat stat_info;
+			_tstat(strFullPath, &stat_info);
+			lua::push(l, "st_size");
+			lua::push(l, (unsigned int)(stat_info.st_size));
+			lua_settable(l, -3);
+
+			return 1;
+		}
+		else
+		{
+			lua::push(l, lua::Nil);
+			return 1;
+		}
+	}
+	static int lua_FindClose(lua_State* l)
+	{
+		WIN32_FIND_DATA* FIND_DATA = NULL;
+		HANDLE h_find = INVALID_HANDLE_VALUE;
+
+		lua_pushnil(l);
+		int real_pos = 1;
+		while (lua_next(l, real_pos) != 0)
+		{
+			std::string key;
+			lua::get(l, -2, &key);
+			if (key == "FIND_DATA")
+				FIND_DATA = (WIN32_FIND_DATA*)lua_touserdata(l, -1);
+			else if (key == "HFIND")
+				h_find = (HANDLE)lua_touserdata(l, -1);
+			lua_pop(l, 1);
+		}
+
+		if (h_find)
+		{
+			::FindClose(h_find);
+		}
+		if (FIND_DATA)
+			delete FIND_DATA;
+		return 0;
+	}
+
+	static int lua_SetMainWindow(lua_State* l)
+	{
+		CLuaWindow* pWindow = nullptr;
+		lua::get(l, 1, &pWindow);
+		LuaApplication::Instance()->SetMainWindow(pWindow);
+		return 0;
+	}
+
+	static bool RegisterApplicationAPIToLua(lua_State* l)
+	{
+		//Application
+		lua::lua_register_t<void>(l, "Application")
+			.def("RegisterWindowMessage", lua_RegisterWindowMessage)
+			.def("LoadIconFromFile", lua_LoadIconFromFile)
+			.def("DestroyIcon", lua_DestroyIcon)
+			.def("GetCursorPos", lua_GetCursorPos)
+			.def("GetModulePath", lua_GetModulePath)
+			.def("GetAPPDATAPath", lua_GetAPPDATAPath)
+			.def("CreateDirectory", lua_CreateDirectory)
+			.def("SHBrowseForFolder", lua_SHBrowseForFolder)
+			.def("IsDirectoryExist", lua_IsDirectoryExist)
+			.def("IsFileExist", lua_IsFileExist)
+			.def("RegSet", lua_RegSet)
+			.def("RegSetEx", lua_RegSetEx)
+			.def("RegDelete", lua_RegDelete)
+			.def("RegQuery", lua_RegQuery)
+			.def("GetAppName", lua_GetAppName)
+			.def("RegisterHotKey", lua_RegisterHotKey)
+			.def("UnregisterHotKey", lua_UnregisterHotKey)
+			.def("FindFirstFile", lua_FindFirstFile)
+			.def("FindNextFile", lua_FindNextFile)
+			.def("GetFindData", lua_GetFindData)
+			.def("FindClose", lua_FindClose)
+			.def("SetMainWindow", lua_SetMainWindow);
+
+		return true;
+	}
+
+	static void _KillDuiTimer(IDuiTimer* pDuiTimer)
+	{
+		DuiAssert(pDuiTimer);
+		if (pDuiTimer)
+		{
+			pDuiTimer->KillDuiTimer();
+			if (pDuiTimer && pDuiTimer->GetUserData().iInt) {
+				if (globalLuaEnv) {
+					luaL_unref(*globalLuaEnv, LUA_REGISTRYINDEX, pDuiTimer->GetUserData().iInt);
+				}
+			}
+			LuaApplication::Instance()->TimerSource -= pDuiTimer;
+		}
+	}
+
+	void LuaApplication::OnCallbackTimer(IDuiTimer* pDuiTimer, HWND, CLuaWindow*, WPARAM)
+	{
+		int iref = pDuiTimer->GetUserData().iInt;
+		if (globalLuaEnv && iref)
+		{
+			lua::stack_gurad guard(*globalLuaEnv);
+			globalLuaEnv->doFunc(iref);
+			CDuiTimerBase* pTimerUI = (CDuiTimerBase*)pDuiTimer;
+			if (!pTimerUI->GetTimerID())
+			{
+				_KillDuiTimer(pDuiTimer);
+			}
+		}
+	}
+
+	IDuiTimer* LuaApplication::AddTimer(CLuaWindow* pWindow, int iInterval, int iTotalTimer/* = NULL*/, bool bAutoRun/* = true*/, bool bLoop/* = false*/, bool bRevers/* = false*/, unUserData* userdata/* = NULL*/)
+	{
+		DuiAssert(pWindow && ::IsWindow(*pWindow));
+		IDuiTimer* pDuiTimer = MakeDuiTimer(this, &LuaApplication::OnCallbackTimer,
+			pWindow->GetHWND(), pWindow, (WPARAM)0, iInterval, iTotalTimer, bAutoRun, bLoop, bRevers);
+		if (userdata) {
+			pDuiTimer->SetUserData(*userdata);
+		}
+		TimerSource += pDuiTimer;
+
+		return pDuiTimer;
+	}
+
+	static int lua_AddGlobalTimer(lua_State* l)
+	{
+		CLuaWindow* pMainWindow = LuaApplication::Instance()->GetMainWindow();
+		DuiAssert(pMainWindow && ::IsWindow(*pMainWindow));
+		int nTop = lua_gettop(l);
+		int iInterval;
+		int iTotalTimer = 0;
+		bool bAutoRun = true;
+		bool bLoop = false;
+		bool bRevers = false;
+		int iref = LUA_NOREF;
+		if (nTop == 6) {
+			lua::get(l, 1, &iInterval, &iTotalTimer, &bAutoRun, &bLoop, &bRevers);
+		}
+		else if (nTop == 5) {
+			lua::get(l, 1, &iInterval, &iTotalTimer, &bAutoRun, &bLoop);
+		}
+		else if (nTop == 4) {
+			lua::get(l, 1, &iInterval, &iTotalTimer, &bAutoRun);
+		}
+		else if (nTop == 3) {
+			lua::get(l, 1, &iInterval, &iTotalTimer);
+		}
+		else if (nTop == 2) {
+			lua::get(l, 1, &iInterval);
+		}
+		else {
+			lua_pushfstring(l, "timer at least two params");
+			lua_error(l);
+			return 1;
+		}
+		if (!lua_isfunction(l, nTop)) {
+			lua_pushfstring(l, "param #%d must be function", nTop);
+			lua_error(l);
+			return 1;
+		}
+
+		lua_pushvalue(l, nTop);
+		iref = luaL_ref(l, LUA_REGISTRYINDEX);
+
+		unUserData ud;
+		ud.iInt = iref;
+		IDuiTimer* pDuiTimer = LuaApplication::Instance()->AddTimer(pMainWindow, iInterval, iTotalTimer, bAutoRun, bLoop, bRevers, &ud);
+		lua_pushlightuserdata(l, pDuiTimer);
+		return 1;
+	}
+	static int lua_RemoveGlobalTimer(lua_State* l)
+	{
+		IDuiTimer* pDuiTimer = (IDuiTimer*)lua_touserdata(l, 1);
+		_KillDuiTimer(pDuiTimer);
+		return 0;
+	}
+
+	static bool RegisterTimerAPIToLua(lua_State* l)
+	{
+		//Timer
+		lua::lua_register_t<void>(l, "Timer")
+			.def("AddGlobalTimer", lua_AddGlobalTimer)
+			.def("RemoveGlobalTimer", lua_RemoveGlobalTimer);
+
+		return true;
+	}
+}
+
+namespace DuiLib 
+{
 	///////////////////////////////////////////////////////////////
 	////
 	LuaApplication::LuaApplication(): valid(false), exiting(false), m_pMainWindow(NULL)
@@ -311,78 +930,12 @@ namespace DuiLib
 		return true;
 	}
 
-	void LuaApplication::OnGlobalTimer(IDuiTimer* pTimer, HWND, CLuaWindow*, WPARAM)
-	{
-		int iref = pTimer->GetUserData().iInt;
-		if (globalLuaEnv && iref)
-		{
-			lua::stack_gurad guard(*globalLuaEnv);
-			globalLuaEnv->doFunc(iref);
-		}
-	}
-
-	static int lua_AddGlobalTimer(lua_State* l)
-	{
-		int iInterval; lua::get(l, 1, &iInterval);
-		lua_pushvalue(l, 2);
-		int iref = luaL_ref(l, LUA_REGISTRYINDEX);
-		IDuiTimer* pDuiTimer = MakeDuiTimer(LuaApplication::Instance(), &LuaApplication::OnGlobalTimer, LuaApplication::Instance()->GetMainWindow()->GetHWND(), LuaApplication::Instance()->GetMainWindow(), NULL, iInterval);
-		unUserData ud;
-		ud.iInt = iref;
-		pDuiTimer->SetUserData(ud);
-		LuaApplication::Instance()->TimerSource += pDuiTimer;
-		lua_pushlightuserdata(l, pDuiTimer);
-		return 1;
-	}
-
-	static int lua_RemoveGlobalTimer(lua_State* l)
-	{
-		IDuiTimer* pDuiTimer = (IDuiTimer*)lua_touserdata(l, 1);
-		assert(pDuiTimer);
-		if (pDuiTimer)
-		{
-			pDuiTimer->KillDuiTimer();
-			if (pDuiTimer && pDuiTimer->GetUserData().iInt) {
-				if (globalLuaEnv) {
-					luaL_unref(*globalLuaEnv, LUA_REGISTRYINDEX, pDuiTimer->GetUserData().iInt);
-				}
-			}
-			LuaApplication::Instance()->TimerSource -= pDuiTimer;
-		}
-		return 0;
-	}
-
-	static int lua_SetMainWindow(lua_State* l)
-	{
-		CLuaWindow* pWindow = nullptr;
-		lua::get(l, 1, &pWindow);
-		LuaApplication::Instance()->SetMainWindow(pWindow);
-		return 0;
-	}
-
-	static bool RegisterTimerAPIToLua(lua_State* l)
-	{
-		//Timer
-		lua::lua_register_t<void>(l, "Timer")
-			.def("AddGlobalTimer", lua_AddGlobalTimer)
-			.def("RemoveGlobalTimer", lua_RemoveGlobalTimer);
-
-		return true;
-	}
-
-	static bool RegisterAppAPIToLua(lua_State* l)
-	{
-		//_G
-		lua::lua_register_t<void>(l, "Application")
-			.def("SetMainWindow", lua_SetMainWindow);
-
-		return true;
-	}
-	
 	extern bool register_lua_scripts(lua_State*);
+	extern int make_lua_global(lua_State*);
 	bool LuaApplication::RegisterScript()
 	{
-		return register_lua_scripts(*globalLuaEnv) && RegisterTimerAPIToLua(*globalLuaEnv) && RegisterAppAPIToLua(*globalLuaEnv);
+		make_lua_global(*globalLuaEnv);
+		return register_lua_scripts(*globalLuaEnv) && RegisterTimerAPIToLua(*globalLuaEnv) && RegisterApplicationAPIToLua(*globalLuaEnv);
 	}
 	bool LuaApplication::ImportLuaDLL(LPCTSTR dllName, LPCTSTR dllEntry)
 	{
