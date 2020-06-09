@@ -19,19 +19,44 @@ namespace DuiLib
 {
 	class CDelegateStaticEx : public CDelegateBase
 	{
+		typedef std::function<bool(void*)> Fn;
+		Fn pfunc;
+	public:
+		CDelegateStaticEx(Fn pFn) : pfunc(pFn), CDelegateBase((void*)(&pFn), NULL) { }
+		CDelegateStaticEx(const CDelegateStaticEx& rhs) : pfunc(rhs.pfunc), CDelegateBase(rhs) { }
+		virtual CDelegateBase* Copy() const { return new CDelegateStaticEx(*this); }
+	protected:
+		virtual bool Invoke(void* param)
+		{
+			return (pfunc)(param);
+		}
+	};
+
+	class CLuaDelegateStaticEx : public CDelegateBase
+	{
 		typedef std::function<bool(void*, int)> Fn;
 		Fn pfunc;
 		int nLuaRef;
 	public:
-		CDelegateStaticEx(Fn pFn, int LuaRef = LUA_NOREF) : pfunc(pFn), nLuaRef(LuaRef), CDelegateBase((void*)(&pFn), NULL) { }
-		CDelegateStaticEx(const CDelegateStaticEx& rhs) : pfunc(rhs.pfunc), nLuaRef(rhs.nLuaRef), CDelegateBase(rhs) { }
-		virtual CDelegateBase* Copy() const { return new CDelegateStaticEx(*this); }
+		CLuaDelegateStaticEx(Fn pFn, int LuaRef = LUA_NOREF) : pfunc(pFn), nLuaRef(LuaRef), CDelegateBase((void*)(&pFn), NULL) { }
+		CLuaDelegateStaticEx(const CLuaDelegateStaticEx& rhs) : pfunc(rhs.pfunc), nLuaRef(rhs.nLuaRef), CDelegateBase(rhs) { }
+		virtual CDelegateBase* Copy() const { return new CLuaDelegateStaticEx(*this); }
 	protected:
 		virtual bool Invoke(void* param)
 		{
 			return (pfunc)(param, nLuaRef);
 		}
 	};
+
+	inline CDelegateStaticEx MakeDelegate(const std::function<bool(void*)>& pStdFn)
+	{
+		return CDelegateStaticEx(pStdFn);
+	}
+
+	inline CLuaDelegateStaticEx MakeDelegate(int r, const std::function<bool(void*, int)>& pStdFn)
+	{
+		return CLuaDelegateStaticEx(pStdFn, r);
+	}
 }
 
 namespace DuiLib
@@ -97,18 +122,13 @@ namespace DuiLib
 		return 0;
 	}
 
-	inline CDelegateStaticEx MakeStaticDelegateEx(int r, const std::function<bool(void*, int)>& pStdFn)
-	{
-		return CDelegateStaticEx(pStdFn, r);
-	}
-
 	static int CControlUI_OnInitAdd(lua_State* l)
 	{
 		CControlUI* pControl = nullptr;
 		lua::get(l, 1, &pControl);
 		lua_pushvalue(*globalLuaEnv, 2);
 		int luaFunc = luaL_ref(*globalLuaEnv, LUA_REGISTRYINDEX);
-		pControl->OnInit += MakeStaticDelegateEx(luaFunc, [=](void* param, int luaFunc)->bool
+		pControl->OnInit += MakeDelegate(luaFunc, [=](void* param, int luaFunc)->bool
 		{
 			if (!globalLuaEnv) return true;
 			CControlUI* pTargetControl = (CControlUI*)param;
@@ -132,7 +152,7 @@ namespace DuiLib
 		lua::get(l, 1, &pControl);
 		lua_pushvalue(*globalLuaEnv, 2);
 		int luaFunc = luaL_ref(*globalLuaEnv, LUA_REGISTRYINDEX);
-		pControl->OnDestroy += MakeStaticDelegateEx(luaFunc, [=](void* param, int luaFunc)->bool
+		pControl->OnDestroy += MakeDelegate(luaFunc, [=](void* param, int luaFunc)->bool
 			{
 				if (!globalLuaEnv) return true;
 				CControlUI* pTargetControl = (CControlUI*)param;
@@ -156,7 +176,7 @@ namespace DuiLib
 		lua::get(l, 1, &pControl);
 		lua_pushvalue(*globalLuaEnv, 2);
 		int luaFunc = luaL_ref(*globalLuaEnv, LUA_REGISTRYINDEX);
-		pControl->OnSize += MakeStaticDelegateEx(luaFunc, [=](void* param, int luaFunc)->bool
+		pControl->OnSize += MakeDelegate(luaFunc, [=](void* param, int luaFunc)->bool
 			{
 				if (!globalLuaEnv) return true;
 				CControlUI* pTargetControl = (CControlUI*)param;
@@ -180,7 +200,7 @@ namespace DuiLib
 		lua::get(l, 1, &pControl);
 		lua_pushvalue(*globalLuaEnv, 2);
 		int luaFunc = luaL_ref(*globalLuaEnv, LUA_REGISTRYINDEX);
-		pControl->OnEvent += MakeStaticDelegateEx(luaFunc, [=](void* param, int luaFunc)->bool
+		pControl->OnEvent += MakeDelegate(luaFunc, [=](void* param, int luaFunc)->bool
 			{
 				if (!globalLuaEnv) return true;
 				TEventUI* pEvent = (TEventUI*)param;
@@ -204,7 +224,7 @@ namespace DuiLib
 		lua::get(l, 1, &pControl);
 		lua_pushvalue(*globalLuaEnv, 2);
 		int luaFunc = luaL_ref(*globalLuaEnv, LUA_REGISTRYINDEX);
-		pControl->OnNotify += MakeStaticDelegateEx(luaFunc, [=](void* param, int luaFunc)->bool
+		pControl->OnNotify += MakeDelegate(luaFunc, [=](void* param, int luaFunc)->bool
 			{
 				if (!globalLuaEnv) return true;
 				TNotifyUI* pMsg = (TNotifyUI*)param;
@@ -228,7 +248,7 @@ namespace DuiLib
 		lua::get(l, 1, &pControl);
 		lua_pushvalue(*globalLuaEnv, 2);
 		int luaFunc = luaL_ref(*globalLuaEnv, LUA_REGISTRYINDEX);
-		pControl->OnPaint += MakeStaticDelegateEx(luaFunc, [=](void* param, int luaFunc)->bool
+		pControl->OnPaint += MakeDelegate(luaFunc, [=](void* param, int luaFunc)->bool
 			{
 				if (!globalLuaEnv) return true;
 				CControlUI* pTargetControl = (CControlUI*)param;
@@ -252,7 +272,7 @@ namespace DuiLib
 		lua::get(l, 1, &pControl);
 		lua_pushvalue(*globalLuaEnv, 2);
 		int luaFunc = luaL_ref(*globalLuaEnv, LUA_REGISTRYINDEX);
-		pControl->OnPostPaint += MakeStaticDelegateEx(luaFunc, [=](void* param, int luaFunc)->bool
+		pControl->OnPostPaint += MakeDelegate(luaFunc, [=](void* param, int luaFunc)->bool
 			{
 				if (!globalLuaEnv) return true;
 				CControlUI* pTargetControl = (CControlUI*)param;
@@ -277,7 +297,7 @@ namespace DuiLib
 		CControlUI* pControl = nullptr;
 		CControlUI* pOther = nullptr;
 		lua::get(l, 1, &pControl, &pOther);
-		pControl->OnEvent += MakeStaticDelegateEx(-1, [pOther](void* param, int r)->bool
+		pControl->OnEvent += MakeDelegate(-1, [pOther](void* param, int r)->bool
 		{
 			pOther->DoEvent(*(TEventUI*)param);
 			return true;
@@ -2251,11 +2271,6 @@ namespace DuiLib
 		}
 	}
 
-	static void DuiLib_QuitApp()
-	{
-		::PostQuitMessage(0L);
-	}
-
 	static int CFileDialog_GetAllFileList(lua_State* l)
 	{
 		CFileDialog* pFileDalog = nullptr;
@@ -2510,13 +2525,7 @@ namespace DuiLib
 			WRAP_METHOD(SC_MAXIMIZE)
 			WRAP_METHOD(SC_RESTORE)
 			WRAP_METHOD(SC_CLOSE)
-			WRAP_METHOD(WM_SETICON)
-			LAMBDA_METHOD2("QuitApp", DuiLib_QuitApp)
-#ifdef _DEBUG
-			.readonly("IsDebug", true);
-#else
-			.readonly("IsDebug", false);
-#endif
+			WRAP_METHOD(WM_SETICON);
 
 #undef WRAP_METHOD
 		//MsgArgs

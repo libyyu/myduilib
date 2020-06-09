@@ -3,7 +3,7 @@ function InitEnv()
 	--设置入口环境，必须
 	local PaintManagerUI = DuiLib.CPaintManagerUI
 	PaintManagerUI.SetResourcePath(ROOT_DIR .. "/skin/ymusic")
-	if DuiLib.IsDebug then
+	if Application.IsDebug then
 		PaintManagerUI.SetResourceType(DuiLib.UILIB_RESOURCETYPE.UILIB_FILE)
 	else
 		PaintManagerUI.SetResourceType(DuiLib.UILIB_RESOURCETYPE.UILIB_ZIP)
@@ -28,6 +28,6 @@ function exit(success)
 		theApp:Exit()
 		theApp = nil
 	end
-	DuiLib.QuitApp()
+	Application.QuitApp()
 	print("Exit App")
 end

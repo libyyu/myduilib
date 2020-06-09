@@ -173,6 +173,8 @@ namespace DuiLib{
 		m_bLoop			= rhs.IsLoop();
 		m_bReverse		= rhs.IsRevers();
 		m_bInverted		= rhs.IsInverted();
+		CDuiTimerBase* pThat = const_cast<CDuiTimerBase*>(&rhs);
+		SetUserData(pThat->GetUserData());
 	}
 
 	//************************************
@@ -459,32 +461,8 @@ namespace DuiLib{
 			pDuiTimer->SetDuiTimer();
 	}
 
-	//************************************
-	// 函数名称: operator+=
-	// 返回类型: void
-	// 参数信息: CDuiTimerBase *_DuiTimer
-	// 函数说明: 
-	//************************************
-	void CTimerSource::operator+= (CDuiTimerBase* _DuiTimer)
-	{ 
-		if(!_DuiTimer)
-			return;
 
-		for( int i = 0; i < m_aDuiTimers.GetSize(); i++ ) {
-			CDuiTimerBase* pDuiTimer = static_cast<CDuiTimerBase*>(m_aDuiTimers[i]);
-			if(pDuiTimer == _DuiTimer)
-				return;
 
-			if( pDuiTimer && pDuiTimer->Equals(*_DuiTimer)){
-				m_aDuiTimers.Remove(i);
-				delete pDuiTimer;
-			}
-		}
-
-		m_aDuiTimers.Add(_DuiTimer);
-		if(_DuiTimer->GetAutoStart())
-			_DuiTimer->SetDuiTimer();
-	}
 	
 	//************************************
 	// 函数名称: operator-=
@@ -504,29 +482,6 @@ namespace DuiLib{
 		}
 	}
 	
-	//************************************
-	// 函数名称: operator-=
-	// 返回类型: void
-	// 参数信息: const CDuiTimerBase * _DuiTimer
-	// 函数说明: 
-	//************************************
-	void CTimerSource::operator-= (const CDuiTimerBase* _DuiTimer) 
-	{
-		if(!_DuiTimer)
-			return;
-
-		for( int i = 0; i < m_aDuiTimers.GetSize(); i++ ) {
-			CDuiTimerBase* pDuiTimer = static_cast<CDuiTimerBase*>(m_aDuiTimers[i]);
-			if( pDuiTimer && (pDuiTimer->Equals(*_DuiTimer) || pDuiTimer == _DuiTimer)) {
-				delete pDuiTimer;
-				m_aDuiTimers.Remove(i);
-				break;
-			}
-		}
-		delete _DuiTimer;
-		_DuiTimer = NULL;
-	}
-
 	//************************************
 	// 函数名称: KillTimers
 	// 返回类型: void

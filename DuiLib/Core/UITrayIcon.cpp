@@ -72,7 +72,7 @@ namespace DuiLib
 		Shell_NotifyIcon(NIM_ADD,&m_trayData);
 		m_bEnabled = true;
 
-		m_pDuiTime = MakeDuiTimer(this,&CTrayIconUI::OnTimerMousePt,_RecvHwnd,this,NULL,200);
+		m_pDuiTime = MakeDuiTimer(this,&CTrayIconUI::OnTimerMousePt,_RecvHwnd,this,NULL,200).Copy();
 		m_pDuiTime->SetDuiTimer();
 
 		if(pManager)
@@ -109,7 +109,7 @@ namespace DuiLib
 		Shell_NotifyIcon(NIM_ADD, &m_trayData);
 		m_bEnabled = true;
 
-		m_pDuiTime = MakeDuiTimer(this, &CTrayIconUI::OnTimerMousePt, _RecvHwnd, this, NULL, 200);
+		m_pDuiTime = MakeDuiTimer(this, &CTrayIconUI::OnTimerMousePt, _RecvHwnd, this, NULL, 200).Copy();
 		m_pDuiTime->SetDuiTimer();
 
 		if (pManager)
@@ -146,7 +146,7 @@ namespace DuiLib
 		Shell_NotifyIcon(NIM_ADD, &m_trayData);
 		m_bEnabled = true;
 
-		m_pDuiTime = MakeDuiTimer(this, &CTrayIconUI::OnTimerMousePt, _RecvHwnd, this, NULL, 200);
+		m_pDuiTime = MakeDuiTimer(this, &CTrayIconUI::OnTimerMousePt, _RecvHwnd, this, NULL, 200).Copy();
 		m_pDuiTime->SetDuiTimer();
 
 		if (pManager)
@@ -340,7 +340,7 @@ namespace DuiLib
 		if(m_bTwinkling || !m_bEnabled || pIDuiTimer)
 			return false;
 
-		pIDuiTimer = MakeDuiTimer(this,&CTrayIconUI::OnTimer,m_hWnd,this,NULL,400);
+		pIDuiTimer = MakeDuiTimer(this, &CTrayIconUI::OnTimer, m_hWnd, this, NULL, 400).Copy();
 		pIDuiTimer->SetDuiTimer();
 		m_bTwinkling = true;
 		return true;

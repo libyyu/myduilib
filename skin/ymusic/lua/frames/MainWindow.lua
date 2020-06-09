@@ -22,6 +22,7 @@ function MainWindow:__ctor()
 	self.m_pPlayProgress = nil
 	self.m_pTimeUsed = nil
 	self.m_pTimeTotal = nil
+	self.m_pGlobalTimer = nil
 
 	theApp:GetRuntimeState():GetEventMgr():AddEvent(self, _G.Event.BeginPlaying)
 	theApp:GetRuntimeState():GetEventMgr():AddEvent(self, _G.Event.PlayingPosChanged)
@@ -62,6 +63,10 @@ function MainWindow:OnDestroy(wParam,lParam)
 		_hOfflineIcon = nil
 	end
 	self:Stop()
+	if self.m_pGlobalTimer then
+		Timer.RemoveGlobalTimer(self.m_pGlobalTimer)
+		self.m_pGlobalTimer = nil
+	end
 	IBaseWindow.OnDestroy(self,wParam,lParam)
 end
 
@@ -183,7 +188,7 @@ function MainWindow:OnInitWindow()
 	-- 强制进行一次垃圾收集
 	collectgarbage("collect")
 	
-	Timer.AddGlobalTimer(100, function()
+	self.m_pGlobalTimer = Timer.AddGlobalTimer(100, function()
 		MainThreadTask.tick()
 	end)
 

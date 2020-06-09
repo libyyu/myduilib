@@ -664,6 +664,11 @@ namespace DuiLib
 		return 0;
 	}
 
+	static void lua_QuitApp()
+	{
+		::PostQuitMessage(0L);
+	}
+
 	static bool RegisterApplicationAPIToLua(lua_State* l)
 	{
 		//Application
@@ -689,7 +694,13 @@ namespace DuiLib
 			.def("FindNextFile", lua_FindNextFile)
 			.def("GetFindData", lua_GetFindData)
 			.def("FindClose", lua_FindClose)
-			.def("SetMainWindow", lua_SetMainWindow);
+			.def("SetMainWindow", lua_SetMainWindow)
+			.def("QuitApp", lua_QuitApp)
+#ifdef _DEBUG
+			.readonly("IsDebug", true);
+#else
+			.readonly("IsDebug", false);
+#endif
 
 		return true;
 	}
@@ -699,13 +710,14 @@ namespace DuiLib
 		DuiAssert(pDuiTimer);
 		if (pDuiTimer)
 		{
-			pDuiTimer->KillDuiTimer();
 			if (pDuiTimer && pDuiTimer->GetUserData().iInt) {
 				if (globalLuaEnv) {
 					luaL_unref(*globalLuaEnv, LUA_REGISTRYINDEX, pDuiTimer->GetUserData().iInt);
 				}
 			}
-			LuaApplication::Instance()->TimerSource -= pDuiTimer;
+			CDuiTimerBase* pObject = static_cast<CDuiTimerBase*>(pDuiTimer);
+			LuaApplication::Instance()->TimerSource -= *pObject;
+			delete pObject;
 		}
 	}
 
@@ -727,14 +739,14 @@ namespace DuiLib
 	IDuiTimer* LuaApplication::AddTimer(CLuaWindow* pWindow, int iInterval, int iTotalTimer/* = NULL*/, bool bAutoRun/* = true*/, bool bLoop/* = false*/, bool bRevers/* = false*/, unUserData* userdata/* = NULL*/)
 	{
 		DuiAssert(pWindow && ::IsWindow(*pWindow));
-		IDuiTimer* pDuiTimer = MakeDuiTimer(this, &LuaApplication::OnCallbackTimer,
+		auto DuiTimer = MakeDuiTimer(this, &LuaApplication::OnCallbackTimer,
 			pWindow->GetHWND(), pWindow, (WPARAM)0, iInterval, iTotalTimer, bAutoRun, bLoop, bRevers);
 		if (userdata) {
-			pDuiTimer->SetUserData(*userdata);
+			DuiTimer.SetUserData(*userdata);
 		}
-		TimerSource += pDuiTimer;
+		TimerSource += DuiTimer;
 
-		return pDuiTimer;
+		return DuiTimer.Copy();
 	}
 
 	static int lua_AddGlobalTimer(lua_State* l)
@@ -1057,6 +1069,8 @@ namespace DuiLib
 		}
 
 		globalLuaEnv->doGlobal("exit", success);
+		
+		Unitialize();
 
 		return success;
 	}
