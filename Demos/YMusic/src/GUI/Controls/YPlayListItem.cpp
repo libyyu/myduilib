@@ -149,12 +149,12 @@ bool YPlayListItemUI::DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopCon
 			ChangeIcon(nStatus);
 			
 // 			RECT rt = {15,0,0,0};
-// #define		BK_IMG_PLAYING  _T("file='YTing/Menu/play.png' source='13,0,26,13' dest='2,8,15,21' mask='0xFF000000'")
+// #define		BK_IMG_PLAYING  _T("file='res/Menu/play.png' source='13,0,26,13' dest='2,8,15,21' mask='0xFF000000'")
 // 			_spListName->SetFont(1);
 // 			_spListName->SetTextPadding(rt);
 // 			_spListName->SetText(sText);
 // 			_spListName->SetBkImage(BK_IMG_PLAYING);
-//			_spListName->ApplyAttributeList(_T("font=\"3\" bkimage=\"file='YTing/Menu/play.png' source='13,0,26,13' dest='2,8,15,21' mask='0xFF000000'\" textpadding=\"15,0,0,0\""));
+//			_spListName->ApplyAttributeList(_T("font=\"3\" bkimage=\"file='res/Menu/play.png' source='13,0,26,13' dest='2,8,15,21' mask='0xFF000000'\" textpadding=\"15,0,0,0\""));
 		}
 		else
 		{

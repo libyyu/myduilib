@@ -228,9 +228,16 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\LuaDuiLibApp\windows\x64\release\Demos\LuaDuiLibApp\EntryPoint.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\LuaDuiLibApp\windows\x86\debug\Demos\LuaDuiLibApp\EntryPoint.cpp.obj</ObjectFileName>
     </ClCompile>
+    <ResourceCompile Include="..\..\Demos\LuaDuiLibApp\LuaDuiLibApp.rc">
+      <ResourceOutputFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\LuaDuiLibApp\windows\x86\release\Demos\LuaDuiLibApp\LuaDuiLibApp.rc.obj</ResourceOutputFileName>
+      <ResourceOutputFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\LuaDuiLibApp\windows\x64\release\Demos\LuaDuiLibApp\LuaDuiLibApp.rc.obj</ResourceOutputFileName>
+      <ResourceOutputFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\LuaDuiLibApp\windows\x86\debug\Demos\LuaDuiLibApp\LuaDuiLibApp.rc.obj</ResourceOutputFileName>
+      <ResourceOutputFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\LuaDuiLibApp\windows\x64\debug\Demos\LuaDuiLibApp\LuaDuiLibApp.rc.obj</ResourceOutputFileName>
+    </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Demos\LuaDuiLibApp\EntryPoint.h" />
+    <ClInclude Include="..\..\Demos\LuaDuiLibApp\Resource.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

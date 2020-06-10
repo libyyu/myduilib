@@ -34,7 +34,7 @@ void CMySkinLayoutUI::Init()
 		_pImage[i] = static_cast<DuiLib::CAlbumButtonUI*>(FindSubControl(sImage));
 		ASSERT(_pImage[i]);
 		DuiLib::CDuiString sBkHotImage;
-		sBkHotImage = _T("file='YTing/hotmask.png'  corner='5,5,5,5'");
+		sBkHotImage = _T("file='res/hotmask.png'  corner='5,5,5,5'");
 		_pImage[i]->SetHotBkImage(sBkHotImage);
 	}
 // 	_pImage1 = _pImage2 = _pImage3 = NULL;
@@ -43,7 +43,7 @@ void CMySkinLayoutUI::Init()
 // 	_pImage3 = static_cast<CAlbumButtonUI*>(FindSubControl(_T("image_3")));
 // 	ASSERT(_pImage3&&_pImage2&&_pImage1);
 // 	CDuiString sBkHotImage;
-// 	sBkHotImage = _T("file='YTing/hotmask.png'  corner='5,5,5,5'");
+// 	sBkHotImage = _T("file='res/hotmask.png'  corner='5,5,5,5'");
 // 	_pImage1->SetHotBkImage(sBkHotImage);
 // 	_pImage2->SetHotBkImage(sBkHotImage);
 // 	_pImage3->SetHotBkImage(sBkHotImage);

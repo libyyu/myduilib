@@ -9,7 +9,7 @@ target("LuaDuiLibApp")
 	--添加链接库
 	add_deps("LuaDuiLib", "protos", "LuaMyControls")
 
-	add_files("**.cpp")
+	add_files("**.cpp", "LuaDuiLibApp.rc")
 
 	add_ldflags("-SUBSYSTEM:Windows")
 
