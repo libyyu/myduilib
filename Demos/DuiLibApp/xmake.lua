@@ -9,7 +9,7 @@ target("DuiLibApp")
 	--添加链接库
 	add_deps("DuiLib")
 
-	add_files("**.cpp")
+	add_files("**.cpp", "*.rc")
 
 	add_ldflags("-SUBSYSTEM:Windows")
 

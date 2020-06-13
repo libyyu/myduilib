@@ -228,9 +228,16 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiLibApp\windows\x64\debug\Demos\DuiLibApp\App.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiLibApp\windows\x86\release\Demos\DuiLibApp\App.cpp.obj</ObjectFileName>
     </ClCompile>
+    <ResourceCompile Include="..\..\Demos\DuiLibApp\app.rc">
+      <ResourceOutputFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiLibApp\windows\x86\release\Demos\DuiLibApp\app.rc.obj</ResourceOutputFileName>
+      <ResourceOutputFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiLibApp\windows\x64\release\Demos\DuiLibApp\app.rc.obj</ResourceOutputFileName>
+      <ResourceOutputFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiLibApp\windows\x86\debug\Demos\DuiLibApp\app.rc.obj</ResourceOutputFileName>
+      <ResourceOutputFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiLibApp\windows\x64\debug\Demos\DuiLibApp\app.rc.obj</ResourceOutputFileName>
+    </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Demos\DuiLibApp\App.h" />
+    <ClInclude Include="..\..\Demos\DuiLibApp\Resource.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

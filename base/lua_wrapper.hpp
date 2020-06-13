@@ -1061,7 +1061,6 @@ namespace lua
 			stack_gurad scope_check(m_ls);
 			assert(parent);
 			std::string parent_meta(parent);
-			parent_meta += "_meta";
 			luaL_getmetatable(m_ls, class_name_t<T>::meta().c_str());
 			lua_pushstring(m_ls, "__parent");
 			luaL_getmetatable(m_ls, parent_meta.c_str());

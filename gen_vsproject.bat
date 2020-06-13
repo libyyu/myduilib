@@ -1,11 +1,11 @@
 @echo off
-::±ØÐëÔÚµ±Ç°Ä¿Â¼Ö´ÐÐ
+::ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½Ç°Ä¿Â¼Ö´ï¿½ï¿½
 @set self_path=%~dp0
 @set self_path=%self_path:~,-1%
 echo current dir: %self_path%
 
 
-xmake f -c -p windows -a x86 --vs=vs2019 --genproj=y --boost_dir=D:\boost_1_70_0
+xmake f -c -p windows -a x86 --vs=vs2019 --genproj=y --boost_dir=D:\boost_1_70_0 --stack_dump=y
 @if errorlevel 1 goto :BAD
 
 xmake project -k vs2019 -m "release,debug" .
