@@ -6,7 +6,7 @@
 
 #define LAMBDA_METHOD(x)   .def(#x, x)
 #define LAMBDA_METHOD2(n, x) .def(n, x)
-
+#define TO_LUA_META_NAME(name) name##"_meta"
 namespace DuiLib
 {
 	template<typename T>
@@ -54,7 +54,7 @@ namespace DuiLib
 		//CFadeButtonUI
 #define WRAP_METHOD(m) .def(#m, &CFadeButtonUI::m)
 		lua::lua_register_t<CFadeButtonUI>(l, "DuiLib.CFadeButtonUI", Lua_DeleteControl<CFadeButtonUI>)
-			.extend("DuiLib.CButtonUI")
+			.extend(TO_LUA_META_NAME("DuiLib.CButtonUI"))
 			.def(lua::constructor<>())
 			.def("New", Lua_NewControl<CFadeButtonUI>)
 			.def("__tostring", Lua_CControlUI_ToString);
@@ -75,7 +75,7 @@ namespace DuiLib
 		//CFadeOptionUI
 #define WRAP_METHOD(m) .def(#m, &CFadeOptionUI::m)
 		lua::lua_register_t<CFadeOptionUI>(l, "DuiLib.CFadeOptionUI", Lua_DeleteControl<CFadeOptionUI>)
-			.extend("DuiLib.COptionUI")
+			.extend(TO_LUA_META_NAME("DuiLib.COptionUI"))
 			.def(lua::constructor<>())
 			.def("New", Lua_NewControl<CFadeOptionUI>)
 			.def("__tostring", Lua_CControlUI_ToString);
@@ -95,7 +95,7 @@ namespace DuiLib
 		//CLrcViewUI
 #define WRAP_METHOD(m) .def(#m, &CLrcViewUI::m)
 		lua::lua_register_t<CLrcViewUI>(l, "DuiLib.CLrcViewUI", Lua_DeleteControl<CFadeCheckBoxUI>)
-			.extend("DuiLib.CContainerUI")
+			.extend(TO_LUA_META_NAME("DuiLib.CContainerUI"))
 			.def(lua::constructor<>())
 			.def("New", Lua_NewControl<CLrcViewUI>)
 			.def("__tostring", Lua_CControlUI_ToString);
@@ -104,7 +104,7 @@ namespace DuiLib
 		//CTemplListItemUI
 #define WRAP_METHOD(m) .def(#m, &CTemplListItemUI::m)
 		lua::lua_register_t<CTemplListItemUI>(l, "DuiLib.CTemplListItemUI", Lua_DeleteControl<CTemplListItemUI>)
-			.extend("DuiLib.CListContainerElementUI")
+			.extend(TO_LUA_META_NAME("DuiLib.CListContainerElementUI"))
 			.def(lua::constructor<>())
 			.def("New", Lua_NewControl<CTemplListItemUI>)
 			.def("__tostring", Lua_CControlUI_ToString);
@@ -113,7 +113,7 @@ namespace DuiLib
 		//CTemplListUI
 #define WRAP_METHOD(m) .def(#m, &CTemplListUI::m)
 		lua::lua_register_t<CTemplListUI>(l, "DuiLib.CTemplListUI", Lua_DeleteControl<CTemplListUI>)
-			.extend("DuiLib.CListUI")
+			.extend(TO_LUA_META_NAME("DuiLib.CListUI"))
 			.def(lua::constructor<>())
 			.def("New", Lua_NewControl<CTemplListUI>)
 			.def("__tostring", Lua_CControlUI_ToString)
