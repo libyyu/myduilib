@@ -8,7 +8,7 @@ namespace DuiLib {
 		return NULL;// always NULL
 	}
 
-CDialogBuilder::CDialogBuilder() : CDuiBaseObject(), m_pCallback(NULL), m_pstrtype(NULL)
+CDialogBuilder::CDialogBuilder() : m_pCallback(NULL), m_pstrtype(NULL)
 {
 
 }

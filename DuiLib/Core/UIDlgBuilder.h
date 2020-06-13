@@ -12,7 +12,7 @@ public:
 };
 
 
-class DUILIB_API CDialogBuilder : public CDuiBaseObject
+class DUILIB_API CDialogBuilder
 {
     DECLARE_CLASS(CDialogBuilder)
 public:

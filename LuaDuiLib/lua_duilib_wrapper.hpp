@@ -1,5 +1,7 @@
-#ifndef lua_dui_wrapper_h
-#define lua_dui_wrapper_h
+#ifndef lua_duilib_wrapper_hpp
+#define lua_duilib_wrapper_hpp
+#include "lua_op_define.hpp"
+
 namespace lua
 {
 	template<>
@@ -21,7 +23,7 @@ namespace lua
 		}
 		static bool try_get(lua_State * l, int pos, wchar_t* value)
 		{
-			if (lua_isnil(l, pos) || lua_isnumber(l, pos))
+			if (lua_isnumber(l, pos))
 			{
 				from_stack(l, pos, value);
 				return true;
@@ -171,7 +173,7 @@ namespace lua
 		}
 		static bool try_get(lua_State * l, int pos, DuiLib::CDuiString* value)
 		{
-			if (lua_isnil(l, pos) || lua_isstring(l, pos))
+			if (lua_isstring(l, pos))
 			{
 				from_stack(l, pos, value);
 				return true;
@@ -521,7 +523,7 @@ namespace lua
 			lua_newtable(l);
 			for (int i = 0; i < arg_.GetSize(); ++i)
 			{
-				LPCTSTR szKey = arg_[i];
+				DuiLib::CDuiString szKey = arg_[i];
 				LPVOID data = arg_.Find(szKey);
 				lua::push(l, szKey);
 				lua::push(l, data);
@@ -531,10 +533,29 @@ namespace lua
 		}
 		static void from_stack(lua_State* l, int pos, DuiLib::CDuiStringPtrMap* value)
 		{
+			if (lua_isnoneornil(l, pos))
+			{
+				return;
+			}
+			LUA_CHECK_ERROR(0 != lua_istable(l, pos), LUA_TTABLE, pos);
+			lua_pushnil(l);
+			int real_pos = pos;
+			if (pos < 0) real_pos = real_pos - 1;
+			while (lua_next(l, real_pos) != 0)
+			{
+				DuiLib::CDuiString key;
+				LPVOID val;
+				lua::get(l, -2, &key);
+				lua::get(l, -1, &val);
+				value->Set(key, val);
+				lua_pop(l, 1);
+			}
 		}
 		static bool try_get(lua_State * l, int pos, DuiLib::CDuiStringPtrMap* value)
 		{
-			return lua_op_t<DuiLib::CDuiStringPtrMap>::try_get(l, pos, value);
+			if (!lua_istable(l, pos)) return false;
+			lua_op_t<DuiLib::CDuiStringPtrMap>::from_stack(l, pos, value);
+			return true;
 		}
 	};
 
@@ -550,7 +571,8 @@ namespace lua
 		}
 		static bool try_get(lua_State * l, int pos, DuiLib::CDuiStringPtrMap** value)
 		{
-			return lua_op_t<DuiLib::CDuiStringPtrMap*>::try_get(l, pos, value);
+			if (!lua_istable(l, pos)) return false;
+			return true;
 		}
 	};
 	
@@ -574,10 +596,63 @@ namespace lua
 		}
 		static bool try_get(lua_State * l, int pos, DuiLib::CDuiPtrArray* value)
 		{
-			return lua_op_t<DuiLib::CDuiPtrArray>::try_get(l, pos, value);
+			if (!lua_istable(l, pos)) return false;
+			lua_op_t<DuiLib::CDuiPtrArray>::from_stack(l, pos, value);
+			return true;
 		}
 	};
+	
+}
 
+
+LUA_DUI_CLASS_OP_T(DuiLib::CControlUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CContainerUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CActiveXUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CButtonUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CCheckBoxUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CComboUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CDateTimeUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CEditUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CFlashUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CGifAnimUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CHotKeyUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CLabelUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CListUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CListBodyUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CListHeaderUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CListHeaderItemUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CListElementUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CListLabelElementUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CListTextElementUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CListContainerElementUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CListHBoxElementUI)
+LUA_DUI_CLASS_OP_T(DuiLib::COptionUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CProgressUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CRichEditUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CScrollBarUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CSliderUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CTextUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CTreeNodeUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CTreeViewUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CWebBrowserUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CChildLayoutUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CHorizontalLayoutUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CTabLayoutUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CTileLayoutUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CVerticalLayoutUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CMenuElementUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CMenuUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CWindowWnd)
+LUA_DUI_CLASS_OP_T(DuiLib::CDialogBuilder)
+LUA_DUI_CLASS_OP_T(DuiLib::CPaintManagerUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CMarkup)
+LUA_DUI_CLASS_OP_T(DuiLib::CMarkupNode)
+LUA_DUI_CLASS_OP_T(DuiLib::CTrayIconUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CWin)
+LUA_DUI_CLASS_OP_T(DuiLib::CWndShadow)
+
+namespace lua
+{
 #ifdef LUA_OBJECT_EXTERN
 	template<typename T>
 	struct lua_op_t < T* >
@@ -588,24 +663,12 @@ namespace lua
 			{
 				if (class_name_t<T>::name_.empty())
 				{
-					pushobject(l, (void *)(value), NULL);
+					pushobject(l, (void*)(value), NULL);
 				}
 				else
 				{
 					std::string meta = class_name_t<T>::meta();
-					bool b = DuiLib::CDuiObjectMgr::Get().FindObject((void *)(value));
-					if(b)
-					{
-						DuiLib::CDuiBaseObject* pObject = (DuiLib::CDuiBaseObject*)(value);
-						if(!!pObject)
-						{
-							std::string szClass = DuiLib::Convert::ToUTF8(pObject->GetClassName());
-							meta = "DuiLib.";
-							meta += szClass;
-							meta += "_meta";
-						}
-					}
-					pushobject(l, (void *)(value), meta.c_str());
+					pushobject(l, (void*)(value), meta.c_str());
 				}
 			}
 			else
@@ -622,8 +685,7 @@ namespace lua
 			LUA_CHECK_ERROR(lua_isuserdata(l, pos) != 0, LUA_TUSERDATA, pos);
 			*value = checkobject<T>(l, pos);
 		}
-
-		static bool try_get(lua_State * l, int pos, T** value)
+		static bool try_get(lua_State* l, int pos, T** value)
 		{
 			if (lua_isnil(l, pos) || lua_isuserdata(l, pos))
 			{
@@ -640,6 +702,5 @@ namespace lua
 		}
 	};
 #endif
-
 }
-#endif//
+#endif//lua_duilib_wrapper_hpp

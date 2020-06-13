@@ -2,7 +2,8 @@
 #include "UIlib.h"
 #include "LuaApplication.h"
 #include "base/lua_wrapper.hpp"
-#include "lua_dui_wrapper.hpp"
+#include "lua_duilib_wrapper.hpp"
+#include "lua_duilib_extend_wrapper.hpp"
 #include "base/LuaEnv.hpp"
 #include <algorithm>
 #include <Shlobj.h>
@@ -52,19 +53,6 @@ namespace DuiLib
 		return s_out;
 	}
 
-	class DuiObjectHandler : public IObjectHandle
-	{
-	public:
-		virtual void OnConstructor(void*)
-		{}
-		virtual void OnDeconstructor(void* p)
-		{
-			if (globalLuaEnv)
-				lua::removeobject(p, *globalLuaEnv);
-			else
-				lua::removeobject(p, NULL);
-		}
-	};
 
 	struct lua_load_tool
 	{
@@ -184,8 +172,6 @@ namespace DuiLib
 			return lua_gettop(L) - n;
 		}
 	}
-	
-	static DuiObjectHandler _obj_handler;
 }
 
 namespace DuiLib
@@ -819,7 +805,6 @@ namespace DuiLib
 	////
 	LuaApplication::LuaApplication(): valid(false), exiting(false), m_pMainWindow(NULL)
 	{
-		CDuiObjectMgr::Get().SetObjectHandler(&_obj_handler);
 		Initialize();
 	}
 	LuaApplication::~LuaApplication()
@@ -860,7 +845,6 @@ namespace DuiLib
 		ShutdownLua();
 		CPaintManagerUI::Term();
 		::OleUninitialize();
-		CDuiObjectMgr::Get().SetObjectHandler(NULL);
 	}
 
 	bool LuaApplication::StartupLua()

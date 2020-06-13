@@ -1,7 +1,7 @@
 #define LUA_LIB
 #include "MyControls.h"
 #include "base/lua_wrapper.hpp"
-#include "LuaDuiLib/lua_dui_wrapper.hpp"
+#include "LuaDuiLib/lua_duilib_wrapper.hpp"
 #include <algorithm>
 
 #define LAMBDA_METHOD(x)   .def(#x, x)
@@ -19,9 +19,7 @@ namespace DuiLib
 	inline void Lua_DeleteControl(void* p)
 	{
 		if(!p) return;
-		bool b = CDuiObjectMgr::Get().FindObject(p);
-		if(!b) return;
-		
+
 		__try
 		{
 			T* pControl = static_cast<T*>(p);
@@ -136,3 +134,13 @@ extern "C"
 		return 1;
 	}
 }
+
+
+LUA_DUI_CLASS_OP_T(DuiLib::CFadeButtonUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CFadeOptionUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CFadeCheckBoxUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CAlbumButtonUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CTemplListUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CTemplListItemUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CWkeWebkitUI)
+LUA_DUI_CLASS_OP_T(DuiLib::CLrcViewUI)

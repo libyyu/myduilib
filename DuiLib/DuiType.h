@@ -109,46 +109,11 @@ namespace DuiLib
 };
 
 
-namespace DuiLib
-{
-	#define DECLARE_CLASS(Cls) \
+#define DECLARE_CLASS(Cls) \
         public:\
         virtual LPCTSTR GetClassName() const \
         { \
             return _T(#Cls); \
         };
-
-	class DUILIB_API IObjectHandle
-	{
-	public:
-		virtual void OnConstructor(void*) = 0;
-		virtual void OnDeconstructor(void*) = 0;
-	};
-
-    class DUILIB_API CDuiObjectMgr
-    {
-    public:
-    	static CDuiObjectMgr& Get();
-    public:
-    	CDuiObjectMgr();
-    	~CDuiObjectMgr();
-    
-    	void AddObject(void* ptr);
-    	void RemoveObject(void* ptr);
-    	bool FindObject(void* ptr);
-		void SetObjectHandler(IObjectHandle* oh);
-	private:
-		IObjectHandle * ohandler;
-	};
-
-	class DUILIB_API CDuiBaseObject
-	{
-		DECLARE_CLASS(CDuiBaseObject)
-	public:
-		CDuiBaseObject();
-		virtual ~CDuiBaseObject();
-		
-	};
-}
 
 #endif//_DuiType_H

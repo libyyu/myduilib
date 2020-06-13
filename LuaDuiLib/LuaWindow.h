@@ -70,4 +70,5 @@ namespace DuiLib
 	};
 }
 
+
 #endif//LUA_WINDOW_H

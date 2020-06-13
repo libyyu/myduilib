@@ -250,7 +250,9 @@
     <ClInclude Include="..\..\LuaDuiLib\LuaApplication.h" />
     <ClInclude Include="..\..\LuaDuiLib\LuaWindow.h" />
     <ClInclude Include="..\..\LuaDuiLib\lua_duilib.h" />
-    <ClInclude Include="..\..\LuaDuiLib\lua_dui_wrapper.hpp" />
+    <ClInclude Include="..\..\LuaDuiLib\lua_duilib_extend_wrapper.hpp" />
+    <ClInclude Include="..\..\LuaDuiLib\lua_duilib_wrapper.hpp" />
+    <ClInclude Include="..\..\LuaDuiLib\lua_op_define.hpp" />
     <ClInclude Include="..\..\base\lua_object.hpp" />
     <ClInclude Include="..\..\base\lua_script.hpp" />
     <ClInclude Include="..\..\base\lua_wrapper.hpp" />

@@ -16,7 +16,7 @@ class CMarkup;
 class CMarkupNode;
 class CResource;
 
-class DUILIB_API CMarkup : public CDuiBaseObject
+class DUILIB_API CMarkup
 {
     friend class CMarkupNode;
     DECLARE_CLASS(CMarkup)
@@ -74,7 +74,7 @@ private:
 };
 
 
-class DUILIB_API CMarkupNode : public CDuiBaseObject
+class DUILIB_API CMarkupNode
 {
     friend class CMarkup;
     DECLARE_CLASS(CMarkupNode)

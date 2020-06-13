@@ -71,7 +71,7 @@ typedef struct HWNDSHADOW
 DuiLib::CDuiValArray CWndShadow::s_ShadowArray(sizeof(HwndShadow), 10);
 
 CWndShadow::CWndShadow(void)
-: CDuiBaseObject(), m_hWnd((HWND)INVALID_HANDLE_VALUE)
+: m_hWnd((HWND)INVALID_HANDLE_VALUE)
 , m_OriParentProc(NULL)
 , m_nDarkness(150)
 , m_nSharpness(5)

@@ -1,8 +1,9 @@
 ﻿#define LUA_LIB
 #include "UIlib.h"
-#include "base/lua_wrapper.hpp"
-#include "lua_dui_wrapper.hpp"
 #include "LuaWindow.h"
+#include "base/lua_wrapper.hpp"
+#include "lua_duilib_wrapper.hpp"
+#include "lua_duilib_extend_wrapper.hpp"
 #include <algorithm>
 #include <functional>
 
@@ -71,9 +72,9 @@ namespace DuiLib
 	inline void DeleteControl(void* p)
 	{
 		if(!p) return;
-		bool b = CDuiObjectMgr::Get().FindObject(p);
-		if(!b) return;
-		
+		//bool b = CDuiObjectMgr::Get().FindObject(p);
+		//if(!b) return;
+		//
 		__try
 		{
 			T* pControl = static_cast<T*>(p);

@@ -1,7 +1,8 @@
 #include "UIlib.h"
 #include "LuaWindow.h"
 #include "base/lua_wrapper.hpp"
-#include "lua_dui_wrapper.hpp"
+#include "lua_duilib_wrapper.hpp"
+#include "lua_duilib_extend_wrapper.hpp"
 #ifdef USE_CUSTOM_MEMORY
 #define new FLIB_NEW
 #endif
@@ -9,7 +10,7 @@ extern LuaEnv* globalLuaEnv;
 
 namespace DuiLib
 {
-	static TNotifyUI ToLuaMsgNotify;
+	//static TNotifyUI ToLuaMsgNotify;
 	CLuaWindow::CLuaWindow(LPCTSTR szName, UINT nStyle/* = CS_DBLCLKS*/)
 		: szWindowName(szName), 
 		nClassStyle(nStyle), 

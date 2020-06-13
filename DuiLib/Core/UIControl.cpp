@@ -41,7 +41,7 @@ namespace DuiLib {
 	}
 
 REGIST_DUICONTROL(CControlUI)
-CControlUI::CControlUI() : CDuiBaseObject(),
+CControlUI::CControlUI() :
 m_pManager(NULL), 
 m_pParent(NULL), 
 m_pCover(NULL),

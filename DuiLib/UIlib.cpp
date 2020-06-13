@@ -50,67 +50,6 @@
 #include "stdafx.h"
 #include "UIlib.h"
 
-namespace DuiLib
-{
-	static std::set<void*> objects;
-	CDuiBaseObject::CDuiBaseObject()
-	{
-		CDuiObjectMgr::Get().AddObject((void*)this);
-	}
-
-	CDuiBaseObject::~CDuiBaseObject()
-	{
-		CDuiObjectMgr::Get().RemoveObject((void*)this);
-	}
-	CDuiObjectMgr::CDuiObjectMgr()
-	{
-		objects.clear();
-	}
-	CDuiObjectMgr::~CDuiObjectMgr()
-	{
-		ohandler = NULL;
-	}
-
-	CDuiObjectMgr& CDuiObjectMgr::Get()
-	{
-		static CDuiObjectMgr inst;
-		return inst;
-	}
-
-	void CDuiObjectMgr::AddObject(void* ptr)
-	{
-		if (!ptr) return;
-		std::set<void*>::iterator it = objects.find(ptr);
-		if (it == objects.end()) {
-			objects.insert(ptr);
-
-			if (ohandler) ohandler->OnConstructor(ptr);
-		}
-	}
-
-	void CDuiObjectMgr::RemoveObject(void* ptr)
-	{
-		if (!ptr) return;
-		std::set<void*>::iterator it = objects.find(ptr);
-		if (it != objects.end()) {
-			objects.erase(it);
-
-			if (ohandler) ohandler->OnDeconstructor(ptr);
-		}
-	}
-
-	bool CDuiObjectMgr::FindObject(void* ptr)
-	{
-		std::set<void*>::iterator it = objects.find(ptr);
-		return it != objects.end();
-	}
-
-	void CDuiObjectMgr::SetObjectHandler(IObjectHandle* oh)
-	{
-		ohandler = oh;
-	}
-}
-
 
 HANDLE ghModuleDuiLib = INVALID_HANDLE_VALUE;
 BOOL APIENTRY DllMain(HANDLE hModule, DWORD  dwReason, LPVOID /*lpReserved*/)

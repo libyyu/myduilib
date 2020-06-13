@@ -51,7 +51,7 @@ namespace DuiLib {
 //
 //
 
-CMarkupNode::CMarkupNode() : CDuiBaseObject(), m_pOwner(NULL)
+CMarkupNode::CMarkupNode() : m_pOwner(NULL)
 {
 }
 
@@ -240,7 +240,7 @@ void CMarkupNode::_MapAttributes()
 //
 //
 
-CMarkup::CMarkup(LPCTSTR pstrXML) : CDuiBaseObject()
+CMarkup::CMarkup(LPCTSTR pstrXML)
 {
     m_pstrXML = NULL;
     m_pElements = NULL;
