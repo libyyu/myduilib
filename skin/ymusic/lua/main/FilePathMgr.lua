@@ -59,12 +59,17 @@ function CFilePathMgr:GetAppPath()
 	return Application.GetModulePath()
 end
 function CFilePathMgr:GetDataPath()
-	return Application.GetModulePath() .. "YTing/"
+	local tempPath = Application.GetTempPath()
+	tempPath = tempPath:gsub("\\", "/")
+	if tempPath:sub(-1,-1) ~= "/" then
+		tempPath = tempPath .. "/"
+	end 
+	return tempPath .. APP_NAME .. "/"
 end
 function CFilePathMgr:GetWebServiceCatchPath()
 end
 function CFilePathMgr:GetLogPath()
-	return ""
+	return self.m_sLogPath
 end
 
 return CFilePathMgr

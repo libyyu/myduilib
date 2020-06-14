@@ -1,6 +1,6 @@
 _G.nMaxSongNumber = 250
 _G.MAX_USER_LIST = 30
-
+_G.APP_NAME = "YTing"
 _G.IDI_APP = 2
 local WM_USER = DuiLib.MsgArgs.WM_USER
 local WM_USER_BEGIN = WM_USER + 1024

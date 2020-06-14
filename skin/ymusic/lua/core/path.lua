@@ -19,7 +19,7 @@
 --
 
 -- define module: path
-local path = path or {}
+path = path or {}
 
 -- get the directory of the path
 function path.directory(p)

@@ -35,12 +35,9 @@ function CRuntimeState:Init(dwMainThreadId)
 	self._spCacheMgr = CacheMgrT()
 	self._spCacheMgr:Init(self._spFilePathMgr:GetDefaultCachePath())
 	--日志管理器
-	-- local str = self._spFilePathMgr:GetLogPath()
-	-- strLogFileName = str .. "_YMusic.log"
-	-- self._spLogMgr = spLogMgrT(new CLog(strLogFileName.c_str()));
-	-- assert(_spLogMgr->isValid());
-	-- if(!_spLogMgr->isValid())
-	-- 	assert(false);
+	local str = self._spFilePathMgr:GetLogPath()
+	local strLogFileName = str .. APP_NAME .. ".log"
+	Application.CreateLogger(strLogFileName)
 	--数据库管理器
 	local DatabaseManagerT = require "database.DatabaseManager"
 	self._spDbMgr = DatabaseManagerT()

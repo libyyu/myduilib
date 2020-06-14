@@ -126,8 +126,8 @@ namespace DuiLib
 
 		this->_Clear();
 
-		string_type sfilename(_timename);
-		sfilename += _filename;
+		string_type stimename(_timename);
+		string_type sfilename(_filename);	
 		int nCursor = 1;
 		string_type ext = Path::GetExtension(sfilename.c_str());
 		string_type s(sfilename);
@@ -140,6 +140,9 @@ namespace DuiLib
 		}
 		else
 			_name = s;
+		_name += "_" + stimename;
+
+		sfilename = _name + "." + ext;
 
 		while (true)
 		{

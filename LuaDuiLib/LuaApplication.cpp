@@ -879,6 +879,27 @@ namespace DuiLib
 
 		return 1;
 	}
+	static int lua_GetTempPath(lua_State* l)
+	{
+		CDuiString szPath = Path::GetTempPath();
+		lua::push(l, szPath);
+		return 1;
+	}
+	static int lua_CreateLogger(lua_State* l)
+	{
+		if (lua_isstring(l, 1))
+		{
+			CDuiString szPath;
+			lua::get(l, 1, &szPath);
+			DuiLib::CreateLogger(szPath.GetData());
+		}
+		else
+		{
+			DuiLib::CreateLogger(NULL);
+		}
+
+		return 0;
+	}
 
 
 	static bool RegisterApplicationAPIToLua(lua_State* l)
@@ -900,6 +921,8 @@ namespace DuiLib
 			.def("GetCursorPos", lua_GetCursorPos)
 			.def("GetModulePath", lua_GetModulePath)
 			.def("GetAPPDATAPath", lua_GetAPPDATAPath)
+			.def("CreateLogger", lua_CreateLogger)
+			.def("GetTempPath", lua_GetTempPath)
 			.def("CreateDirectory", lua_CreateDirectory)
 			.def("SHBrowseForFolder", lua_SHBrowseForFolder)
 			.def("IsDirectoryExist", lua_IsDirectoryExist)

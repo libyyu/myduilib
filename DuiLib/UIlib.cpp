@@ -58,7 +58,7 @@ BOOL APIENTRY DllMain(HANDLE hModule, DWORD  dwReason, LPVOID /*lpReserved*/)
    case DLL_PROCESS_ATTACH:
    {
 	   ghModuleDuiLib = hModule;
-	   DuiLib::CreateLogger(NULL);
+	   //DuiLib::CreateLogger(NULL);
 #ifdef UILIB_STACK_DUMP
 	   DuiLib::HPLUGINS hDll = DuiLib::CSystem::Instance()->LoadPlugin(_T("StackDump.dll"));
 	   if (hDll)

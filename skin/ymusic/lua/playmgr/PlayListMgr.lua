@@ -280,7 +280,7 @@ function CPlayListMgr:PraseFromPath(filepath)
 		song = SongInfoT()
 		song.m_sSongName = ptagInfo:get_title()
 		if string.len(song.m_sSongName) == 0 then
-			song.m_sSongName = filepath
+			song.m_sSongName = path.basename(filepath)
 		end
 		song.m_sAlbumName = ptagInfo:get_album()
 		song.m_sArtistName = ptagInfo:get_artist()
