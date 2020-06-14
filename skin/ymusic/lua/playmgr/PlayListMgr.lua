@@ -323,7 +323,11 @@ function CPlayListMgr:PreparePlay(spSongInfo, u_listId)
 	end
 	self:SetCurListID(u_listId)
 	self:SetCurSong(spSongInfo)
-	print("PreparePlay:", u_listId, spSongInfo.m_sSongName)
+	if spSongInfo then
+		print("PreparePlay:", u_listId, spSongInfo.m_sSongName)
+	end
+
+	return spSongInfo
 end
 
 return CPlayListMgr

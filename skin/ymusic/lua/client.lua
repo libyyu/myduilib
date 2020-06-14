@@ -1,9 +1,28 @@
 _G.nMaxSongNumber = 250
 _G.MAX_USER_LIST = 30
 
-_G.IDI_APP = 1001
+_G.IDI_APP = 2
 local WM_USER = DuiLib.MsgArgs.WM_USER
 local WM_USER_BEGIN = WM_USER + 1024
+
+_G.TBPFLAG =
+{
+    TBPF_NOPROGRESS	= 0,
+    TBPF_INDETERMINATE	= 0x1,
+    TBPF_NORMAL	= 0x2,
+    TBPF_ERROR	= 0x4,
+    TBPF_PAUSED	= 0x8
+}
+
+_G.THUMBBUTTONMASK =
+{
+    THB_BITMAP	= 0x1,
+    THB_ICON	= 0x2,
+    THB_TOOLTIP	= 0x4,
+    THB_FLAGS	= 0x8
+}
+_G.THBN_CLICKED = 0x1800
+
 _G.USER_MSG = Enum.make
 {
 	"WM_WEB_SERVICE", "=", WM_USER_BEGIN,

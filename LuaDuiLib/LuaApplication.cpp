@@ -7,6 +7,8 @@
 #include "base/LuaEnv.hpp"
 #include <algorithm>
 #include <Shlobj.h>
+#pragma  comment(lib, "Comctl32.lib")
+
 #ifdef USE_CUSTOM_MEMORY
 #define new FLIB_NEW
 #endif
@@ -654,12 +656,245 @@ namespace DuiLib
 	{
 		::PostQuitMessage(0L);
 	}
+	
+	static int lua_CreateTaskbarList(lua_State* l)
+	{
+		HRESULT hr = LuaApplication::Instance()->TaskbarList.CoCreateInstance(CLSID_TaskbarList, NULL, CLSCTX_ALL);
+		if (SUCCEEDED(hr))
+			lua::push(l, true);
+		else
+			lua::push(l, false);
+
+		return 1;
+	}
+	static int lua_TaskbarListSetProgressState(lua_State* l)
+	{
+		if (!LuaApplication::Instance()->TaskbarList)
+		{
+			lua::push(l, false);
+			return 1;
+		}
+		/*
+		TBPF_NOPROGRESS	= 0,
+		TBPF_INDETERMINATE	= 0x1,
+		TBPF_NORMAL	= 0x2,
+		TBPF_ERROR	= 0x4,
+		TBPF_PAUSED	= 0x8
+		*/
+		HWND hWnd;
+		int state;
+		lua::get(l, 1, &hWnd, &state);
+		HRESULT hr = LuaApplication::Instance()->TaskbarList->SetProgressState(hWnd, (TBPFLAG)state);
+		if (SUCCEEDED(hr))
+			lua::push(l, true);
+		else
+			lua::push(l, false);
+
+		return 1;
+	}
+	static int lua_TaskbarListSetProgressValue(lua_State* l)
+	{
+		if (!LuaApplication::Instance()->TaskbarList)
+		{
+			lua::push(l, false);
+			return 1;
+		}
+		HWND hWnd;
+		double a, b;
+		lua::get(l, 1, &hWnd, &a, &b);
+		HRESULT hr = LuaApplication::Instance()->TaskbarList->SetProgressValue(hWnd, a, b);
+		if (SUCCEEDED(hr))
+			lua::push(l, true);
+		else
+			lua::push(l, false);
+
+		return 1;
+	}
+	static int lua_TaskbarListSetOverlayIcon(lua_State* l)
+	{
+		if (!LuaApplication::Instance()->TaskbarList)
+		{
+			lua::push(l, false);
+			return 1;
+		}
+		HWND hWnd;
+		HICON hIcon;
+		std::string luaTip;
+		lua::get(l, 1, &hWnd, &hIcon, &luaTip);
+		std::wstring suni = DuiLib::Convert::UTF8ToUnicode(luaTip.c_str());
+		HRESULT hr = LuaApplication::Instance()->TaskbarList->SetOverlayIcon(hWnd, hIcon, suni.c_str());
+		if (SUCCEEDED(hr))
+			lua::push(l, true);
+		else
+			lua::push(l, false);
+
+		return 1;
+	}
+	static int lua_ImageList_LoadImage(lua_State* l)
+	{
+		if (!LuaApplication::Instance()->TaskbarList)
+		{
+			lua::push(l, false);
+			return 1;
+		}
+		DuiLib::CDuiString sImgPath;
+		int cx;
+		int cGrow;
+		DWORD r, g, b;
+		unsigned int type;
+		unsigned int nflags;
+		HINSTANCE hInstance;
+		lua::get(l, 1, &hInstance, &sImgPath, &cx, &cGrow, &r, &g, &b, &type, &nflags);
+		HIMAGELIST hImglist = ImageList_LoadImage(hInstance, sImgPath, cx, cGrow, RGB(r, g, b), type, nflags);
+		if (hImglist)
+			lua_pushlightuserdata(l, hImglist);
+		else
+			lua_pushnil(l);
+		return 1;
+	}
+	static int lua_ImageList_Destroy(lua_State* l)
+	{
+		HIMAGELIST hImglist;
+		lua::get(l, 1, &hImglist);
+		ImageList_Destroy(hImglist);
+		return 0;
+	}
+	static int lua_TaskbarListThumbBarSetImageList(lua_State* l)
+	{
+		if (!LuaApplication::Instance()->TaskbarList)
+		{
+			lua::push(l, false);
+			return 1;
+		}
+		HWND hWnd;
+		HIMAGELIST hImglist;
+		lua::get(l, 1, &hWnd, &hImglist);
+		HRESULT hr = LuaApplication::Instance()->TaskbarList->ThumbBarSetImageList(hWnd, hImglist);
+		if (SUCCEEDED(hr))
+			lua::push(l, true);
+		else
+			lua::push(l, false);
+
+		return 1;
+	}
+	static int lua_TaskbarListThumbBarAddButtons(lua_State* l)
+	{
+		if (!LuaApplication::Instance()->TaskbarList)
+		{
+			lua::push(l, false);
+			return 1;
+		}
+		HWND hWnd;
+		lua::get(l, 1, &hWnd);
+		std::vector< THUMBBUTTON > buttons;
+		
+		lua_pushnil(l);
+		int real_pos = 2;
+		while (lua_next(l, real_pos) != 0)
+		{
+			THUMBBUTTON b;
+			lua::lua_table_ref_t t;
+			lua::get(l, -1, &t);
+			t.get("id", &(b.iId));
+			if (t.has("mask"))
+			{
+				unsigned int mask;
+				t.get("mask", &mask);
+				b.dwMask = (THUMBBUTTONMASK)mask;
+			}
+			if (t.has("flag"))
+			{
+				unsigned int flag;
+				t.get("flag", &flag);
+				b.dwFlags = (THUMBBUTTONFLAGS)flag;
+			}
+			if (t.has("tip"))
+			{
+				std::string luaTip;
+				t.get("tip", &luaTip);
+				std::wstring suni = DuiLib::Convert::UTF8ToUnicode(luaTip.c_str());
+				lstrcpyW(b.szTip, suni.c_str());
+			}
+			if (t.has("icon"))
+				t.get("icon", &b.hIcon);
+			if (t.has("bitmap"))
+				t.get("bitmap", &b.iBitmap);
+			t.unref();
+			lua_pop(l, 1);
+			buttons.push_back(b);
+		}
+
+		HRESULT hr = LuaApplication::Instance()->TaskbarList->ThumbBarAddButtons(hWnd, buttons.size(), &buttons[0]);
+		if (SUCCEEDED(hr))
+			lua::push(l, true);
+		else
+			lua::push(l, false);
+
+		return 1;
+	}
+	static int lua_TaskbarListThumbBarUpdateButtons(lua_State* l)
+	{
+		if (!LuaApplication::Instance()->TaskbarList)
+		{
+			lua::push(l, false);
+			return 1;
+		}
+		HWND hWnd;
+		int iButton;
+		lua::get(l, 1, &hWnd, &iButton);
+		THUMBBUTTON b;
+		lua::lua_table_ref_t t;
+		lua::get(l, 3, &t);
+		t.get("id", &(b.iId));
+		if (t.has("mask"))
+		{
+			unsigned int mask;
+			t.get("mask", &mask);
+			b.dwMask = (THUMBBUTTONMASK)mask;
+		}
+		if (t.has("flag"))
+		{
+			unsigned int flag;
+			t.get("flag", &flag);
+			b.dwFlags = (THUMBBUTTONFLAGS)flag;
+		}
+		if (t.has("tip"))
+		{
+			std::string luaTip;
+			t.get("tip", &luaTip);
+			std::wstring suni = DuiLib::Convert::UTF8ToUnicode(luaTip.c_str());
+			lstrcpyW(b.szTip, suni.c_str());
+		}
+		if (t.has("icon"))
+			t.get("icon", &b.hIcon);
+		if (t.has("bitmap"))
+			t.get("bitmap", &b.iBitmap);
+		t.unref();
+
+		HRESULT hr = LuaApplication::Instance()->TaskbarList->ThumbBarUpdateButtons(hWnd, iButton, &b);
+		if (SUCCEEDED(hr))
+			lua::push(l, true);
+		else
+			lua::push(l, false);
+
+		return 1;
+	}
+
 
 	static bool RegisterApplicationAPIToLua(lua_State* l)
 	{
 		//Application
 		lua::lua_register_t<void>(l, "Application")
 			.def("RegisterWindowMessage", lua_RegisterWindowMessage)
+			.def("CreateTaskbarList", lua_CreateTaskbarList)
+			.def("TaskbarListSetProgressState", lua_TaskbarListSetProgressState)
+			.def("TaskbarListSetProgressValue", lua_TaskbarListSetProgressValue)
+			.def("TaskbarListSetOverlayIcon", lua_TaskbarListSetOverlayIcon)
+			.def("ImageList_LoadImage", lua_ImageList_LoadImage)
+			.def("ImageList_Destroy", lua_ImageList_Destroy)
+			.def("TaskbarListThumbBarSetImageList", lua_TaskbarListThumbBarSetImageList)
+			.def("TaskbarListThumbBarAddButtons", lua_TaskbarListThumbBarAddButtons)
+			.def("TaskbarListThumbBarUpdateButtons", lua_TaskbarListThumbBarUpdateButtons)
 			.def("LoadIconFromFile", lua_LoadIconFromFile)
 			.def("DestroyIcon", lua_DestroyIcon)
 			.def("GetCursorPos", lua_GetCursorPos)

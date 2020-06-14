@@ -2,6 +2,9 @@
 #define LUAAPPLICATION_H
 #pragma once
 #include "LuaWindow.h"
+#include <atlcomcli.h>
+#include <ShlObj_core.h>
+
 namespace DuiLib
 {
 	class LuaApplication : public Singleton<LuaApplication>
@@ -10,6 +13,9 @@ namespace DuiLib
 		LuaApplication();
 	public:
 		CTimerSource     TimerSource;
+		typedef CComPtr<ITaskbarList4>        spTaskbarListT;
+		spTaskbarListT TaskbarList;
+
 		virtual ~LuaApplication();
 		bool Run(HINSTANCE, HINSTANCE, LPSTR, int);
 		bool ImportLuaDLL(LPCTSTR dllName, LPCTSTR dllEntry = NULL);

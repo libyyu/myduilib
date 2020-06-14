@@ -27,6 +27,11 @@ function MainWindow:__ctor()
 	theApp:GetRuntimeState():GetEventMgr():AddEvent(self, _G.Event.BeginPlaying)
 	theApp:GetRuntimeState():GetEventMgr():AddEvent(self, _G.Event.PlayingPosChanged)
 	theApp:GetRuntimeState():GetEventMgr():AddEvent(self, _G.Event.PlayingEndReached)
+
+	_uTaskbarCreatedMsg 	 = Application.RegisterWindowMessage("TaskbarCreated")
+	_uTaskbarButtonCreateMsg = Application.RegisterWindowMessage("TaskbarButtonCreated")
+	print("_uTaskbarCreatedMsg", _uTaskbarCreatedMsg)
+	print("_uTaskbarButtonCreateMsg", _uTaskbarButtonCreateMsg)
 end
 
 function MainWindow:CreateControl(pstrClass)
@@ -88,7 +93,16 @@ function MainWindow:OnSysCommand(wParam,lParam)
 		self:PostMessage(DuiLib.MsgArgs.WM_QUIT, 0, 0)
 	end
 end
+function MainWindow:GetProcessWindowMessage()
+	print("GetProcessWindowMessage")
+	return {
+		_uTaskbarCreatedMsg,
+		_uTaskbarButtonCreateMsg,
+		DuiLib.MsgArgs.WM_COMMAND,
+	}
+end
 function MainWindow:ProcessWindowMessage(uMsgId,wParam,lParam)
+	print("ProcessWindowMessage", uMsgId, wParam, lParam)
 	local MsgArgs = DuiLib.MsgArgs
 	--[[if uMsgId == MsgArgs.WM_USER + 2500 then
 		self:OnAddListItem(wParam,lParam)
@@ -114,9 +128,69 @@ function MainWindow:ProcessWindowMessage(uMsgId,wParam,lParam)
 		return true
 	end]]
 
+	if uMsgId == _uTaskbarButtonCreateMsg then
+		if Application.CreateTaskbarList() then
+			Application.TaskbarListSetProgressState(self:GetHWND(), TBPFLAG.TBPF_NORMAL)
+			Application.TaskbarListSetProgressValue(self:GetHWND(), 0, 100)
+ 			Application.TaskbarListSetOverlayIcon(self:GetHWND(), _hOfflineIcon, "off")
+			
+			local PaintManagerUI = DuiLib.CPaintManagerUI
+			local path = PaintManagerUI.GetResourcePath() .. "/res"
+ 			local sImgPath = path .. "/ThumbnailToolbar.bmp"
+			local hImglist = Application.ImageList_LoadImage(nil, sImgPath, 16, 1, 255,0,255, 0, 0x00000010)
+			if hImglist then
+				Application.TaskbarListThumbBarSetImageList(self:GetHWND(), hImglist)
+
+				local buttons = {{},{},{}}
+				local dwMask = bit.bor(THUMBBUTTONMASK.THB_BITMAP, THUMBBUTTONMASK.THB_TOOLTIP)
+				buttons[1].id  = 0
+				buttons[1].mask = dwMask
+				buttons[1].bitmap = 0
+				buttons[1].tip = "上一首"
+
+				buttons[2].id  = 1
+				buttons[2].mask = dwMask
+				buttons[2].bitmap = 2
+				buttons[2].tip = "播放"
+
+				buttons[3].id  = 2
+				buttons[3].mask = dwMask
+				buttons[3].bitmap = 3
+				buttons[3].tip = "下一首"
+				
+				Application.TaskbarListThumbBarAddButtons(self:GetHWND(), buttons)
+				Application.ImageList_Destroy(hImglist)
+			end 
+		end
+		return true
+	elseif uMsgId == DuiLib.MsgArgs.WM_COMMAND then
+		if self:OnCommand(wParam, lParam) then
+			return true
+		end
+	end
+
 	return false
 end
-
+function MainWindow:OnCommand(wParam,lParam)
+	print("OnCommand", wParam, lParam, helper.HIWORD(wParam))
+	if THBN_CLICKED ~= helper.HIWORD(wParam) then
+		return false
+	end
+	local d = helper.LOWORD(wParam)
+	if d == 0 then
+		self:PlayPrev()
+	elseif d == 1 then
+		local playCenter = theApp:GetRuntimeState():GetPlayCenter()
+		if playCenter:GetStatus() == _G.em_play_status.em_play then
+			self:PlayOrPause(false)
+		else
+			self:PlayOrPause(true)
+		end	
+	elseif d == 2 then
+		self:PlayNext()
+	end 
+	return true
+end
 function MainWindow:OnMenuCommand(pMsg)
 	if pMsg.nMenuTag == _G.emMenuType.EMT_SONGLIST then
 		self:OnMenuCommandSongList(pMsg)
@@ -180,17 +254,17 @@ function MainWindow:OnInitWindow()
 	local path = PaintManagerUI.GetResourcePath() .. "/res"
 	print(path)
 	local hIcon = Application.LoadIconFromFile(path.."/YMusic.ico", nil)
-	-- if hIcon then
-	-- 	self:SendMessage(DuiLib.WM_SETICON, true, hIcon)
-	-- 	self:SendMessage(DuiLib.WM_SETICON, false, hIcon)
-	-- end
+	if hIcon then
+		self:SendMessage(DuiLib.MsgArgs.WM_SETICON, true, hIcon)
+		self:SendMessage(DuiLib.MsgArgs.WM_SETICON, false, hIcon)
+	end
 
-	_uTaskbarCreatedMsg 	 = Application.RegisterWindowMessage("TaskbarCreated")
-	_uTaskbarButtonCreateMsg = Application.RegisterWindowMessage("TaskbarButtonCreated")
 	_hOnlineIcon        	 = Application.LoadIconFromFile(path.."/YMusic.ico", nil)
 	_hOfflineIcon       	 = Application.LoadIconFromFile(path.."/YMusic.ico", nil)
 	--增加托盘图标
 	self:AddTracyIcon()
+	--初始播放信息
+	self:ShowSongInfo(nil)
 	--初始化播放列表
 	self:UpdatePlayList()
 
@@ -674,7 +748,7 @@ function MainWindow:ShowSongInfo(songInfo)
 		win:FindControl("songname"):SetToolTip("逸听音乐,最好听的音乐")
 		win:FindControl("author"):SetText("听逸听,感受声音魅丽")
 		win:FindControl("author"):SetToolTip("听逸听,感受声音魅丽")
-		win:FindControl("time_used"):SetText("00:00丽")
+		win:FindControl("time_used"):SetText("00:00")
 		win:FindControl("time_total"):SetText("00:00")
 		win:FindControl("playpro"):SetValue(0)
 		win:FindControl("playpro"):SetMouseEnabled(false)
@@ -684,12 +758,25 @@ function MainWindow:ShowSongInfo(songInfo)
 	end
 end
 function MainWindow:OnSongStatusChanged(status)
+	print("OnSongStatusChanged", status)
 	local win = self.m_hWin
 	local pPlay = win:FindControl("play")
 	local pPause = win:FindControl("pause")
 	pPlay:SetVisible(_G.em_play_status.em_play ~= status)
 	pPause:SetVisible(_G.em_play_status.em_play == status)
+
+	local button = {}
+	button.id = 1
+	button.mask = bit.bor(THUMBBUTTONMASK.THB_BITMAP, THUMBBUTTONMASK.THB_TOOLTIP)
+	button.bitmap = _G.em_play_status.em_play == status and 1 or 2
+	if _G.em_play_status.em_play == status then
+		button.tip = "暂停"
+	else
+		button.tip = "播放"
+	end
+	Application.TaskbarListThumbBarUpdateButtons(self:GetHWND(), 1, button)
 end
+
 function MainWindow:PlayOrPause(bPlay)
 	if bPlay then
 		self:Play()
@@ -735,6 +822,10 @@ function MainWindow:Pause()
 end
 function MainWindow:Stop()
 	theApp:GetRuntimeState():GetPlayCenter():Stop()
+	self:ShowSongInfo(nil)
+	self:OnSongStatusChanged(_G.em_play_status.em_stop)
+	self.m_pPlayList:NeedUpdate()
+	self.m_pSongList:NeedUpdate()
 end
 
 function MainWindow:PlayNext()
@@ -750,8 +841,11 @@ function MainWindow:PlayNext()
 		thePlayListMgr:SetCurListID(u_listId)
 	end
 	local u_listId = thePlayListMgr:GetCurListID()
-	thePlayListMgr:PreparePlay(thePlayListMgr:GetNextSongToPlay(u_listId), u_listId)
-	self:PlayOrPause(true)
+	if thePlayListMgr:PreparePlay(thePlayListMgr:GetNextSongToPlay(u_listId), u_listId) then
+		self:PlayOrPause(true)
+	else
+		print("no next song")
+	end
 end
 function MainWindow:PlayPrev()
 	self:Stop()
@@ -766,8 +860,11 @@ function MainWindow:PlayPrev()
 		thePlayListMgr:SetCurListID(u_listId)
 	end
 	local u_listId = thePlayListMgr:GetCurListID()
-	thePlayListMgr:PreparePlay(thePlayListMgr:GetPrevSongToPlay(u_listId), u_listId)
-	self:PlayOrPause(true)
+	if thePlayListMgr:PreparePlay(thePlayListMgr:GetPrevSongToPlay(u_listId), u_listId) then
+		self:PlayOrPause(true)
+	else
+		print("no prev song")
+	end
 end
 
 function MainWindow:BeginPlaying(...)

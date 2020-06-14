@@ -282,6 +282,23 @@ namespace
 		lua::push(l, szCurrent);
 		return 1;
 	}
+
+	static int lua_HIWORD(lua_State* l)
+	{
+		DWORD dw;
+		lua::get(l, 1, &dw);
+		UINT r = HIWORD(dw);
+		lua::push(l, r);
+		return 1;
+	}
+	static int lua_LOWORD(lua_State* l)
+	{
+		DWORD dw;
+		lua::get(l, 1, &dw);
+		UINT r = LOWORD(dw);
+		lua::push(l, r);
+		return 1;
+	}
 }
 
 namespace DuiLib {
@@ -373,6 +390,13 @@ namespace DuiLib {
 		lua_rawset(l, -3);
 		lua_pushstring(l, "strftime");
 		lua_pushcfunction(l, Mtcsftime);
+		lua_rawset(l, -3);
+
+		lua_pushstring(l, "HIWORD");
+		lua_pushcfunction(l, lua_HIWORD);
+		lua_rawset(l, -3);
+		lua_pushstring(l, "LOWORD");
+		lua_pushcfunction(l, lua_LOWORD);
 		lua_rawset(l, -3);
 
 		lua_setglobal(l, "helper");

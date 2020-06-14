@@ -58,7 +58,7 @@ function PlayListItem:DoPaint()
 	if self.spListInfo then
 		local sText = self.spListInfo.m_sName
 		local spCurListID = theApp:GetRuntimeState():GetPlayListMgr():GetCurListID()
-		if self.spListInfo and self.spListInfo.m_nLocalID == spCurListID then
+		if self.spListInfo and self.spListInfo.m_nLocalID == spCurListID and theApp:GetRuntimeState():GetPlayCenter():GetStatus() ~= _G.em_play_status.em_stop then
 			local szBuf = string.format("<f 1><c #F27D30>%s</c></f>", sText)
 			spListName:SetText(szBuf)
 			self:ChangeIcon(theApp:GetRuntimeState():GetPlayCenter():GetStatus())
