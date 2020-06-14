@@ -17,11 +17,13 @@ target("ListDemo")
 	add_defines("_CRT_SECURE_NO_WARNINGS")
 
 	add_includedirs(
-        "../"
+        "../../DuiLib"
     )
 
 	 --添加头文件
     add_options("genproj")
     if has_config("genproj") then
         add_headerfiles("**.h")
-    end
+	end
+	
+	set_values("vs.folder", "demos")

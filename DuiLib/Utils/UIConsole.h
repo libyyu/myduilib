@@ -29,7 +29,9 @@ namespace DuiLib
 		static void Write(const TCHAR* format, ...);
 		static void WriteLine(const TCHAR* format, ...);
 		static void Warning(const TCHAR* format, ...);
+		static void WarningLine(const TCHAR* format, ...);
 		static void Error(const TCHAR* format, ...);
+		static void ErrorLine(const TCHAR* format, ...);
 	};
 }
 

@@ -37,6 +37,7 @@ function CRuntimeState:Init(dwMainThreadId)
 	--日志管理器
 	local str = self._spFilePathMgr:GetLogPath()
 	local strLogFileName = str .. APP_NAME .. ".log"
+	warn("Init Logger", strLogFileName)
 	Application.CreateLogger(strLogFileName)
 	--数据库管理器
 	local DatabaseManagerT = require "database.DatabaseManager"

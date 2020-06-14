@@ -9,8 +9,11 @@
 #include <google/protobuf/dynamic_message.h>
 #include <google/protobuf/compiler/parser.h>
 #include <google/protobuf/any.pb.h>
+#include <google/protobuf/io/zero_copy_stream_impl.h>
+#include <google/protobuf/compiler/importer.h>
 #include <vector>
 #include <string>
+#include <sstream>
 namespace pb = google::protobuf;
 
 static pb::DescriptorPool& descriptorPool();
@@ -1502,13 +1505,35 @@ public:
 		}
 	}
 };
-
+class DynamicProtoImportErrorCollector : public pb::io::ErrorCollector
+{
+	std::string fileName;
+public:
+	//virtual void AddError(const std::string& filename, int line, int column, const std::string& message) override
+	//{
+	//	std::cout << "Error:" << filename << "@" << line << ":" << column << ", err:" << message.c_str() << std::endl;
+	//}
+	virtual void AddError(int line, pb::io::ColumnNumber column, const std::string& message)
+	{
+		std::cout << "\nError: " << fileName.c_str() << "@" << line << ":" << column << ", err:" << message.c_str();
+	}
+public:
+	DynamicProtoImportErrorCollector(const std::string& filename): fileName(filename) {}
+};
 /*
 	从文件加载pb,自动加载依赖
 	成功返回true,失败返回
 */
 static bool _LoadFileDescriptor(char const* pFileName, std::vector<const pb::FileDescriptor*>& fd, std::string& err)
 {
+	for (auto& p : fd)
+	{
+		if (p->name() == pFileName)
+		{
+			return true;
+		}
+	}
+	std::cout << "\nLoad FileDescriptor " << pFileName;
 	size_t size = 0;
 	std::vector<unsigned char> buffer;
 
@@ -1517,16 +1542,29 @@ static bool _LoadFileDescriptor(char const* pFileName, std::vector<const pb::Fil
 		err = std::string("ReadBuffer ") + pFileName;
 		return false;
 	}
-
-	pb::FileDescriptorSet fileDescriptorSet;
-	if (!fileDescriptorSet.ParseFromArray((unsigned char*)&buffer[0], size))
+	pb::FileDescriptorProto file_descriptor_proto;
+	const char* pBuffer = (const char*)&buffer[0];
+	std::istream* pStrStream = new std::istringstream(std::string(pBuffer, pBuffer+size));
+	pb::io::IstreamInputStream* pInputStream = new pb::io::IstreamInputStream(pStrStream);
+	DynamicProtoImportErrorCollector* pErrorCollector = new DynamicProtoImportErrorCollector(pFileName);
+	pb::io::Tokenizer* pTokenizer = new pb::io::Tokenizer(pInputStream, pErrorCollector);
+	pb::compiler::Parser parser;
+	if (!parser.Parse(pTokenizer, &file_descriptor_proto))
 	{
-		err = std::string("ParseFromArray ") + pFileName;
+		delete pTokenizer;
+		delete pInputStream;
+		delete pStrStream;
+		delete pErrorCollector;
+		err = std::string("Parse ") + pFileName;
 		return false;
 	}
 	else
 	{
-		pb::FileDescriptorProto file_descriptor_proto = fileDescriptorSet.file(0);
+		delete pTokenizer;
+		delete pInputStream;
+		delete pStrStream;
+		delete pErrorCollector;
+
 		//加载依赖
 		int dependency_count_ = file_descriptor_proto.dependency_size();
 		for (int i = 0; i < dependency_count_; ++i)

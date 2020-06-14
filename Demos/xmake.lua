@@ -5,13 +5,15 @@ if is_plat("windows") then
 		'Server',
 		'DuiLibApp',
 		'LuaDuiLibApp',
+		'ListDemo',
 		--'QQDemo',
 		--'RichListDemo',
 		--'ScrCapture',
 		--'360SafeDemo',
 		--'GameDemo',
 		'MyControls',
-		'YMusic'
+		'YMusic',
+		'ConvexBrowser'
 	)
 else
 end

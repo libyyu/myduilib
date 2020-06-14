@@ -9,7 +9,7 @@
 #include <vector>
 #include <sstream>
 
-#include "..\DuiLib\UIlib.h"
+#include "UIlib.h"
 
 
 #define WM_ADDLISTITEM WM_USER + 50
@@ -442,8 +442,10 @@ private:
 
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*lpCmdLine*/, int nCmdShow)
 {
-	DuiLib::CPaintManagerUI::SetInstance(hInstance);
-	DuiLib::CPaintManagerUI::SetResourcePath(DuiLib::CPaintManagerUI::GetInstancePath() + _T("\\..\\skin\\ListRes"));
+    DuiLib::CDuiString szRootPath = TODUISTRING(ROOT_DIR).c_str();
+    DuiLib::CPaintManagerUI::SetInstance(hInstance);
+    DuiLib::CPaintManagerUI::SetResourcePath(DuiLib::Path::CombinePath(szRootPath.GetData(), _T("skin\\ListRes")));
+
 	//DuiLib::CPaintManagerUI::SetResourceZip(_T("ListRes.zip"));
 
     ListMainForm* pFrame = new ListMainForm();
