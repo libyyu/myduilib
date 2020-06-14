@@ -29,8 +29,12 @@ function Utils.Value2String(sth)
  	return table.concat( result, "\n")
 end
 
-function Utils.printValue(sth)
-	print(Utils.Value2String(sth))
+function Utils.printValue(...)
+	local sb = {}
+	for _,v in ipairs({...}) do
+		sb[#sb+1] = Utils.Value2String(v)
+	end
+	print(table.concat(sb, " "))
 end
 
 local userdata_hash_id_table = setmetatable({}, { __mode = "k" })
