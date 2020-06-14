@@ -997,21 +997,20 @@ namespace DuiLib
 		}
 
 		CPaintManagerUI::SetInstance(hInstance);
-
-		CDuiString szEntryFile = Path::CombinePath(CPaintManagerUI::GetInstancePath(), "entry.lua");
+		CDuiString szFileName = Path::GetCurAppName(TRUE);
+		CDuiString szLuaFile = szFileName + _T(".lua");
+		CDuiString szEntryFile = Path::CombinePath(CPaintManagerUI::GetInstancePath(), szLuaFile);
 		std::string entryfile = toStdString(szEntryFile.GetData());
 		BYTE* buffer = NULL;
 		unsigned int dwSize = 0;
 		bool success = lua_load_tool::load_file(entryfile.c_str(), &buffer, &dwSize);
 		if (!success)
 		{
-			CDuiString error = _T("Failed to Initialize");
-			error += szEntryFile;
-			MessageBox(NULL, error.GetData(), _T("Error"), 0);
+			DuiAssertX(false, _T("Failed to Initialize: %s"), szEntryFile.GetData());
 			return false;
 		}
 
-		std::string chunk = "@entry.lua";
+		std::string chunk = "@" + toStdString(szLuaFile.GetData());
 		if (0 != luaL_loadbuffer(*globalLuaEnv, (char*)buffer, dwSize, chunk.c_str()))
 		{
 			lua_load_tool::release_file(buffer);
@@ -1020,7 +1019,7 @@ namespace DuiLib
 			DuiLogError("%s", err);
 			lua_pop(*globalLuaEnv, 1);
 			CDuiString s = toDuiString(err);
-			MessageBox(NULL, s.GetData(), _T("Error"), 0);
+			DuiAssertX(false, _T("Failed to LoadLuaBuffer: %s"), s.GetData());
 			return false;
 		}
 		lua_load_tool::release_file(buffer);

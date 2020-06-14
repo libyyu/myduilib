@@ -135,6 +135,7 @@ function IBaseWindow:TouchMsgTable()
 		OnUIPaint = self:tryget("OnUIPaint"),
 		GetSkinPath = self:tryget("GetSkinPath"),
 		GetItemText = self:tryget("GetItemText"),
+		CreateControl = self:tryget("CreateControl"),
 	}
 	self.m_msgTable = msgt
 	self:MsgTableExtend()
@@ -169,6 +170,59 @@ end
 function IBaseWindow:CenterWindow()
 	assert(self:IsValid())
 	self.m_hWin:CenterWindow()
+end
+
+function IBaseWindow:FindControl(name)
+	assert(self:IsValid())
+	return self.m_hWin:FindControl(name)
+end
+
+function IBaseWindow:OnNotify(msg)
+	local win = self.m_hWin
+	if not msg or msg.isnil then return end
+	if not msg.pSender then return end
+	local msgType = msg.sType
+	local sender = msg.pSender
+	if not sender or sender.isnil then return end
+
+	if msgType == "click" then
+		if sender:IsName("closebtn") then
+			self:SendMessage(DuiLib.MsgArgs.WM_SYSCOMMAND, DuiLib.SC_CLOSE, 0)
+		elseif sender:IsName("minbtn") then
+			self:SendMessage(DuiLib.MsgArgs.WM_SYSCOMMAND, DuiLib.SC_MINIMIZE, 0)
+		elseif sender:IsName("restorebtn") then
+			self:SendMessage(DuiLib.MsgArgs.WM_SYSCOMMAND, DuiLib.SC_RESTORE, 0)
+		elseif sender:IsName("maxbtn") then
+			self:SendMessage(DuiLib.MsgArgs.WM_SYSCOMMAND, DuiLib.SC_MAXIMIZE, 0)
+		end
+	elseif msgType == "maxmin" then
+		local pMax = self:FindControl("maxbtn")
+		local pRestore = self:FindControl("restorebtn")
+		local wParam = msg.wParam
+		if type(wParam) == "number" then
+			if wParam == 1 then
+				if pMax and pRestore then
+					pMax:SetVisible(false)
+					pRestore:SetVisible(true)
+				end
+			else
+				if pMax and pRestore then
+					pMax:SetVisible(true)
+					pRestore:SetVisible(false)
+				end
+			end
+		elseif wParam == helper.IntToUInt64(1) then
+			if pMax and pRestore then
+				pMax:SetVisible(false)
+				pRestore:SetVisible(true)
+			end
+		elseif wParam == helper.IntToUInt64(0) then
+			if pMax and pRestore then
+				pMax:SetVisible(true)
+				pRestore:SetVisible(false)
+			end
+		end
+	end
 end
 
 return IBaseWindow

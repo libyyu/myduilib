@@ -224,8 +224,24 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protos\windows\x86\release\thirdpart\protos\LuaDynamicProtobuf.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protos\windows\x86\debug\thirdpart\protos\LuaDynamicProtobuf.cpp.obj</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protos\DynamicMessageToDataTable.cpp">
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protos\windows\x64\debug\thirdpart\protos\DynamicMessageToDataTable.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protos\windows\x86\release\thirdpart\protos\DynamicMessageToDataTable.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protos\windows\x86\debug\thirdpart\protos\DynamicMessageToDataTable.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protos\windows\x64\release\thirdpart\protos\DynamicMessageToDataTable.cpp.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\protos\DynamicProtoParser.cpp">
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\protos\windows\x64\debug\thirdpart\protos\DynamicProtoParser.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\protos\windows\x64\release\thirdpart\protos\DynamicProtoParser.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\protos\windows\x86\release\thirdpart\protos\DynamicProtoParser.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\protos\windows\x86\debug\thirdpart\protos\DynamicProtoParser.cpp.obj</ObjectFileName>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\thirdpart\protos\DynamicMessageToDataTable.h" />
+    <ClInclude Include="..\..\thirdpart\protos\DynamicProtoParser.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -23,10 +23,18 @@ function MainWindow:__ctor()
 	self.m_pTimeUsed = nil
 	self.m_pTimeTotal = nil
 	self.m_pGlobalTimer = nil
-
+	self.m_bHandleNotify = false
 	theApp:GetRuntimeState():GetEventMgr():AddEvent(self, _G.Event.BeginPlaying)
 	theApp:GetRuntimeState():GetEventMgr():AddEvent(self, _G.Event.PlayingPosChanged)
 	theApp:GetRuntimeState():GetEventMgr():AddEvent(self, _G.Event.PlayingEndReached)
+end
+
+function MainWindow:CreateControl(pstrClass)
+	local pControl = MyControl.CreateControl(pstrClass)
+	if pControl then
+		return pControl
+	end
+	return nil
 end
 
 function MainWindow:WindowClass()
@@ -137,9 +145,7 @@ function MainWindow:OnNotify(msg)
 	local msgType = msg.sType
 	local sender = msg.pSender
 	if not sender or sender.isnil then return end
-	-- if msgType ~= "timer" then
-	-- 	warn("888888", msgType, sender)
-	-- end
+	self.m_bHandleNotify = false
 	if msgType == "click" then
 		self:OnClick(msg)
 	elseif msgType == "windowinit" then
@@ -160,6 +166,9 @@ function MainWindow:OnNotify(msg)
 		self:OnReturn(msg)
 	elseif msgType == "timer" then
 		self:OnDuiTimer(msg)
+	end
+	if not self.m_bHandleNotify then
+		IBaseWindow.OnNotify(self, msg)
 	end
 end
 
@@ -199,17 +208,12 @@ function MainWindow:OnClick(msg)
 	local win = self.m_hWin
 	local sender = msg.pSender
 	if sender:IsName("closebtn") then
+		self.m_bHandleNotify = true
 		win:MsgBox("确定退出吗？","警告",0x00000030,function(ret)
 			if ret == 1 then
 				self:Close()
 			end
 		end)
-	elseif sender:IsName("maxbtn") then
-		win:SendMessage(DuiLib.MsgArgs.WM_SYSCOMMAND, DuiLib.SC_MAXIMIZE, 0)
-		return;
-	elseif sender:IsName("minbtn") then
-		win:SendMessage(DuiLib.MsgArgs.WM_SYSCOMMAND, DuiLib.SC_MINIMIZE, 0)
-		return
 	elseif sender:IsName("btn") then
 		self:OnSearch()
 	elseif sender:IsName("menubtn") then

@@ -48,6 +48,22 @@ namespace DuiLib
 		return 0;
 	}
 
+	int Lua_CreateMyControl(lua_State* l)
+	{
+		CDuiString szClass;
+		lua::get(l, 1, &szClass);
+
+		CControlUI* pControl = MyCreateControl(szClass);
+
+		if (pControl) {
+			lua::push(l, pControl);
+		}
+		else {
+			lua_pushnil(l);
+		}
+
+		return 1;
+	}
 
 	void Lua_RegisterDuiLibControlToLua(lua_State* l)
 	{
@@ -121,6 +137,10 @@ namespace DuiLib
 			WRAP_METHOD(SetCount)
 			WRAP_METHOD(AddOne);
 #undef WRAP_METHOD
+
+		//MyControl
+		lua::lua_register_t<void>(l, "MyControl")
+			.def("CreateControl", Lua_CreateMyControl);
 	}
 }
 #undef LAMBDA_METHOD

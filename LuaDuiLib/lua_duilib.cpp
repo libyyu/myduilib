@@ -2092,30 +2092,6 @@ namespace DuiLib
 		pWindow->GetWindowText(szBuf, 256);
 		return szBuf;
 	}
-	static int CWin_RegisterSkin(lua_State* l)
-	{
-		CWin* pWin = nullptr;
-		lua::get(l, 1, &pWin);
-
-		STRINGorID xml(_T(""));
-		if (lua_isstring(l, 2))
-		{
-			CDuiString pstrText;
-			lua::get(l, 2, &pstrText);
-			xml = STRINGorID(pstrText.GetData());
-		}
-		else if (lua_isnumber(l, 2))
-			xml = STRINGorID(lua_tointeger(l, 2));
-
-		LPCTSTR type = nullptr;
-		lua::get(l, 3, &type);
-		IDialogBuilderCallback* pCallback = nullptr;
-		lua::get(l, 4, &pCallback);
-		CControlUI* pParent = nullptr;
-		lua::get(l, 5, &pParent);
-
-		return lua::push(l, pWin->RegisterSkin(xml, type, pCallback, pParent));
-	}
 	static int CWin_MsgBox(lua_State* l)
 	{
 		CLuaWindow* pWin = nullptr;
@@ -2173,6 +2149,28 @@ namespace DuiLib
 		return 0;
 	}
 
+	static int LuaWindow_RegisterSkin(lua_State* l)
+	{
+		CLuaWindow* pWin = nullptr;
+		lua::get(l, 1, &pWin);
+
+		STRINGorID xml(_T(""));
+		if (lua_isstring(l, 2))
+		{
+			CDuiString pstrText;
+			lua::get(l, 2, &pstrText);
+			xml = STRINGorID(pstrText.GetData());
+		}
+		else if (lua_isnumber(l, 2))
+			xml = STRINGorID(lua_tointeger(l, 2));
+
+		LPCTSTR type = nullptr;
+		lua::get(l, 3, &type);
+		CControlUI* pParent = nullptr;
+		lua::get(l, 4, &pParent);
+
+		return lua::push(l, pWin->RegisterSkin(xml, type, pWin, pParent));
+	}
 	static int LuaWindow_New(lua_State* l)
 	{
 		CDuiString szName;
@@ -2992,7 +2990,6 @@ namespace DuiLib
 				WRAP_METHOD(SetWindowText)
 				WRAP_METHOD(GetWindowTextLength)
 				LAMBDA_METHOD2("GetWindowText", CWin_GetWindowText)
-				LAMBDA_METHOD2("RegisterSkin", CWin_RegisterSkin)
 				WRAP_METHOD(UnRegisterSkin)
 				WRAP_METHOD(GetTag)
 				WRAP_METHOD(SetTag)
@@ -3008,6 +3005,7 @@ namespace DuiLib
 				LAMBDA_METHOD2("New", LuaWindow_New)
 				WRAP_METHOD(PaintMgr)
 				LAMBDA_METHOD2("__tostring", &CLuaWindow::ToString)
+				LAMBDA_METHOD2("RegisterSkin", LuaWindow_RegisterSkin)
 				LAMBDA_METHOD2("BindLuaScript", LuaWindow_BindLuaScript)
 				LAMBDA_METHOD2("ListenUIEvent", LuaWindow_ListenUIEvent)
 				LAMBDA_METHOD2("ListenUIDestroy", LuaWindow_ListenUIDestroy)
