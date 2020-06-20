@@ -249,6 +249,26 @@ CControlUI* CDialogBuilder::Create(IDialogBuilderCallback* pCallback, CPaintMana
 					pManager->AddMultiLanguageString(id, pMultiLanguage);
 				}
 			}
+            else if (_tcsicmp(pstrClass, _T("Plugin")) == 0) {
+			    nAttributes = node.GetAttributeCount();
+			    LPCTSTR pPluginName = NULL;
+			    LPCTSTR pPluginPath = NULL;
+                for (int i = 0; i < nAttributes; i++) {
+					pstrName = node.GetAttributeName(i);
+					pstrValue = node.GetAttributeValue(i);
+					if (_tcsicmp(pstrName, _T("name")) == 0) {
+                        pPluginName = pstrValue;
+					}
+					else if (_tcsicmp(pstrName, _T("path")) == 0) {
+                        pPluginPath = pstrValue;
+					}
+                }
+                if (pPluginPath) {
+                    if (!CPaintManagerUI::LoadPlugin(pPluginPath)) {
+                        DuiLogError(_T("Load Plugin Error:%s %d."), pPluginName ? pPluginName : pPluginPath, ::GetLastError());
+                    }
+                }
+            }
         }
 
         pstrClass = root.GetName();
@@ -290,7 +310,8 @@ CControlUI* CDialogBuilder::_Parse(CMarkupNode* pRoot, CControlUI* pParent, CPai
         if( _tcsicmp(pstrClass, _T("Image")) == 0 || _tcsicmp(pstrClass, _T("Font")) == 0 \
             || _tcsicmp(pstrClass, _T("Default")) == 0 
 			|| _tcsicmp(pstrClass, _T("Style")) == 0
-			|| _tcsicmp(pstrClass, _T("MultiLanguage")) == 0 ) continue;
+			|| _tcsicmp(pstrClass, _T("MultiLanguage")) == 0 
+            || _tcsicmp(pstrClass, _T("Plugin")) == 0) continue;
 
         CControlUI* pControl = NULL;
         if( _tcsicmp(pstrClass, _T("Include")) == 0 ) {
