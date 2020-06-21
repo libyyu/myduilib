@@ -8,7 +8,7 @@ namespace DuiLib
 	/////////////////////////////////////////////////////////////////////////////////////
 	//
 
-	class DUILIB_API STRINGorID
+	class UILIB_API STRINGorID
 	{
 	public:
 		STRINGorID(LPCTSTR lpString);
@@ -20,7 +20,7 @@ namespace DuiLib
 	/////////////////////////////////////////////////////////////////////////////////////
 	//
     class CDuiString;
-	class DUILIB_API CDuiPoint : public tagPOINT
+	class UILIB_API CDuiPoint : public tagPOINT
 	{
 	public:
 		CDuiPoint();
@@ -34,7 +34,7 @@ namespace DuiLib
 	/////////////////////////////////////////////////////////////////////////////////////
 	//
 
-	class DUILIB_API CDuiSize : public tagSIZE
+	class UILIB_API CDuiSize : public tagSIZE
 	{
 	public:
 		CDuiSize();
@@ -48,7 +48,7 @@ namespace DuiLib
 	/////////////////////////////////////////////////////////////////////////////////////
 	//
 
-	class DUILIB_API CDuiRect : public tagRECT
+	class UILIB_API CDuiRect : public tagRECT
 	{
 	public:
 		CDuiRect();
@@ -73,7 +73,7 @@ namespace DuiLib
     /////////////////////////////////////////////////////////////////////////////////////
     //
 	class CDuiPtrArray;
-    class DUILIB_API CDuiString
+    class UILIB_API CDuiString
     {
     public:
         enum { MAX_LOCAL_STRING_LEN = 63 };
@@ -173,7 +173,7 @@ namespace DuiLib
 	/////////////////////////////////////////////////////////////////////////////////////
 	//
 
-	class DUILIB_API CDuiPtrArray
+	class UILIB_API CDuiPtrArray
 	{
 	public:
 		CDuiPtrArray(int iPreallocSize = 0);
@@ -204,7 +204,7 @@ namespace DuiLib
 	/////////////////////////////////////////////////////////////////////////////////////
 	//
 
-	class DUILIB_API CDuiValArray
+	class UILIB_API CDuiValArray
 	{
 	public:
 		CDuiValArray(int iElementSize, int iPreallocSize = 0);
@@ -231,7 +231,7 @@ namespace DuiLib
 	//
 
     struct TITEM;
-	class DUILIB_API CDuiStringPtrMap
+	class UILIB_API CDuiStringPtrMap
 	{
 	public:
 		CDuiStringPtrMap(int nSize = 83);
@@ -257,7 +257,7 @@ namespace DuiLib
 	/////////////////////////////////////////////////////////////////////////////////////
 	//
 
-	class DUILIB_API CWaitCursor
+	class UILIB_API CWaitCursor
 	{
 	public:
 		CWaitCursor();

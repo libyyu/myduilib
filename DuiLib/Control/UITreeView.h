@@ -13,7 +13,7 @@ namespace DuiLib
 	class CLabelUI;
 	class COptionUI;
 
-	class DUILIB_API CTreeNodeUI : public CListContainerElementUI
+	class UILIB_API CTreeNodeUI : public CListContainerElementUI
 	{
 		DECLARE_CLASS(CTreeNodeUI)
 	public:
@@ -97,7 +97,7 @@ namespace DuiLib
 		CDuiPtrArray			mTreeNodes;
 	};
 
-	class DUILIB_API CTreeViewUI : public CListUI,public INotifyUI
+	class UILIB_API CTreeViewUI : public CListUI,public INotifyUI
 	{
 		DECLARE_CLASS(CTreeViewUI)
 	public:

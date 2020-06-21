@@ -10,7 +10,7 @@ namespace DuiLib
 {
 	class CPaintManagerUI;
 	class IDuiTimer;
-	class DUILIB_API CTrayIconUI
+	class UILIB_API CTrayIconUI
 	{
 		DECLARE_CLASS(CTrayIconUI)
 		CTrayIconUI(void);

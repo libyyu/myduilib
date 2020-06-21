@@ -9,7 +9,7 @@ namespace DuiLib {
 
 class CComboWnd;
 
-class DUILIB_API CComboUI : public CContainerUI, public IListOwnerUI
+class UILIB_API CComboUI : public CContainerUI, public IListOwnerUI
 {
     friend class CComboWnd;
     DECLARE_CLASS(CComboUI)

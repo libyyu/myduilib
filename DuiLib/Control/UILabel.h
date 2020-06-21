@@ -10,8 +10,8 @@
 #pragma comment( lib, "GdiPlus.lib" )
 // UMU: DO NOT use "using namespace" in .h file
 //using namespace Gdiplus;
-class DUILIB_API Gdiplus::RectF;
-struct DUILIB_API Gdiplus::GdiplusStartupInput;
+class UILIB_API Gdiplus::RectF;
+struct UILIB_API Gdiplus::GdiplusStartupInput;
 
 using Gdiplus::RectF;
 using Gdiplus::GdiplusStartupInput;
@@ -20,7 +20,7 @@ using Gdiplus::GdiplusStartupInput;
 
 namespace DuiLib
 {
-	class DUILIB_API CLabelUI : public CControlUI
+	class UILIB_API CLabelUI : public CControlUI
 	{
 		DECLARE_CLASS(CLabelUI)
 	public:

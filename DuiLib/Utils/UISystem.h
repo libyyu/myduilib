@@ -5,7 +5,7 @@
 namespace DuiLib
 {
 	typedef HMODULE  HPLUGINS;
-	class DUILIB_API CSystem
+	class UILIB_API CSystem
 	{
 		CSystem();
 		CDuiStringPtrMap _plugins;

@@ -5,7 +5,7 @@
 
 namespace DuiLib
 {
-	class DUILIB_API CSliderUI : public CProgressUI
+	class UILIB_API CSliderUI : public CProgressUI
 	{
 		DECLARE_CLASS(CSliderUI)
 	public:

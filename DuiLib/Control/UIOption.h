@@ -5,7 +5,7 @@
 
 namespace DuiLib
 {
-	class DUILIB_API COptionUI : public CButtonUI
+	class UILIB_API COptionUI : public CButtonUI
 	{
 		DECLARE_CLASS(COptionUI)
 	public:

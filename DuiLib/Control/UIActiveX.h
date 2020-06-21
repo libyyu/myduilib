@@ -25,7 +25,7 @@ public:
 /////////////////////////////////////////////////////////////////////////////////////
 //
 
-class DUILIB_API CActiveXUI : public CContainerUI, public IMessageFilterUI
+class UILIB_API CActiveXUI : public CContainerUI, public IMessageFilterUI
 {
     friend class CActiveXCtrl;
     DECLARE_CLASS(CActiveXUI)

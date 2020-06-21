@@ -5,7 +5,7 @@
 
 namespace DuiLib
 {
-	class DUILIB_API CProgressUI : public CLabelUI
+	class UILIB_API CProgressUI : public CLabelUI
 	{
 		DECLARE_CLASS(CProgressUI)
 	public:

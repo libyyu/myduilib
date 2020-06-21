@@ -5,7 +5,7 @@
 
 namespace DuiLib
 {
-	class DUILIB_API CHorizontalLayoutUI : public CContainerUI
+	class UILIB_API CHorizontalLayoutUI : public CContainerUI
 	{
 		DECLARE_CLASS(CHorizontalLayoutUI)
 	public:

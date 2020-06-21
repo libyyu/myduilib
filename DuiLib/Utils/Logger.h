@@ -4,7 +4,7 @@
 
 namespace DuiLib
 {
-	class DUILIB_API ILogger
+	class UILIB_API ILogger
 	{
 	public:
 		virtual void flush() = 0;
@@ -25,7 +25,7 @@ namespace DuiLib
 		Stream stream() { return Stream(this); }
 	};
 
-	class DUILIB_API CLogger : public ILogger
+	class UILIB_API CLogger : public ILogger
 	{
 	public:
 		typedef CLogger             self_type;
@@ -92,9 +92,9 @@ namespace DuiLib
 		CDuiLock*                _plock;
 	};
 
-	DUILIB_API extern CLogger* duiLogger; 
+	UILIB_API extern CLogger* duiLogger; 
 
-	DUILIB_API void CreateLogger(const TCHAR* filename = NULL);
+	UILIB_API void CreateLogger(const TCHAR* filename = NULL);
 }
 #define  DuiLogInfo(fmt,...)  { if(DuiLib::duiLogger){DuiLib::duiLogger->formatLog(__FILET__,__LINE__,DuiLib::CLogger::Log_Level::InfoLog,fmt,##__VA_ARGS__);} else {Console::WriteLine(fmt,##__VA_ARGS__);} }
 #define  DuiLogWarning(fmt,...) { if(DuiLib::duiLogger){DuiLib::duiLogger->formatLog(__FILET__,__LINE__,DuiLib::CLogger::Log_Level::WarningLog,fmt,##__VA_ARGS__);} else {Console::WarningLine(fmt,##__VA_ARGS__);} }

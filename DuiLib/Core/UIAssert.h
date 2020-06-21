@@ -17,7 +17,7 @@ namespace DuiLib
 	};
 
 	//- Global functions ----------------------------------------------------------
-	DUILIB_API ErrRet NotifyAssert(const TCHAR* condition, const TCHAR* fileName, int lineNumber, const TCHAR* formats, ...);
+	UILIB_API ErrRet NotifyAssert(const TCHAR* condition, const TCHAR* fileName, int lineNumber, const TCHAR* formats, ...);
 }
 
 #if defined(_DEBUG) || defined(DEBUG)

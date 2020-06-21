@@ -8,7 +8,7 @@ namespace DuiLib
 	class CDateTimeWnd;
 
 	/// 时间选择控件
-	class DUILIB_API CDateTimeUI : public CLabelUI
+	class UILIB_API CDateTimeUI : public CLabelUI
 	{
 		friend class CDateTimeWnd;
 		DECLARE_CLASS(CDateTimeUI)

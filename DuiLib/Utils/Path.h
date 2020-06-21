@@ -7,27 +7,27 @@ namespace DuiLib
 {
 	namespace Path
 	{
-		DUILIB_API CDuiString GetAppPath();
-		DUILIB_API CDuiString GetCurAppName(BOOL bNoExt = TRUE);
-		DUILIB_API CDuiString GetCurDir();
-		DUILIB_API CDuiString GetTempPath();
-		DUILIB_API CDuiString GetTempFileName(LPCTSTR lpszFileName);
-		DUILIB_API CDuiString GetRandomFileName(LPCTSTR lpszPath, LPCTSTR lpszFileName);
+		UILIB_API CDuiString GetAppPath();
+		UILIB_API CDuiString GetCurAppName(BOOL bNoExt = TRUE);
+		UILIB_API CDuiString GetCurDir();
+		UILIB_API CDuiString GetTempPath();
+		UILIB_API CDuiString GetTempFileName(LPCTSTR lpszFileName);
+		UILIB_API CDuiString GetRandomFileName(LPCTSTR lpszPath, LPCTSTR lpszFileName);
 
-		DUILIB_API BOOL IsDirectory(LPCTSTR lpszPath);
-		DUILIB_API BOOL IsFileExist(LPCTSTR lpszFileName);
-		DUILIB_API BOOL IsDirectoryExist(LPCTSTR lpszPath);
-		DUILIB_API BOOL CreateDirectory(LPCTSTR lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes);
-		DUILIB_API BOOL IsPathValid(LPCTSTR lpszPath);
+		UILIB_API BOOL IsDirectory(LPCTSTR lpszPath);
+		UILIB_API BOOL IsFileExist(LPCTSTR lpszFileName);
+		UILIB_API BOOL IsDirectoryExist(LPCTSTR lpszPath);
+		UILIB_API BOOL CreateDirectory(LPCTSTR lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes);
+		UILIB_API BOOL IsPathValid(LPCTSTR lpszPath);
 
-		DUILIB_API CDuiString CombinePath(LPCTSTR lpszPath1, LPCTSTR lpszPath2);
+		UILIB_API CDuiString CombinePath(LPCTSTR lpszPath1, LPCTSTR lpszPath2);
 
-		DUILIB_API CDuiString GetPathRoot(LPCTSTR lpszPath);
-		DUILIB_API CDuiString GetDirectoryName(LPCTSTR lpszPath);
-		DUILIB_API CDuiString GetFileName(LPCTSTR lpszPath);
-		DUILIB_API CDuiString GetFileNameWithoutExtension(LPCTSTR lpszPath);
-		DUILIB_API CDuiString GetExtension(LPCTSTR lpszPath);
-		DUILIB_API CDuiString GetFullPath(LPCTSTR lpszPath);
+		UILIB_API CDuiString GetPathRoot(LPCTSTR lpszPath);
+		UILIB_API CDuiString GetDirectoryName(LPCTSTR lpszPath);
+		UILIB_API CDuiString GetFileName(LPCTSTR lpszPath);
+		UILIB_API CDuiString GetFileNameWithoutExtension(LPCTSTR lpszPath);
+		UILIB_API CDuiString GetExtension(LPCTSTR lpszPath);
+		UILIB_API CDuiString GetFullPath(LPCTSTR lpszPath);
 	}
 }
 

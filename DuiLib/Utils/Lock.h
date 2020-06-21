@@ -5,7 +5,7 @@
 
 namespace DuiLib
 {
-	class DUILIB_API CDuiLock
+	class UILIB_API CDuiLock
 	{
 	public:
 		CDuiLock();
@@ -17,7 +17,7 @@ namespace DuiLib
 		critical_impl* mp_impl;
 	};
 
-	class DUILIB_API CDuiAutoLocker
+	class UILIB_API CDuiAutoLocker
 	{
 	public:
 		explicit CDuiAutoLocker(CDuiLock* pLock);

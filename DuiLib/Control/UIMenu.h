@@ -38,14 +38,14 @@ typedef class ObserverImpl<BOOL, ContextMenuParam> ContextMenuObserver;
 typedef class ReceiverImpl<BOOL, ContextMenuParam> ContextMenuReceiver;
 #pragma warning(pop) 
 
-DUILIB_API extern ContextMenuObserver s_context_menu_observer;
+UILIB_API extern ContextMenuObserver s_context_menu_observer;
 
 // MenuUI
-DUILIB_API extern const TCHAR* const kMenuUIClassName;// = _T("MenuUI");
-DUILIB_API extern const TCHAR* const kMenuUIInterfaceName;// = _T("Menu");
+UILIB_API extern const TCHAR* const kMenuUIClassName;// = _T("MenuUI");
+UILIB_API extern const TCHAR* const kMenuUIInterfaceName;// = _T("Menu");
 
 class CListUI;
-class DUILIB_API CMenuUI : public CListUI
+class UILIB_API CMenuUI : public CListUI
 {
 	DECLARE_CLASS(CMenuUI)
 public:
@@ -73,11 +73,11 @@ public:
 //
 
 // MenuElementUI
-DUILIB_API extern const TCHAR* const kMenuElementUIClassName;// = _T("MenuElementUI");
-DUILIB_API extern const TCHAR* const kMenuElementUIInterfaceName;// = _T("MenuElement);
+UILIB_API extern const TCHAR* const kMenuElementUIClassName;// = _T("MenuElementUI");
+UILIB_API extern const TCHAR* const kMenuElementUIInterfaceName;// = _T("MenuElement);
 
 class CMenuElementUI;
-struct DUILIB_API MenuCmdMsg
+struct UILIB_API MenuCmdMsg
 {
 	UINT_PTR    nMenuTag;
 	UINT_PTR    nMenuUserData;
@@ -88,7 +88,7 @@ struct DUILIB_API MenuCmdMsg
 
 #pragma warning(push)
 #pragma warning(disable:4251)
-class DUILIB_API CMenuWnd : public CWindowWnd, public ContextMenuReceiver
+class UILIB_API CMenuWnd : public CWindowWnd, public ContextMenuReceiver
 {
 	DECLARE_CLASS(CMenuWnd)
 public:
@@ -125,7 +125,7 @@ protected:
 #pragma warning(pop) 
 
 class CListContainerElementUI;
-class DUILIB_API CMenuElementUI : public CListContainerElementUI
+class UILIB_API CMenuElementUI : public CListContainerElementUI
 {
 	DECLARE_CLASS(CMenuElementUI)
 	friend CMenuWnd;

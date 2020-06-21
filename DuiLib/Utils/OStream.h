@@ -10,7 +10,7 @@ namespace DuiLib
 	class IOStream;
 	typedef IOStream& (*StreamSymbol_t)(IOStream& Target);
 
-	class DUILIB_API IOStream
+	class UILIB_API IOStream
 	{
 	public:
 		virtual IOStream& operator <<(char) = 0;
@@ -33,7 +33,7 @@ namespace DuiLib
 		virtual void flush() = 0;
 	};
 
-	class DUILIB_API IOStreamMaker : public IOStream
+	class UILIB_API IOStreamMaker : public IOStream
 	{
 		virtual void output(const char* data) = 0;
 	public:
@@ -58,7 +58,7 @@ namespace DuiLib
 		virtual IOStream& operator <<(void*);
 	};
 
-	class DUILIB_API Convert
+	class UILIB_API Convert
 	{
 	public:
 		static std::string MBToUTF8(const char* pmb, int mLen = -1);

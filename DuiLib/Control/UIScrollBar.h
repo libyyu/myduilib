@@ -5,7 +5,7 @@
 
 namespace DuiLib
 {
-	class DUILIB_API CScrollBarUI : public CControlUI
+	class UILIB_API CScrollBarUI : public CControlUI
 	{
 		DECLARE_CLASS(CScrollBarUI)
 	public:

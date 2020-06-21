@@ -4,7 +4,7 @@
 namespace DuiLib
 {
 
-	class DUILIB_API WindowImplBase
+	class UILIB_API WindowImplBase
 		: public CWindowWnd
 		, public CNotifyPump
 		, public INotifyUI

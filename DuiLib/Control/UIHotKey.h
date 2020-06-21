@@ -6,7 +6,7 @@ namespace DuiLib
 {
 	class CHotKeyWnd;
 	
-	class DUILIB_API CHotKeyUI : public CLabelUI
+	class UILIB_API CHotKeyUI : public CLabelUI
 	{
 		DECLARE_CLASS(CHotKeyUI)
 		friend CHotKeyWnd;

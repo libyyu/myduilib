@@ -5,7 +5,7 @@
 
 namespace DuiLib
 {
-	class DUILIB_API CResource
+	class UILIB_API CResource
 	{
 	public:
 		CResource();
@@ -35,7 +35,7 @@ namespace DuiLib
 		LPBYTE m_pData;
 	};
 
-	class DUILIB_API CResourceManager
+	class UILIB_API CResourceManager
 	{
 		CResourceManager();
 	public:

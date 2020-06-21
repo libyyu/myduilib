@@ -63,13 +63,13 @@
     <ClCompile Include="..\..\DuiLib\Utils\Lock.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\DuiLib\Utils\XUnzip.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\DuiLib\Control\UILabel.cpp">
       <Filter>Control</Filter>
     </ClCompile>
     <ClCompile Include="..\..\DuiLib\Utils\Window.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiLib\Utils\Utils.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
     <ClCompile Include="..\..\DuiLib\Utils\Singleton.cpp">
@@ -90,7 +90,7 @@
     <ClCompile Include="..\..\DuiLib\Control\UIList.cpp">
       <Filter>Control</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\DuiLib\Utils\Utils.cpp">
+    <ClCompile Include="..\..\DuiLib\Utils\unzip.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
     <ClCompile Include="..\..\DuiLib\Utils\Path.cpp">
@@ -327,6 +327,9 @@
       <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\DuiLib\Utils\UISystem.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiLib\Utils\unzip.h">
       <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\DuiLib\Utils\Utils.h">

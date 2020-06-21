@@ -1,5 +1,5 @@
-#ifndef __DUILIB_EXCEPTION_H__
-#define __DUILIB_EXCEPTION_H__
+#ifndef __UILIB_EXCEPTION_H__
+#define __UILIB_EXCEPTION_H__
 
 #ifdef _MSC_VER
 #pragma once
@@ -7,7 +7,7 @@
 
 namespace DuiLib
 {
-	class DUILIB_API CException
+	class UILIB_API CException
 	{
 	public:
 		CException();

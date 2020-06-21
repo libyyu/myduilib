@@ -23,7 +23,7 @@ namespace DuiLib{
 
 	class CDuiTimerBase;
 
-	class DUILIB_API IDuiTimer
+	class UILIB_API IDuiTimer
 	{
 	public:
 		virtual bool SetDuiTimer(HWND hWnd,LPARAM lParam,WPARAM wParam,int iInterval,int iTotalTimer = NULL,bool bAutoRun = true,bool bLoop = false,bool bRevers = false) = 0;
@@ -63,7 +63,7 @@ namespace DuiLib{
 		unUserData m_UserData;
 	};
 
-	class DUILIB_API CDuiTimerBase : public IDuiTimer
+	class UILIB_API CDuiTimerBase : public IDuiTimer
 	{
 	public:
 		virtual ~CDuiTimerBase(void);
@@ -131,7 +131,7 @@ namespace DuiLib{
 		WPARAM	m_wParam;
 	};
 
-	class DUILIB_API CDuiTimer : public CDuiTimerBase
+	class UILIB_API CDuiTimer : public CDuiTimerBase
 	{
 	public:
 		CDuiTimer();
@@ -378,7 +378,7 @@ namespace DuiLib{
 		return CDuiTimerStatic<TParam>(pFn, iInterval, iTotalTimer, bAutoRun, bLoop, bRevers);
 	}
 
-	class DUILIB_API CTimerSource
+	class UILIB_API CTimerSource
 	{
 	public:
 		~CTimerSource();

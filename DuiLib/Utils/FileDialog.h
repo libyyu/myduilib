@@ -6,7 +6,7 @@
 #include <string>
 namespace DuiLib
 {
-	class DUILIB_API CFileDialog
+	class UILIB_API CFileDialog
 	{
 	public:
 		struct __POSITION {};

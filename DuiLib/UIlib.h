@@ -28,19 +28,19 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #ifdef UILIB_STATIC
-#	define DUILIB_API 
+#	define UILIB_API 
 #else
 #	if defined(UILIB_EXPORTS)
 #		if	defined(_MSC_VER)
-#			define DUILIB_API __declspec(dllexport)
+#			define UILIB_API __declspec(dllexport)
 #		else
-#			define DUILIB_API 
+#			define UILIB_API 
 #		endif
 #	else
 #		if defined(_MSC_VER)
-#			define DUILIB_API __declspec(dllimport)
+#			define UILIB_API __declspec(dllimport)
 #		else
-#			define DUILIB_API 
+#			define UILIB_API 
 #		endif
 #	endif
 #endif
@@ -69,11 +69,11 @@
 #include <stdio.h>
 
 #ifndef __FILET__
-#define __DUILIB_STR2WSTR(str)	L##str
-#define _DUILIB_STR2WSTR(str)	__DUILIB_STR2WSTR(str)
+#define __UILIB_STR2WSTR(str)	L##str
+#define _UILIB_STR2WSTR(str)	__UILIB_STR2WSTR(str)
 #ifdef _UNICODE
-#define __FILET__	_DUILIB_STR2WSTR(__FILE__)
-#define __FUNCTIONT__	_DUILIB_STR2WSTR(__FUNCTION__)
+#define __FILET__	_UILIB_STR2WSTR(__FILE__)
+#define __FUNCTIONT__	_UILIB_STR2WSTR(__FUNCTION__)
 #else
 #define __FILET__	__FILE__
 #define __FUNCTIONT__	__FUNCTION__

@@ -27,7 +27,7 @@ public:
 //
 class CScrollBarUI;
 
-class DUILIB_API CContainerUI : public CControlUI, public IContainerUI
+class UILIB_API CContainerUI : public CControlUI, public IContainerUI
 {
     DECLARE_CLASS(CContainerUI)
 public:

@@ -30,6 +30,9 @@
 #pragma warning (disable : 4786) // identifier was truncated
 #pragma warning (disable : 4996) // function or variable may be unsafe (deprecated)
 #pragma warning (disable : 4302)
+#pragma warning (disable : 4251)
+#pragma warning (disable : 4244)
+#pragma warning (disable : 4819)
 #ifndef _CRT_SECURE_NO_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS // eliminate deprecation warnings for VS2005
 #endif
@@ -40,7 +43,7 @@
 
 // Required for VS 2008 (fails on XP and Win2000 without this fix)
 #ifndef _WIN32_WINNT
-#define _WIN32_WINNT 0x0500
+#define _WIN32_WINNT _WIN32_WINNT_WINXP//0x0501
 #endif
 
 #include "UIlib.h"

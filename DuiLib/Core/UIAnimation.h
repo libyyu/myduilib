@@ -6,7 +6,7 @@
 namespace DuiLib 
 {
 
-	class DUILIB_API IUIAnimation
+	class UILIB_API IUIAnimation
 	{
 	public:
 		virtual ~IUIAnimation() { NULL; }
@@ -24,7 +24,7 @@ namespace DuiLib
 		virtual VOID OnAnimationElapse(int nAnimationID) = 0;
 	};
 
-	class DUILIB_API CAnimationData
+	class UILIB_API CAnimationData
 	{
 	public:
 		CAnimationData(int nElipse, int nFrame, int nID, BOOL bLoop)
@@ -51,7 +51,7 @@ namespace DuiLib
 		BOOL m_bFirstLoop;
 	};
 
-	class DUILIB_API CUIAnimation: public IUIAnimation
+	class UILIB_API CUIAnimation: public IUIAnimation
 	{
 	public:
 		CUIAnimation(CControlUI* pOwner);

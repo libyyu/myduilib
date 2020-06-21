@@ -5,7 +5,7 @@
 
 namespace DuiLib
 {
-	class DUILIB_API CTabLayoutUI : public CContainerUI, public CUIAnimation
+	class UILIB_API CTabLayoutUI : public CContainerUI, public CUIAnimation
 	{
 		DECLARE_CLASS(CTabLayoutUI)
 	public:

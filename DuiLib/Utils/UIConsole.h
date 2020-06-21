@@ -4,7 +4,7 @@
 
 namespace DuiLib
 {
-	class DUILIB_API Console : public Singleton<Console>
+	class UILIB_API Console : public Singleton<Console>
 	{
 		DECLARE_SINGLETON_CLASS(Console)
 		enum e_Flag

@@ -23,7 +23,7 @@ class COleInPlaceFrame;
 class IImageDataObjectCallback;
 class CImageDataObjectHandler;
 
-class DUILIB_API CRichEditUI : public CContainerUI, public IMessageFilterUI
+class UILIB_API CRichEditUI : public CContainerUI, public IMessageFilterUI
 {
     DECLARE_CLASS(CRichEditUI)
 public:
@@ -186,7 +186,7 @@ protected:
 	IImageDataObjectCallback*	     m_pImageObjectCB;
 };
 
-class DUILIB_API IImageDataObjectCallback
+class UILIB_API IImageDataObjectCallback
 {
 public:
 	IImageDataObjectCallback(CRichEditUI* pRichEdit) : m_pRichEdit(pRichEdit) {}
@@ -199,7 +199,7 @@ protected:
 	CRichEditUI * m_pRichEdit;
 };
 
-class DUILIB_API CImageDataObjectHandler : public IImageDataObjectCallback
+class UILIB_API CImageDataObjectHandler : public IImageDataObjectCallback
 {
 public:
 	virtual void InsertBitmap(LPCTSTR lpValue);

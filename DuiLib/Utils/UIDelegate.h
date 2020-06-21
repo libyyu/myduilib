@@ -5,7 +5,7 @@
 
 namespace DuiLib {
 
-class DUILIB_API CDelegateBase	 
+class UILIB_API CDelegateBase	 
 {
 public:
     CDelegateBase(void* pObject, void* pFn);
@@ -77,7 +77,7 @@ inline CDelegateStatic MakeDelegate(bool (*pFn)(void*))
     return CDelegateStatic(pFn); 
 }
 
-class DUILIB_API CEventSource
+class UILIB_API CEventSource
 {
     typedef bool (*FnType)(void*);
 public:
