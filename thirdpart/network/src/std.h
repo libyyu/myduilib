@@ -56,7 +56,7 @@ typedef spBufferListT::iterator spBufferListItetT;
 
 
 #ifndef _WIN32_WINNT
-#define _WIN32_WINNT  0x0500 //window7 0x0601
+#define _WIN32_WINNT  _WIN32_WINNT_WINXP//0x0501
 #endif
 
 #ifndef _CRT_SECURE_NO_WARNINGS
