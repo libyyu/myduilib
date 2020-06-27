@@ -51,8 +51,9 @@ namespace DuiLib
 
 		SIZE EstimateSize(SIZE szAvailable);
 		void DoEvent(TEventUI& event);
-		void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
-
+	protected:
+		virtual bool SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
+	public:
 		void PaintText(HDC hDC);
 
 #ifdef _USE_GDIPLUS
@@ -110,6 +111,10 @@ namespace DuiLib
 		ULONG_PTR				m_gdiplusToken;
 		GdiplusStartupInput		m_gdiplusStartupInput;
 #endif
+
+
+	public://For Designer
+		virtual void GetPropertyList(std::vector<UIPropertyGrid>& property_list);
 	};
 }
 

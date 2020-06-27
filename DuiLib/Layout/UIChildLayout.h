@@ -12,7 +12,9 @@ namespace DuiLib
 		CChildLayoutUI();
 
 		void Init();
-		void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
+	protected:
+		virtual bool SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
+	public:
 		void SetChildLayoutXML(CDuiString pXML);
 		CDuiString GetChildLayoutXML();
 		virtual LPVOID GetInterface(LPCTSTR pstrName);

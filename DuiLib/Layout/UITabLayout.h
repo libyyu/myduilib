@@ -24,8 +24,9 @@ namespace DuiLib
 
 		void SetPos(RECT rc, bool bNeedInvalidate = true);
 
-		void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
-
+	protected:
+		virtual bool SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
+	public:
 		void AnimationSwitch();
 		void DoEvent(TEventUI& event);
 		void OnTimer(int nTimerID);
@@ -37,6 +38,10 @@ namespace DuiLib
 			Horizontal,
 		};
 		AnimationDirection GetAnimationDirection() const { return m_nAnimationDirection; }
+
+	public://For Designer
+		virtual void GetPropertyList(std::vector<UIPropertyGrid>& property_list);
+
 	protected:
 		virtual void OnAnimationStart(INT nAnimationID, BOOL bFirstLoop) {}
 		virtual void OnAnimationStep(INT nTotalFrame, INT nCurFrame, INT nAnimationID);

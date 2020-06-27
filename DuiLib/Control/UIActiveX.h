@@ -53,10 +53,13 @@ public:
 	void SetPos(RECT rc, bool bNeedInvalidate = true);
 	void Move(SIZE szOffset, bool bNeedInvalidate = true);
     bool DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl);
-
-    void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
-
+protected:
+    virtual bool SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
+public:
     LRESULT MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, bool& bHandled);
+
+public://For Designer
+	virtual void GetPropertyList(std::vector<UIPropertyGrid>& property_list);
 
 protected:
     virtual void ReleaseControl();

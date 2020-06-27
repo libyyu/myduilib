@@ -26,12 +26,14 @@ namespace DuiLib
 		}
 	}
 
-	void CChildLayoutUI::SetAttribute( LPCTSTR pstrName, LPCTSTR pstrValue )
+	bool CChildLayoutUI::SetAttribute( LPCTSTR pstrName, LPCTSTR pstrValue )
 	{
-		if( _tcscmp(pstrName, _T("xmlfile")) == 0 )
-			SetChildLayoutXML(pstrValue);
+		if (_tcscmp(pstrName, _T("xmlfile")) == 0)
+		{
+			SetChildLayoutXML(pstrValue); return true;
+		}
 		else
-			CContainerUI::SetAttribute(pstrName,pstrValue);
+			return CContainerUI::SetAttribute(pstrName,pstrValue);
 	}
 
 	void CChildLayoutUI::SetChildLayoutXML( CDuiString pXML )

@@ -368,12 +368,14 @@ namespace DuiLib
 		return m_strUrl;
 	}
 
-	void CWkeWebkitUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
+	bool CWkeWebkitUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 	{
 		if (_tcscmp(pstrName, _T("url")) == 0)
-			m_strUrl = pstrValue;
+		{
+			m_strUrl = pstrValue; return true;
+		}
 		else
-			CControlUI::SetAttribute(pstrName, pstrValue);
+			return CControlUI::SetAttribute(pstrName, pstrValue);
 	}
 
 }

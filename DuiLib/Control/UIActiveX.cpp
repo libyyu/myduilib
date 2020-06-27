@@ -1028,12 +1028,12 @@ bool CActiveXUI::DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl)
     return true;
 }
 
-void CActiveXUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
+bool CActiveXUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 {
-    if( _tcscmp(pstrName, _T("clsid")) == 0 ) CreateControl(pstrValue);
-    else if( _tcscmp(pstrName, _T("modulename")) == 0 ) SetModuleName(pstrValue);
-    else if( _tcscmp(pstrName, _T("delaycreate")) == 0 ) SetDelayCreate(_tcscmp(pstrValue, _T("true")) == 0);
-    else __super::SetAttribute(pstrName, pstrValue);
+    if (_tcscmp(pstrName, _T("clsid")) == 0) { CreateControl(pstrValue); return true; }
+    else if (_tcscmp(pstrName, _T("modulename")) == 0) { SetModuleName(pstrValue); return true; }
+    else if (_tcscmp(pstrName, _T("delaycreate")) == 0) { SetDelayCreate(_tcscmp(pstrValue, _T("true")) == 0); return true; }
+    else return __super::SetAttribute(pstrName, pstrValue);
 }
 
 LRESULT CActiveXUI::MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, bool& bHandled)
@@ -1237,4 +1237,16 @@ void CActiveXUI::SetModuleName(LPCTSTR pstrText)
     m_sModuleName = pstrText;
 }
 
+void CActiveXUI::GetPropertyList(std::vector<UIPropertyGrid>& property_list)
+{
+    __super::GetPropertyList(property_list);
+
+    property_list.push_back(UIPropertyGrid("ActiveX", "ActiveX"));
+    UIPropertyGrid& property = property_list.back();
+    std::vector< UIPropertyGridItem >& items = property.items;
+
+    items.push_back(UIPropertyGridItem(PropertyType::PT_String, "Clsid", "指定ActiveX控件的Clsid", _variant_t("")));
+    items.push_back(UIPropertyGridItem(PropertyType::PT_Boolean, "DelayCreate", "指示是否延迟加载ActiveX控件\nTrue", _variant_t(true)));
+    items.push_back(UIPropertyGridItem(PropertyType::PT_String, "ModuleName", "指示从指定位置加载ActiveX控件，如(flash/flash.ocx)", _variant_t("")));
+}
 } // namespace DuiLib

@@ -215,9 +215,9 @@ SIZE CMenuUI::EstimateSize(SIZE szAvailable)
     return CDuiSize(cxFixed, cyFixed);
 }
 
-void CMenuUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
+bool CMenuUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 {
-	CListUI::SetAttribute(pstrName, pstrValue);
+	return CListUI::SetAttribute(pstrName, pstrValue);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////

@@ -41,7 +41,7 @@
 
 #include "UICrack.h"
 
-#ifndef NO_USING_DUILIB_NAMESPACE
+#ifndef NO_USING_UILIB_NAMESPACE
 	using namespace DuiLib;
 	using namespace std;
 #endif

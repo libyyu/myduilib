@@ -57,14 +57,18 @@ namespace DuiLib
 		void SetInternVisible(bool bVisible = true);
 		SIZE EstimateSize(SIZE szAvailable);
 		void DoEvent(TEventUI& event);
-		void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
-
+	protected:
+		virtual bool SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
+	public:
 		void PaintStatusImage(HDC hDC);
 		void PaintText(HDC hDC);
 		//begin add 2018/6/10
 		void SetPrompt(LPCTSTR lpszPrompt);
 		LPCTSTR GetPrompt() const;
 		//end
+
+	public://For Designer
+		virtual void GetPropertyList(std::vector<UIPropertyGrid>& property_list);
 
 	protected:
 		CEditWnd* m_pWindow;

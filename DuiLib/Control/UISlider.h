@@ -31,8 +31,11 @@ namespace DuiLib
 		void SetThumbPushedImage(LPCTSTR pStrImage);
 
 		void DoEvent(TEventUI& event);
-		void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
 		void PaintStatusImage(HDC hDC);
+	protected:
+		virtual bool SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
+	public://For Designer
+		virtual void GetPropertyList(std::vector<UIPropertyGrid>& property_list);
 
 	protected:
 		SIZE m_szThumb;

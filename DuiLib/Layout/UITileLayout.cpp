@@ -3,7 +3,7 @@
 
 namespace DuiLib
 {
-	REGIST_DUICONTROL(CTileLayoutUI)
+	REGIST_DUICONTROLEX(CTileLayoutUI, _T("布局"))
 	CTileLayoutUI::CTileLayoutUI() : CContainerUI(), m_nColumns(1), m_nRows(0), m_nColumnsFixed(0), m_iChildVPadding(0),
 		m_bIgnoreItemPadding(true)
 	{
@@ -68,7 +68,7 @@ namespace DuiLib
 		return m_nRows;
 	}
 
-	void CTileLayoutUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
+	bool CTileLayoutUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 	{
 		if( _tcscmp(pstrName, _T("itemsize")) == 0 ) {
 			SIZE szItem = { 0 };
@@ -76,10 +76,11 @@ namespace DuiLib
 			szItem.cx = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);    
 			szItem.cy = _tcstol(pstr + 1, &pstr, 10);   ASSERT(pstr);     
 			SetItemSize(szItem);
+			return true;
 		}
-		else if( _tcscmp(pstrName, _T("columns")) == 0 ) SetFixedColumns(_ttoi(pstrValue));
-		else if( _tcscmp(pstrName, _T("childvpadding")) == 0 ) SetChildVPadding(_ttoi(pstrValue));
-		else CContainerUI::SetAttribute(pstrName, pstrValue);
+		else if (_tcscmp(pstrName, _T("columns")) == 0) { SetFixedColumns(_ttoi(pstrValue)); return true; }
+		else if (_tcscmp(pstrName, _T("childvpadding")) == 0) { SetChildVPadding(_ttoi(pstrValue)); return true; }
+		else return CContainerUI::SetAttribute(pstrName, pstrValue);
 	}
 
 	void CTileLayoutUI::SetPos(RECT rc, bool bNeedInvalidate)
@@ -338,5 +339,24 @@ namespace DuiLib
 
 	//	// Process the scrollbar
 	//	ProcessScrollBar(rc, 0, cyNeeded);
+	}
+
+
+	void CTileLayoutUI::GetPropertyList(std::vector<UIPropertyGrid>& property_list)
+	{
+		CContainerUI::GetPropertyList(property_list);
+
+		property_list.push_back(UIPropertyGrid("TileLayout", "TileLayout"));
+		UIPropertyGrid& property = property_list.back();
+		std::vector< UIPropertyGridItem >& items = property.items;
+
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Columns", "指定并列布局的列数", _variant_t(0)));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Size, "ColumnSize", "ColumnSize"));
+		{
+			UIPropertyGridItem& item = items.back();
+			item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Width", "窗体的宽度", _variant_t(0)));
+			item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Height", "窗体的高度", _variant_t(0)));
+		}
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Number, "ChildVPadding", "指定子空间垂直间隔", _variant_t(0)));
 	}
 }

@@ -66,7 +66,8 @@ public:
 
 	SIZE EstimateSize(SIZE szAvailable);
 
-	void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
+protected:
+	virtual bool SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
 };
 
 /////////////////////////////////////////////////////////////////////////////////////

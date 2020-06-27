@@ -875,7 +875,7 @@ void CScrollBarUI::DoEvent(TEventUI& event)
 	if( m_pOwner != NULL ) m_pOwner->DoEvent(event); else CControlUI::DoEvent(event);
 }
 
-void CScrollBarUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
+bool CScrollBarUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 {
 	if( _tcscmp(pstrName, _T("button1color")) == 0 ) {
 		while( *pstrValue > _T('\0') && *pstrValue <= _T(' ') ) pstrValue = ::CharNext(pstrValue);
@@ -883,49 +883,52 @@ void CScrollBarUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 		LPTSTR pstr = NULL;
 		DWORD clrColor = _tcstoul(pstrValue, &pstr, 16);
 		SetButton1Color(clrColor);
+		return true;
 	}
-	else if( _tcscmp(pstrName, _T("button1normalimage")) == 0 ) SetButton1NormalImage(pstrValue);
-	else if( _tcscmp(pstrName, _T("button1hotimage")) == 0 ) SetButton1HotImage(pstrValue);
-	else if( _tcscmp(pstrName, _T("button1pushedimage")) == 0 ) SetButton1PushedImage(pstrValue);
-	else if( _tcscmp(pstrName, _T("button1disabledimage")) == 0 ) SetButton1DisabledImage(pstrValue);
+	else if (_tcscmp(pstrName, _T("button1normalimage")) == 0) { SetButton1NormalImage(pstrValue); return true; }
+	else if (_tcscmp(pstrName, _T("button1hotimage")) == 0) { SetButton1HotImage(pstrValue); return true; }
+	else if (_tcscmp(pstrName, _T("button1pushedimage")) == 0) { SetButton1PushedImage(pstrValue); return true; }
+	else if (_tcscmp(pstrName, _T("button1disabledimage")) == 0) { SetButton1DisabledImage(pstrValue); return true; }
 	else if( _tcscmp(pstrName, _T("button2color")) == 0 ) {
 		while( *pstrValue > _T('\0') && *pstrValue <= _T(' ') ) pstrValue = ::CharNext(pstrValue);
 		if( *pstrValue == _T('#')) pstrValue = ::CharNext(pstrValue);
 		LPTSTR pstr = NULL;
 		DWORD clrColor = _tcstoul(pstrValue, &pstr, 16);
 		SetButton2Color(clrColor);
+		return true;
 	}
-	else if( _tcscmp(pstrName, _T("button2normalimage")) == 0 ) SetButton2NormalImage(pstrValue);
-	else if( _tcscmp(pstrName, _T("button2hotimage")) == 0 ) SetButton2HotImage(pstrValue);
-	else if( _tcscmp(pstrName, _T("button2pushedimage")) == 0 ) SetButton2PushedImage(pstrValue);
-	else if( _tcscmp(pstrName, _T("button2disabledimage")) == 0 ) SetButton2DisabledImage(pstrValue);
+	else if (_tcscmp(pstrName, _T("button2normalimage")) == 0) { SetButton2NormalImage(pstrValue); return true; }
+	else if (_tcscmp(pstrName, _T("button2hotimage")) == 0) { SetButton2HotImage(pstrValue); return true; }
+	else if (_tcscmp(pstrName, _T("button2pushedimage")) == 0) { SetButton2PushedImage(pstrValue); return true; }
+	else if (_tcscmp(pstrName, _T("button2disabledimage")) == 0) { SetButton2DisabledImage(pstrValue); return true; }
 	else if( _tcscmp(pstrName, _T("thumbcolor")) == 0 ) {
 		while( *pstrValue > _T('\0') && *pstrValue <= _T(' ') ) pstrValue = ::CharNext(pstrValue);
 		if( *pstrValue == _T('#')) pstrValue = ::CharNext(pstrValue);
 		LPTSTR pstr = NULL;
 		DWORD clrColor = _tcstoul(pstrValue, &pstr, 16);
 		SetThumbColor(clrColor);
+		return true;
 	}
-	else if( _tcscmp(pstrName, _T("thumbnormalimage")) == 0 ) SetThumbNormalImage(pstrValue);
-	else if( _tcscmp(pstrName, _T("thumbhotimage")) == 0 ) SetThumbHotImage(pstrValue);
-	else if( _tcscmp(pstrName, _T("thumbpushedimage")) == 0 ) SetThumbPushedImage(pstrValue);
-	else if( _tcscmp(pstrName, _T("thumbdisabledimage")) == 0 ) SetThumbDisabledImage(pstrValue);
-	else if( _tcscmp(pstrName, _T("railnormalimage")) == 0 ) SetRailNormalImage(pstrValue);
-	else if( _tcscmp(pstrName, _T("railhotimage")) == 0 ) SetRailHotImage(pstrValue);
-	else if( _tcscmp(pstrName, _T("railpushedimage")) == 0 ) SetRailPushedImage(pstrValue);
-	else if( _tcscmp(pstrName, _T("raildisabledimage")) == 0 ) SetRailDisabledImage(pstrValue);
-	else if( _tcscmp(pstrName, _T("bknormalimage")) == 0 ) SetBkNormalImage(pstrValue);
-	else if( _tcscmp(pstrName, _T("bkhotimage")) == 0 ) SetBkHotImage(pstrValue);
-	else if( _tcscmp(pstrName, _T("bkpushedimage")) == 0 ) SetBkPushedImage(pstrValue);
-	else if( _tcscmp(pstrName, _T("bkdisabledimage")) == 0 ) SetBkDisabledImage(pstrValue);
-	else if( _tcscmp(pstrName, _T("hor")) == 0 ) SetHorizontal(_tcscmp(pstrValue, _T("true")) == 0);
-	else if( _tcscmp(pstrName, _T("linesize")) == 0 ) SetLineSize(_ttoi(pstrValue));
-	else if( _tcscmp(pstrName, _T("range")) == 0 ) SetScrollRange(_ttoi(pstrValue));
-	else if( _tcscmp(pstrName, _T("value")) == 0 ) SetScrollPos(_ttoi(pstrValue));
-    else if( _tcscmp(pstrName, _T("scrollunit")) == 0 ) SetScrollUnit(_ttoi(pstrValue));
-	else if( _tcscmp(pstrName, _T("showbutton1")) == 0 ) SetShowButton1(_tcscmp(pstrValue, _T("true")) == 0);
-	else if( _tcscmp(pstrName, _T("showbutton2")) == 0 ) SetShowButton2(_tcscmp(pstrValue, _T("true")) == 0);
-	else CControlUI::SetAttribute(pstrName, pstrValue);
+	else if (_tcscmp(pstrName, _T("thumbnormalimage")) == 0) { SetThumbNormalImage(pstrValue); return true; }
+	else if (_tcscmp(pstrName, _T("thumbhotimage")) == 0) { SetThumbHotImage(pstrValue); return true; }
+	else if (_tcscmp(pstrName, _T("thumbpushedimage")) == 0) { SetThumbPushedImage(pstrValue); return true; }
+	else if (_tcscmp(pstrName, _T("thumbdisabledimage")) == 0) { SetThumbDisabledImage(pstrValue); return true; }
+	else if (_tcscmp(pstrName, _T("railnormalimage")) == 0) { SetRailNormalImage(pstrValue); return true; }
+	else if (_tcscmp(pstrName, _T("railhotimage")) == 0) { SetRailHotImage(pstrValue); return true; }
+	else if (_tcscmp(pstrName, _T("railpushedimage")) == 0) { SetRailPushedImage(pstrValue); return true; }
+	else if (_tcscmp(pstrName, _T("raildisabledimage")) == 0) { SetRailDisabledImage(pstrValue); return true; }
+	else if (_tcscmp(pstrName, _T("bknormalimage")) == 0) { SetBkNormalImage(pstrValue); return true; }
+	else if (_tcscmp(pstrName, _T("bkhotimage")) == 0) { SetBkHotImage(pstrValue); return true; }
+	else if (_tcscmp(pstrName, _T("bkpushedimage")) == 0) { SetBkPushedImage(pstrValue); return true; }
+	else if (_tcscmp(pstrName, _T("bkdisabledimage")) == 0) { SetBkDisabledImage(pstrValue); return true; }
+	else if (_tcscmp(pstrName, _T("hor")) == 0) { SetHorizontal(_tcscmp(pstrValue, _T("true")) == 0); return true; }
+	else if (_tcscmp(pstrName, _T("linesize")) == 0) { SetLineSize(_ttoi(pstrValue)); return true; }
+	else if (_tcscmp(pstrName, _T("range")) == 0) { SetScrollRange(_ttoi(pstrValue)); return true; }
+	else if (_tcscmp(pstrName, _T("value")) == 0) { SetScrollPos(_ttoi(pstrValue)); return true; }
+	else if (_tcscmp(pstrName, _T("scrollunit")) == 0) { SetScrollUnit(_ttoi(pstrValue)); return true; }
+	else if (_tcscmp(pstrName, _T("showbutton1")) == 0) { SetShowButton1(_tcscmp(pstrValue, _T("true")) == 0); return true; }
+	else if (_tcscmp(pstrName, _T("showbutton2")) == 0) { SetShowButton2(_tcscmp(pstrValue, _T("true")) == 0); return true; }
+	else return CControlUI::SetAttribute(pstrName, pstrValue);
 }
 
 bool CScrollBarUI::DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl)
@@ -1096,6 +1099,47 @@ void CScrollBarUI::PaintRail(HDC hDC)
 	}
 	m_diRailNormal.rcDestOffset = rc;
 	if( DrawImage(hDC, m_diRailNormal) ) return;
+}
+
+void CScrollBarUI::GetPropertyList(std::vector<UIPropertyGrid>& property_list)
+{
+	__super::GetPropertyList(property_list);
+
+	property_list.push_back(UIPropertyGrid("ScrollBar", "ScrollBar"));
+	UIPropertyGrid& property = property_list.back();
+	std::vector< UIPropertyGridItem >& items = property.items;
+#define ARGB(a,r,g,b)        ((COLORREF)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((DWORD)(BYTE)(b))<<16))|(((DWORD)(BYTE)(a))<<24))
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Range", "指定滚动范围\n100", _variant_t(100)));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Value", "指定滚动位置\n0", _variant_t(0)));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Number, "LineSize", "指定滚动一行的大小\n8", _variant_t(8)));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Boolean, "Hor", "指示是否水平\nFalse", _variant_t(bool(false))));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Boolean, "ShowButton1", "是否显示左或上按钮\nTrue", _variant_t(bool(true))));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "Button1NormalImage", "指定左或上按钮普通状态图片"));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "Button1HotImage", "指定左或上按钮鼠标悬浮状态图片"));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "Button1PushedImage", "指定左或上按钮鼠标按下状态图片"));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "Button1DisabledImage", "指定左或上按钮鼠标禁用状态图片"));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Color, "Button1Color", "指定左或上按钮颜色", _variant_t((LONG)(ARGB(0, 0, 0, 0)))));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Boolean, "ShowButton2", "是否显示右或下按钮\nTrue", _variant_t(bool(true))));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "Button2NormalImage", "指定右或下按钮普通状态图片"));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "Button2HotImage", "指定右或下按钮鼠标悬浮状态图片"));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "Button2PushedImage", "指定右或下按钮鼠标按下状态图片"));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "Button2DisabledImage", "指定右或下按钮鼠标禁用状态图片"));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Color, "Button2Color", "指定右或下按钮颜色", _variant_t((LONG)(ARGB(0, 0, 0, 0)))));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "ThumbNormalImage", "指定滑块普通状态图片"));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "ThumbHotImage", "指定滑块鼠标悬浮状态图片"));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "ThumbPushedImage", "指定滑块鼠标按下状态图片"));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "ThumbDisabledImage", "指定滑块禁用状态图片"));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Color, "ScrollBarThumbColor", "指定滑块颜色", _variant_t((LONG)(ARGB(0, 0, 0, 0)))));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "RailNormalImage", "指定滑块中间标识普通状态图片"));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "RailHotImage", "指定滑块中间标识鼠标悬浮状态图片"));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "RailPushedImage", "指定滑块中间标识鼠标按下状态图片"));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "RailDisabledImage", "指定滑块中间标识禁用状态图片"));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Color, "BKNormalImage", "指定背景普通状态图片"));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "BKHotImage", "指定背景鼠标悬浮状态图片"));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "BKPushedImage", "指定背景鼠标按下状态图片"));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "BKDisabledImage", "指定背景禁用状态图片"));
+
+#undef ARGB
 }
 
 } // namespace DuiLib

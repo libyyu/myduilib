@@ -25,8 +25,10 @@ namespace DuiLib
 		void SetItemSize(SIZE szSize);
 		int GetColumns() const;
 		int GetRows() const;
-		void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
-
+	protected:
+		virtual bool SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
+	public://For Designer
+		virtual void GetPropertyList(std::vector<UIPropertyGrid>& property_list);
 	protected:
 		SIZE m_szItem;
 		int m_nColumns;

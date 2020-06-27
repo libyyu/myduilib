@@ -41,7 +41,6 @@ namespace DuiLib
 		virtual void	DoPaint(HDC hDC, const RECT& rcPaint);
 		virtual void	SetPos(RECT rc);
 		virtual void	DoInit();
-		virtual void	SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
 		//////////////////////////////////////
 		const	CDuiString& GetUrl()const;
 		bool	CanGoBack() const;
@@ -59,6 +58,7 @@ namespace DuiLib
 	protected:
 		void	StartCheckThread();
 		void	StopCheckThread();
+		virtual bool	SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
 		static	void OnTitleChange(const struct _wkeClientHandler* clientHandler, const wkeString title);
 		static  void OnUrlChange(const struct _wkeClientHandler* clientHandler, const wkeString url);
 	private:

@@ -3,7 +3,7 @@
 
 namespace DuiLib
 {
-	REGIST_DUICONTROL(CHorizontalLayoutUI)
+	REGIST_DUICONTROLEX(CHorizontalLayoutUI, _T("布局"))
 	CHorizontalLayoutUI::CHorizontalLayoutUI() : CContainerUI(), m_iSepWidth(0), m_uButtonState(0), m_bImmMode(false)
 	{
 		m_ptLastMouse.x = m_ptLastMouse.y = 0;
@@ -227,11 +227,11 @@ namespace DuiLib
 		return m_bImmMode;
 	}
 
-	void CHorizontalLayoutUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
+	bool CHorizontalLayoutUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 	{
-		if( _tcscmp(pstrName, _T("sepwidth")) == 0 ) SetSepWidth(_ttoi(pstrValue));
-		else if( _tcscmp(pstrName, _T("sepimm")) == 0 ) SetSepImmMode(_tcscmp(pstrValue, _T("true")) == 0);
-		else CContainerUI::SetAttribute(pstrName, pstrValue);
+		if (_tcscmp(pstrName, _T("sepwidth")) == 0) { SetSepWidth(_ttoi(pstrValue)); return true; }
+		else if (_tcscmp(pstrName, _T("sepimm")) == 0) { SetSepImmMode(_tcscmp(pstrValue, _T("true")) == 0); return true; }
+		else return CContainerUI::SetAttribute(pstrName, pstrValue);
 	}
 
 	void CHorizontalLayoutUI::DoEvent(TEventUI& event)
@@ -330,4 +330,17 @@ namespace DuiLib
 			else return CDuiRect(m_rcItem.left, m_rcItem.top, m_rcItem.left - m_iSepWidth, m_rcItem.bottom);
 		}
 	}
+
+	void CHorizontalLayoutUI::GetPropertyList(std::vector<UIPropertyGrid>& property_list)
+	{
+		CContainerUI::GetPropertyList(property_list);
+
+		property_list.push_back(UIPropertyGrid("HorizontalLayout", "HorizontalLayout"));
+		UIPropertyGrid& property = property_list.back();
+		std::vector< UIPropertyGridItem >& items = property.items;
+
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Number, "SepWidth", "分隔符宽,正负表示分隔符在左边还是右边\n0", _variant_t(0)));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Boolean, "SepImm", "拖动分隔符是否立即改变大小\nFalse", _variant_t(bool(false))));
+	}
+
 }

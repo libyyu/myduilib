@@ -239,9 +239,7 @@ void CWebBrowserUI::Navigate2( LPCTSTR lpszUrl )
 
 	if (m_pWebBrowser2)
 	{
-		CVariant url;
-		url.vt=VT_BSTR;
-		url.bstrVal=T2BSTR(lpszUrl);
+		CDuiVariant url(T2BSTR(lpszUrl));
 		HRESULT hr = m_pWebBrowser2->Navigate2(&url, NULL, NULL, NULL, NULL);
 	}
 }
@@ -569,24 +567,24 @@ void CWebBrowserUI::SetWebBrowserEventHandler( CWebBrowserEventHandler* pEventHa
 
 void CWebBrowserUI::Refresh2( int Level )
 {
-	CVariant vLevel;
-	vLevel.vt=VT_I4;
-	vLevel.intVal=Level;
+	CDuiVariant vLevel(Level);
 	m_pWebBrowser2->Refresh2(&vLevel);
 }
 
-void CWebBrowserUI::SetAttribute( LPCTSTR pstrName, LPCTSTR pstrValue )
+bool CWebBrowserUI::SetAttribute( LPCTSTR pstrName, LPCTSTR pstrValue )
 {
 	if (_tcscmp(pstrName, _T("homepage")) == 0)
 	{
 		m_sHomePage = pstrValue;
+		return true;
 	}
 	else if (_tcscmp(pstrName, _T("autonavi"))==0)
 	{
 		m_bAutoNavi = (_tcscmp(pstrValue, _T("true")) == 0);
+		return true;
 	}
 	else
-		CActiveXUI::SetAttribute(pstrName, pstrValue);
+		return CActiveXUI::SetAttribute(pstrName, pstrValue);
 }
 
 void CWebBrowserUI::NavigateHomePage()
@@ -938,6 +936,18 @@ BOOL CWebBrowserUI::ExecScript(BSTR code, BSTR language, VARIANT* pVarResult)
 	}
 	// execute js end  
 	return FALSE;
+}
+
+void CWebBrowserUI::GetPropertyList(std::vector<UIPropertyGrid>& property_list)
+{
+	__super::GetPropertyList(property_list);
+
+	property_list.push_back(UIPropertyGrid("WebBrowser", "WebBrowser"));
+	UIPropertyGrid& property = property_list.back();
+	std::vector< UIPropertyGridItem >& items = property.items;
+
+	items.push_back(UIPropertyGridItem(PropertyType::PT_String, "HomePage", "默认网址"));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Boolean, "AutonAvi", "是否自动跳转默认页面\nFalse", _variant_t(bool(false))));
 }
 
 } // namespace DuiLib

@@ -298,6 +298,7 @@ namespace DuiLib
 
 	void CButtonUI::SetFiveStatusImage(LPCTSTR pStrImage)
 	{
+		m_fiveStatueImage = pStrImage;
 		m_diNormal.Clear();
 		m_diNormal.sDrawString = pStrImage;
 		DrawImage(NULL, m_diNormal);
@@ -350,6 +351,11 @@ namespace DuiLib
 		Invalidate();
 	}
 
+	LPCTSTR CButtonUI::GetFiveStatusImage()
+	{
+		return m_fiveStatueImage;
+	}
+
 	void CButtonUI::SetFadeAlphaDelta(BYTE uDelta)
 	{
 		m_uFadeAlphaDelta = uDelta;
@@ -366,23 +372,24 @@ namespace DuiLib
 		return CControlUI::EstimateSize(szAvailable);
 	}
 
-	void CButtonUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
+	bool CButtonUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 	{
-		if( _tcscmp(pstrName, _T("normalimage")) == 0 ) SetNormalImage(pstrValue);
-		else if( _tcscmp(pstrName, _T("hotimage")) == 0 ) SetHotImage(pstrValue);
-		else if( _tcscmp(pstrName, _T("pushedimage")) == 0 ) SetPushedImage(pstrValue);
-		else if( _tcscmp(pstrName, _T("focusedimage")) == 0 ) SetFocusedImage(pstrValue);
-		else if( _tcscmp(pstrName, _T("disabledimage")) == 0 ) SetDisabledImage(pstrValue);
-		else if( _tcscmp(pstrName, _T("foreimage")) == 0 ) SetForeImage(pstrValue);
-		else if( _tcscmp(pstrName, _T("hotforeimage")) == 0 ) SetHotForeImage(pstrValue);
-		else if( _tcscmp(pstrName, _T("fivestatusimage")) == 0 ) SetFiveStatusImage(pstrValue);
-		else if( _tcscmp(pstrName, _T("fadedelta")) == 0 ) SetFadeAlphaDelta((BYTE)_ttoi(pstrValue));
+		if (_tcscmp(pstrName, _T("normalimage")) == 0) { SetNormalImage(pstrValue); return true; }
+		else if (_tcscmp(pstrName, _T("hotimage")) == 0) { SetHotImage(pstrValue); return true; }
+		else if (_tcscmp(pstrName, _T("pushedimage")) == 0) { SetPushedImage(pstrValue); return true; }
+		else if (_tcscmp(pstrName, _T("focusedimage")) == 0) { SetFocusedImage(pstrValue); return true; }
+		else if (_tcscmp(pstrName, _T("disabledimage")) == 0) { SetDisabledImage(pstrValue); return true; }
+		else if (_tcscmp(pstrName, _T("foreimage")) == 0) { SetForeImage(pstrValue); return true; }
+		else if (_tcscmp(pstrName, _T("hotforeimage")) == 0) { SetHotForeImage(pstrValue); return true; }
+		else if (_tcscmp(pstrName, _T("fivestatusimage")) == 0) { SetFiveStatusImage(pstrValue); return true; }
+		else if (_tcscmp(pstrName, _T("fadedelta")) == 0) { SetFadeAlphaDelta((BYTE)_ttoi(pstrValue)); return true; }
 		else if( _tcscmp(pstrName, _T("hotbkcolor")) == 0 )
 		{
 			if( *pstrValue == _T('#')) pstrValue = ::CharNext(pstrValue);
 			LPTSTR pstr = NULL;
 			DWORD clrColor = _tcstoul(pstrValue, &pstr, 16);
 			SetHotBkColor(clrColor);
+			return true;
 		}
 		else if( _tcscmp(pstrName, _T("hottextcolor")) == 0 )
 		{
@@ -390,6 +397,7 @@ namespace DuiLib
 			LPTSTR pstr = NULL;
 			DWORD clrColor = _tcstoul(pstrValue, &pstr, 16);
 			SetHotTextColor(clrColor);
+			return true;
 		}
 		else if( _tcscmp(pstrName, _T("pushedtextcolor")) == 0 )
 		{
@@ -397,6 +405,7 @@ namespace DuiLib
 			LPTSTR pstr = NULL;
 			DWORD clrColor = _tcstoul(pstrValue, &pstr, 16);
 			SetPushedTextColor(clrColor);
+			return true;
 		}
 		else if( _tcscmp(pstrName, _T("focusedtextcolor")) == 0 )
 		{
@@ -404,8 +413,9 @@ namespace DuiLib
 			LPTSTR pstr = NULL;
 			DWORD clrColor = _tcstoul(pstrValue, &pstr, 16);
 			SetFocusedTextColor(clrColor);
+			return true;
 		}
-		else CLabelUI::SetAttribute(pstrName, pstrValue);
+		else return CLabelUI::SetAttribute(pstrName, pstrValue);
 	}
 
 	void CButtonUI::PaintText(HDC hDC)
@@ -508,4 +518,29 @@ Label_ForeImage:
 		DrawImage(hDC, m_diFore);
 	}
 
+	void CButtonUI::GetPropertyList(std::vector<UIPropertyGrid>& property_list)
+	{
+		__super::GetPropertyList(property_list);
+
+		property_list.push_back(UIPropertyGrid("Button", "Button"));
+		UIPropertyGrid& property = property_list.back();
+		std::vector< UIPropertyGridItem >& items = property.items;
+#define ARGB(a,r,g,b)        ((COLORREF)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((DWORD)(BYTE)(b))<<16))|(((DWORD)(BYTE)(a))<<24))
+
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "NormalImage", "指定按钮正常显示时的图片", _variant_t("")));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "HotImage", "指定按钮获得热点时的图片", _variant_t("")));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "PushedImage", "指定按钮被按压下时的图片", _variant_t("")));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "FocusedImage", "指定按钮获得焦点后的图片", _variant_t("")));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "DisabledImage", "指定按钮被禁用后的图片", _variant_t("")));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "ForeImage", "指定按钮正常显示ForeImage", _variant_t("")));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "HotForeImage", "指定按钮获得热点时的Fore图片", _variant_t("")));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "FiveStatusImage", "五态图片", _variant_t((LONG)(ARGB(0, 0, 0, 0)))));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Number, "FadeDelta", "渐变", _variant_t(0)));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Color, "HotBkColor", "HotBkColor", _variant_t((LONG)(ARGB(0, 0, 0, 0)))));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Color, "HotTextColor", "HotTextColor", _variant_t((LONG)(ARGB(0, 0, 0, 0)))));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Color, "PushedTextColor", "PushedTextColor", _variant_t((LONG)(ARGB(0, 0, 0, 0)))));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Color, "FocusedTextColor", "FocusedTextColor", _variant_t((LONG)(ARGB(0, 0, 0, 0)))));
+
+#undef ARGB
+	}
 }

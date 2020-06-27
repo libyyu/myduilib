@@ -7,6 +7,11 @@ namespace DuiLib {
 		static std::map<CDuiString, ControlCreator> m_duiClassMaps;
 		return m_duiClassMaps;
 	}
+	static std::map<CDuiString, std::vector<CDuiString> >& GetDuiClassCategoryMaps()
+	{
+		static std::map<CDuiString, std::vector<CDuiString> > m_duiClassMaps;
+		return m_duiClassMaps;
+	}
 	bool CControlFactory::isRegister(LPCTSTR pstrClassName)
 	{
 		if (GetDuiClassMaps().size() == 0 || GetDuiClassMaps().find(pstrClassName) == GetDuiClassMaps().end())
@@ -15,7 +20,7 @@ namespace DuiLib {
 		}
 		return true;
 	}
-	void CControlFactory::RegisterDuiClass(LPCTSTR pstrClassName, ControlCreator _createDuiInstanceFun)
+	void CControlFactory::RegisterDuiClass(LPCTSTR pstrClassName, ControlCreator _createDuiInstanceFun, LPCTSTR category)
 	{
 		if (isRegister(pstrClassName))
 		{
@@ -23,6 +28,17 @@ namespace DuiLib {
 			return;
 		}
 		GetDuiClassMaps()[pstrClassName] = _createDuiInstanceFun;
+
+        std::map<CDuiString, std::vector<CDuiString> >& categoryMap = GetDuiClassCategoryMaps();
+        if (categoryMap.find(category) == categoryMap.end()) 
+        {
+            categoryMap.insert(std::pair<CDuiString, std::vector<CDuiString> >(category, std::vector<CDuiString>()));
+        }
+        std::vector<CDuiString>& l = categoryMap[category];
+        CDuiString interface_name = pstrClassName;
+        interface_name = interface_name.Mid(1, interface_name.GetLength() - 3);
+        l.push_back(interface_name);
+
 #ifdef _DEBUG
 		//DuiLogInfo(_T("register control class: %s."), pstrClassName);
 #endif
@@ -39,6 +55,11 @@ namespace DuiLib {
 			return (GetDuiClassMaps()[pstrClassName])();
 		}
 	}
+
+    const std::map<CDuiString, std::vector<CDuiString> >& CControlFactory::GetAllControls()
+    {
+        return GetDuiClassCategoryMaps();
+    }
 
 REGIST_DUICONTROL(CControlUI)
 CControlUI::CControlUI() :
@@ -1005,12 +1026,7 @@ CDuiString CControlUI::GetVirtualWnd() const
 	return str;
 }
 
-CDuiString CControlUI::GetAttribute(LPCTSTR pstrName)
-{
-    return _T("");
-}
-
-void CControlUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
+bool CControlUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 {
     if( _tcscmp(pstrName, _T("pos")) == 0 ) {
         RECT rcPos = { 0 };
@@ -1025,6 +1041,8 @@ void CControlUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 		//ASSERT(rcPos.bottom - rcPos.top >= 0);
         SetFixedWidth(rcPos.right - rcPos.left);
         SetFixedHeight(rcPos.bottom - rcPos.top);
+
+        return true;
     }
     else if( _tcscmp(pstrName, _T("padding")) == 0 ) {
         RECT rcPadding = { 0 };
@@ -1034,6 +1052,8 @@ void CControlUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
         rcPadding.right = _tcstol(pstr + 1, &pstr, 10);  ASSERT(pstr);    
         rcPadding.bottom = _tcstol(pstr + 1, &pstr, 10); ASSERT(pstr);    
         SetPadding(rcPadding);
+
+        return true;
     }
     else if( _tcscmp(pstrName, _T("bkcolor")) == 0 || _tcscmp(pstrName, _T("bkcolor1")) == 0 ) {
         while( *pstrValue > _T('\0') && *pstrValue <= _T(' ') ) pstrValue = ::CharNext(pstrValue);
@@ -1041,6 +1061,8 @@ void CControlUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
         LPTSTR pstr = NULL;
         DWORD clrColor = _tcstoul(pstrValue, &pstr, 16);
         SetBkColor(clrColor);
+
+        return true;
     }
     else if( _tcscmp(pstrName, _T("bkcolor2")) == 0 ) {
         while( *pstrValue > _T('\0') && *pstrValue <= _T(' ') ) pstrValue = ::CharNext(pstrValue);
@@ -1048,6 +1070,8 @@ void CControlUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
         LPTSTR pstr = NULL;
         DWORD clrColor = _tcstoul(pstrValue, &pstr, 16);
         SetBkColor2(clrColor);
+
+        return true;
     }
     else if( _tcscmp(pstrName, _T("bkcolor3")) == 0 ) {
         while( *pstrValue > _T('\0') && *pstrValue <= _T(' ') ) pstrValue = ::CharNext(pstrValue);
@@ -1055,20 +1079,26 @@ void CControlUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
         LPTSTR pstr = NULL;
         DWORD clrColor = _tcstoul(pstrValue, &pstr, 16);
         SetBkColor3(clrColor);
+
+        return true;
     }
     else if( _tcscmp(pstrName, _T("bordercolor")) == 0 ) {
         if( *pstrValue == _T('#')) pstrValue = ::CharNext(pstrValue);
         LPTSTR pstr = NULL;
         DWORD clrColor = _tcstoul(pstrValue, &pstr, 16);
         SetBorderColor(clrColor);
+
+        return true;
     }
     else if( _tcscmp(pstrName, _T("focusbordercolor")) == 0 ) {
         if( *pstrValue == _T('#')) pstrValue = ::CharNext(pstrValue);
         LPTSTR pstr = NULL;
         DWORD clrColor = _tcstoul(pstrValue, &pstr, 16);
         SetFocusBorderColor(clrColor);
+
+        return true;
     }
-    else if( _tcscmp(pstrName, _T("colorhsl")) == 0 ) SetColorHSL(_tcscmp(pstrValue, _T("true")) == 0);
+    else if (_tcscmp(pstrName, _T("colorhsl")) == 0) { SetColorHSL(_tcscmp(pstrValue, _T("true")) == 0); return true; }
 	else if( _tcscmp(pstrName, _T("bordersize")) == 0 ) {
 		CDuiString nValue = pstrValue;
 		if(nValue.Find(',') < 0)
@@ -1085,35 +1115,49 @@ void CControlUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 			rcBorder.bottom = _tcstol(pstr + 1, &pstr, 10); ASSERT(pstr);
 			SetBorderSize(rcBorder);
 		}
+
+        return true;
 	}
-	else if( _tcscmp(pstrName, _T("leftbordersize")) == 0 ) SetLeftBorderSize(_ttoi(pstrValue));
-	else if( _tcscmp(pstrName, _T("topbordersize")) == 0 ) SetTopBorderSize(_ttoi(pstrValue));
-	else if( _tcscmp(pstrName, _T("rightbordersize")) == 0 ) SetRightBorderSize(_ttoi(pstrValue));
-	else if( _tcscmp(pstrName, _T("bottombordersize")) == 0 ) SetBottomBorderSize(_ttoi(pstrValue));
-	else if( _tcscmp(pstrName, _T("borderstyle")) == 0 ) SetBorderStyle(_ttoi(pstrValue));
+    else if (_tcscmp(pstrName, _T("leftbordersize")) == 0) {
+        SetLeftBorderSize(_ttoi(pstrValue)); return true;
+    }
+    else if (_tcscmp(pstrName, _T("topbordersize")) == 0) {
+        SetTopBorderSize(_ttoi(pstrValue)); return true;
+    }
+    else if (_tcscmp(pstrName, _T("rightbordersize")) == 0) {
+        SetRightBorderSize(_ttoi(pstrValue)); return true;
+    }
+    else if (_tcscmp(pstrName, _T("bottombordersize")) == 0) {
+        SetBottomBorderSize(_ttoi(pstrValue)); return true;
+    }
+    else if (_tcscmp(pstrName, _T("borderstyle")) == 0) {
+        SetBorderStyle(_ttoi(pstrValue)); return true;
+    }
     else if( _tcscmp(pstrName, _T("borderround")) == 0 ) {
         SIZE cxyRound = { 0 };
         LPTSTR pstr = NULL;
         cxyRound.cx = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);    
         cxyRound.cy = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr);     
         SetBorderRound(cxyRound);
+
+        return true;
     }
-    else if( _tcscmp(pstrName, _T("bkimage")) == 0 ) SetBkImage(pstrValue);
-    else if( _tcscmp(pstrName, _T("width")) == 0 ) SetFixedWidth(_ttoi(pstrValue));
-    else if( _tcscmp(pstrName, _T("height")) == 0 ) SetFixedHeight(_ttoi(pstrValue));
-    else if( _tcscmp(pstrName, _T("minwidth")) == 0 ) SetMinWidth(_ttoi(pstrValue));
-    else if( _tcscmp(pstrName, _T("minheight")) == 0 ) SetMinHeight(_ttoi(pstrValue));
-    else if( _tcscmp(pstrName, _T("maxwidth")) == 0 ) SetMaxWidth(_ttoi(pstrValue));
-    else if( _tcscmp(pstrName, _T("maxheight")) == 0 ) SetMaxHeight(_ttoi(pstrValue));
-    else if( _tcscmp(pstrName, _T("name")) == 0 ) SetName(pstrValue);
-    else if( _tcscmp(pstrName, _T("text")) == 0 ) SetText(pstrValue);
-    else if( _tcscmp(pstrName, _T("tooltip")) == 0 ) SetToolTip(pstrValue);
-    else if( _tcscmp(pstrName, _T("userdata")) == 0 ) SetUserData(pstrValue);
-    else if( _tcscmp(pstrName, _T("tag")) == 0 ) SetTag(_ttoi(pstrValue));
-    else if( _tcscmp(pstrName, _T("enabled")) == 0 ) SetEnabled(_tcscmp(pstrValue, _T("true")) == 0);
-    else if( _tcscmp(pstrName, _T("mouse")) == 0 ) SetMouseEnabled(_tcscmp(pstrValue, _T("true")) == 0);
-	else if( _tcscmp(pstrName, _T("keyboard")) == 0 ) SetKeyboardEnabled(_tcscmp(pstrValue, _T("true")) == 0);
-    else if( _tcscmp(pstrName, _T("visible")) == 0 ) SetVisible(_tcscmp(pstrValue, _T("true")) == 0);
+    else if (_tcscmp(pstrName, _T("bkimage")) == 0) { SetBkImage(pstrValue); return true; }
+    else if (_tcscmp(pstrName, _T("width")) == 0) { SetFixedWidth(_ttoi(pstrValue)); return true; }
+    else if (_tcscmp(pstrName, _T("height")) == 0) { SetFixedHeight(_ttoi(pstrValue)); return true; }
+    else if (_tcscmp(pstrName, _T("minwidth")) == 0) { SetMinWidth(_ttoi(pstrValue)); return true; }
+    else if (_tcscmp(pstrName, _T("minheight")) == 0) { SetMinHeight(_ttoi(pstrValue)); return true; }
+    else if (_tcscmp(pstrName, _T("maxwidth")) == 0) { SetMaxWidth(_ttoi(pstrValue)); return true; }
+    else if (_tcscmp(pstrName, _T("maxheight")) == 0) { SetMaxHeight(_ttoi(pstrValue)); return true; }
+    else if (_tcscmp(pstrName, _T("name")) == 0) { SetName(pstrValue); return true; }
+    else if (_tcscmp(pstrName, _T("text")) == 0) { SetText(pstrValue); return true; }
+    else if (_tcscmp(pstrName, _T("tooltip")) == 0) { SetToolTip(pstrValue); return true; }
+    else if (_tcscmp(pstrName, _T("userdata")) == 0) { SetUserData(pstrValue); return true; }
+    else if (_tcscmp(pstrName, _T("tag")) == 0) { SetTag(_ttoi(pstrValue)); return true; }
+    else if (_tcscmp(pstrName, _T("enabled")) == 0) { SetEnabled(_tcscmp(pstrValue, _T("true")) == 0); return true; }
+    else if (_tcscmp(pstrName, _T("mouse")) == 0) { SetMouseEnabled(_tcscmp(pstrValue, _T("true")) == 0); return true; }
+    else if (_tcscmp(pstrName, _T("keyboard")) == 0) { SetKeyboardEnabled(_tcscmp(pstrValue, _T("true")) == 0); return true; }
+    else if (_tcscmp(pstrName, _T("visible")) == 0) { SetVisible(_tcscmp(pstrValue, _T("true")) == 0); return true; }
     else if( _tcscmp(pstrName, _T("float")) == 0 ) {
 		CDuiString nValue = pstrValue;
 		if(nValue.Find(',') < 0) {
@@ -1129,15 +1173,18 @@ void CControlUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 			SetFloatPercent(piFloatPercent);
 			SetFloat(true);
 		}
+        return true;
 	}
-    else if( _tcscmp(pstrName, _T("shortcut")) == 0 ) SetShortcut(pstrValue[0]);
-    else if( _tcscmp(pstrName, _T("menu")) == 0 ) SetContextMenuUsed(_tcscmp(pstrValue, _T("true")) == 0);
-	else if( _tcscmp(pstrName, _T("virtualwnd")) == 0 ) SetVirtualWnd(pstrValue);
-	else if (_tcscmp(pstrName, _T("style")) == 0) SetStyleName(pstrValue);
-	else if( _tcscmp(pstrName, _T("soundover")) == 0 ) SetSoundNameOver(pstrValue);
-	else if( _tcscmp(pstrName, _T("soundpushed")) == 0 ) SetSoundNameDown(pstrValue);
+    else if (_tcscmp(pstrName, _T("shortcut")) == 0) { SetShortcut(pstrValue[0]); return true; }
+    else if (_tcscmp(pstrName, _T("menu")) == 0) { SetContextMenuUsed(_tcscmp(pstrValue, _T("true")) == 0); return true; }
+    else if (_tcscmp(pstrName, _T("virtualwnd")) == 0) { SetVirtualWnd(pstrValue); return true; }
+    else if (_tcscmp(pstrName, _T("style")) == 0) { SetStyleName(pstrValue); return true; }
+    else if (_tcscmp(pstrName, _T("soundover")) == 0) { SetSoundNameOver(pstrValue); return true; }
+    else if (_tcscmp(pstrName, _T("soundpushed")) == 0) { SetSoundNameDown(pstrValue); return true; }
 	else {
 		AddCustomAttribute(pstrName, pstrValue);
+        DuiLogWarning(_T("attribute:%s not support!!!\n"), pstrName);
+        return false;
 	}
 }
 
@@ -1171,7 +1218,7 @@ void CControlUI::SetAttributeList(LPCTSTR pstrList)
         }
         ASSERT( *pstrList == _T('\"') );
         if( *pstrList++ != _T('\"') ) return;
-        SetAttribute(sItem, sValue);
+        SetXMLAttribute(sItem, sValue); //Modify
         if( *pstrList++ != _T(' ') ) return;
     }
 }
@@ -1419,7 +1466,7 @@ void CControlUI::SetStyleName(LPCTSTR pstrStyleName)
 		if ((pStrAttrKey = pStyleAttributeHash->GetAt(i)))
 		{
 			pStrAttrValue = static_cast<CDuiString*>(pStyleAttributeHash->Find(pStrAttrKey));
-			SetAttribute(pStrAttrKey, pStrAttrValue->GetData());
+			SetXMLAttribute(pStrAttrKey, pStrAttrValue->GetData());
 		}
 	}
 
@@ -1435,6 +1482,131 @@ void CControlUI::SetBindNotifyCtrl(CControlUI* pControl)
 {
 	m_pBindNotifyCtrl = pControl;
 }
+
+void CControlUI::GetPropertyList(std::vector<UIPropertyGrid>& property_list)
+{
+	property_list.push_back(UIPropertyGrid("Control", "Control"));
+	UIPropertyGrid& property = property_list.back();
+	std::vector< UIPropertyGridItem >& items = property.items;
+#define ARGB(a,r,g,b)        ((COLORREF)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((DWORD)(BYTE)(b))<<16))|(((DWORD)(BYTE)(a))<<24))
+
+	items.push_back(UIPropertyGridItem(PropertyType::PT_String, "Name", "控件的名称, 请用英文", _variant_t(""), DESINGER_CHECK_ID));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_String, "Text", "控件的显示文本"));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Rect, "Pos", "控件坐标"));
+    {
+		UIPropertyGridItem& item = items.back();
+		item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Left", "Left", _variant_t(0)));
+		item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Top", "Top", _variant_t(0)));
+		item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Right", "Right", _variant_t(0)));
+		item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Bottom", "Bottom", _variant_t(0)));
+    }
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Boolean, "Float", "控件是否浮动的", _variant_t(bool(false))));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Rect, "Float", "浮动比例"));
+	{
+		UIPropertyGridItem& item = items.back();
+		item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Left", "Left", _variant_t(0)));
+		item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Top", "Top", _variant_t(0)));
+		item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Right", "Right", _variant_t(0)));
+		item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Bottom", "Bottom", _variant_t(0)));
+	}
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Size, "Size", "控件大小"));
+	{
+		UIPropertyGridItem& item = items.back();
+		item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Width", "Width", _variant_t(0)));
+		item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Height", "Height", _variant_t(0)));
+	}
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Size, "MinSize", "控件最小大小"));
+	{
+		UIPropertyGridItem& item = items.back();
+		item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "MinWidth", "MinWidth", _variant_t(0)));
+		item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "MinHeight", "MinHeight", _variant_t(0)));
+	}
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Size, "MaxSize", "控件最大大小"));
+	{
+		UIPropertyGridItem& item = items.back();
+		item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "MaxWidth", "MaxWidth", _variant_t(0)));
+		item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "MaxHeight", "MaxHeight", _variant_t(0)));
+	}
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Rect, "Padding", "边框间距"));
+	{
+		UIPropertyGridItem& item = items.back();
+		item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Left", "Left", _variant_t(0)));
+		item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Top", "Top", _variant_t(0)));
+		item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Right", "Right", _variant_t(0)));
+		item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Bottom", "Bottom", _variant_t(0)));
+	}
+    items.push_back(UIPropertyGridItem(PropertyType::PT_Color, "BkColor", "指定控件的背景颜色", _variant_t((LONG)(ARGB(0, 0, 0, 0)))));
+    items.push_back(UIPropertyGridItem(PropertyType::PT_Color, "BkColor2", "指定控件的背景颜色2", _variant_t((LONG)(ARGB(0, 0, 0, 0)))));
+    items.push_back(UIPropertyGridItem(PropertyType::PT_Color, "BkColor3", "指定控件的背景颜色3", _variant_t((LONG)(ARGB(0, 0, 0, 0)))));
+    items.push_back(UIPropertyGridItem(PropertyType::PT_Color, "BorderColor", "指定控件的边框颜色", _variant_t((LONG)(ARGB(0, 0, 0, 0)))));
+    items.push_back(UIPropertyGridItem(PropertyType::PT_Color, "FocusBorderColor", "指定控件边框获得焦点时边框的颜色", _variant_t((LONG)(ARGB(0, 0, 0, 0)))));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Rect, "BorderSize", "BorderSize", _variant_t(0)));
+	{
+		UIPropertyGridItem& item = items.back();
+		item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Left", "指定控件的左边框线宽"));
+		item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Top", "指定控件的上边框线宽"));
+		item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Right", "指定控件的右边框线宽"));
+		item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Bottom", "指定控件的底边框线宽"));
+	}
+    items.push_back(UIPropertyGridItem(PropertyType::PT_Number, "BorderStyle", "指示边框线的格式\nPS_SOLD", _variant_t(0)));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_Size, "BorderRound", "BorderRound"));
+	{
+		UIPropertyGridItem& item = items.back();
+		item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Width", "边框圆角的宽度", _variant_t(0)));
+		item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Height", "边框圆角的高度", _variant_t(0)));
+	}
+    items.push_back(UIPropertyGridItem(PropertyType::PT_Boolean, "ColorHSL", "指示该控件的颜色是否随窗口的hsl变化而变化\nFalse"));
+    items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "BkImage", "指定控件的背景图片"));
+    items.push_back(UIPropertyGridItem(PropertyType::PT_Boolean, "Enabled", "指示是否已启用该控件\nTrue", _variant_t(bool(true))));
+    items.push_back(UIPropertyGridItem(PropertyType::PT_Boolean, "Visible", "确定该控件是可见的，还是隐藏的\nTrue", _variant_t(bool(true))));
+    items.push_back(UIPropertyGridItem(PropertyType::PT_Boolean, "Mouse", "指示该控件是否响应鼠标操作\nTrue", _variant_t(bool(true))));
+    items.push_back(UIPropertyGridItem(PropertyType::PT_Boolean, "Menu", "指示该控件是否需要右键菜单\nFalse", _variant_t(bool(false))));
+    items.push_back(UIPropertyGridItem(PropertyType::PT_Boolean, "KeyBoard", "指示CButton类控件是否接受TabStop和按键事件\nFalse", _variant_t(bool(false))));
+    items.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Shortcut", "指示该控件快捷键", _variant_t(0)));
+    items.push_back(UIPropertyGridItem(PropertyType::PT_String, "Tooltip", "指示该控件鼠标悬浮提示"));
+    items.push_back(UIPropertyGridItem(PropertyType::PT_String, "VirtualWnd", "指示该控件虚拟窗口"));
+    items.push_back(UIPropertyGridItem(PropertyType::PT_String, "UserData", "指示该控件自定义标识"));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_String, "StyleName", "指示该控件使用的样式"));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_String, "SoundOver", "指示该控件Over的音频"));
+	items.push_back(UIPropertyGridItem(PropertyType::PT_String, "SoundPushed", "指示该控件Pushed的音频"));
+
+}
+
+CDuiString CControlUI::GetXMLAttribute(LPCTSTR pstrName)
+{
+    if (pstrName == NULL || pstrName[0] == _T('\0')) return _T("");
+    for (int i = 0; i < m_XMLAttrHash.GetSize(); i++) {
+        LPCTSTR key = m_XMLAttrHash.GetAt(i);
+        if (_tcsicmp(key, pstrName) == 0) {
+            CDuiString* pAttrValue = static_cast<CDuiString*>(m_XMLAttrHash.Find(key));
+            return pAttrValue->GetData();
+        }
+    }
+    return _T("");
+}
+bool CControlUI::SetXMLAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
+{
+    if (CPaintManagerUI::GetRecordXMLAttribute())
+    {
+        if (pstrName != NULL && pstrName[0] != _T('\0')) {
+			if (pstrValue)
+			{
+				CDuiString* pAttrValue = new CDuiString(pstrValue);
+				CDuiString* pOldAttr = static_cast<CDuiString*>(m_XMLAttrHash.Set(pstrName, (LPVOID)pAttrValue));
+				if (pOldAttr) delete pOldAttr;
+			}
+			else
+			{
+				CDuiString* pAttrValue = new CDuiString(_T(""));
+				CDuiString* pOldAttr = static_cast<CDuiString*>(m_XMLAttrHash.Set(pstrName, (LPVOID)pAttrValue));
+				if (pOldAttr) delete pOldAttr;
+			}
+        }
+    }
+    return SetAttribute(pstrName, pstrValue);
+}
+
+
 //end
 
 } // namespace DuiLib

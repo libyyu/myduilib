@@ -8,6 +8,8 @@ namespace DuiLib
 {
 	const static CLogger::char_type* pLevel[] = { _T("Sys"), _T("Info"), _T("Warn"), _T("Error") };
 
+	void (*LogWrapFunc)(int, const char*) = NULL;
+
 	void CLogger::Init(const char_type* filename, Log_Level lev, Log_Type type, size_t maxSaveLogCnt)
 	{
 		std::locale::global(std::locale("chs"));
@@ -237,7 +239,14 @@ namespace DuiLib
 	{
 		char szBuffer[4097] = { 0 };
 		int iRet = ::vsprintf(szBuffer, fmt, va);
-		write(szBuffer, lev);
+		if (LogWrapFunc != NULL)
+		{
+			LogWrapFunc(lev, szBuffer);
+		}
+		else
+		{
+			write(szBuffer, lev);
+		}
 	}
 
 	template<>
@@ -245,7 +254,16 @@ namespace DuiLib
 	{
 		wchar_t szBuffer[4097] = { 0 };
 		int iRet = ::vswprintf(szBuffer, fmt, va);
-		write(szBuffer, lev);
+
+		if (LogWrapFunc != NULL)
+		{
+			std::string s = to_string(szBuffer);
+			LogWrapFunc(lev, s.c_str());
+		}
+		else
+		{
+			write(szBuffer, lev);
+		}
 	}
 
 	void CLogger::flush()
@@ -356,5 +374,10 @@ namespace DuiLib
 		{
 			duiLogger->Init(filename);
 		}
+	}
+
+	void SetLogCallback(void (*LogFunc)(int, const char*))
+	{
+		LogWrapFunc = LogFunc;
 	}
 }

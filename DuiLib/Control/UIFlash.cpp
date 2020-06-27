@@ -265,20 +265,23 @@ namespace DuiLib
 		return hr; 
 	}
 
-	void CFlashUI::SetAttribute( LPCTSTR pstrName, LPCTSTR pstrValue )
+	bool CFlashUI::SetAttribute( LPCTSTR pstrName, LPCTSTR pstrValue )
 	{
 		if (_tcscmp(pstrName, _T("homepage")) == 0)
 		{
+			return true;
 		}
 		else if (_tcscmp(pstrName, _T("autonavi"))==0)
 		{
+			return true;
 		}
 		else if (_tcscmp(pstrName, _T("flashurl")) == 0)
 		{
 			SetFlashUrl(pstrValue);
+			return true;
 		}
 		else
-			CActiveXUI::SetAttribute(pstrName, pstrValue);
+			return CActiveXUI::SetAttribute(pstrName, pstrValue);
 	}
 
 	void CFlashUI::SetFlashUrl(LPCTSTR szPath)

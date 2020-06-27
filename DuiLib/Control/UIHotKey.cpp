@@ -487,19 +487,20 @@ namespace DuiLib
 	}
 
 
-	void CHotKeyUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
+	bool CHotKeyUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 	{
-		if( _tcscmp(pstrName, _T("normalimage")) == 0 ) SetNormalImage(pstrValue);
-		else if( _tcscmp(pstrName, _T("hotimage")) == 0 ) SetHotImage(pstrValue);
-		else if( _tcscmp(pstrName, _T("focusedimage")) == 0 ) SetFocusedImage(pstrValue);
-		else if( _tcscmp(pstrName, _T("disabledimage")) == 0 ) SetDisabledImage(pstrValue);
+		if (_tcscmp(pstrName, _T("normalimage")) == 0) { SetNormalImage(pstrValue); return true; }
+		else if (_tcscmp(pstrName, _T("hotimage")) == 0) { SetHotImage(pstrValue); return true; }
+		else if (_tcscmp(pstrName, _T("focusedimage")) == 0) { SetFocusedImage(pstrValue); return true; }
+		else if (_tcscmp(pstrName, _T("disabledimage")) == 0) { SetDisabledImage(pstrValue); return true; }
 		else if( _tcscmp(pstrName, _T("nativebkcolor")) == 0 ) {
 			if( *pstrValue == _T('#')) pstrValue = ::CharNext(pstrValue);
 			LPTSTR pstr = NULL;
 			DWORD clrColor = _tcstoul(pstrValue, &pstr, 16);
 			SetNativeBkColor(clrColor);
+			return true;
 		}
-		else CLabelUI::SetAttribute(pstrName, pstrValue);
+		else return CLabelUI::SetAttribute(pstrName, pstrValue);
 	}
 
 

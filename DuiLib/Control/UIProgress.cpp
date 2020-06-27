@@ -82,14 +82,14 @@ namespace DuiLib
 		Invalidate();
 	}
 
-	void CProgressUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
+	bool CProgressUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 	{
-		if( _tcscmp(pstrName, _T("foreimage")) == 0 ) SetForeImage(pstrValue);
-		else if( _tcscmp(pstrName, _T("hor")) == 0 ) SetHorizontal(_tcscmp(pstrValue, _T("true")) == 0);
-		else if( _tcscmp(pstrName, _T("min")) == 0 ) SetMinValue(_ttoi(pstrValue));
-		else if( _tcscmp(pstrName, _T("max")) == 0 ) SetMaxValue(_ttoi(pstrValue));
-		else if( _tcscmp(pstrName, _T("value")) == 0 ) SetValue(_ttoi(pstrValue));
-		else CLabelUI::SetAttribute(pstrName, pstrValue);
+		if (_tcscmp(pstrName, _T("foreimage")) == 0) { SetForeImage(pstrValue); return true; }
+		else if (_tcscmp(pstrName, _T("hor")) == 0) { SetHorizontal(_tcscmp(pstrValue, _T("true")) == 0); return true; }
+		else if (_tcscmp(pstrName, _T("min")) == 0) { SetMinValue(_ttoi(pstrValue)); return true; }
+		else if (_tcscmp(pstrName, _T("max")) == 0) { SetMaxValue(_ttoi(pstrValue)); return true; }
+		else if (_tcscmp(pstrName, _T("value")) == 0) { SetValue(_ttoi(pstrValue)); return true; }
+		else return CLabelUI::SetAttribute(pstrName, pstrValue);
 	}
 
 	void CProgressUI::PaintStatusImage(HDC hDC)
@@ -110,5 +110,24 @@ namespace DuiLib
 		}
 		m_diFore.rcDestOffset = rc;
 		if( DrawImage(hDC, m_diFore) ) return;
+	}
+
+	void CProgressUI::GetPropertyList(std::vector<UIPropertyGrid>& property_list)
+	{
+		__super::GetPropertyList(property_list);
+
+		property_list.push_back(UIPropertyGrid("Progress", "Progress"));
+		UIPropertyGrid& property = property_list.back();
+		std::vector< UIPropertyGridItem >& items = property.items;
+
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "ForeImage", "指定进度条的前景图片"));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Size, "MinMax", "MinMax"));
+		{
+			UIPropertyGridItem& item = items.back();
+			item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Min", "指定进度条的最小值", _variant_t(0)));
+			item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Max", "指定进度条的最大值", _variant_t(100)));
+		}
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Value", "指定进度条的值", _variant_t(0)));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Boolean, "Hor", "指示进度条是否水平", _variant_t(bool(false))));
 	}
 }

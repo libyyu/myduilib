@@ -45,8 +45,9 @@ namespace DuiLib
 		virtual void Selected(bool bSelected, bool bTriggerEvent=true);
 
 		SIZE EstimateSize(SIZE szAvailable);
-		void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
-
+	protected:
+		virtual bool SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
+	public:
 		void PaintStatusImage(HDC hDC);
 		void PaintText(HDC hDC);
 
@@ -57,6 +58,9 @@ namespace DuiLib
 		void SetNormalTooltip(LPCTSTR szTooltip);
 		LPCTSTR GetNormalTooltip() const;
 		//end
+
+	public://For Designer
+		virtual void GetPropertyList(std::vector<UIPropertyGrid>& property_list);
 	protected:
 		bool			m_bSelected;
 		CDuiString		m_sGroupName;

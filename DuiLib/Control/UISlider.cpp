@@ -245,23 +245,25 @@ namespace DuiLib
 	}
 
 
-	void CSliderUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
+	bool CSliderUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 	{
-		if( _tcscmp(pstrName, _T("thumbimage")) == 0 ) SetThumbImage(pstrValue);
-		else if( _tcscmp(pstrName, _T("thumbhotimage")) == 0 ) SetThumbHotImage(pstrValue);
-		else if( _tcscmp(pstrName, _T("thumbpushedimage")) == 0 ) SetThumbPushedImage(pstrValue);
+		if (_tcscmp(pstrName, _T("thumbimage")) == 0) { SetThumbImage(pstrValue); return true; }
+		else if (_tcscmp(pstrName, _T("thumbhotimage")) == 0) { SetThumbHotImage(pstrValue); return true; }
+		else if (_tcscmp(pstrName, _T("thumbpushedimage")) == 0) { SetThumbPushedImage(pstrValue); return true; }
 		else if( _tcscmp(pstrName, _T("thumbsize")) == 0 ) {
 			SIZE szXY = {0};
 			LPTSTR pstr = NULL;
 			szXY.cx = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);    
 			szXY.cy = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr); 
 			SetThumbSize(szXY);
+			return true;
 		}
 		else if( _tcscmp(pstrName, _T("step")) == 0 ) {
 			SetChangeStep(_ttoi(pstrValue));
+			return true;
 		}
-		else if( _tcscmp(pstrName, _T("imm")) == 0 ) SetImmMode(_tcscmp(pstrValue, _T("true")) == 0);
-		else CProgressUI::SetAttribute(pstrName, pstrValue);
+		else if (_tcscmp(pstrName, _T("imm")) == 0) { SetImmMode(_tcscmp(pstrValue, _T("true")) == 0); return true; }
+		else return CProgressUI::SetAttribute(pstrName, pstrValue);
 	}
 
 	void CSliderUI::PaintStatusImage(HDC hDC)
@@ -285,4 +287,27 @@ namespace DuiLib
 		m_diThumb.rcDestOffset = rcThumb;
 		if( DrawImage(hDC, m_diThumb) ) return;
 	}
+
+	void CSliderUI::GetPropertyList(std::vector<UIPropertyGrid>& property_list)
+	{
+		__super::GetPropertyList(property_list);
+
+		property_list.push_back(UIPropertyGrid("Slider", "Slider"));
+		UIPropertyGrid& property = property_list.back();
+		std::vector< UIPropertyGridItem >& items = property.items;
+
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "ThumbImage", "指定滑块的滑条图片"));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "ThumbHotImage", "指定滑条获得热点时的图片"));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "ThumbPushedImage", "指定滑条被按压后的图片"));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Size, "ThumbSize", "ThumbSize"));
+		{
+			UIPropertyGridItem& item = items.back();
+			item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Width", "指定滑条的宽度", _variant_t(10)));
+			item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Height", "指定滑条的高度", _variant_t(10)));
+		}
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Step", "指定进度步长，如(1)", _variant_t(1)));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Boolean, "Imm", "指示进度条是否是否开启imm模式\nFalse", _variant_t(bool(false))));
+
+	}
+
 }

@@ -154,7 +154,7 @@ void CUserListUI::DoEvent(TEventUI& event)
 
 	CListUI::DoEvent(event);
 }
-void CUserListUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
+bool CUserListUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 {
 	return __super::SetAttribute(pstrName,pstrValue);
 }

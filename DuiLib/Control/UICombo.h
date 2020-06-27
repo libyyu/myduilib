@@ -112,14 +112,20 @@ public:
 	void SetPos(RECT rc, bool bNeedInvalidate = true);
 	void Move(SIZE szOffset, bool bNeedInvalidate = true);
     void DoEvent(TEventUI& event);
-    void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
-    
+protected:
+    virtual bool SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
+public:
     bool DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl);
     void PaintText(HDC hDC);
     void PaintStatusImage(HDC hDC);
 protected:
 	void SetMultiSelect(bool b);
 	bool IsMultiSelected() const;
+
+
+public://For Designer
+	virtual void GetPropertyList(std::vector<UIPropertyGrid>& property_list);
+
 protected:
     CComboWnd* m_pWindow;
 

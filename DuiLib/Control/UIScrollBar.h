@@ -89,8 +89,9 @@ namespace DuiLib
 
 		void SetPos(RECT rc, bool bNeedInvalidate = true);
 		void DoEvent(TEventUI& event);
-		void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
-
+	protected:
+		virtual bool SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
+	public:
 		bool DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl);
 
 		void PaintBk(HDC hDC);
@@ -99,6 +100,8 @@ namespace DuiLib
 		void PaintThumb(HDC hDC);
 		void PaintRail(HDC hDC);
 
+	public://For Designer
+		virtual void GetPropertyList(std::vector<UIPropertyGrid>& property_list);
 	protected:
 
 		enum

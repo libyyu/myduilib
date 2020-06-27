@@ -25,9 +25,13 @@ namespace DuiLib
 		LPCTSTR GetForeImage() const;
 		void SetForeImage(LPCTSTR pStrImage);
 
-		void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
+	protected:
+		virtual bool SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
+	public:
 		void PaintStatusImage(HDC hDC);
 
+	public://For Designer
+		virtual void GetPropertyList(std::vector<UIPropertyGrid>& property_list);
 	protected:
 		bool m_bHorizontal;
 		int m_nMax;

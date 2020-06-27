@@ -18,7 +18,9 @@ public:
 	LPVOID GetInterface(LPCTSTR pstrName);
 	void DoEvent(TEventUI& event);
 
-	void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
+protected:
+	virtual bool SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
+public:
 	void PaintBkImage(HDC hDC);
 
 	void SetHotBkImage(LPCTSTR pStrImage);

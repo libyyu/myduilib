@@ -79,6 +79,15 @@
 #define __FUNCTIONT__	__FUNCTION__
 #endif
 #endif
+
+//#define PROPERTY_DECL(TYPE, NAME, GET, SET) \
+//private: \
+//	TYPE NAME; \
+//public: \
+//	TYPE GET() const; \
+//	void SET(const TYPE&); 
+
+
 #include "DuiType.h"
 #include "Utils/Lock.h"
 #include "Utils/Singleton.h"

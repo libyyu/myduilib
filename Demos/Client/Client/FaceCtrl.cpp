@@ -210,9 +210,9 @@ void CFaceCtrl::DoEvent(TEventUI& event)
 	CControlUI::DoEvent(event);
 }
 
-void CFaceCtrl::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
+bool CFaceCtrl::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 {
-	CControlUI::SetAttribute(pstrName, pstrValue);
+	return CControlUI::SetAttribute(pstrName, pstrValue);
 }
 
 void CFaceCtrl::PaintBkColor(HDC hDC)

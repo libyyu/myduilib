@@ -222,29 +222,31 @@ namespace DuiLib
 		return CControlUI::EstimateSize(szAvailable);
 	}
 
-	void COptionUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
+	bool COptionUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 	{
-		if( _tcscmp(pstrName, _T("group")) == 0 ) SetGroup(pstrValue);
-		else if( _tcscmp(pstrName, _T("selected")) == 0 ) Selected(_tcscmp(pstrValue, _T("true")) == 0);
-		else if( _tcscmp(pstrName, _T("selectedimage")) == 0 ) SetSelectedImage(pstrValue);
-		else if( _tcscmp(pstrName, _T("selectedhotimage")) == 0 ) SetSelectedHotImage(pstrValue);
-		else if( _tcscmp(pstrName, _T("foreimage")) == 0 ) SetForeImage(pstrValue);
-		else if( _tcscmp(pstrName, _T("selectedpushedimage")) == 0 ) SetSelectedPushedImage(pstrValue);
-		else if (_tcscmp(pstrName, _T("tooltip")) == 0) SetNormalTooltip(pstrValue);
-		else if (_tcscmp(pstrName, _T("selectedtooltip")) == 0) SetSelectedToolTip(pstrValue);
+		if (_tcscmp(pstrName, _T("group")) == 0) { SetGroup(pstrValue); return true; }
+		else if (_tcscmp(pstrName, _T("selected")) == 0) { Selected(_tcscmp(pstrValue, _T("true")) == 0); return true; }
+		else if (_tcscmp(pstrName, _T("selectedimage")) == 0) { SetSelectedImage(pstrValue); return true; }
+		else if (_tcscmp(pstrName, _T("selectedhotimage")) == 0) { SetSelectedHotImage(pstrValue); return true; }
+		else if (_tcscmp(pstrName, _T("foreimage")) == 0) { SetForeImage(pstrValue); return true; }
+		else if (_tcscmp(pstrName, _T("selectedpushedimage")) == 0) { SetSelectedPushedImage(pstrValue); return true; }
+		else if (_tcscmp(pstrName, _T("tooltip")) == 0) { SetNormalTooltip(pstrValue); return true; }
+		else if (_tcscmp(pstrName, _T("selectedtooltip")) == 0) { SetSelectedToolTip(pstrValue); return true; }
 		else if( _tcscmp(pstrName, _T("selectedbkcolor")) == 0 ) {
 			if( *pstrValue == _T('#')) pstrValue = ::CharNext(pstrValue);
 			LPTSTR pstr = NULL;
 			DWORD clrColor = _tcstoul(pstrValue, &pstr, 16);
 			SetSelectedBkColor(clrColor);
+			return true;
 		}
 		else if( _tcscmp(pstrName, _T("selectedtextcolor")) == 0 ) {
 			if( *pstrValue == _T('#')) pstrValue = ::CharNext(pstrValue);
 			LPTSTR pstr = NULL;
 			DWORD clrColor = _tcstoul(pstrValue, &pstr, 16);
 			SetSelectedTextColor(clrColor);
+			return true;
 		}
-		else CButtonUI::SetAttribute(pstrName, pstrValue);
+		else return CButtonUI::SetAttribute(pstrName, pstrValue);
 	}
 
 	void COptionUI::PaintStatusImage(HDC hDC)
@@ -310,4 +312,25 @@ Label_ForeImage:
 			m_uButtonState = uSavedState;
 		}
 	}
+
+	void COptionUI::GetPropertyList(std::vector<UIPropertyGrid>& property_list)
+	{
+		__super::GetPropertyList(property_list);
+
+		property_list.push_back(UIPropertyGrid("Option", "Option"));
+		UIPropertyGrid& property = property_list.back();
+		std::vector< UIPropertyGridItem >& items = property.items;
+#define ARGB(a,r,g,b)        ((COLORREF)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((DWORD)(BYTE)(b))<<16))|(((DWORD)(BYTE)(a))<<24))
+		items.push_back(UIPropertyGridItem(PropertyType::PT_String, "Group", "指定参与组合的名称"));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Boolean, "Selected", "指示是否已被选中\nFalse", _variant_t(bool(false))));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "SelectedImage", "指定复选框被选择后的图片"));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "SelectedHotImage", "指定复选框被选择后的图片"));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "SelectedPushdImage", "指定复选框被选择后的图片"));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Image, "ForeImage", "指定复选框的前景图片"));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_String, "SelectedTooltip", "指定复选框被选择后的提示文本"));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Color, "SelectedBkColor", "SelectedBkColor", _variant_t((LONG)(ARGB(0, 0, 0, 0)))));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Color, "SelectedTextColor", "SelectedTextColor", _variant_t((LONG)(ARGB(0, 0, 0, 0)))));
+#undef ARGB
+	}
+
 }

@@ -95,10 +95,12 @@ namespace DuiLib
 	UILIB_API extern CLogger* duiLogger; 
 
 	UILIB_API void CreateLogger(const TCHAR* filename = NULL);
+
+	UILIB_API void SetLogCallback(void (*LogFunc)(int, const char*));
 }
-#define  DuiLogInfo(fmt,...)  { if(DuiLib::duiLogger){DuiLib::duiLogger->formatLog(__FILET__,__LINE__,DuiLib::CLogger::Log_Level::InfoLog,fmt,##__VA_ARGS__);} else {Console::WriteLine(fmt,##__VA_ARGS__);} }
-#define  DuiLogWarning(fmt,...) { if(DuiLib::duiLogger){DuiLib::duiLogger->formatLog(__FILET__,__LINE__,DuiLib::CLogger::Log_Level::WarningLog,fmt,##__VA_ARGS__);} else {Console::WarningLine(fmt,##__VA_ARGS__);} }
-#define  DuiLogError(fmt,...) { if(DuiLib::duiLogger){DuiLib::duiLogger->formatLog(__FILET__,__LINE__,DuiLib::CLogger::Log_Level::ErrorLog,fmt,##__VA_ARGS__);} else {Console::ErrorLine(fmt,##__VA_ARGS__);} }
+#define  DuiLogInfo(fmt,...)  { if(DuiLib::duiLogger){DuiLib::duiLogger->formatLog(__FILET__,__LINE__,DuiLib::CLogger::Log_Level::InfoLog,fmt,##__VA_ARGS__);} else {DuiLib::Console::WriteLine(fmt,##__VA_ARGS__);} }
+#define  DuiLogWarning(fmt,...) { if(DuiLib::duiLogger){DuiLib::duiLogger->formatLog(__FILET__,__LINE__,DuiLib::CLogger::Log_Level::WarningLog,fmt,##__VA_ARGS__);} else {DuiLib::Console::WarningLine(fmt,##__VA_ARGS__);} }
+#define  DuiLogError(fmt,...) { if(DuiLib::duiLogger){DuiLib::duiLogger->formatLog(__FILET__,__LINE__,DuiLib::CLogger::Log_Level::ErrorLog,fmt,##__VA_ARGS__);} else {DuiLib::Console::ErrorLine(fmt,##__VA_ARGS__);} }
 
 #define GLog(a, lev, fmt, ...) { a.formatLog(__FILET__,__LINE__,lev,fmt,##__VA_ARGS__); }
 #define GInfo(a, fmt, ...) GLog(a, DuiLib::CLogger::Log_Level::InfoLog, fmt, ##__VA_ARGS__)

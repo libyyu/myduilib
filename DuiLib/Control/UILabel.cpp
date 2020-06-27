@@ -257,7 +257,7 @@ namespace DuiLib
 		CControlUI::DoEvent(event);
 	}
 
-	void CLabelUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
+	bool CLabelUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 	{
 		if( _tcscmp(pstrName, _T("align")) == 0 ) {
 			if( _tcsstr(pstrValue, _T("left")) != NULL ) {
@@ -272,6 +272,7 @@ namespace DuiLib
 				m_uTextStyle &= ~(DT_LEFT | DT_CENTER);
 				m_uTextStyle |= DT_RIGHT;
 			}
+			return true;
 		}
 		else if (_tcscmp(pstrName, _T("valign")) == 0)
 		{
@@ -287,23 +288,27 @@ namespace DuiLib
 		        m_uTextStyle &= ~(DT_TOP | DT_VCENTER);
 		        m_uTextStyle |= DT_BOTTOM;
 		    }
+			return true;
 		}
 		else if( _tcscmp(pstrName, _T("endellipsis")) == 0 ) {
 			if( _tcscmp(pstrValue, _T("true")) == 0 ) m_uTextStyle |= DT_END_ELLIPSIS;
 			else m_uTextStyle &= ~DT_END_ELLIPSIS;
+			return true;
 		}    
-		else if( _tcscmp(pstrName, _T("font")) == 0 ) SetFont(_ttoi(pstrValue));
+		else if (_tcscmp(pstrName, _T("font")) == 0) { SetFont(_ttoi(pstrValue)); return true; }
 		else if( _tcscmp(pstrName, _T("textcolor")) == 0 ) {
 			if( *pstrValue == _T('#')) pstrValue = ::CharNext(pstrValue);
 			LPTSTR pstr = NULL;
 			DWORD clrColor = _tcstoul(pstrValue, &pstr, 16);
 			SetTextColor(clrColor);
+			return true;
 		}
 		else if( _tcscmp(pstrName, _T("disabledtextcolor")) == 0 ) {
 			if( *pstrValue == _T('#')) pstrValue = ::CharNext(pstrValue);
 			LPTSTR pstr = NULL;
 			DWORD clrColor = _tcstoul(pstrValue, &pstr, 16);
 			SetDisabledTextColor(clrColor);
+			return true;
 		}
 		else if( _tcscmp(pstrName, _T("textpadding")) == 0 ) {
 			RECT rcTextPadding = { 0 };
@@ -313,47 +318,53 @@ namespace DuiLib
 			rcTextPadding.right = _tcstol(pstr + 1, &pstr, 10);  ASSERT(pstr);    
 			rcTextPadding.bottom = _tcstol(pstr + 1, &pstr, 10); ASSERT(pstr);    
 			SetTextPadding(rcTextPadding);
+			return true;
 		}
-		else if( _tcscmp(pstrName, _T("multiline")) == 0 ) SetMultiLine(_tcscmp(pstrValue, _T("true")) == 0);
-		else if( _tcscmp(pstrName, _T("showhtml")) == 0 ) SetShowHtml(_tcscmp(pstrValue, _T("true")) == 0);
-		else if( _tcscmp(pstrName, _T("enabledeffect")) == 0 ) SetEnabledEffect(_tcscmp(pstrValue, _T("true")) == 0);
-		else if( _tcscmp(pstrName, _T("enabledluminous")) == 0 ) SetEnabledLuminous(_tcscmp(pstrValue, _T("true")) == 0);
-		else if( _tcscmp(pstrName, _T("luminousfuzzy")) == 0 ) SetLuminousFuzzy((float)_tstof(pstrValue));
-		else if( _tcscmp(pstrName, _T("gradientangle")) == 0 ) SetGradientAngle(_ttoi(pstrValue));
-		else if( _tcscmp(pstrName, _T("enabledstroke")) == 0 ) SetEnabledStroke(_tcscmp(pstrValue, _T("true")) == 0);
-		else if( _tcscmp(pstrName, _T("enabledshadow")) == 0 ) SetEnabledShadow(_tcscmp(pstrValue, _T("true")) == 0);
-		else if( _tcscmp(pstrName, _T("gradientlength")) == 0 ) SetGradientLength(_ttoi(pstrValue));
+		else if (_tcscmp(pstrName, _T("multiline")) == 0) { SetMultiLine(_tcscmp(pstrValue, _T("true")) == 0); return true; }
+		else if (_tcscmp(pstrName, _T("showhtml")) == 0) { SetShowHtml(_tcscmp(pstrValue, _T("true")) == 0); return true; }
+		else if (_tcscmp(pstrName, _T("enabledeffect")) == 0) { SetEnabledEffect(_tcscmp(pstrValue, _T("true")) == 0); return true; }
+		else if (_tcscmp(pstrName, _T("enabledluminous")) == 0) { SetEnabledLuminous(_tcscmp(pstrValue, _T("true")) == 0); return true; }
+		else if (_tcscmp(pstrName, _T("luminousfuzzy")) == 0) { SetLuminousFuzzy((float)_tstof(pstrValue)); return true; }
+		else if (_tcscmp(pstrName, _T("gradientangle")) == 0) { SetGradientAngle(_ttoi(pstrValue)); return true; }
+		else if (_tcscmp(pstrName, _T("enabledstroke")) == 0) { SetEnabledStroke(_tcscmp(pstrValue, _T("true")) == 0); return true; }
+		else if (_tcscmp(pstrName, _T("enabledshadow")) == 0) { SetEnabledShadow(_tcscmp(pstrValue, _T("true")) == 0); return true; }
+		else if (_tcscmp(pstrName, _T("gradientlength")) == 0) { SetGradientLength(_ttoi(pstrValue)); return true; }
 		else if( _tcscmp(pstrName, _T("shadowoffset")) == 0 ){
 			LPTSTR pstr = NULL;
 			int offsetx = _tcstol(pstrValue, &pstr, 10);	ASSERT(pstr);    
 			int offsety = _tcstol(pstr + 1, &pstr, 10);		ASSERT(pstr);
 			SetShadowOffset(offsetx,offsety);
+			return true;
 		}
 		else if( _tcscmp(pstrName, _T("textcolor1")) == 0 ) {
 			if( *pstrValue == _T('#')) pstrValue = ::CharNext(pstrValue);
 			LPTSTR pstr = NULL;
 			DWORD clrColor = _tcstoul(pstrValue, &pstr, 16);
 			SetTextColor1(clrColor);
+			return true;
 		}
 		else if( _tcscmp(pstrName, _T("textshadowcolora")) == 0 ) {
 			if( *pstrValue == _T('#')) pstrValue = ::CharNext(pstrValue);
 			LPTSTR pstr = NULL;
 			DWORD clrColor = _tcstoul(pstrValue, &pstr, 16);
 			SetTextShadowColorA(clrColor);
+			return true;
 		}
 		else if( _tcscmp(pstrName, _T("textshadowcolorb")) == 0 ) {
 			if( *pstrValue == _T('#')) pstrValue = ::CharNext(pstrValue);
 			LPTSTR pstr = NULL;
 			DWORD clrColor = _tcstoul(pstrValue, &pstr, 16);
 			SetTextShadowColorB(clrColor);
+			return true;
 		}
 		else if( _tcscmp(pstrName, _T("strokecolor")) == 0 ) {
 			if( *pstrValue == _T('#')) pstrValue = ::CharNext(pstrValue);
 			LPTSTR pstr = NULL;
 			DWORD clrColor = _tcstoul(pstrValue, &pstr, 16);
 			SetStrokeColor(clrColor);
+			return true;
 		}
-		else CControlUI::SetAttribute(pstrName, pstrValue);
+		else return CControlUI::SetAttribute(pstrName, pstrValue);
 	}
 
 	void CLabelUI::PaintText(HDC hDC)
@@ -644,5 +655,60 @@ namespace DuiLib
 	int CLabelUI::GetGradientLength()
 	{
 		return m_GradientLength;
+	}
+
+
+	void CLabelUI::GetPropertyList(std::vector<UIPropertyGrid>& property_list)
+	{
+		__super::GetPropertyList(property_list);
+
+		property_list.push_back(UIPropertyGrid("Label", "Label"));
+		UIPropertyGrid& property = property_list.back();
+		std::vector< UIPropertyGridItem >& items = property.items;
+#define ARGB(a,r,g,b)        ((COLORREF)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((DWORD)(BYTE)(b))<<16))|(((DWORD)(BYTE)(a))<<24))
+
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Select, "Align", "指示文本的对齐方式", _variant_t("Left")));
+		{
+			UIPropertyGridItem& item = items.back();
+			item.childs.push_back(UIPropertyGridItem(PropertyType::PT_String, "Left", ""));
+			item.childs.push_back(UIPropertyGridItem(PropertyType::PT_String, "Center", ""));
+			item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Right", ""));
+			item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Top", ""));
+			item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "VCenter", ""));
+			item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Bottom", ""));
+		}
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Font", "指定文本的字体索引", _variant_t(0)));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Color, "TextColor", "指定文本的颜色", _variant_t((LONG)(ARGB(0, 0, 0, 0)))));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Color, "DisabledTextColor", "指定文本Disabled状态下的的颜色", _variant_t((LONG)(ARGB(0, 0, 0, 0)))));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Rect, "TextPadding", "TextPadding"));
+		{
+			UIPropertyGridItem& item = items.back();
+			item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Left", "指定文本区域的左边距", _variant_t(0)));
+			item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Top", "指定文本区域的上边距", _variant_t(0)));
+			item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Right", "指定文本区域的右边距", _variant_t(0)));
+			item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Bottom", "指定文本区域的下边距", _variant_t(0)));
+		}
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Boolean, "Multiline", "指示是否使用多行\nFalse", _variant_t(bool(false))));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Boolean, "EndEllipsis", "指示句末显示不全是否使用...代替\nFalse", _variant_t(bool(false))));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Boolean, "ShowHtml", "指示是否使用HTML格式的文本", _variant_t(bool(false))));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Boolean, "EnabledEffect", "指示是否使用Effect", _variant_t(bool(false))));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Boolean, "Enabledluminous", "指示是否使用luminous", _variant_t(bool(false))));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Number, "Luminousfuzzy", "指示是否使用luminous值", _variant_t(0)));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Number, "GradientAngle", "渐变色渲染角度", _variant_t(0)));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Number, "GradienLength", "渐变距离", _variant_t(0)));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Boolean, "EnabledStroke", "是否使用描边效果", _variant_t(bool(false))));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Boolean, "EnabledShadow", "指示是否使用阴影效果", _variant_t(bool(false))));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Size, "ShadowOffset", "ShadowOffset"));
+		{
+			UIPropertyGridItem& item = items.back();
+			item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "OffsetX", "OffsetX", _variant_t(0)));
+			item.childs.push_back(UIPropertyGridItem(PropertyType::PT_Number, "OffsetY", "OffsetY", _variant_t(0)));
+		}
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Color, "TextColor1", "字体渐变色", _variant_t((LONG)(ARGB(0, 0, 0, 0)))));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Color, "TextShadowColorA", "字体阴影渐变色A", _variant_t((LONG)(ARGB(0, 0, 0, 0)))));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Color, "TextShadowColorB", "字体阴影渐变色B", _variant_t((LONG)(ARGB(0, 0, 0, 0)))));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Color, "StrokeColor", "字体描边的颜色B", _variant_t((LONG)(ARGB(0, 0, 0, 0)))));
+
+#undef ARGB
 	}
 }

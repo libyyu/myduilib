@@ -3,7 +3,7 @@
 
 namespace DuiLib
 {
-	REGIST_DUICONTROL(CVerticalLayoutUI)
+	REGIST_DUICONTROLEX(CVerticalLayoutUI, _T("布局"))
 	CVerticalLayoutUI::CVerticalLayoutUI() : CContainerUI(), m_iSepHeight(0), m_uButtonState(0), m_bImmMode(false)
 	{
 		m_ptLastMouse.x = m_ptLastMouse.y = 0;
@@ -220,11 +220,11 @@ namespace DuiLib
 		return m_bImmMode;
 	}
 
-	void CVerticalLayoutUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
+	bool CVerticalLayoutUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 	{
-		if( _tcscmp(pstrName, _T("sepheight")) == 0 ) SetSepHeight(_ttoi(pstrValue));
-		else if( _tcscmp(pstrName, _T("sepimm")) == 0 ) SetSepImmMode(_tcscmp(pstrValue, _T("true")) == 0);
-		else CContainerUI::SetAttribute(pstrName, pstrValue);
+		if (_tcscmp(pstrName, _T("sepheight")) == 0) { SetSepHeight(_ttoi(pstrValue)); return true; }
+		else if (_tcscmp(pstrName, _T("sepimm")) == 0) { SetSepImmMode(_tcscmp(pstrValue, _T("true")) == 0); return true; }
+		else return CContainerUI::SetAttribute(pstrName, pstrValue);
 	}
 
 	void CVerticalLayoutUI::DoEvent(TEventUI& event)
@@ -331,5 +331,17 @@ namespace DuiLib
 				MIN(m_rcItem.top - m_iSepHeight, m_rcItem.bottom));
 
 		}
+	}
+
+	void CVerticalLayoutUI::GetPropertyList(std::vector<UIPropertyGrid>& property_list)
+	{
+		CContainerUI::GetPropertyList(property_list);
+
+		property_list.push_back(UIPropertyGrid("VerticalLayout", "VerticalLayout"));
+		UIPropertyGrid& property = property_list.back();
+		std::vector< UIPropertyGridItem >& items = property.items;
+
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Number, "SepHeight", "分隔符宽,正负表示分隔符在上边还是下边\n0", _variant_t(0)));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Boolean, "SepImm", "拖动分隔符是否立即改变大小\nFalse", _variant_t(bool(false))));
 	}
 }

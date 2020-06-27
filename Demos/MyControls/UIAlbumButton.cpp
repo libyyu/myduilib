@@ -27,10 +27,13 @@ void CAlbumButtonUI::DoEvent(TEventUI& event)
 	CFadeButtonUI::DoEvent( event );
 }
 
-void CAlbumButtonUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
+bool CAlbumButtonUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 {
-	if( _tcscmp(pstrName, _T("bkhotimage")) == 0 )
-		SetHotBkImage(pstrValue);
+	if (_tcscmp(pstrName, _T("bkhotimage")) == 0)
+	{
+		SetHotBkImage(pstrValue); 
+		return true;
+	}
 	else 
 		return __super::SetAttribute(pstrName,pstrValue);
 }

@@ -56,11 +56,11 @@ namespace DuiLib
 		m_template_xml = pstrName;
 	}
 
-	void CTemplListUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
+	bool CTemplListUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 	{
-		if (_tcscmp(pstrName, _T("template_xml")) == 0) SetTemplateXML(pstrValue);
-		else if (_tcscmp(pstrName, _T("count")) == 0) SetCount(_ttoi(pstrValue));
-		else CListUI::SetAttribute(pstrName, pstrValue);
+		if (_tcscmp(pstrName, _T("template_xml")) == 0) { SetTemplateXML(pstrValue); return true; }
+		else if (_tcscmp(pstrName, _T("count")) == 0) { SetCount(_ttoi(pstrValue)); return true; }
+		else return CListUI::SetAttribute(pstrName, pstrValue);
 	}
 
 	void CTemplListUI::SetCount(UINT count)

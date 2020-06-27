@@ -19,14 +19,17 @@ namespace DuiLib
 		int GetSepHeight() const;
 		void SetSepImmMode(bool bImmediately);
 		bool IsSepImmMode() const;
-		void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
+	protected:
+		virtual bool SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
+	public:
 		void DoEvent(TEventUI& event);
 
 		void SetPos(RECT rc, bool bNeedInvalidate = true);
 		void DoPostPaint(HDC hDC, const RECT& rcPaint);
 
 		RECT GetThumbRect(bool bUseNew = false) const;
-
+	public://For Designer
+		virtual void GetPropertyList(std::vector<UIPropertyGrid>& property_list);
 	protected:
 		int m_iSepHeight;
 		UINT m_uButtonState;

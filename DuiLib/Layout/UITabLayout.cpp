@@ -3,7 +3,7 @@
 
 namespace DuiLib
 {
-	REGIST_DUICONTROL(CTabLayoutUI)
+	REGIST_DUICONTROLEX(CTabLayoutUI, _T("布局"))
 	CTabLayoutUI::CTabLayoutUI() : CContainerUI(), m_iCurSel(-1),
 		CUIAnimation(this),
 		m_nAnimationDirection(AnimationDirection::None),
@@ -145,14 +145,15 @@ namespace DuiLib
 			return SelectItem(iIndex, bTriggerEvent);
 	}
 
-	void CTabLayoutUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
+	bool CTabLayoutUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 	{
-		if( _tcscmp(pstrName, _T("selectedid")) == 0 ) SelectItem(_ttoi(pstrValue));
+		if (_tcscmp(pstrName, _T("selectedid")) == 0) { SelectItem(_ttoi(pstrValue)); return true; }
 		else if (_tcscmp(pstrName, _T("animation_direction")) == 0)
 		{
 			if(_tcscmp(pstrValue, _T("vertical")) == 0) m_nAnimationDirection = AnimationDirection::Vertical;
 			else if (_tcscmp(pstrValue, _T("horizontal")) == 0) m_nAnimationDirection = AnimationDirection::Horizontal;
 			else m_nAnimationDirection = AnimationDirection::None;
+			return true;
 		}
 		return CContainerUI::SetAttribute(pstrName, pstrValue);
 	}
@@ -317,5 +318,23 @@ namespace DuiLib
 	void CTabLayoutUI::OnAnimationStop(INT nAnimationID)
 	{
 		NeedParentUpdate();
+	}
+
+	void CTabLayoutUI::GetPropertyList(std::vector<UIPropertyGrid>& property_list)
+	{
+		__super::GetPropertyList(property_list);
+
+		property_list.push_back(UIPropertyGrid("TabLayout", "TabLayout"));
+		UIPropertyGrid& property = property_list.back();
+		std::vector< UIPropertyGridItem >& items = property.items;
+
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Number, "SelectedID", "默认选中的页面ID\n从0开始计数", _variant_t(0)));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Select, "AnimDirection", "动画方向", _variant_t("None")));
+		{
+			UIPropertyGridItem& item = items.back();
+			item.childs.push_back(UIPropertyGridItem(PropertyType::PT_String, "None", ""));
+			item.childs.push_back(UIPropertyGridItem(PropertyType::PT_String, "Vertical", ""));
+			item.childs.push_back(UIPropertyGridItem(PropertyType::PT_String, "Horizontal", ""));
+		}
 	}
 }

@@ -31,7 +31,6 @@ namespace DuiLib
 		LPVOID GetInterface(LPCTSTR pstrName);
 
 		void SetTemplateXML(LPCTSTR pstrName);
-		void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
 
 		void SetCount(UINT count);
 		CTemplListItemUI* AddOne();
@@ -42,6 +41,8 @@ namespace DuiLib
 		}
 
 		void SetCreateBuilderCallback(IDialogBuilderCallback* pCallbackfunc) { m_pCallback = pCallbackfunc; }
+	protected:
+		virtual bool SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
 	private:
 		CDuiString m_template_xml;
 		IDialogBuilderCallback* m_pCallback;

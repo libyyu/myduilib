@@ -603,7 +603,7 @@ HRESULT CRichEditOleCallback::GetContextMenu(WORD seltype,
 	//
 	if (pOleObj)
 	{
-		OleUIAddVerbMenu(pOleObj, NULL, *phMenu, 0, IDM_VERBMIN, IDM_VERBMAX, TRUE, ID_EDIT_CONVERT, &hMenuVerbs);
+		OleUIAddVerbMenu(pOleObj, NULL, *phMenu, 0, IDM_VERBMIN, IDM_VERBMAX, TRUE, ID_RICH_CONVERT, &hMenuVerbs);
 
 		AppendMenu(*phMenu, MF_SEPARATOR, 0, NULL);
 	}
@@ -618,8 +618,8 @@ HRESULT CRichEditOleCallback::GetContextMenu(WORD seltype,
 	//
 	// Add the cut, copy, and paste verbs.
 	//
-	AppendMenu(*phMenu, mf, ID_EDIT_CUT, TEXT("Cu&t"));
-	AppendMenu(*phMenu, mf, ID_EDIT_COPY, TEXT("&Copy"));
+	AppendMenu(*phMenu, mf, ID_RICH_CUT, TEXT("Cu&t"));
+	AppendMenu(*phMenu, mf, ID_RICH_COPY, TEXT("&Copy"));
 
 	//
 	// Now decide if there is something that can be pasted into the Rich Edit
@@ -629,7 +629,7 @@ HRESULT CRichEditOleCallback::GetContextMenu(WORD seltype,
 
 	LRESULT result;
 	mf |= (m_pRichEditUI->TxSendMessage(EM_CANPASTE, 0, 0, &result) ? MF_ENABLED : MF_GRAYED);
-	AppendMenu(*phMenu, mf, ID_EDIT_PASTE, TEXT("&Paste"));
+	AppendMenu(*phMenu, mf, ID_RICH_PASTE, TEXT("&Paste"));
 
 
 	return S_OK;
@@ -3577,43 +3577,55 @@ bool CRichEditUI::DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl
     return true;
 }
 
-void CRichEditUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
+bool CRichEditUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 {
     if( _tcscmp(pstrName, _T("vscrollbar")) == 0 ) {
         if( _tcscmp(pstrValue, _T("true")) == 0 ) m_lTwhStyle |= ES_DISABLENOSCROLL | WS_VSCROLL;
+        return true;
     }
     if( _tcscmp(pstrName, _T("autovscroll")) == 0 ) {
         if( _tcscmp(pstrValue, _T("true")) == 0 ) m_lTwhStyle |= ES_AUTOVSCROLL;
+        return true;
     }
     else if( _tcscmp(pstrName, _T("hscrollbar")) == 0 ) {
         if( _tcscmp(pstrValue, _T("true")) == 0 ) m_lTwhStyle |= ES_DISABLENOSCROLL | WS_HSCROLL;
+        return true;
     }
     if( _tcscmp(pstrName, _T("autohscroll")) == 0 ) {
         if( _tcscmp(pstrValue, _T("true")) == 0 ) m_lTwhStyle |= ES_AUTOHSCROLL;
+        return true;
     }
     else if( _tcscmp(pstrName, _T("wanttab")) == 0 ) {
         SetWantTab(_tcscmp(pstrValue, _T("true")) == 0);
+        return true;
     }
     else if( _tcscmp(pstrName, _T("wantreturn")) == 0 ) {
         SetWantReturn(_tcscmp(pstrValue, _T("true")) == 0);
+        return true;
     }
     else if( _tcscmp(pstrName, _T("wantctrlreturn")) == 0 ) {
         SetWantCtrlReturn(_tcscmp(pstrValue, _T("true")) == 0);
+        return true;
     }
     else if( _tcscmp(pstrName, _T("transparent")) == 0 ) {
         SetTransparent(_tcscmp(pstrValue, _T("true")) == 0);
+        return true;
     }
     else if( _tcscmp(pstrName, _T("rich")) == 0 ) {
         SetRich(_tcscmp(pstrValue, _T("true")) == 0);
+        return true;
     }
     else if( _tcscmp(pstrName, _T("multiline")) == 0 ) {
         if( _tcscmp(pstrValue, _T("false")) == 0 ) m_lTwhStyle &= ~ES_MULTILINE;
+        return true;
     }
     else if( _tcscmp(pstrName, _T("readonly")) == 0 ) {
         if( _tcscmp(pstrValue, _T("true")) == 0 ) { m_lTwhStyle |= ES_READONLY; m_bReadOnly = true; }
+        return true;
     }
     else if( _tcscmp(pstrName, _T("password")) == 0 ) {
         if( _tcscmp(pstrValue, _T("true")) == 0 ) m_lTwhStyle |= ES_PASSWORD;
+        return true;
     }
     else if( _tcscmp(pstrName, _T("align")) == 0 ) {
         if( _tcsstr(pstrValue, _T("left")) != NULL ) {
@@ -3628,14 +3640,16 @@ void CRichEditUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
             m_lTwhStyle &= ~(ES_LEFT | ES_CENTER);
             m_lTwhStyle |= ES_RIGHT;
         }
+        return true;
     }
-    else if( _tcscmp(pstrName, _T("font")) == 0 ) SetFont(_ttoi(pstrValue));
+    else if (_tcscmp(pstrName, _T("font")) == 0) { SetFont(_ttoi(pstrValue)); return true; }
     else if( _tcscmp(pstrName, _T("textcolor")) == 0 ) {
         while( *pstrValue > _T('\0') && *pstrValue <= _T(' ') ) pstrValue = ::CharNext(pstrValue);
         if( *pstrValue == _T('#')) pstrValue = ::CharNext(pstrValue);
         LPTSTR pstr = NULL;
         DWORD clrColor = _tcstoul(pstrValue, &pstr, 16);
         SetTextColor(clrColor);
+        return true;
     }
 	else if( _tcscmp(pstrName, _T("textpadding")) == 0 ) {
 		RECT rcTextPadding = { 0 };
@@ -3645,8 +3659,9 @@ void CRichEditUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 		rcTextPadding.right = _tcstol(pstr + 1, &pstr, 10);  ASSERT(pstr);    
 		rcTextPadding.bottom = _tcstol(pstr + 1, &pstr, 10); ASSERT(pstr);    
 		SetTextPadding(rcTextPadding);
+        return true;
 	}
-    else CContainerUI::SetAttribute(pstrName, pstrValue);
+    else return CContainerUI::SetAttribute(pstrName, pstrValue);
 }
 
 LRESULT CRichEditUI::MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, bool& bHandled)

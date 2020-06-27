@@ -59,8 +59,9 @@ namespace DuiLib
 		void	SetSelItemHotTextColor(DWORD _dwSelHotItemTextColor);
 		DWORD	GetSelItemHotTextColor() const;
 
-		void	SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
-
+	protected:
+		virtual bool	SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
+	public:
 		CDuiPtrArray GetTreeNodes();
 
 		int			 GetTreeIndex();
@@ -132,8 +133,8 @@ namespace DuiLib
 		virtual void SetItemHotTextColor(DWORD _dwItemHotTextColor);
 		virtual void SetSelItemTextColor(DWORD _dwSelItemTextColor);
 		virtual void SetSelItemHotTextColor(DWORD _dwSelHotItemTextColor);
-		
-		virtual void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
+	protected:
+		virtual bool SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
 	private:
 		UINT m_uItemMinWidth;
 		bool m_bVisibleFolderBtn;

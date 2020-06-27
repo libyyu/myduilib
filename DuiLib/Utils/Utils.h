@@ -2,6 +2,7 @@
 #define __UTILS_H__
 
 #pragma once
+#include <comutil.h>
 
 namespace DuiLib
 {
@@ -270,41 +271,33 @@ namespace DuiLib
 	/////////////////////////////////////////////////////////////////////////////////////
 	//
 
-	class CVariant : public VARIANT
+	class CDuiVariant : public _variant_t
 	{
 	public:
-		CVariant() 
-		{ 
-			VariantInit(this); 
-		}
-		CVariant(int i)
+		CDuiVariant(const _variant_t& src):_variant_t(src)
 		{
-			VariantInit(this);
-			this->vt = VT_I4;
-			this->intVal = i;
-		}
-		CVariant(float f)
-		{
-			VariantInit(this);
-			this->vt = VT_R4;
-			this->fltVal = f;
-		}
-		CVariant(LPOLESTR s)
-		{
-			VariantInit(this);
-			this->vt = VT_BSTR;
-			this->bstrVal = s;
-		}
-		CVariant(IDispatch *disp)
-		{
-			VariantInit(this);
-			this->vt = VT_DISPATCH;
-			this->pdispVal = disp;
 		}
 
-		~CVariant() 
-		{ 
-			VariantClear(this); 
+		CDuiVariant(LPOLESTR s) : _variant_t((BSTR)s)
+		{
+		}
+		CDuiVariant(IDispatch* disp) : _variant_t(disp)
+		{
+		}
+		CDuiVariant(int r, int g, int b, int a = 0) : _variant_t(((DWORD)(((BYTE)(r) | ((WORD)((BYTE)(g)) << 8)) | (((DWORD)(BYTE)(b)) << 16)) | (((DWORD)(BYTE)(a)) << 24)))
+		{
+		}
+		CDuiVariant(int r, int g) : CDuiVariant(r, g, 0, 0)
+		{
+		}
+		CDuiVariant(RECT& rect) : CDuiVariant(rect.left, rect.top, rect.right, rect.top)
+		{
+		}
+		CDuiVariant(SIZE& sz):CDuiVariant(sz.cx, sz.cy)
+		{
+		}
+		CDuiVariant(POINT& pt) :CDuiVariant(pt.x, pt.y)
+		{
 		}
 	};
 

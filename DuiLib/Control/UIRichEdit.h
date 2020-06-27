@@ -11,10 +11,10 @@
 
 #define IDM_VERBMIN                     40200
 #define IDM_VERBMAX                     40300
-#define ID_EDIT_CONVERT                 40013
-#define ID_EDIT_CUT                     40006
-#define ID_EDIT_COPY                    40007
-#define ID_EDIT_PASTE                   40008
+#define ID_RICH_CONVERT                 40013
+#define ID_RICH_CUT                     40006
+#define ID_RICH_COPY                    40007
+#define ID_RICH_PASTE                   40008
 namespace DuiLib {
 
 class CTxtWinHost;
@@ -143,8 +143,9 @@ public:
     void DoEvent(TEventUI& event);
     bool DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl);
 
-    void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
-
+protected:
+	virtual bool SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
+public:
     LRESULT MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, bool& bHandled);
 
 	BOOL CanPaste(UINT nFormat = 0);

@@ -99,7 +99,6 @@ namespace DuiLib {
 		virtual void Move(SIZE szOffset, bool bNeedInvalidate = true);
 		virtual void SetVisible(bool bVisible = true);
 		virtual void SetInternVisible(bool bVisible = true);
-		virtual void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
 		virtual void SetMouseEnabled(bool bEnable = true);
 		void SetManager(CPaintManagerUI* pManager, CControlUI* pParent, bool bInit = true);
 		CControlUI* FindControl(FINDCONTROLPROC Proc, LPVOID pData, UINT uFlags);
@@ -110,6 +109,7 @@ namespace DuiLib {
 		void PaintText(HDC hDC);
 		void PaintTextRaw(HDC hDC, __int64 iTimeElapse);
 		void EnableSearchButton(bool enable);
+		virtual bool SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
 	private:
 		HanderT           m_handler;
 		CDuiString        m_sIdleText;
