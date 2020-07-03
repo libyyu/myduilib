@@ -11,7 +11,7 @@
 #define __UILRCVIEW_H__
 #pragma once
 #include <functional>
-
+#pragma warning(disable: 4251)
 namespace DuiLib {
 	class MYCONTROLS_API CLrcViewUI : public CContainerUI
 	{
@@ -110,6 +110,7 @@ namespace DuiLib {
 		void PaintTextRaw(HDC hDC, __int64 iTimeElapse);
 		void EnableSearchButton(bool enable);
 		virtual bool SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
+		void SetSearchButtonAttributeList(LPCTSTR pstrValue);
 	private:
 		HanderT           m_handler;
 		CDuiString        m_sIdleText;
@@ -129,5 +130,5 @@ namespace DuiLib {
 		std::vector<LrcNode> m_Lyrics;
 	};
 }
-
+#pragma warning(default: 4251)
 #endif//__UILRCVIEW_H__

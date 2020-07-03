@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="DuiDesigner">
+      <UniqueIdentifier>{A6FAE74A-F3E1-20D8-D689-81CCDFA4FF87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DuiDesigner\third_party\tinyxml">
+      <UniqueIdentifier>{DF405FC1-F1F5-23CF-E1EC-7BC35B3E35BE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DuiDesigner\third_party">
+      <UniqueIdentifier>{B40B5BF0-F931-AEFE-74C7-B0F212F0DC6D}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\DialogTemplateOpen.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\UIDesignerView.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\UICommandHistory.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\ToolBoxCtrl.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\third_party\tinyxml\tinyxml.cpp">
+      <Filter>DuiDesigner\third_party\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\ToolBoxWnd.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\ImagePreview.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\ViewTree.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\stdafx.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\UIUtil.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\UIProperties.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\UIImagePreview.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\DialogCustomFonts.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\UIDesignerDoc.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\PropertyTabLayoutUI.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\DialogUIAttribEdit.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\HookAPI.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\DialogSkinFileNew.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\ClassView.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\FileView.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\ImageDialog.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\third_party\tinyxml\tinyxmlerror.cpp">
+      <Filter>DuiDesigner\third_party\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\DialogSaveAsName.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\third_party\tinyxml\tinyxmlparser.cpp">
+      <Filter>DuiDesigner\third_party\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\DuiDesigner.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\MainFrm.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\MultiUITracker.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\third_party\tinyxml\tinystr.cpp">
+      <Filter>DuiDesigner\third_party\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\PropertiesWnd.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\DialogCheckUpdate.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\ChildFrm.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\ResourceView.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\DialogProjectNew.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\LayoutManager.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\DialogDefaultAttribList.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\GlobalVariable.cpp">
+      <Filter>DuiDesigner</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\ChildFrm.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\ClassView.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\DialogCheckUpdate.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\DialogCustomFonts.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\DialogDefaultAttribList.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\DialogProjectNew.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\DialogSaveAsName.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\DialogSkinFileNew.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\DialogTemplateOpen.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\DialogUIAttribEdit.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\DuiDesigner.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\FileView.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\GlobalVariable.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\HookAPI.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\ImageDialog.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\ImagePreview.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\LayoutManager.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\MainFrm.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\MultiUITracker.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\PropertiesWnd.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\PropertyTabLayoutUI.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\resource.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\ResourceView.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\stdafx.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\targetver.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\third_party\tinyxml\tinystr.h">
+      <Filter>DuiDesigner\third_party\tinyxml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\third_party\tinyxml\tinyxml.h">
+      <Filter>DuiDesigner\third_party\tinyxml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\ToolBoxCtrl.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\ToolBoxWnd.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\UICommandHistory.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\UIDesignerDoc.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\UIDesignerView.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\UIImagePreview.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\UIProperties.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\UIUtil.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\ViewTree.h">
+      <Filter>DuiDesigner</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\DuiDesigner\DuiDesigner\DuiDesigner.rc" />
+  </ItemGroup>
+</Project>

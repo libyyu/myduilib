@@ -131,12 +131,12 @@
       <WarningLevel>Level3</WarningLevel>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
-      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;PLAYER_PLUGIN_DLL_EXPORT;HAVE_BOOST;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;_WIN64;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;PLAYER_PLUGIN_DLL_EXPORT;HAVE_BOOST;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>..\..\thirdpart\play_plugin\general_plugin;..\..\thirdpart\play_plugin\include;D:\boost_1_70_0;..\..\thirdpart\FLib\src;..\..\thirdpart\play_plugin\general_plugin\ext\ffmpeg</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>..\..\thirdpart\play_plugin\general_plugin;..\..\thirdpart\play_plugin\include;D:\boost_1_70_0;..\..\thirdpart\FLib\src;..\..\thirdpart\play_plugin\general_plugin\ext\ffmpeg;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;PLAYER_PLUGIN_DLL_EXPORT;HAVE_BOOST;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;_WIN64;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;PLAYER_PLUGIN_DLL_EXPORT;HAVE_BOOST;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>-EHsc -nologo -FS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -197,12 +197,12 @@
       <WarningLevel>Level3</WarningLevel>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
-      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;PLAYER_PLUGIN_DLL_EXPORT;HAVE_BOOST;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;_WIN64;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;PLAYER_PLUGIN_DLL_EXPORT;HAVE_BOOST;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>..\..\thirdpart\play_plugin\general_plugin;..\..\thirdpart\play_plugin\include;D:\boost_1_70_0;..\..\thirdpart\FLib\src;..\..\thirdpart\play_plugin\general_plugin\ext\ffmpeg</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>..\..\thirdpart\play_plugin\general_plugin;..\..\thirdpart\play_plugin\include;D:\boost_1_70_0;..\..\thirdpart\FLib\src;..\..\thirdpart\play_plugin\general_plugin\ext\ffmpeg;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;PLAYER_PLUGIN_DLL_EXPORT;HAVE_BOOST;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;_WIN64;ROOT_DIR="D:\\Workspace\\MyDuiLib";BUILD_AS_DLL;PLAYER_PLUGIN_DLL_EXPORT;HAVE_BOOST;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>-EHsc -nologo %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>

@@ -131,12 +131,12 @@
       <WarningLevel>Level3</WarningLevel>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
-      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";LUA_BUILD_AS_DLL;BUILD_AS_DLL;_USEIMM;LUA_OBJECT_EXTERN;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;_WIN64;ROOT_DIR="D:\\Workspace\\MyDuiLib";LUA_BUILD_AS_DLL;BUILD_AS_DLL;_USEIMM;LUA_OBJECT_EXTERN;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>..\..\Demos;..\..\DuiLib;..\..\thirdpart\lua51\src;..\..</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>..\..\Demos;..\..\DuiLib;..\..\thirdpart\lua51\src;..\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";LUA_BUILD_AS_DLL;BUILD_AS_DLL;_USEIMM;LUA_OBJECT_EXTERN;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;_WIN64;ROOT_DIR="D:\\Workspace\\MyDuiLib";LUA_BUILD_AS_DLL;BUILD_AS_DLL;_USEIMM;LUA_OBJECT_EXTERN;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>-EHsc -nologo -FS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -197,12 +197,12 @@
       <WarningLevel>Level3</WarningLevel>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>Default</StructMemberAlignment>
-      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";LUA_BUILD_AS_DLL;BUILD_AS_DLL;_USEIMM;LUA_OBJECT_EXTERN;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;_WIN64;ROOT_DIR="D:\\Workspace\\MyDuiLib";LUA_BUILD_AS_DLL;BUILD_AS_DLL;_USEIMM;LUA_OBJECT_EXTERN;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>..\..\Demos;..\..\DuiLib;..\..\thirdpart\lua51\src;..\..</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>..\..\Demos;..\..\DuiLib;..\..\thirdpart\lua51\src;..\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";LUA_BUILD_AS_DLL;BUILD_AS_DLL;_USEIMM;LUA_OBJECT_EXTERN;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;_WIN64;ROOT_DIR="D:\\Workspace\\MyDuiLib";LUA_BUILD_AS_DLL;BUILD_AS_DLL;_USEIMM;LUA_OBJECT_EXTERN;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>-EHsc -nologo %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>

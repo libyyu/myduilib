@@ -16,7 +16,6 @@ function InitEnv()
 	_G.theApp = App()
 end
 function main(lpCmdLine)
-	print("main",lpCmdLine)
 	--设置启动环境
 	InitEnv()
 	--启动app

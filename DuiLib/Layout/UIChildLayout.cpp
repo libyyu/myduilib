@@ -3,7 +3,7 @@
 
 namespace DuiLib
 {
-	REGIST_DUICONTROL(CChildLayoutUI)
+	REGIST_DUICONTROLEX(CChildLayoutUI, _T("²¼¾Ö"))
 	CChildLayoutUI::CChildLayoutUI() : CContainerUI()
 	{
 

@@ -13,9 +13,9 @@ do
 	end
 
 	function App:ParseCmdLine(szCmdLine)
-		print("解析命令行：", szCmdLine)
+		warn("解析命令行：", szCmdLine)
 		if szCmdLine:find("-console") then
-			print("开启控制台")
+			warn("开启控制台")
 			DuiLib.DuiSystem.ToggleConsole(true)
 		end
 	end

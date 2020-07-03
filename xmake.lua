@@ -47,6 +47,9 @@ if is_plat("windows") then
     add_defines(
         "_CRT_SECURE_NO_WARNINGS", "_WIN32"
     )
+    if is_arch("x64") then
+        add_defines("_WIN64")
+    end
 
     add_syslinks("ws2_32",
         "user32",
@@ -225,6 +228,7 @@ if is_plat("windows") then
     includes(
         "thirdpart"
         , "DuiLib"
+        , "DuiDesigner"
         , "LuaDuiLib"
         , "Demos"
     )

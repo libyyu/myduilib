@@ -1183,7 +1183,7 @@ bool CControlUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
     else if (_tcscmp(pstrName, _T("soundpushed")) == 0) { SetSoundNameDown(pstrValue); return true; }
 	else {
 		AddCustomAttribute(pstrName, pstrValue);
-        DuiLogWarning(_T("attribute:%s not support!!!\n"), pstrName);
+        DuiLogWarning(_T("attribute:%s not support!!!"), pstrName);
         return false;
 	}
 }
@@ -1592,14 +1592,16 @@ bool CControlUI::SetXMLAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 			if (pstrValue)
 			{
 				CDuiString* pAttrValue = new CDuiString(pstrValue);
-				CDuiString* pOldAttr = static_cast<CDuiString*>(m_XMLAttrHash.Set(pstrName, (LPVOID)pAttrValue));
-				if (pOldAttr) delete pOldAttr;
+                LPVOID pData = m_XMLAttrHash.Set(pstrName, (LPVOID)pAttrValue);
+				CDuiString* pOldAttr = static_cast<CDuiString*>(pData);
+				if (pData && pOldAttr) delete pOldAttr;
 			}
 			else
 			{
 				CDuiString* pAttrValue = new CDuiString(_T(""));
-				CDuiString* pOldAttr = static_cast<CDuiString*>(m_XMLAttrHash.Set(pstrName, (LPVOID)pAttrValue));
-				if (pOldAttr) delete pOldAttr;
+                LPVOID pData = m_XMLAttrHash.Set(pstrName, (LPVOID)pAttrValue);
+				CDuiString* pOldAttr = static_cast<CDuiString*>(pData);
+				if (pData && pOldAttr) delete pOldAttr;
 			}
         }
     }

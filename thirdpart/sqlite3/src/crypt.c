@@ -8,7 +8,7 @@
 #ifndef SQLITE_OMIT_DISKIO
 #ifdef SQLITE_HAS_CODEC
 
-#define _WIN32_WINNT 0x0500
+#define _WIN32_WINNT _WIN32_WINNT_WINXP//0x0501
 #include <windows.h>
 #include <wincrypt.h>
 
