@@ -127,4 +127,9 @@ CString ToMFCString(const BSTR str)
     return ret;
 }
 
+std::string ToUTF8(LPCTSTR str)
+{
+    return DuiLib::Convert::ToUTF8(str);
+}
+
 } // namespace StringConvertor

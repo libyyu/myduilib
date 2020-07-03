@@ -226,10 +226,10 @@ void CUIDesignerView::OnInitialUpdate()
 	m_brHatch.CreateHatchBrush(HS_DIAGCROSS, RGB(191, 191, 191));
 
 	// TODO: 在此添加专用代码和/或调用基类
-	CUIDesignerDoc* pDoc=GetDocument();
+	CUIDesignerDoc* pDoc = GetDocument();
 
 	m_LayoutManager.Init(this->GetSafeHwnd(),pDoc->GetPathName());
-	CWindowUI* pForm=m_LayoutManager.GetForm();
+	CWindowUI* pForm = m_LayoutManager.GetForm();
 
 	g_pClassView->InsertUITreeItem(pForm,pDoc->GetTitle());
 	g_pResourceView->InsertImageTree(pDoc->GetTitle(), pDoc->GetPathName());

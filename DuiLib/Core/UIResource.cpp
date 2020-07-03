@@ -6,10 +6,11 @@
 #define TRACE
 #endif
 
-///////////////////////////////////////////////////////////////////////////////////////
 
 namespace DuiLib
 {
+	///////////////////////////////////////////////////////////////////////////////////////
+	////
 	CResource::CResource():m_pData(NULL), m_dwSize(0)
 	{}
 	CResource::~CResource()
@@ -118,17 +119,12 @@ namespace DuiLib
 		return ret;
 	}
 
-	BOOL CResource::LoadFromZipFile(LPCTSTR pstrZip, LPCTSTR pstrFilename)
+	BOOL CResource::LoadFromZipFile(LPCTSTR pstrZip, LPCTSTR pstrFilename, LPCTSTR pstrPassword)
 	{
 		Release();
-		CDuiString pstrPassword = CPaintManagerUI::GetResourceZipPwd();
 
 		HZIP hz = NULL;
-#ifdef UNICODE //TODO:
-		hz = OpenZip(pstrZip, (const char*)pstrPassword.GetData());
-#else
-		hz = OpenZip(pstrZip, (const char*)pstrPassword.GetData());
-#endif
+		hz = OpenZip(pstrZip, pstrPassword ? Convert::ToUTF8(pstrPassword).c_str() : NULL);
 		if (hz == NULL) return _Failed(_T("Error opening zip file"));
 
 		BOOL ret = LoadFromZipFile(hz, pstrFilename);
@@ -136,7 +132,36 @@ namespace DuiLib
 		return ret;
 	}
 
-	HANDLE CResource::LoadFromZipResource(HINSTANCE hInst, LPCTSTR lpName, LPCTSTR lpType)
+	BOOL CResource::LoadFromResourceFile(HINSTANCE hInst, LPCTSTR pstrFilename, LPCTSTR type)
+	{
+		if (!type) {
+			return FALSE;
+		}
+		HRSRC hResource = ::FindResource(hInst, pstrFilename, type);
+		if (hResource == NULL) return FALSE;
+		HGLOBAL hGlobal = ::LoadResource(hInst, hResource);
+		if (hGlobal == NULL) {
+			FreeResource(hResource);
+			return FALSE;
+		}
+		if (!LoadFromMem((BYTE*)::LockResource(hGlobal), ::SizeofResource(hInst, hResource))) {
+			FreeResource(hResource);
+			return FALSE;
+		}
+
+		::FreeResource(hResource);
+		return TRUE;
+	}
+
+	BOOL CResource::LoadFromZipResourceFile(HINSTANCE hInst, LPCTSTR lpName, LPCTSTR pstrFilename, LPCTSTR lpType/* = _T("ZIPRES")*/, LPCTSTR pstrPassword/* = NULL*/)
+	{
+		HANDLE handle = LoadFromResourceZip(hInst, lpName, lpType, pstrPassword);
+		if (!handle) return FALSE;
+		
+		return LoadFromZipFile(handle, pstrFilename);
+	}
+
+	HANDLE CResource::LoadFromResourceZip(HINSTANCE hInst, LPCTSTR lpName, LPCTSTR lpType, LPCTSTR pstrPassword)
 	{
 		HRSRC hResource = ::FindResource(hInst, lpName, lpType);
 		if (hResource == NULL)
@@ -165,12 +190,7 @@ namespace DuiLib
 		}
 		::FreeResource(hResource);
 
-		CDuiString pstrPassword = CPaintManagerUI::GetResourceZipPwd();
-#ifdef UNICODE //TODO:
-		HANDLE hz = (HANDLE)OpenZip(lpResourceZIPBuffer, dwSize, (const char*)pstrPassword.GetData());
-#else
-		HANDLE hz = (HANDLE)OpenZip(lpResourceZIPBuffer, dwSize, (const char*)pstrPassword.GetData());
-#endif
+		HANDLE hz = (HANDLE)OpenZip(lpResourceZIPBuffer, dwSize, pstrPassword ? Convert::ToUTF8(pstrPassword).c_str() : NULL);
 		
 		delete[] lpResourceZIPBuffer;
 		return hz;
@@ -183,36 +203,37 @@ namespace DuiLib
 		::CloseHandle(hFile);
 		return TRUE;
 	}
-	BOOL CResource::FindFileFromZip(LPCTSTR pstrZip, LPCTSTR pstrFilename)
+	BOOL CResource::FindFileFromZip(LPCTSTR pstrZip, LPCTSTR pstrFilename, LPCTSTR pstrPassword/* = NULL*/)
 	{
-		CDuiString pstrPassword = CPaintManagerUI::GetResourceZipPwd();
 		HZIP hz = NULL;
-#ifdef UNICODE //TODO:
-		hz = OpenZip(pstrZip, (const char*)pstrPassword.GetData());
-#else
-		hz = OpenZip(pstrZip, (const char*)pstrPassword.GetData());
-#endif
+		hz = OpenZip(pstrZip, pstrPassword ? Convert::ToUTF8(pstrPassword).c_str() : NULL);
+		if (hz == NULL) return FALSE;
+
+		BOOL ret = FindFileFromZip(hz, pstrFilename);
+		CloseZip(hz);
+		return ret;
+	}
+	BOOL CResource::FindFileFromZip(HANDLE handle, LPCTSTR pstrFilename)
+	{
+		HZIP hz = (HZIP)handle;
 		if (hz == NULL) return FALSE;
 
 		ZIPENTRY ze;
 		int i;
 		if (FindZipItem(hz, pstrFilename, true, &i, &ze) != 0)
 		{
-			CloseZip(hz);
 			return FALSE;
 		}
-		CloseZip(hz);
 		return TRUE;
 	}
-
-	BOOL CResource::FindFileFromResource(LPCTSTR pstrFilename, LPCTSTR type)
+	BOOL CResource::FindFileFromResource(HINSTANCE hInst, LPCTSTR pstrFilename, LPCTSTR type)
 	{
 		if (!type){
 			return FALSE;
 		}
-		HRSRC hResource = ::FindResource(CPaintManagerUI::GetResourceDll(), pstrFilename, type);
+		HRSRC hResource = ::FindResource(hInst, pstrFilename, type);
 		if (hResource == NULL) return false;
-		HGLOBAL hGlobal = ::LoadResource(CPaintManagerUI::GetResourceDll(), hResource);
+		HGLOBAL hGlobal = ::LoadResource(hInst, hResource);
 		if (hGlobal == NULL) {
 			FreeResource(hResource);
 			return FALSE;
@@ -221,42 +242,22 @@ namespace DuiLib
 		return TRUE;
 	}
 
-	BOOL CResource::FindFileFromZipResource(LPCTSTR pstrFilename)
+	BOOL CResource::FindFileFromZipResource(HINSTANCE hInst, LPCTSTR lpName, LPCTSTR pstrFilename, LPCTSTR lpType/* = _T("ZIPRES")*/, LPCTSTR pstrPassword/* = NULL*/)
 	{
-		if (!CPaintManagerUI::IsCachedResourceZip())
+		HANDLE handle = LoadFromResourceZip(hInst, lpName, lpType, pstrPassword);
+		if (!handle) return FALSE;
+		HZIP hz = (HZIP)handle;
+		ZIPENTRY ze;
+		int i;
+		if (FindZipItem(hz, pstrFilename, true, &i, &ze) != 0)
 		{
-			HINSTANCE hResource = CPaintManagerUI::GetResourceDll();
-			STRINGorID ResourceID(CPaintManagerUI::GetResourceID());
-
-			HANDLE handle = LoadFromZipResource(hResource, ResourceID.m_lpstr, _T("ZIPRES"));
-			if (!handle) return FALSE;
-			//CPaintManagerUI::SetResourceZip(handle);
-
-			HZIP hz = (HZIP)handle;
-			ZIPENTRY ze;
-			int i;
-			if (FindZipItem(hz, pstrFilename, true, &i, &ze) != 0)
-			{
-				CloseZip(hz);
-				return FALSE;
-			}
-			CloseZip(hz);
-			return TRUE;
+			return FALSE;
 		}
-		else
-		{
-			HANDLE handle = CPaintManagerUI::GetResourceZipHandle();
-			HZIP hz = (HZIP)handle;
-			ZIPENTRY ze;
-			int i;
-			if (FindZipItem(hz, pstrFilename, true, &i, &ze) != 0)
-			{
-				return FALSE;
-			}
-			return TRUE;
-		}
+		return TRUE;
 	}
-
+	
+	///////////////////////////////////////////////////////////////////////////////////////
+	////
 	CResourceManager* CResourceManager::Instance()
 	{
 		static CResourceManager instance;
@@ -277,15 +278,16 @@ namespace DuiLib
 		else if (CPaintManagerUI::GetResourceType() == UILIB_RESOURCETYPE::UILIB_ZIP)
 		{
 			CDuiString szFullZipName = Path::CombinePath(CPaintManagerUI::GetResourcePath(), CPaintManagerUI::GetResourceZip());
-			return ResLoader.FindFileFromZip(szFullZipName, szFileName);
+			return ResLoader.FindFileFromZip(szFullZipName, szFileName, CPaintManagerUI::GetResourceZipPwd().GetData());
 		}
 		else if (CPaintManagerUI::GetResourceType() == UILIB_RESOURCETYPE::UILIB_RESOURCE)
 		{
-			return ResLoader.FindFileFromResource(szFileName, type);
+			return ResLoader.FindFileFromResource(CPaintManagerUI::GetResourceDll(), szFileName, type);
 		}
 		else if (CPaintManagerUI::GetResourceType() == UILIB_RESOURCETYPE::UILIB_ZIPRESOURCE)
 		{
-			return ResLoader.FindFileFromZipResource(szFileName);
+			STRINGorID resID(CPaintManagerUI::GetResourceID());
+			return ResLoader.FindFileFromZipResource(CPaintManagerUI::GetResourceDll(), resID.m_lpstr, szFileName, _T("ZIPRES"), CPaintManagerUI::GetResourceZipPwd().GetData());
 		}
 		return FALSE;
 	}
@@ -302,31 +304,13 @@ namespace DuiLib
 		else if (CPaintManagerUI::GetResourceType() == UILIB_RESOURCETYPE::UILIB_ZIP)
 		{
 			CDuiString szFullZipName = Path::CombinePath(CPaintManagerUI::GetResourcePath(), CPaintManagerUI::GetResourceZip());
-			if (ResLoader.LoadFromZipFile(szFullZipName, szFileName))
+			if (ResLoader.LoadFromZipFile(szFullZipName, szFileName, CPaintManagerUI::GetResourceZipPwd().GetData()))
 				bResult = TRUE;
 		}
 		else if (CPaintManagerUI::GetResourceType() == UILIB_RESOURCETYPE::UILIB_RESOURCE)
 		{
-			if (!type)
-			{
-				TRACE(_T("(LoadImage)Failed LoadImage %s, type is null."), szFileName);
-			}
-			else
-			{
-				HRSRC hResource = ::FindResource(CPaintManagerUI::GetResourceDll(), szFileName, type);
-				if (hResource)
-				{
-					HGLOBAL hGlobal = ::LoadResource(CPaintManagerUI::GetResourceDll(), hResource);
-					if (hGlobal) 
-					{
-						if (ResLoader.LoadFromMem((BYTE*)::LockResource(hGlobal), ::SizeofResource(CPaintManagerUI::GetResourceDll(), hResource))) 
-						{
-							bResult = TRUE;
-						}
-					}
-					::FreeResource(hResource);
-				}
-			}
+			if (ResLoader.LoadFromResourceFile(CPaintManagerUI::GetResourceDll(), szFileName, type))
+				bResult = TRUE;
 		}
 		else if (CPaintManagerUI::GetResourceType() == UILIB_RESOURCETYPE::UILIB_ZIPRESOURCE)
 		{
@@ -335,7 +319,7 @@ namespace DuiLib
 				HINSTANCE hCurInst = CPaintManagerUI::GetResourceDll();
 				STRINGorID resourceID(CPaintManagerUI::GetResourceID());
 
-				HANDLE handle = ResLoader.LoadFromZipResource(hCurInst, resourceID.m_lpstr, _T("ZIPRES"));
+				HANDLE handle = ResLoader.LoadFromResourceZip(hCurInst, resourceID.m_lpstr, _T("ZIPRES"), CPaintManagerUI::GetResourceZipPwd().GetData());
 				if (handle)
 				{
 					CPaintManagerUI::SetResourceZip(handle);

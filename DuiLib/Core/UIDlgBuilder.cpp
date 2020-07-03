@@ -23,65 +23,28 @@ namespace DuiLib {
                 if( !m_xml.Load(xml.m_lpstr) ) return _LoadFailed(_T("Failed Load XML From Content."));
             }
             else {
-			    //begin add 2018/6/3
-			    CDuiString sResourcePath = CPaintManagerUI::GetResourcePath();
-			    CDuiString sResourceZip = CPaintManagerUI::GetResourceZip();
-			    if (CPaintManagerUI::GetResourceType() == UILIB_RESOURCETYPE::UILIB_ZIP)
-			    {
-				    CDuiString szFullZipName = Path::CombinePath(sResourcePath, sResourceZip);
-				    if (!m_xml.LoadFromZip(szFullZipName.GetData(), xml.m_lpstr)) 
-					    return _LoadFailed(CDuiString::FormatString(_T("Failed LoadFromZip %s, %s"), szFullZipName.GetData(), xml.m_lpstr));
-			    }
-			    else if (CPaintManagerUI::GetResourceType() == UILIB_RESOURCETYPE::UILIB_FILE)
-			    {
-				    if (!m_xml.LoadFromFile(sResourcePath, xml.m_lpstr)) 
-					    return _LoadFailed(CDuiString::FormatString(_T("Failed LoadFromFrom File  %s"), xml.m_lpstr));
-			    }
-			    else
-				    return NULL;
+
+                BYTE* pBuffer = NULL;
+                DWORD dwSize = 0;
+                BOOL bRet = CResourceManager::Instance()->LoadAsset(xml.m_lpstr, type, &pBuffer, &dwSize);
+                if(!bRet) return _LoadFailed(CDuiString::FormatString(_T("ResourceManager LoadAsset Failed %s"), xml.m_lpstr));
+
+                if (!m_xml.LoadFromMem(pBuffer, dwSize)) {
+                    CResourceManager::Instance()->FreeAsset(pBuffer);
+                    return _LoadFailed(_T("Failed Load XML From Content."));
+                }		    
             }
         }
         else {
-		    if (CPaintManagerUI::GetResourceType() == UILIB_RESOURCETYPE::UILIB_RESOURCE)
-		    {
-			    HRSRC hResource = ::FindResource(CPaintManagerUI::GetResourceDll(), xml.m_lpstr, type);
-			    if (hResource == NULL) return _LoadFailed(_T("Failed Load From RESOURCE, FindResource Error!"));
-			    HGLOBAL hGlobal = ::LoadResource(CPaintManagerUI::GetResourceDll(), hResource);
-			    if (hGlobal == NULL) {
-				    FreeResource(hResource);
-				    return _LoadFailed(_T("Failed Load From RESOURCE, LoadResource Error!"));
-			    }
+			BYTE* pBuffer = NULL;
+			DWORD dwSize = 0;
+			BOOL bRet = CResourceManager::Instance()->LoadAsset(xml.m_lpstr, type, &pBuffer, &dwSize);
+			if (!bRet) return _LoadFailed(CDuiString::FormatString(_T("ResourceManager LoadAsset Failed %s"), xml.m_lpstr));
 
-			    if (!m_xml.LoadFromMem((BYTE*)::LockResource(hGlobal), ::SizeofResource(CPaintManagerUI::GetResourceDll(), hResource))) {
-				    ::FreeResource(hResource);
-				    return _LoadFailed(_T("Failed Load From RESOURCE, LoadFromMem Error!"));
-			    }
-			    ::FreeResource(hResource);
-		    }
-		    else if (CPaintManagerUI::GetResourceType() == UILIB_RESOURCETYPE::UILIB_ZIPRESOURCE)
-		    {
-			    if (!CPaintManagerUI::IsCachedResourceZip())
-			    {
-				    HINSTANCE hResource = CPaintManagerUI::GetResourceDll();
-				    STRINGorID hResourceID(CPaintManagerUI::GetResourceID());
-
-				    HANDLE handle = m_xml.LoadFromZipResource(hResource, hResourceID.m_lpstr, _T("ZIPRES"));
-				    if (!handle) 
-					    return _LoadFailed(_T("Failed Load From RESOURCE, LoadFromZipResource Error!"));
-
-				    CPaintManagerUI::SetResourceZip(handle);
-
-				    if (!m_xml.LoadFromZip(CPaintManagerUI::GetResourceZipHandle(), xml.m_lpstr)) 
-					    return _LoadFailed(_T("Failed Load From RESOURCE, LoadFromZipResource Error!"));
-			    }
-			    else
-			    {
-				    if (!m_xml.LoadFromZip(CPaintManagerUI::GetResourceZipHandle(), xml.m_lpstr)) 
-					    return _LoadFailed(_T("Failed Load From RESOURCE, LoadFromZipResource Error!"));
-			    }
-		    }
-		    else
-			    return NULL;
+			if (!m_xml.LoadFromMem(pBuffer, dwSize)) {
+				CResourceManager::Instance()->FreeAsset(pBuffer);
+				return _LoadFailed(_T("Failed Load XML From Content."));
+			}
         }
 
 	    m_pCallback = pCallback;

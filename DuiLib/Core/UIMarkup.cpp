@@ -268,33 +268,6 @@ bool CMarkup::LoadFromFile(LPCTSTR pstrPath, LPCTSTR pstrFilename, int encoding)
 	return _BeginParse(&ResLoader, encoding);
 }
 
-bool CMarkup::LoadFromZip(LPCTSTR pstrZip, LPCTSTR pstrFilename, int encoding)
-{
-	Release();
-
-	CResource ResLoader;
-	if (!ResLoader.LoadFromZipFile(pstrZip, pstrFilename))
-		return false;
-
-	return _BeginParse(&ResLoader, encoding);
-}
-bool CMarkup::LoadFromZip(HANDLE handle, LPCTSTR pstrFilename, int encoding)
-{
-	Release();
-
-	CResource ResLoader;
-	if (!ResLoader.LoadFromZipFile(handle, pstrFilename))
-		return false;
-
-	return _BeginParse(&ResLoader, encoding);
-}
-
-HANDLE CMarkup::LoadFromZipResource(HINSTANCE hInst, LPCTSTR lpName, LPCTSTR lpType)
-{
-	CResource ResLoader;
-	return ResLoader.LoadFromZipResource(hInst, lpName, lpType);
-}
-
 void CMarkup::Release()
 {
     if( m_pstrXML != NULL ) free(m_pstrXML);

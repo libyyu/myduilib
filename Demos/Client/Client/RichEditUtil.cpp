@@ -24,7 +24,7 @@ namespace DuiLib
 	#endif
 	}
 
-	UILIB_API void Replace(CDuiString& strText, const TCHAR * lpOldStr, const TCHAR * lpNewStr)
+	RICHEDIR_API void Replace(CDuiString& strText, const TCHAR * lpOldStr, const TCHAR * lpNewStr)
 	{
 		if (NULL == lpOldStr || NULL == lpNewStr)
 			return ;
@@ -32,7 +32,7 @@ namespace DuiLib
 		strText.Replace(lpOldStr, lpNewStr);
 	}
 
-	UILIB_API HGLOBAL GlobalAllocByString(const char * lpszText, long nLen/* = -1*/)
+	RICHEDIR_API HGLOBAL GlobalAllocByString(const char * lpszText, long nLen/* = -1*/)
 	{
 		if (NULL == lpszText)
 			return NULL;
@@ -54,7 +54,7 @@ namespace DuiLib
 		return hGlobal;
 	}
 
-	UILIB_API HGLOBAL GlobalAllocByString(const wchar_t * lpszText, long nLen/* = -1*/)
+	RICHEDIR_API HGLOBAL GlobalAllocByString(const wchar_t * lpszText, long nLen/* = -1*/)
 	{
 		if (NULL == lpszText)
 			return NULL;
@@ -98,7 +98,7 @@ namespace DuiLib
 	}
 	
 	////////////////////////////////////////////////////////////////////
-	BOOL UILIB_API RichEdit_SetOleCallback(CRichEditUI* pRichUI, HWND hWnd)
+	BOOL RICHEDIR_API RichEdit_SetOleCallback(CRichEditUI* pRichUI, HWND hWnd)
 	{
 		IRichEditOleCallback2* pRichEditOleCallback2 = NULL;
 		HRESULT hr = ::CoCreateInstance(CLSID_ImageOle, NULL, CLSCTX_INPROC_SERVER,
@@ -115,27 +115,27 @@ namespace DuiLib
 		}
 		return FALSE;
 	}
-	void UILIB_API RichEdit_RegisterDragDrop(CRichEditUI* pRichUI, HWND hWnd)
+	void RICHEDIR_API RichEdit_RegisterDragDrop(CRichEditUI* pRichUI, HWND hWnd)
 	{
 		IDropTarget *pdt = pRichUI->GetTxDropTarget();
 		HRESULT hr = ::RegisterDragDrop(hWnd, pdt);
 		pdt->Release();
 	}
-	UILIB_API IRichEditOle* RichEdit_GetOleInterface(HWND hWnd)
+	RICHEDIR_API IRichEditOle* RichEdit_GetOleInterface(HWND hWnd)
 	{
 		IRichEditOle *pRichEditOle = NULL;
 		::SendMessage(hWnd, EM_GETOLEINTERFACE, 0, (LPARAM)&pRichEditOle);
 		return pRichEditOle;
 	}
-	int UILIB_API RichEdit_GetWindowTextLength(HWND hWnd)
+	int RICHEDIR_API RichEdit_GetWindowTextLength(HWND hWnd)
 	{
 		return ::GetWindowTextLength(hWnd);
 	}
-	int UILIB_API RichEdit_GetWindowText(HWND hWnd, LPTSTR lpszStringBuf, int nMaxCount)
+	int RICHEDIR_API RichEdit_GetWindowText(HWND hWnd, LPTSTR lpszStringBuf, int nMaxCount)
 	{
 		return ::GetWindowText(hWnd, lpszStringBuf, nMaxCount);
 	}
-	int UILIB_API RichEdit_GetWindowText(HWND hWnd, CDuiString& strText)
+	int RICHEDIR_API RichEdit_GetWindowText(HWND hWnd, CDuiString& strText)
 	{
 		int nLength;
 		TCHAR * pszText;
@@ -151,7 +151,7 @@ namespace DuiLib
 
 		return nLength;
 	}
-	int UILIB_API RichEdit_GetTextRange(HWND hWnd, CHARRANGE * lpchrg, CDuiString& strText)
+	int RICHEDIR_API RichEdit_GetTextRange(HWND hWnd, CHARRANGE * lpchrg, CDuiString& strText)
 	{
 		strText = _T("");
 
@@ -198,45 +198,45 @@ namespace DuiLib
 #endif // !_UNICODE
 
 	}
-	DWORD UILIB_API RichEdit_GetDefaultCharFormat(HWND hWnd, CHARFORMAT& cf)
+	DWORD RICHEDIR_API RichEdit_GetDefaultCharFormat(HWND hWnd, CHARFORMAT& cf)
 	{
 		cf.cbSize = sizeof(CHARFORMAT);
 		return (DWORD)::SendMessage(hWnd, EM_GETCHARFORMAT, 0, (LPARAM)&cf);
 	}
-	BOOL UILIB_API RichEdit_SetDefaultCharFormat(HWND hWnd, CHARFORMAT& cf)
+	BOOL RICHEDIR_API RichEdit_SetDefaultCharFormat(HWND hWnd, CHARFORMAT& cf)
 	{
 		cf.cbSize = sizeof(CHARFORMAT);
 		return (BOOL)::SendMessage(hWnd, EM_SETCHARFORMAT, 0, (LPARAM)&cf);
 	}
-	DWORD UILIB_API RichEdit_GetSelectionCharFormat(HWND hWnd, CHARFORMAT& cf)
+	DWORD RICHEDIR_API RichEdit_GetSelectionCharFormat(HWND hWnd, CHARFORMAT& cf)
 	{
 		cf.cbSize = sizeof(CHARFORMAT);
 		return (DWORD)::SendMessage(hWnd, EM_GETCHARFORMAT, 1, (LPARAM)&cf);
 	}
-	BOOL UILIB_API RichEdit_SetSelectionCharFormat(HWND hWnd, CHARFORMAT& cf)
+	BOOL RICHEDIR_API RichEdit_SetSelectionCharFormat(HWND hWnd, CHARFORMAT& cf)
 	{
 		cf.cbSize = sizeof(CHARFORMAT);
 		return (BOOL)::SendMessage(hWnd, EM_SETCHARFORMAT, SCF_SELECTION, (LPARAM)&cf);
 	}
-	void UILIB_API RichEdit_ReplaceSel(HWND hWnd, LPCTSTR lpszNewText, BOOL bCanUndo /*= FALSE*/)
+	void RICHEDIR_API RichEdit_ReplaceSel(HWND hWnd, LPCTSTR lpszNewText, BOOL bCanUndo /*= FALSE*/)
 	{
 		::SendMessage(hWnd, EM_REPLACESEL, (WPARAM)bCanUndo, (LPARAM)lpszNewText);
 	}
-	void UILIB_API RichEdit_GetSel(HWND hWnd, LONG& nStartChar, LONG& nEndChar)
+	void RICHEDIR_API RichEdit_GetSel(HWND hWnd, LONG& nStartChar, LONG& nEndChar)
 	{
 		CHARRANGE cr = { 0, 0 };
 		::SendMessage(hWnd, EM_EXGETSEL, 0, (LPARAM)&cr);
 		nStartChar = cr.cpMin;
 		nEndChar = cr.cpMax;
 	}
-	int UILIB_API RichEdit_SetSel(HWND hWnd, LONG nStartChar, LONG nEndChar)
+	int RICHEDIR_API RichEdit_SetSel(HWND hWnd, LONG nStartChar, LONG nEndChar)
 	{
 		CHARRANGE cr = { nStartChar, nEndChar };
 		return (int)::SendMessage(hWnd, EM_EXSETSEL, 0, (LPARAM)&cr);
 	}
 
 	// 设置默认字体
-	void UILIB_API RichEdit_SetDefFont(HWND hWnd, LPCTSTR lpFontName, int nFontSize,
+	void RICHEDIR_API RichEdit_SetDefFont(HWND hWnd, LPCTSTR lpFontName, int nFontSize,
 		COLORREF clrText, BOOL bBold, BOOL bItalic,
 		BOOL bUnderLine, BOOL bIsLink)
 	{
@@ -284,7 +284,7 @@ namespace DuiLib
 		RichEdit_SetDefaultCharFormat(hWnd, cf);
 	}
 	// 设置默认字体名称和大小
-	void UILIB_API RichEdit_SetDefFont(HWND hWnd, LPCTSTR lpFontName, int nFontSize)
+	void RICHEDIR_API RichEdit_SetDefFont(HWND hWnd, LPCTSTR lpFontName, int nFontSize)
 	{
 		CHARFORMAT cf;
 		memset(&cf, 0, sizeof(cf));
@@ -305,7 +305,7 @@ namespace DuiLib
 		RichEdit_SetDefaultCharFormat(hWnd, cf);
 	}
 	// 设置默认字体颜色
-	void UILIB_API RichEdit_SetDefTextColor(HWND hWnd, COLORREF clrText)
+	void RICHEDIR_API RichEdit_SetDefTextColor(HWND hWnd, COLORREF clrText)
 	{
 		CHARFORMAT cf;
 		memset(&cf, 0, sizeof(cf));
@@ -317,7 +317,7 @@ namespace DuiLib
 		RichEdit_SetDefaultCharFormat(hWnd, cf);
 	}
 	// 设置默认超链接
-	void UILIB_API RichEdit_SetDefLinkText(HWND hWnd, BOOL bEnable)	
+	void RICHEDIR_API RichEdit_SetDefLinkText(HWND hWnd, BOOL bEnable)	
 	{
 		CHARFORMAT cf;
 		memset(&cf, 0, sizeof(cf));
@@ -332,7 +332,7 @@ namespace DuiLib
 		RichEdit_SetDefaultCharFormat(hWnd, cf);
 	}
 	// 设置字体
-	void UILIB_API RichEdit_SetFont(HWND hWnd, LPCTSTR lpFontName, int nFontSize,
+	void RICHEDIR_API RichEdit_SetFont(HWND hWnd, LPCTSTR lpFontName, int nFontSize,
 		COLORREF clrText, BOOL bBold, BOOL bItalic,
 		BOOL bUnderLine, BOOL bIsLink)
 	{
@@ -380,7 +380,7 @@ namespace DuiLib
 		RichEdit_SetSelectionCharFormat(hWnd, cf);
 	}
 	// 设置字体名称和大小
-	void UILIB_API RichEdit_SetFont(HWND hWnd, LPCTSTR lpFontName, int nFontSize)
+	void RICHEDIR_API RichEdit_SetFont(HWND hWnd, LPCTSTR lpFontName, int nFontSize)
 	{
 		CHARFORMAT cf;
 		memset(&cf, 0, sizeof(cf));
@@ -401,7 +401,7 @@ namespace DuiLib
 		RichEdit_SetSelectionCharFormat(hWnd, cf);
 	}
 	// 设置字体颜色
-	void UILIB_API RichEdit_SetTextColor(HWND hWnd, COLORREF clrText)	
+	void RICHEDIR_API RichEdit_SetTextColor(HWND hWnd, COLORREF clrText)	
 	{
 		CHARFORMAT cf;
 		memset(&cf, 0, sizeof(cf));
@@ -414,7 +414,7 @@ namespace DuiLib
 		RichEdit_SetSelectionCharFormat(hWnd, cf);
 	}
 	// 设置超链接
-	void UILIB_API RichEdit_SetLinkText(HWND hWnd, BOOL bEnable)
+	void RICHEDIR_API RichEdit_SetLinkText(HWND hWnd, BOOL bEnable)
 	{
 		CHARFORMAT cf;
 		memset(&cf, 0, sizeof(cf));
@@ -429,7 +429,7 @@ namespace DuiLib
 		RichEdit_SetSelectionCharFormat(hWnd, cf);
 	}
 	// 设置左缩进(单位:缇)
-	BOOL UILIB_API RichEdit_SetStartIndent(HWND hWnd, int nSize)
+	BOOL RICHEDIR_API RichEdit_SetStartIndent(HWND hWnd, int nSize)
 	{
 		PARAFORMAT2 pf2;
 		memset(&pf2, 0, sizeof(pf2));
@@ -439,7 +439,7 @@ namespace DuiLib
 		return (BOOL)::SendMessage(hWnd, EM_SETPARAFORMAT, 0, (LPARAM)&pf2);
 	}
 	// 插入表情图片
-	BOOL UILIB_API RichEdit_InsertFace(HWND hWnd, LPCTSTR lpszFileName, int nFaceId,
+	BOOL RICHEDIR_API RichEdit_InsertFace(HWND hWnd, LPCTSTR lpszFileName, int nFaceId,
 		int nFaceIndex, COLORREF clrBg, BOOL bAutoScale, int nReservedWidth)
 	{
 		BSTR bstrFileName = NULL;
@@ -523,7 +523,7 @@ namespace DuiLib
 		return SUCCEEDED(hr);
 	}
 	// 获取文本
-	void UILIB_API RichEdit_GetText(HWND hWnd, CDuiString& strText,IRichEdit_ImageStringHandle* handle/* = NULL*/)
+	void RICHEDIR_API RichEdit_GetText(HWND hWnd, CDuiString& strText,IRichEdit_ImageStringHandle* handle/* = NULL*/)
 	{
 		REOBJECT reobject;
 		LONG nFaceId = -1;
@@ -595,7 +595,7 @@ namespace DuiLib
 		pRichEditOle->Release();
 	}
 	// 替换选中文本
-	void UILIB_API RichEdit_ReplaceSel(HWND hWnd, LPCTSTR lpszNewText, LPCTSTR lpFontName,
+	void RICHEDIR_API RichEdit_ReplaceSel(HWND hWnd, LPCTSTR lpszNewText, LPCTSTR lpFontName,
 		int nFontSize, COLORREF clrText, BOOL bBold, BOOL bItalic,
 		BOOL bUnderLine, BOOL bIsLink, int nStartIndent, BOOL bCanUndo /*= FALSE*/)
 	{
@@ -608,7 +608,7 @@ namespace DuiLib
 		RichEdit_SetStartIndent(hWnd, nStartIndent);
 		RichEdit_SetSel(hWnd, lEndChar, lEndChar);
 	}
-	BOOL UILIB_API RichEdit_GetImageOle(HWND hWnd, POINT pt, IImageOle** pImageOle)
+	BOOL RICHEDIR_API RichEdit_GetImageOle(HWND hWnd, POINT pt, IImageOle** pImageOle)
 	{
 		IRichEditOle * pRichEditOle;
 		REOBJECT reobject;
@@ -669,25 +669,25 @@ namespace DuiLib
 	}
 
 
-	UILIB_API IRichEditOle* RichEdit_GetOleInterface(ITextServices * pTextServices)
+	RICHEDIR_API IRichEditOle* RichEdit_GetOleInterface(ITextServices * pTextServices)
 	{
 		IRichEditOle *pRichEditOle = NULL;
 		pTextServices->TxSendMessage(EM_GETOLEINTERFACE, 0, (LPARAM)&pRichEditOle, NULL);
 		return pRichEditOle;
 	}
-	int UILIB_API RichEdit_GetWindowTextLength(ITextServices * pTextServices)
+	int RICHEDIR_API RichEdit_GetWindowTextLength(ITextServices * pTextServices)
 	{
 		LRESULT lRes = 0;
 		pTextServices->TxSendMessage(WM_GETTEXTLENGTH, 0, 0, &lRes);
 		return (int)lRes;
 	}
-	int UILIB_API RichEdit_GetWindowText(ITextServices * pTextServices, LPTSTR lpszStringBuf, int nMaxCount)
+	int RICHEDIR_API RichEdit_GetWindowText(ITextServices * pTextServices, LPTSTR lpszStringBuf, int nMaxCount)
 	{
 		LRESULT lRes = 0;
 		pTextServices->TxSendMessage(WM_GETTEXT, nMaxCount, (LPARAM)lpszStringBuf, &lRes);
 		return (int)lRes;
 	}
-	int UILIB_API RichEdit_GetWindowText(ITextServices * pTextServices, CDuiString& strText)
+	int RICHEDIR_API RichEdit_GetWindowText(ITextServices * pTextServices, CDuiString& strText)
 	{
 		int nLength;
 		TCHAR * pszText;
@@ -703,7 +703,7 @@ namespace DuiLib
 
 		return nLength;
 	}
-	int UILIB_API RichEdit_GetTextRange(ITextServices * pTextServices, CHARRANGE * lpchrg, CDuiString& strText)
+	int RICHEDIR_API RichEdit_GetTextRange(ITextServices * pTextServices, CHARRANGE * lpchrg, CDuiString& strText)
 	{
 		strText = _T("");
 
@@ -751,35 +751,35 @@ namespace DuiLib
 		return (int)lRes;
 #endif // !_UNICODE
 	}
-	DWORD UILIB_API RichEdit_GetDefaultCharFormat(ITextServices * pTextServices, CHARFORMAT& cf)
+	DWORD RICHEDIR_API RichEdit_GetDefaultCharFormat(ITextServices * pTextServices, CHARFORMAT& cf)
 	{
 		cf.cbSize = sizeof(CHARFORMAT);
 		LRESULT lRes = 0;
 		pTextServices->TxSendMessage(EM_GETCHARFORMAT, 0, (LPARAM)&cf, &lRes);
 		return (DWORD)lRes;
 	}
-	BOOL UILIB_API RichEdit_SetDefaultCharFormat(ITextServices * pTextServices, CHARFORMAT& cf)
+	BOOL RICHEDIR_API RichEdit_SetDefaultCharFormat(ITextServices * pTextServices, CHARFORMAT& cf)
 	{
 		cf.cbSize = sizeof(CHARFORMAT);
 		LRESULT lRes = 0;
 		pTextServices->TxSendMessage(EM_SETCHARFORMAT, 0, (LPARAM)&cf, &lRes);
 		return (BOOL)lRes;
 	}
-	DWORD UILIB_API RichEdit_GetSelectionCharFormat(ITextServices * pTextServices, CHARFORMAT& cf)
+	DWORD RICHEDIR_API RichEdit_GetSelectionCharFormat(ITextServices * pTextServices, CHARFORMAT& cf)
 	{
 		cf.cbSize = sizeof(CHARFORMAT);
 		LRESULT lRes = 0;
 		pTextServices->TxSendMessage(EM_GETCHARFORMAT, 1, (LPARAM)&cf, &lRes);
 		return (DWORD)lRes;
 	}
-	BOOL UILIB_API RichEdit_SetSelectionCharFormat(ITextServices * pTextServices, CHARFORMAT& cf)
+	BOOL RICHEDIR_API RichEdit_SetSelectionCharFormat(ITextServices * pTextServices, CHARFORMAT& cf)
 	{
 		cf.cbSize = sizeof(CHARFORMAT);
 		LRESULT lRes = 0;
 		pTextServices->TxSendMessage(EM_SETCHARFORMAT, SCF_SELECTION, (LPARAM)&cf, &lRes);
 		return (BOOL)lRes;
 	}
-	void UILIB_API RichEdit_ReplaceSel(ITextServices * pTextServices, LPCTSTR lpszNewText, BOOL bCanUndo/* = FALSE*/)
+	void RICHEDIR_API RichEdit_ReplaceSel(ITextServices * pTextServices, LPCTSTR lpszNewText, BOOL bCanUndo/* = FALSE*/)
 	{
 #ifdef _UNICODE		
 		pTextServices->TxSendMessage(EM_REPLACESEL, (WPARAM)bCanUndo, (LPARAM)lpszNewText, 0);
@@ -792,14 +792,14 @@ namespace DuiLib
 		delete[] lpText;
 #endif
 	}
-	void UILIB_API RichEdit_GetSel(ITextServices * pTextServices, LONG& nStartChar, LONG& nEndChar)
+	void RICHEDIR_API RichEdit_GetSel(ITextServices * pTextServices, LONG& nStartChar, LONG& nEndChar)
 	{
 		CHARRANGE cr = { 0, 0 };
 		pTextServices->TxSendMessage(EM_EXGETSEL, 0, (LPARAM)&cr, NULL);
 		nStartChar = cr.cpMin;
 		nEndChar = cr.cpMax;
 	}
-	int UILIB_API RichEdit_SetSel(ITextServices * pTextServices, LONG nStartChar, LONG nEndChar)
+	int RICHEDIR_API RichEdit_SetSel(ITextServices * pTextServices, LONG nStartChar, LONG nEndChar)
 	{
 		CHARRANGE cr = { nStartChar, nEndChar };
 		LRESULT lRes = 0;
@@ -808,7 +808,7 @@ namespace DuiLib
 	}
 
 	// 设置默认字体
-	void UILIB_API RichEdit_SetDefFont(ITextServices * pTextServices, LPCTSTR lpFontName,
+	void RICHEDIR_API RichEdit_SetDefFont(ITextServices * pTextServices, LPCTSTR lpFontName,
 		int nFontSize, COLORREF clrText, BOOL bBold,
 		BOOL bItalic, BOOL bUnderLine, BOOL bIsLink)
 	{
@@ -856,7 +856,7 @@ namespace DuiLib
 		RichEdit_SetDefaultCharFormat(pTextServices, cf);
 	}
 	// 设置字体
-	void UILIB_API RichEdit_SetFont(ITextServices * pTextServices, LPCTSTR lpFontName, int nFontSize,
+	void RICHEDIR_API RichEdit_SetFont(ITextServices * pTextServices, LPCTSTR lpFontName, int nFontSize,
 		COLORREF clrText, BOOL bBold, BOOL bItalic, BOOL bUnderLine, BOOL bIsLink)
 	{
 		CHARFORMAT cf;
@@ -903,7 +903,7 @@ namespace DuiLib
 		RichEdit_SetSelectionCharFormat(pTextServices, cf);
 	}
 	// 设置左缩进(单位:缇)
-	BOOL UILIB_API RichEdit_SetStartIndent(ITextServices * pTextServices, int nSize)
+	BOOL RICHEDIR_API RichEdit_SetStartIndent(ITextServices * pTextServices, int nSize)
 	{
 		PARAFORMAT2 pf2;
 		memset(&pf2, 0, sizeof(pf2));
@@ -916,7 +916,7 @@ namespace DuiLib
 	}
 
 	// @strPathName[in]: COM组件的路径和文件名
-	FGetClassObject UILIB_API RegisterComDll(LPCTSTR strPathName)
+	FGetClassObject RICHEDIR_API RegisterComDll(LPCTSTR strPathName)
 	{
 		HMODULE hMod = ::LoadLibrary(strPathName);
 		if (!hMod) {
@@ -941,7 +941,7 @@ namespace DuiLib
 	IClassFactory* g_pcf = NULL;
 	
 	// 插入表情图片
-	BOOL UILIB_API RichEdit_InsertFace(ITextServices *pTextServices, ITextHost *pTextHost,
+	BOOL RICHEDIR_API RichEdit_InsertFace(ITextServices *pTextServices, ITextHost *pTextHost,
 		LPCTSTR lpszFileName, int nFaceId, int nFaceIndex,
 		COLORREF clrBg, BOOL bAutoScale, int nReservedWidth)
 	{
@@ -1030,7 +1030,7 @@ namespace DuiLib
 		return SUCCEEDED(hr);
 	}
 	// 获取文本
-	void UILIB_API RichEdit_GetText(ITextServices * pTextServices, CDuiString& strText, IRichEdit_ImageStringHandle* handle)
+	void RICHEDIR_API RichEdit_GetText(ITextServices * pTextServices, CDuiString& strText, IRichEdit_ImageStringHandle* handle)
 	{
 		REOBJECT reobject;
 		LONG nFaceId = -1;
@@ -1100,7 +1100,7 @@ namespace DuiLib
 		pRichEditOle->Release();
 	}
 	// 替换选中文本
-	void UILIB_API RichEdit_ReplaceSel(ITextServices * pTextServices, LPCTSTR lpszNewText,
+	void RICHEDIR_API RichEdit_ReplaceSel(ITextServices * pTextServices, LPCTSTR lpszNewText,
 		LPCTSTR lpFontName, int nFontSize, COLORREF clrText,
 		BOOL bBold, BOOL bItalic, BOOL bUnderLine, BOOL bIsLink,
 		int nStartIndent, BOOL bCanUndo /*= FALSE*/)
@@ -1114,7 +1114,7 @@ namespace DuiLib
 		RichEdit_SetStartIndent(pTextServices, nStartIndent);
 		RichEdit_SetSel(pTextServices, lEndChar, lEndChar);
 	}
-	BOOL UILIB_API RichEdit_GetImageOle(ITextServices * pTextServices, POINT pt, IImageOle** pImageOle)
+	BOOL RICHEDIR_API RichEdit_GetImageOle(ITextServices * pTextServices, POINT pt, IImageOle** pImageOle)
 	{
 		IRichEditOle * pRichEditOle;
 		REOBJECT reobject;
@@ -1173,7 +1173,7 @@ namespace DuiLib
 
 		return bRet;
 	}
-	long UILIB_API RichEdit_GetTextLength(ITextServices* pTextServices, DWORD dwFlags /*= GTL_DEFAULT*/)
+	long RICHEDIR_API RichEdit_GetTextLength(ITextServices* pTextServices, DWORD dwFlags /*= GTL_DEFAULT*/)
 	{
 		GETTEXTLENGTHEX textLenEx;
 		textLenEx.flags = dwFlags;
@@ -1186,7 +1186,7 @@ namespace DuiLib
 		pTextServices->TxSendMessage(EM_GETTEXTLENGTHEX, (WPARAM)&textLenEx, 0, &lResult);
 		return (long)lResult;
 	}
-	int UILIB_API RichEdit_GetTextRange(ITextServices* pTextServices, long nStartChar, long nEndChar,CDuiString& s_text)
+	int RICHEDIR_API RichEdit_GetTextRange(ITextServices* pTextServices, long nStartChar, long nEndChar,CDuiString& s_text)
 	{
 		TEXTRANGEW tr = { 0 };
 		tr.chrg.cpMin = nStartChar;

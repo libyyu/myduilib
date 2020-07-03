@@ -77,15 +77,12 @@ static __declspec(deprecated) __inline LPTSTR TcharStrDup(LPCTSTR str, int len =
 static __declspec(deprecated) __inline LPTSTR StringAlloc(size_t  len)               { return StringAllocA(len); }
 #endif
 CString ToMFCString(const BSTR str);
+std::string ToUTF8(LPCTSTR str);
 #pragma warning(default: 4996)
 
 } // namespace StringConvertor
 
-#ifdef UNICODE
-#define TO_ATTRIBUTE(x) StringConvertor::WideToUtf8(x)
-#else
-#define TO_ATTRIBUTE(x) x
-#endif
+#define TO_ATTRIBUTE(x) StringConvertor::ToUTF8(x).c_str()
 
 #ifdef UNICODE
 #define UTF8_TO_UNICODE_STR(x) StringConvertor::Utf8ToWide(x)

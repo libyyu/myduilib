@@ -25,13 +25,15 @@ public:
 	CFaceInfo * GetFaceInfo(int nItemIndex);
 	//SIZE EstimateSize(SIZE szAvailable);
 	void DoEvent(TEventUI& event);
-	void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
-
+	
 	void PaintBkColor(HDC hDC);
 	void PaintBkImage(HDC hDC);
 	void PaintStatusImage(HDC hDC);
 	
 	static CDuiString& GetFaceFloder();
+protected:
+
+	bool SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
 private:
 	void CalcCenterRect(RECT& rcDest, int cx, int cy, RECT& rcCenter);
 	int HitTest(POINT pt);

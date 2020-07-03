@@ -103,7 +103,7 @@ public:
 			{
 				s_out += (TCHAR)IMG_BEGIN;
 				TCHAR cText[2048] = { 0 };
-				_stprintf(cText, _T("{img:[{url:%s,name:%s,tip:%s}]}"), pImageInfo->sFullPath, pImageInfo->sName.GetData(), pImageInfo->sTip.GetData());
+				_stprintf(cText, _T("{img:[{url:%s,name:%s,tip:%s}]}"), pImageInfo->sFullPath.GetData(), pImageInfo->sName.GetData(), pImageInfo->sTip.GetData());
 				s_out += cText;
 				s_out += (TCHAR)IMG_END;
 			}
@@ -111,7 +111,7 @@ public:
 			{
 				s_out += (TCHAR)IMG_BEGIN;
 				TCHAR cText[2048] = { 0 };
-				_stprintf(cText, _T("{img:[{file:%s,name:%s,tip:%s}]}"), pImageInfo->sFullPath, pImageInfo->sName.GetData(), pImageInfo->sTip.GetData());
+				_stprintf(cText, _T("{img:[{file:%s,name:%s,tip:%s}]}"), pImageInfo->sFullPath.GetData(), pImageInfo->sName.GetData(), pImageInfo->sTip.GetData());
 				s_out += cText;
 				s_out += (TCHAR)IMG_END;
 			}
@@ -304,7 +304,7 @@ BOOL ChatDialog::Receive(SkinChangedParam param)
 #if defined(UNDER_WINCE)
 			_stprintf(szBuf, _T("file='%s' corner='600,200,1,1'"), param.bgimage.c_str());
 #else
-			_stprintf_s(szBuf, MAX_PATH - 1, _T("file='%s' corner='600,200,1,1'"), param.bgimage);
+			_stprintf_s(szBuf, MAX_PATH - 1, _T("file='%s' corner='600,200,1,1'"), param.bgimage.GetData());
 #endif
 			background->SetBkImage(szBuf);
 		}

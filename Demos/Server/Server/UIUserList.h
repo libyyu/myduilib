@@ -42,11 +42,11 @@ public:
 
 	void DoEvent(TEventUI& event);
 
-	void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
-
 	bool AddNode(User UserInfo);
 //	bool AddNode(std::vector<USERINFO> UserList);
 	User& GetUser(const int iIndex);
+protected:
+	bool SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
 private:
 	std::vector<User> userList_;
 	LONG	delay_deltaY_;

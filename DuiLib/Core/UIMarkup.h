@@ -28,9 +28,7 @@ public:
     bool LoadFromMem(BYTE* pByte, DWORD dwSize, int encoding = XMLFILE_ENCODING_UTF8);
     bool LoadFromFile(LPCTSTR pstrFilename, int encoding = XMLFILE_ENCODING_UTF8);
 	bool LoadFromFile(LPCTSTR pstrPath, LPCTSTR pstrFilename, int encoding = XMLFILE_ENCODING_UTF8);
-	bool LoadFromZip(LPCTSTR pstrZip, LPCTSTR pstrFilename, int encoding = XMLFILE_ENCODING_UTF8);
-	bool LoadFromZip(HANDLE handle, LPCTSTR pstrFilename, int encoding = XMLFILE_ENCODING_UTF8);
-	HANDLE LoadFromZipResource(HINSTANCE hInst, LPCTSTR lpName, LPCTSTR lpType);
+
     void Release();
     bool IsValid() const;
 
