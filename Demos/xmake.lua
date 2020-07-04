@@ -1,16 +1,15 @@
 if is_plat("windows") then
 	includes(
-		--'TestApp1',
+		'TestApp1',
 		'Client',
 		'Server',
 		'DuiLibApp',
 		'LuaDuiLibApp',
 		'ListDemo',
-		--'QQDemo',
-		--'RichListDemo',
-		--'ScrCapture',
-		--'360SafeDemo',
-		--'GameDemo',
+		'RichListDemo',
+		'ScrCapture',
+		'360SafeDemo',
+		'GameDemo',
 		'MyControls',
 		'YMusic',
 		'ConvexBrowser'

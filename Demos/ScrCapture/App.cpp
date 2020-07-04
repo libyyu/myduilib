@@ -7,10 +7,10 @@
 
 int RunApp(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-    CPaintManagerUI::SetInstance(hInstance);
-
-    CPaintManagerUI::SetResourcePath(CPaintManagerUI::GetInstancePath() + _T("\\..\\skin\\ScrCapture"));
-    CPaintManagerUI::SetResourceType(UILIB_RESOURCETYPE::UILIB_FILE);
+	DuiLib::CDuiString szRootPath = TODUISTRING(ROOT_DIR).c_str();
+	DuiLib::CPaintManagerUI::SetInstance(hInstance);
+	DuiLib::CPaintManagerUI::SetResourcePath(DuiLib::Path::CombinePath(szRootPath.GetData(), _T("skin\\ScrCapture")));
+    DuiLib::CPaintManagerUI::SetResourceType(UILIB_RESOURCETYPE::UILIB_FILE);
 
     HRESULT Hr = ::CoInitialize(NULL);
     if( FAILED(Hr) ) return 0;

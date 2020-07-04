@@ -61,6 +61,8 @@ namespace DuiLib
 
 	protected:
 		virtual bool	SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
+	public://For Designer
+		virtual void    GetPropertyList(std::vector<UIPropertyGrid>& property_list);
 	public:
 		CDuiPtrArray GetTreeNodes();
 
@@ -78,7 +80,7 @@ namespace DuiLib
 		COptionUI*				GetItemButton() const {return pItemButton;};
 
 	private:
-		long	m_iTreeLavel;
+		long	m_iTreeLevel;
 		bool	m_bIsVisable;
 		bool	m_bIsCheckBox;
 		DWORD	m_dwItemTextColor;
@@ -135,6 +137,8 @@ namespace DuiLib
 		virtual void SetSelItemHotTextColor(DWORD _dwSelHotItemTextColor);
 	protected:
 		virtual bool SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
+	public://For Designer
+		virtual void GetPropertyList(std::vector<UIPropertyGrid>& property_list);
 	private:
 		UINT m_uItemMinWidth;
 		bool m_bVisibleFolderBtn;

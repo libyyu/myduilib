@@ -1,8 +1,7 @@
 #include "flib.h"
 #include <iostream>
-#include <algorithm>
 
-#if FLIB_COMPILER_WINDOWS
+#ifdef FLIB_COMPILER_WINDOWS
 #include <Windows.h>
 #endif // FLIB_COMPILER_WINDOWS
 std::string path = _FStd(FGetDirectory)(_FStd(FGetModulePath()));
@@ -195,6 +194,14 @@ void test_v2(_FStd(FValue) *value)
 	value->set(&e);
 }
 
+void test_v3(_FStd(FValue)* value)
+{
+	_FStd(FValue) vnew = *value;
+	auto p = vnew.get_enum();
+
+
+}
+
 void test_value()
 {
 	F_CONSOLE_TRACE
@@ -209,7 +216,21 @@ void test_value()
 	test_v2(v);
 	//v->get_string();
 	auto p = v->get_enum();
+
+
 	delete v;
+}
+
+void test_ini()
+{
+	F_CONSOLE_TRACE
+	F_LOGFILE_TRACE(fGlobalLog)
+
+	_FStd(FIni) iniFile;
+	iniFile.OpenIni("D:\\Workspace\\UnrealEngine\\Engine\\Config\\BaseEngine.ini");
+	//iniFile["Launch"]->nblank = 1;
+	//iniFile["Launch"]->comments.push_back("tests");
+	iniFile.SaveIni("D:\\Workspace\\UnrealEngine\\Engine\\Config\\BaseEngine2.ini");
 }
 
 int main()
@@ -231,6 +252,7 @@ int main()
 		test_file();
 		test_plugin();
 		test_value();
+		test_ini();
 	}
 
 	char ch;

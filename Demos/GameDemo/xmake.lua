@@ -1,6 +1,6 @@
 target("GameDemo")
     -- set kind
-    set_kind("shared")
+    set_kind("binary")
     -- set warning all and disable error
     set_warnings("all")
     -- set language: c99, c++11
@@ -10,13 +10,17 @@ target("GameDemo")
     add_links("DuiLib")
     -- add includes directory
     add_includedirs(
+        "./",
         "../../DuiLib"
     )
 
-    add_files("*.cpp")
+    add_files("*.cpp", "GameDemo.rc")
 
-    add_defines("BUILD_AS_DLL", "_AFXDLL", "_USEIMM", "PLUGIN_MODULE")
-    add_rules("app.dll")
+    add_ldflags("-SUBSYSTEM:Windows")
+
+	add_defines("_CRT_SECURE_NO_WARNINGS")
+
+    add_defines("_AFXDLL", "_USEIMM")
 
     --添加头文件
     add_options("genproj")

@@ -243,11 +243,11 @@ private:
 
 int RunApp(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-    CPaintManagerUI::SetInstance(hInstance);
-
-    CPaintManagerUI::SetResourcePath(CPaintManagerUI::GetInstancePath() + _T("\\..\\skin"));
-    CPaintManagerUI::SetResourceType(UILIB_RESOURCETYPE::UILIB_ZIP);
-    CPaintManagerUI::SetResourceZip(_T("360SafeRes.zip"));
+	DuiLib::CDuiString szRootPath = TODUISTRING(ROOT_DIR).c_str();
+	DuiLib::CPaintManagerUI::SetInstance(hInstance);
+	DuiLib::CPaintManagerUI::SetResourcePath(DuiLib::Path::CombinePath(szRootPath.GetData(), _T("skin")));
+	DuiLib::CPaintManagerUI::SetResourceType(UILIB_RESOURCETYPE::UILIB_ZIP);
+	DuiLib::CPaintManagerUI::SetResourceZip(_T("360SafeRes.zip"));
 
     HRESULT Hr = ::CoInitialize(NULL);
 	if( FAILED(Hr) ) return 0;

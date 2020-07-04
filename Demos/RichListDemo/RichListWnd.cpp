@@ -148,7 +148,7 @@ void CPage2::OnItemClick( TNotifyUI &msg )
 //////////////////////////////////////////////////////////////////////////
 ///
 
-DUI_BEGIN_MESSAGE_MAP(CRichListWnd, WindowImplBase)
+DUI_BEGIN_MESSAGE_MAP(CRichListWnd, CNotifyPump)
 	DUI_ON_MSGTYPE(DUI_MSGTYPE_CLICK,OnClick)
 	DUI_ON_MSGTYPE(DUI_MSGTYPE_SELECTCHANGED,OnSelectChanged)
 	DUI_ON_MSGTYPE(DUI_MSGTYPE_ITEMCLICK,OnItemClick)
@@ -156,8 +156,8 @@ DUI_END_MESSAGE_MAP()
 
 CRichListWnd::CRichListWnd(void)
 {
-	m_Page1.SetPaintMagager(&m_PaintManager);
-	m_Page2.SetPaintMagager(&m_PaintManager);
+	m_Page1.SetPaintMagager(GetPaintMgr());
+	m_Page2.SetPaintMagager(GetPaintMgr());
 
 	AddVirtualWnd(_T("page1"),&m_Page1);
 	AddVirtualWnd(_T("page2"),&m_Page2);
@@ -168,47 +168,22 @@ CRichListWnd::~CRichListWnd(void)
 	RemoveVirtualWnd(_T("page1"));
 	RemoveVirtualWnd(_T("page2"));
 }
-
+/////////////////////////////////////////////////////////////////////////
+////
 void CRichListWnd::OnFinalMessage( HWND hWnd)
 {
+
+	GetPaintMgr()->RemovePreMessageFilter(this);
+	GetPaintMgr()->RemoveNotifier(this);
+	GetPaintMgr()->ReapObjects(GetPaintMgr()->GetRoot());
+
 	__super::OnFinalMessage(hWnd);
 	delete this;
 }
-
-CDuiString CRichListWnd::GetSkinFolder()
-{
-#ifdef _DEBUG
-	return _T("..\\skin\\RichListRes\\");
-#else
-	return _T("..\\skin\\");
-#endif
-	
-}
-
-CDuiString CRichListWnd::GetSkinFile()
-{
-	return _T("duilib.xml");
-}
-
-UILIB_RESOURCETYPE CRichListWnd::GetResourceType() const
-{
-#ifdef _DEBUG
-	return UILIB_FILE;
-#else
-	return UILIB_ZIP;
-#endif
-}
-
-CDuiString CRichListWnd::GetZIPFileName() const
-{
-	return _T("RichListRes.zip");
-}
-
-LPCTSTR CRichListWnd::GetWindowClassName( void ) const
+LPCTSTR CRichListWnd::GetWindowClassName() const
 {
 	return _T("RichListWnd");
 }
-
 void CRichListWnd::OnClick( TNotifyUI &msg )
 {
 	if( msg.pSender == m_pCloseBtn ) 
@@ -238,11 +213,11 @@ void CRichListWnd::OnSelectChanged( TNotifyUI &msg )
 {
 	if(msg.pSender->GetName() == _T("down_list"))
 	{
-		static_cast<CTabLayoutUI*>(m_PaintManager.FindControl(_T("tab_main")))->SelectItem(0);
+		static_cast<CTabLayoutUI*>(GetPaintMgr()->FindControl(_T("tab_main")))->SelectItem(0);
 	}
 	else if(msg.pSender->GetName() == _T("down_his"))
 	{
-		static_cast<CTabLayoutUI*>(m_PaintManager.FindControl(_T("tab_main")))->SelectItem(1);
+		static_cast<CTabLayoutUI*>(GetPaintMgr()->FindControl(_T("tab_main")))->SelectItem(1);
 	}
 }
 
@@ -253,7 +228,7 @@ void CRichListWnd::OnItemClick( TNotifyUI &msg )
 	wsprintf(alert_msg, _T("选中了行%d, 查找本行内的下载项目名..."), index);
 	MessageBox(NULL, alert_msg, _T("DUILIB DEMO"), MB_OK);            
 
-	CControlUI *find_ctrl =m_PaintManager.FindSubControlByName(msg.pSender, _T("down_name"));
+	CControlUI *find_ctrl = GetPaintMgr()->FindSubControlByName(msg.pSender, _T("down_name"));
 
 	if(find_ctrl)
 	{
@@ -268,7 +243,7 @@ void CRichListWnd::OnItemClick( TNotifyUI &msg )
 			_T("DUILIB DEMO"), MB_OK);   
 	}
 
-	find_ctrl =m_PaintManager.FindSubControlByName(msg.pSender, _T("down_progress"));
+	find_ctrl = GetPaintMgr()->FindSubControlByName(msg.pSender, _T("down_progress"));
 
 	if(find_ctrl)
 	{
@@ -283,15 +258,15 @@ void CRichListWnd::OnItemClick( TNotifyUI &msg )
 
 void CRichListWnd::Notify( TNotifyUI &msg )
 {
-	return WindowImplBase::Notify(msg);
+	return CNotifyPump::NotifyPump(msg);
 }
 
 LRESULT CRichListWnd::OnMouseWheel( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled )
 {
 	// 解决ie控件收不到滚动消息的问题
 	POINT pt = { GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam) };
-	::ScreenToClient(m_PaintManager.GetPaintWindow(), &pt);
-	CControlUI* pControl = static_cast<CControlUI*>(m_PaintManager.FindControl(_T("ie")));
+	::ScreenToClient(GetPaintMgr()->GetPaintWindow(), &pt);
+	CControlUI* pControl = static_cast<CControlUI*>(GetPaintMgr()->FindControl(_T("ie")));
 	if( pControl && pControl->IsVisible() ) {
 		RECT rc = pControl->GetPos();
 		if( ::PtInRect(&rc, pt) ) {
@@ -315,15 +290,15 @@ LRESULT CRichListWnd::OnSysCommand( UINT uMsg, WPARAM wParam, LPARAM lParam, BOO
 	LRESULT lRes = CWindowWnd::HandleMessage(uMsg, wParam, lParam);
 	if( ::IsZoomed(*this) != bZoomed ) {
 		if( !bZoomed ) {
-			CControlUI* pControl = static_cast<CControlUI*>(m_PaintManager.FindControl(_T("maxbtn")));
+			CControlUI* pControl = static_cast<CControlUI*>(GetPaintMgr()->FindControl(_T("maxbtn")));
 			if( pControl ) pControl->SetVisible(false);
-			pControl = static_cast<CControlUI*>(m_PaintManager.FindControl(_T("restorebtn")));
+			pControl = static_cast<CControlUI*>(GetPaintMgr()->FindControl(_T("restorebtn")));
 			if( pControl ) pControl->SetVisible(true);
 		}
 		else {
-			CControlUI* pControl = static_cast<CControlUI*>(m_PaintManager.FindControl(_T("maxbtn")));
+			CControlUI* pControl = static_cast<CControlUI*>(GetPaintMgr()->FindControl(_T("maxbtn")));
 			if( pControl ) pControl->SetVisible(true);
-			pControl = static_cast<CControlUI*>(m_PaintManager.FindControl(_T("restorebtn")));
+			pControl = static_cast<CControlUI*>(GetPaintMgr()->FindControl(_T("restorebtn")));
 			if( pControl ) pControl->SetVisible(false);
 		}
 	}
@@ -332,16 +307,16 @@ LRESULT CRichListWnd::OnSysCommand( UINT uMsg, WPARAM wParam, LPARAM lParam, BOO
 
 void CRichListWnd::InitWindow()
 {
-	m_pCloseBtn = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("closebtn")));
-	m_pMaxBtn = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("maxbtn")));
-	m_pRestoreBtn = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("restorebtn")));
-	m_pMinBtn = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("minbtn")));
+	m_pCloseBtn = static_cast<CButtonUI*>(GetPaintMgr()->FindControl(_T("closebtn")));
+	m_pMaxBtn = static_cast<CButtonUI*>(GetPaintMgr()->FindControl(_T("maxbtn")));
+	m_pRestoreBtn = static_cast<CButtonUI*>(GetPaintMgr()->FindControl(_T("restorebtn")));
+	m_pMinBtn = static_cast<CButtonUI*>(GetPaintMgr()->FindControl(_T("minbtn")));
 }
 
 LRESULT CRichListWnd::OnMouseHover(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
 	POINT pt = { GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam) };
-	CControlUI* pHover = m_PaintManager.FindControl(pt);
+	CControlUI* pHover = GetPaintMgr()->FindControl(pt);
 	if( pHover == NULL ) return 0;
 	/*演示悬停在下载列表的图标上时，动态变换下载图标状态显示*/
 	if(pHover->GetName() == _T("down_ico"))
@@ -366,4 +341,58 @@ LRESULT CRichListWnd::OnChar( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHa
 		bHandled = FALSE;
 	}
 	return 0;
+}
+
+LRESULT CRichListWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
+{
+	ModifyStyle(WS_CAPTION, WS_CLIPSIBLINGS | WS_CLIPCHILDREN);
+
+	if (!RegisterSkin(_T("duilib.xml"), 0, this))
+		return 0;
+
+	GetPaintMgr()->AddPreMessageFilter(this);
+	GetPaintMgr()->AddNotifier(this);
+	
+	RECT rcClient;
+	::GetClientRect(*this, &rcClient);
+	::SetWindowPos(*this, NULL, rcClient.left, rcClient.top, rcClient.right - rcClient.left, \
+		rcClient.bottom - rcClient.top, SWP_FRAMECHANGED);
+
+	InitWindow();
+
+	return 0;
+}
+
+LRESULT CRichListWnd::MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, bool& bHandled)
+{
+	if (uMsg == WM_KEYDOWN)
+	{
+		switch (wParam)
+		{
+		case VK_RETURN:
+		case VK_ESCAPE:
+			return ResponseDefaultKeyEvent(wParam);
+		default:
+			break;
+		}
+	}
+	return FALSE;
+}
+LRESULT CRichListWnd::ResponseDefaultKeyEvent(WPARAM wParam)
+{
+	if (wParam == VK_RETURN)
+	{
+		return FALSE;
+	}
+	else if (wParam == VK_ESCAPE)
+	{
+		Close();
+		return TRUE;
+	}
+
+	return FALSE;
+}
+CControlUI* CRichListWnd::CreateControl(LPCTSTR pstrClass)
+{
+	return NULL;
 }

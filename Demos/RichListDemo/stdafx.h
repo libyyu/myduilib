@@ -38,6 +38,6 @@
 
 #include <objbase.h>
 
-#include "..\DuiLib\UIlib.h"
+#include "UIlib.h"
 
 using namespace DuiLib;

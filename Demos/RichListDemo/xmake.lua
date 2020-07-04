@@ -1,6 +1,6 @@
 target("RichListDemo")
     -- set kind
-    set_kind("shared")
+    set_kind("binary")
     -- set warning all and disable error
     set_warnings("all")
     -- set language: c99, c++11
@@ -16,14 +16,7 @@ target("RichListDemo")
 
     add_files("*.cpp")
 
-    add_defines("BUILD_AS_DLL")
-    add_rules("app.dll")
-
-    add_options("stack_dump")
-    if has_config("stack_dump") then
-        add_defines("UILIB_STACK_DUMP")
-        add_deps("StackDump")
-    end
+    add_ldflags("-SUBSYSTEM:Windows")
 
     --添加头文件
     add_options("genproj")

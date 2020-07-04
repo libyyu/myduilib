@@ -19,7 +19,6 @@ target("ServerDemo")
 
     add_defines("_AFXDLL", "_USEIMM")
     add_ldflags("-SUBSYSTEM:Windows")
-    --add_rules("app.dll")
 
     add_options("stack_dump")
     if has_config("stack_dump") then

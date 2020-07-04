@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window>
+  <List name="config_list" bkcolor="#FFFFFFFF" inset="0,0,0,0" itemshowhtml="true" vscrollbar="true" hscrollbar="true" headerbkimage="file='res/background/list_header_bg.png'" itemalign="center" itembkcolor="#FFE2DDDF" itemaltbk="true" menu="true">
+      <ListHeader height="24" menu="true">
+        <ListHeaderItem text="模板名称" font="1" hotimage="file='res/background/list_header_hot.png'" pushedimage="file='res/background/list_header_pushed.png'" sepimage="file='res/background/list_header_sep.png'" sepwidth="1"/>
+      </ListHeader>
+  </List>
+
+  <!--List name="config_list" bkcolor="#FFFFFFFF" inset="0,0,0,0" itemshowhtml="true" vscrollbar="true" hscrollbar="true" headerbkimage="file='res/background/list_header_bg.png'" itemalign="center" itembkcolor="#FFE2DDDF" itemaltbk="true" hscrollbar="false" menu="true">
+    <ListHeader height="24" menu="true">
+      <ListHeaderItem text="No" font="1" width="30" hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="1"/>
+      <ListHeaderItem text="Domain" font="1" width="260" hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="1"/>
+      <ListHeaderItem text="Description" font="1" width="240" hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="1"/>
+    </ListHeader>
+  </List-->
+</Window>

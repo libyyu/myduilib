@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window>
+  <Include source="xml/style/style001.xml"/>
+  <Control width="10" />
+  <Label name="title" text="PbElementData" textcolor="#00FFFBF0" width="60" font="1"/>
+  <HorizontalLayout>
+    <TabLayout name="logtablayout" selectedid="0">
+      <HorizontalLayout>
+        <Button name="logbtn" style="logbtn"/>
+      </HorizontalLayout>
+      <HorizontalLayout>
+        <Label name="username" style="username"/>
+      </HorizontalLayout>
+    </TabLayout>
+  </HorizontalLayout>
+  <HorizontalLayout width="115" inset="0,2,0,2">
+    <HorizontalLayout />
+    <CheckBox name="expandbtn" style="expandbtn"/>
+    <Control width="2" />
+    <Button name="menubtn" style="menubtn"/>
+    <Control width="2" />
+    <Button name="minbtn" style="minbtn"/>
+    <Control width="2" />
+    <Button name="closebtn" style="closebtn" />
+  </HorizontalLayout>
+</Window>

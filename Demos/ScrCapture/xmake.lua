@@ -1,6 +1,6 @@
 target("ScrCaptureDemo")
     -- set kind
-    set_kind("shared")
+    set_kind("binary")
     -- set warning all and disable error
     set_warnings("all")
     -- set language: c99, c++11
@@ -15,9 +15,8 @@ target("ScrCaptureDemo")
 
     add_files("*.cpp")
 
-    add_defines("BUILD_AS_DLL", "_AFXDLL", "_USEIMM", "PLUGIN_MODULE")
-    add_rules("app.dll")
-
+    add_defines("_AFXDLL", "_USEIMM")
+    add_ldflags("-SUBSYSTEM:Windows")
     --添加头文件
     add_options("genproj")
     if has_config("genproj") then

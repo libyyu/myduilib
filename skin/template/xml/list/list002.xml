@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window>
+  <List name="assets_info" bkcolor="#FFFFFFFF" inset="0,0,0,0" itemshowhtml="true" vscrollbar="true" hscrollbar="true" headerbkimage="file='res/background/list_header_bg.png'" itemalign="center" itembkcolor="#FFE2DDDF" menu="true">
+      <ListHeader height="24" menu="true" name="assets_header">
+      </ListHeader>
+    </List>
+</Window>

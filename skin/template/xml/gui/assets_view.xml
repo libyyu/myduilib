@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window caption="0,0,0,30" roundcorner="5,5,5,5" sizebox="4,4,4,4" size="600,600" mininfo="500,600">
+<Include source="xml/config/config.xml"/>
+<VerticalLayout bkimage="file='res/background/bg.png' corner='10,100,10,10' hole='true'" bkcolor="#FF313C00">
+	<HorizontalLayout height="37" inset="0,2,0,0">
+		<Include source="xml/caption/caption002.xml"/>
+	</HorizontalLayout>
+	<HorizontalLayout inset="3,0,3,3">
+		<Include source="xml/list/list002.xml"/>
+	</HorizontalLayout>
+</VerticalLayout>
+</Window>

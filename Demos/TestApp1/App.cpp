@@ -434,37 +434,17 @@ public:
 };
 
 
-extern "C"
-{
-    int __declspec(dllexport) RunTestApp1(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
-    {
-        HRESULT Hr = ::CoInitialize(NULL);
-        if( FAILED(Hr) ) return 0;
-
-        CPaintManagerUI::SetInstance(hInstance);
-        CPaintManagerUI::SetResourcePath(CPaintManagerUI::GetInstancePath() + _T("\\..\\skin"));
-        CWndShadow::Initialize(hInstance);
-
-        CFrameWindowWnd* pFrame = new CFrameWindowWnd();
-        if( pFrame == NULL ) return 0;
-        pFrame->Create(NULL, _T("这是一个最简单的测试用exe，修改test1.xml就可以看到效果"), UI_WNDSTYLE_FRAME|WS_CLIPCHILDREN, WS_EX_WINDOWEDGE);
-        pFrame->CenterWindow();
-        pFrame->ShowWindow(true);
-        CPaintManagerUI::MessageLoop();
-
-        ::CoUninitialize();
-        return 0;
-    }
-}
-
-
-/*int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+#ifndef PLUGIN_MODULE
+int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
     HRESULT Hr = ::CoInitialize(NULL);
     if( FAILED(Hr) ) return 0;
 
-	CPaintManagerUI::SetInstance(hInstance);
-	CPaintManagerUI::SetResourcePath(CPaintManagerUI::GetInstancePath());
+	DuiLib::CDuiString szRootPath = TODUISTRING(ROOT_DIR).c_str();
+	DuiLib::CPaintManagerUI::SetInstance(hInstance);
+	DuiLib::CPaintManagerUI::SetResourcePath(DuiLib::Path::CombinePath(szRootPath.GetData(), _T("skin")));
+	DuiLib::CPaintManagerUI::SetResourceType(UILIB_RESOURCETYPE::UILIB_FILE);
+
     CWndShadow::Initialize(hInstance);
 
     CFrameWindowWnd* pFrame = new CFrameWindowWnd();
@@ -476,4 +456,30 @@ extern "C"
 
     ::CoUninitialize();
     return 0;
-}*/
+}
+#else
+extern "C"
+{
+	int __declspec(dllexport) RunTestApp1(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+	{
+		HRESULT Hr = ::CoInitialize(NULL);
+		if (FAILED(Hr)) return 0;
+
+		DuiLib::CDuiString szRootPath = TODUISTRING(ROOT_DIR).c_str();
+		DuiLib::CPaintManagerUI::SetInstance(hInstance);
+		DuiLib::CPaintManagerUI::SetResourcePath(DuiLib::Path::CombinePath(szRootPath.GetData(), _T("skin")));
+		DuiLib::CPaintManagerUI::SetResourceType(UILIB_RESOURCETYPE::UILIB_FILE);
+		CWndShadow::Initialize(hInstance);
+
+		CFrameWindowWnd* pFrame = new CFrameWindowWnd();
+		if (pFrame == NULL) return 0;
+		pFrame->Create(NULL, _T("这是一个最简单的测试用exe，修改test1.xml就可以看到效果"), UI_WNDSTYLE_FRAME | WS_CLIPCHILDREN, WS_EX_WINDOWEDGE);
+		pFrame->CenterWindow();
+		pFrame->ShowWindow(true);
+		CPaintManagerUI::MessageLoop();
+
+		::CoUninitialize();
+		return 0;
+	}
+}
+#endif
