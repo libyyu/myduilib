@@ -8,6 +8,7 @@
 #include "PropertiesWnd.h"
 #include "ResourceView.h"
 #include "ToolBoxWnd.h"
+#include "OutuptWnd.h"
 #include "UIDesignerView.h"
 
 class CMainFrame : public CMDIFrameWndEx
@@ -48,6 +49,7 @@ protected:  // 控件条嵌入成员
 	CResourceViewBar m_wndResourceView;
 	CPropertiesWnd    m_wndProperties;
 	CToolBoxWnd       m_wndToolBox;
+	COutuptWnd        m_wndOutput;
 
 	CMFCToolBar m_wndToolbarFormEdit;
 

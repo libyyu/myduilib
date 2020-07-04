@@ -3,9 +3,11 @@
 // stdafx.obj 将包含预编译类型信息
 
 #include "stdafx.h"
+#include "UIUtil.h"
 
 CMainFrame* g_pMainFrame = NULL;
 CToolBoxWnd* g_pToolBoxWnd = NULL;
+COutuptWnd* g_pOutputWnd = NULL;
 CPropertiesWnd* g_pPropertiesWnd = NULL;
 CFileView* g_pFileView = NULL;
 CClassView* g_pClassView = NULL;
@@ -16,6 +18,25 @@ CHookAPI g_pHookAPI;
 void DuiLog_Handle(int level, const char* message)
 {
 	OutputDebugStringA(message);
+
+	if (g_pOutputWnd && ::IsWindow(*g_pOutputWnd))
+	{
+		CString str = UTF8_TO_CSTRING(message);
+		if (level == 2) {
+			str = _T("[Error]") + str;
+			g_pOutputWnd->AppendLog(str, RGB(255, 0, 0));
+		}
+		else if (level == 2)
+		{
+			str = _T("[Warn]") + str;
+			g_pOutputWnd->AppendLog(str, RGB(255, 125, 0));
+		}
+		else {
+			g_pOutputWnd->AppendLog(str);
+		}
+		
+	}
+
 }
 void format_log(int level, const TCHAR* filename, unsigned int line, const TCHAR* format, ...)
 {

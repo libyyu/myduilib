@@ -5,6 +5,9 @@
 #define IDD_ABOUTBOX                    100
 #define IDP_OLE_INIT_FAILED             100
 #define IDS_TOOLBAR_FORMEDIT            101
+#define IDS_OUTPUT                      102
+#define IDS_OUTPUT_WND                  102
+#define ID_VIEW_OUTPUT                  103
 #define IDR_POPUP_EDIT                  119
 #define ID_STATUSBAR_PANE1              120
 #define ID_STATUSBAR_PANE2              121
@@ -142,7 +145,6 @@
 #define ID_UI_PROP_WND                  347
 #define IDD_DIALOG_UI_ATTRIB_EDIT       348
 #define IDR_MENU_UI                     349
-#define IDD_DIALOG1                     349
 #define IDD_DIALOG_ROOT_DIR             349
 #define IDD_DIALOG_CHECK_UPDATE         350
 #define IDC_BUTTON_IMAGE_IMPORT         1000

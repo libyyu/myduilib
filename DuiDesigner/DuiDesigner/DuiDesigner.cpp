@@ -77,6 +77,13 @@ BOOL CUIDesignerApp::InitInstance()
 	LoadStdProfileSettings();  // 加载标准 INI 文件选项(包括 MRU)
 	SetRegistryBase(_T("Settings"));
 
+	if (!AfxInitRichEdit2())
+	{
+		AfxMessageBox(_T("AfxInitRichEdit2 Error"));
+		return FALSE;
+	}
+
+
 	extern void DuiLog_Handle(int, const char*);
 	DuiLib::SetLogCallback(DuiLog_Handle);
 

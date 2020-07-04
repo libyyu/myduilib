@@ -120,6 +120,7 @@ typedef struct tagUIAttribute
 #include "UIlib.h"
 #include "MainFrm.h"
 #include "ToolBoxWnd.h"
+#include "OutuptWnd.h"
 #include "PropertiesWnd.h"
 #include "FileView.h"
 #include "ClassView.h"
@@ -180,6 +181,7 @@ using DuiLib::EVENTTYPE_UI;
 
 extern CMainFrame* g_pMainFrame;
 extern CToolBoxWnd* g_pToolBoxWnd;
+extern COutuptWnd* g_pOutputWnd;
 extern CPropertiesWnd* g_pPropertiesWnd;
 extern CFileView* g_pFileView;
 extern CClassView* g_pClassView;

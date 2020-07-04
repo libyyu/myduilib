@@ -179,8 +179,10 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndResourceView.AttachToTabWnd(pTabbedBar, DM_SHOW, FALSE, &pTabbedBar);
 	m_wndProperties.EnableDocking(CBRS_ALIGN_ANY);
 	m_wndToolBox.EnableDocking(CBRS_ALIGN_ANY);
+	m_wndOutput.EnableDocking(CBRS_ALIGN_ANY);
 	DockPane(&m_wndProperties);
 	DockPane(&m_wndToolBox);
+	DockPane(&m_wndOutput);
 
 	// 启用增强的窗口管理对话框
 	EnableWindowsDialog(ID_WINDOW_MANAGER, IDS_WINDOWS_MANAGER, TRUE);
@@ -298,6 +300,27 @@ BOOL CMainFrame::CreateDockingWindows()
 		return FALSE; // 未能创建
 	}
 
+	// 创建日志窗口
+	CString strOutputWnd;
+	bNameValid = strOutputWnd.LoadString(IDS_OUTPUT_WND);
+	ASSERT(bNameValid);
+
+	RECT tabRt, toolboxRt;
+	m_wndResourceView.GetClientRect(&tabRt);
+	m_wndToolBox.GetClientRect(&toolboxRt);
+	
+	CRect destRt;
+	destRt.left = tabRt.right + 1;
+	destRt.bottom = tabRt.bottom;
+	destRt.top = destRt.bottom - 200;
+	destRt.right = toolboxRt.left - 1;
+
+	if (!m_wndOutput.Create(strOutputWnd, this, destRt, TRUE, ID_VIEW_OUTPUT, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_BOTTOM | CBRS_FLOAT_MULTI))
+	{
+		TRACE0("未能创建“日志”窗口\n");
+		return FALSE; // 未能创建
+	}
+
 	SetDockingWindowIcons(theApp.m_bHiColorIcons);
 	return TRUE;
 }
@@ -318,6 +341,10 @@ void CMainFrame::SetDockingWindowIcons(BOOL bHiColorIcons)
 
 	HICON hToolBoxBarIcon = (HICON) ::LoadImage(::AfxGetResourceHandle(), MAKEINTRESOURCE(IDI_TOOLBOX_WND_HC), IMAGE_ICON, ::GetSystemMetrics(SM_CXSMICON), ::GetSystemMetrics(SM_CYSMICON), 0);
 	m_wndToolBox.SetIcon(hToolBoxBarIcon, FALSE);
+
+	HICON hOutputBarIcon = (HICON) ::LoadImage(::AfxGetResourceHandle(), MAKEINTRESOURCE(IDI_TOOLBOX_WND_HC), IMAGE_ICON, ::GetSystemMetrics(SM_CXSMICON), ::GetSystemMetrics(SM_CYSMICON), 0);
+	m_wndOutput.SetIcon(hOutputBarIcon, FALSE);
+
 
 	UpdateMDITabbedBarsIcons();
 }
