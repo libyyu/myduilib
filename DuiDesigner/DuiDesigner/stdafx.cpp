@@ -89,3 +89,47 @@ UINT glb_ControlICON(CString& strClass)
 	else
 		return IDI_TOOLBOX_CONTROL;
 }
+
+void glb_SetControlPos(CControlUI* pControl, RECT rc)
+{
+	pControl->SetPos(rc);
+	RECT rcItem = pControl->GetPos();
+
+	if (pControl->IsFloat()) {
+		CControlUI* pParent = pControl->GetParent();
+		if (pParent != NULL) {
+			RECT rcParentPos = pParent->GetPos();
+				
+			DuiLib::TPercentInfo m_piFloatPercent = pControl->GetFloatPercent();
+			LONG width = rcParentPos.right - rcParentPos.left;
+			LONG height = rcParentPos.bottom - rcParentPos.top;
+			RECT rcPercent = { (LONG)(width * m_piFloatPercent.left), (LONG)(height * m_piFloatPercent.top),
+				(LONG)(width * m_piFloatPercent.right), (LONG)(height * m_piFloatPercent.bottom) };
+			
+			DuiLib::CDuiString strValue;
+			{
+				RECT pos;
+				pos.left = rcItem.left - rcPercent.left;
+				pos.top = rcItem.top - rcPercent.top;
+				pos.right = rcItem.right - rcPercent.right;
+				pos.bottom = rcItem.bottom - rcPercent.bottom;
+				
+				strValue.Format(_T("%d,%d,%d,%d"), pos.left, pos.top, pos.right, pos.bottom);
+			}
+			pControl->SetXMLAttribute(_T("pos"), strValue);
+		}
+	}
+	else {
+		DuiLib::CDuiString strValue;
+		{
+			RECT pos;
+			pos.left = rcItem.left;
+			pos.top = rcItem.top;
+			pos.right = rcItem.right;
+			pos.bottom = rcItem.bottom;
+
+			strValue.Format(_T("%d,%d,%d,%d"), pos.left, pos.top, pos.right, pos.bottom);
+		}
+		pControl->SetXMLAttribute(_T("pos"), strValue);
+	}
+}

@@ -1044,6 +1044,16 @@ bool CControlUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 
         return true;
     }
+	else if (_tcscmp(pstrName, _T("pos2")) == 0)
+	{
+		SIZE szFixXY = { 0 };
+		LPTSTR pstr = NULL;
+		szFixXY.cx = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);
+		szFixXY.cy = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr);
+
+		SetFixedXY(szFixXY);
+        return true;
+	}
     else if( _tcscmp(pstrName, _T("padding")) == 0 ) {
         RECT rcPadding = { 0 };
         LPTSTR pstr = NULL;

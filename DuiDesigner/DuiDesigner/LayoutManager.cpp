@@ -3,6 +3,7 @@
 #include "UIUtil.h"
 #include <vector>
 #include <map>
+#include "DialogRootDir.h"
 
 using DuiLib::IListOwnerUI;
 using DuiLib::UIPropertyGrid;
@@ -751,42 +752,50 @@ void CLayoutManager::Init(HWND hWnd,LPCTSTR pstrLoad)
 	m_pFormUI->SetInitSize(FORM_INIT_WIDTH,FORM_INIT_HEIGHT);
 
 	m_Manager.Init(hWnd);
-	if(*pstrLoad!='\0')
+	if(*pstrLoad != '\0')
 	{
 		m_strSkinDir = pstrLoad;
 		int nPos = m_strSkinDir.ReverseFind(_T('\\'));
 		if(nPos != -1)
 			m_strSkinDir = m_strSkinDir.Left(nPos + 1);
-		CString sFile = pstrLoad;
-		if (nPos != -1)
-			sFile = sFile.Right(sFile.GetLength() - nPos-1);
+		
 		//TODO:
-		
-		CPaintManagerUI::SetResourcePath(m_strSkinDir);
-		CPaintManagerUI::SetResourceType(DuiLib::UILIB_FILE);
-		
+		CDialogRootDir dlg(m_strSkinDir);
+		if (IDOK == dlg.DoModal())
+		{
+			m_strSkinDir = dlg.m_strRootDir;
+			CString sFile = pstrLoad;
+			sFile = sFile.Right(sFile.GetLength() - m_strSkinDir.GetLength());
 
-		g_HookAPI.SetSkinDir(m_strSkinDir);
-		g_HookAPI.EnableCreateFile(true);
+			g_HookAPI.SetSkinDir(m_strSkinDir);
+			g_HookAPI.EnableCreateFile(true);
 
-		CDialogBuilder builder;
-		CControlUI* pRoot = builder.Create(sFile.GetString(), (UINT)0, this, &m_Manager);
-		if(pRoot)
-			m_pFormUI->Add(pRoot);
+			CPaintManagerUI::SetResourcePath(dlg.m_strRootDir);
 
-		SIZE size = m_Manager.GetInitSize();
-		m_pFormUI->SetInitSize(size.cx,size.cy);
-		m_pFormUI->SetOpacity(m_Manager.GetOpacity());
-		m_pFormUI->SetLayered(m_Manager.IsLayered());
-		m_pFormUI->SetLayeredImage(m_Manager.GetLayeredImage());
-		m_pFormUI->SetLayeredOpacity(m_Manager.GetLayeredOpacity());
+			CDialogBuilder builder;
+			CControlUI* pRoot = builder.Create(sFile.GetString(), (UINT)0, this, &m_Manager);
+			if (pRoot)
+				m_pFormUI->Add(pRoot);
+			else
+			{
+				CString sTmpFile = pstrLoad;
+				MessageBox(hWnd, _T("无法读取：") + sTmpFile, _T("Error"), MB_ICONERROR);
+			}
 
-		const DuiLib::CDuiStringPtrMap& attrs = m_Manager.GetXMLAttributeMap();
-		for (int i = 0; i < attrs.GetSize(); i++) {
-			LPCTSTR key = attrs.GetAt(i);
-			CDuiString* pAttrValue = static_cast<CDuiString*>(attrs.Find(key));
+			SIZE size = m_Manager.GetInitSize();
+			m_pFormUI->SetInitSize(size.cx, size.cy);
+			m_pFormUI->SetOpacity(m_Manager.GetOpacity());
+			m_pFormUI->SetLayered(m_Manager.IsLayered());
+			m_pFormUI->SetLayeredImage(m_Manager.GetLayeredImage());
+			m_pFormUI->SetLayeredOpacity(m_Manager.GetLayeredOpacity());
 
-			m_pFormUI->SetXMLAttribute(key, pAttrValue->GetData());
+			const DuiLib::CDuiStringPtrMap& attrs = m_Manager.GetXMLAttributeMap();
+			for (int i = 0; i < attrs.GetSize(); i++) {
+				LPCTSTR key = attrs.GetAt(i);
+				CDuiString* pAttrValue = static_cast<CDuiString*>(attrs.Find(key));
+
+				m_pFormUI->SetXMLAttribute(key, pAttrValue->GetData());
+			}
 		}
 	}
 	m_Manager.AttachDialog(m_pFormUI);
@@ -927,8 +936,7 @@ CControlUI* CLayoutManager::NewUI(LPCTSTR szClassName, CRect& rect,CControlUI* p
 		ExtendedAttributes* pParentExtended = (ExtendedAttributes*)pParentContainer->GetTag();
 		pExtended->nDepth = pParentExtended ? pParentExtended->nDepth + 1 : pExtended->nDepth;
 		rcPos = pParent->GetPos();
-		strPos.Format(_T("%d,%d,%d,%d"), rcPos.left, rcPos.top, rcPos.right, rcPos.bottom);
-		pParent->SetXMLAttribute(_T("pos"), strPos);
+		glb_SetControlPos(pParent, rcPos);
 
 		if (!pControl->IsFloat())
 		{
@@ -1029,7 +1037,7 @@ BOOL CLayoutManager::CDelayRepos::AddParent(CControlUI* pControl)
 
 	for(int i=0;i<m_arrDelay.GetSize();i++)
 	{
-		CControlUI* pParent=m_arrDelay.GetAt(i);
+		CControlUI* pParent = m_arrDelay.GetAt(i);
 
 		if(pControl == pParent)
 			return FALSE;
@@ -1043,30 +1051,32 @@ void CLayoutManager::CDelayRepos::Repos()
 {
 	for(int i=0;i<m_arrDelay.GetSize();i++)
 	{
-		CControlUI* pParent=m_arrDelay.GetAt(i);
+		CControlUI* pParent = m_arrDelay.GetAt(i);
 
-		pParent->SetPos(pParent->GetPos());
+		//pParent->SetPos(pParent->GetPos());
+		glb_SetControlPos(pParent, pParent->GetPos());
 	}
 }
 
 void CLayoutManager::TestForm(LPCTSTR pstrFile)
 {
-	CFormTestWnd* pFrame=new CFormTestWnd();
-	CPaintManagerUI* pManager=new CPaintManagerUI();
-	SIZE size=m_Manager.GetInitSize();
+	CFormTestWnd* pFrame = new CFormTestWnd();
+	CPaintManagerUI* pManager = new CPaintManagerUI();
+	SIZE size = m_Manager.GetInitSize();
 	pManager->SetInitSize(size.cx,size.cy);
 	pManager->SetSizeBox(m_Manager.GetSizeBox());
-	RECT rect=m_Manager.GetCaptionRect();
-	if (rect.bottom==0)
+	RECT rect = m_Manager.GetCaptionRect();
+	if (rect.bottom == 0)
 	{
-		rect.bottom=30;
+		rect.bottom = 30;
 	}
 	pManager->SetCaptionRect(rect);
-	size=m_Manager.GetRoundCorner();
+	pManager->SetBottomCaptionRect(m_Manager.GetBottomCaptionRect());
+	size = m_Manager.GetRoundCorner();
 	pManager->SetRoundCorner(size.cx,size.cy);
-	size=m_Manager.GetMinInfo();
+	size = m_Manager.GetMinInfo();
 	pManager->SetMinInfo(size.cx,size.cy);
-	size=m_Manager.GetMaxInfo();
+	size = m_Manager.GetMaxInfo();
 	pManager->SetMaxInfo(size.cx,size.cy);
 	pManager->SetShowUpdateRect(m_Manager.IsShowUpdateRect());
 
@@ -1076,14 +1086,14 @@ void CLayoutManager::TestForm(LPCTSTR pstrFile)
 	g_HookAPI.EnableInvalidate(false);
 
 	pFrame->SetManager(pManager);
-	HWND h_wnd =pFrame->Create(m_Manager.GetPaintWindow(),_T("FormTest"),UI_WNDSTYLE_FRAME,0,0,0,size.cx,size.cy);
+	HWND h_wnd = pFrame->Create(m_Manager.GetPaintWindow(),_T("FormTest"),UI_WNDSTYLE_FRAME,0,0,0,size.cx,size.cy);
 
 	// CControlUI* pRoot=CloneControls(GetForm()->GetItemAt(0));
 	// 使用新建的XML树来预览，不会挂掉
 	pManager->Init(h_wnd);
 	CDialogBuilder builder;
-	CContainerUI* pRoot=static_cast<CContainerUI*>(builder.Create(pstrFile,(UINT)0,NULL,pManager));
-	if(pRoot==NULL)
+	CContainerUI* pRoot = static_cast<CContainerUI*>(builder.Create(pstrFile,(UINT)0,NULL,pManager));
+	if(pRoot == NULL)
 		return;
 
 	//pRoot->SetManager(NULL,NULL);
@@ -1093,7 +1103,7 @@ void CLayoutManager::TestForm(LPCTSTR pstrFile)
 
 	pFrame->CenterWindow();
 
-	HWND m_hWnd=pFrame->GetHWND();
+	HWND m_hWnd = pFrame->GetHWND();
 	MSG msg = { 0 };
 	while( ::IsWindow(m_hWnd) && ::GetMessage(&msg, NULL, 0, 0) ) {
 		if( msg.hwnd != m_hWnd ) {
@@ -1128,7 +1138,7 @@ CControlUI* CLayoutManager::CloneControls(CControlUI* pControl)
 		return NULL;
 
 	CContainerUI* pContainer = static_cast<CContainerUI*>(pControl->GetInterface(DUI_CTR_CONTAINER));
-	if(pContainer==NULL)
+	if(pContainer == NULL)
 		return CloneControl(pControl);
 
 	CContainerUI* pCopyContainer = static_cast<CContainerUI*>(CloneControl(pContainer)->GetInterface(DUI_CTR_CONTAINER));
@@ -1190,100 +1200,100 @@ void CLayoutManager::AlignLeft(CControlUI* pFocused,CArray<CControlUI*,CControlU
 		if(pControl->GetParent() != pFocused->GetParent())
 			continue;
 
-		int fw = pControl->GetFixedWidth();
-		int fh = pControl->GetFixedWidth();
 		SIZE szXY = pControl->GetFixedXY();
 		szXY.cx = szXYLeft.cx;
-		strTmp.Format(_T("%d,%d,%d,%d"), szXY.cx, szXY.cy, szXY.cx+fw, szXY.cy+fh);
-		pControl->SetXMLAttribute(_T("pos"), strTmp);
+		//pControl->SetFixedXY(szXY);
+		strTmp.Format(_T("%d,%d"), szXY.cx, szXY.cy);
+		pControl->SetXMLAttribute(_T("pos2"), strTmp);
 	}
 
 	CControlUI* pParent = pFocused->GetParent();
-	if (pParent)
-	{
-		pParent->SetPos(pParent->GetPos());
-		RECT pos = pParent->GetPos();
-		strTmp.Format(_T("%d,%d,%d,%d"), pos.left, pos.top, pos.right, pos.bottom);
-		pParent->SetXMLAttribute(_T("pos"), strTmp);
-	}
+	if (pParent) 
+		glb_SetControlPos(pParent, pParent->GetPos());
 }
 
 void CLayoutManager::AlignRight(CControlUI* pFocused,CArray<CControlUI*,CControlUI*>& arrSelected)
 {
-	SIZE szXYRight=pFocused->GetFixedXY();
-	int nWidth=pFocused->GetFixedWidth();
-
+	SIZE szXYRight = pFocused->GetFixedXY();
+	int nWidth = pFocused->GetFixedWidth();
+	CString strTmp;
 	for (int i=0;i<arrSelected.GetSize();i++)
 	{
 		CControlUI* pControl=arrSelected.GetAt(i);
 		if(pControl->GetParent()!=pFocused->GetParent())
 			continue;
 
-		SIZE szXY=pControl->GetFixedXY();
-		szXY.cx=szXYRight.cx+nWidth-pControl->GetFixedWidth();
-		pControl->SetFixedXY(szXY);
+		SIZE szXY = pControl->GetFixedXY();
+		szXY.cx = szXYRight.cx+nWidth-pControl->GetFixedWidth();
+		//pControl->SetFixedXY(szXY);
+		strTmp.Format(_T("%d,%d"), szXY.cx, szXY.cy);
+		pControl->SetXMLAttribute(_T("pos2"), strTmp);
 	}
 
-	CControlUI* pParent=pFocused->GetParent();
+	CControlUI* pParent = pFocused->GetParent();
 	if(pParent)
-		pParent->SetPos(pParent->GetPos());
+		glb_SetControlPos(pParent, pParent->GetPos());
 }
 
 void CLayoutManager::AlignTop(CControlUI* pFocused,CArray<CControlUI*,CControlUI*>& arrSelected)
 {
-	SIZE szXYTop=pFocused->GetFixedXY();
-
+	SIZE szXYTop = pFocused->GetFixedXY();
+	CString strTmp;
 	for (int i=0;i<arrSelected.GetSize();i++)
 	{
 		CControlUI* pControl=arrSelected.GetAt(i);
 		if(pControl->GetParent()!=pFocused->GetParent())
 			continue;
 
-		SIZE szXY=pControl->GetFixedXY();
-		szXY.cy=szXYTop.cy;
-		pControl->SetFixedXY(szXY);
+		SIZE szXY = pControl->GetFixedXY();
+		szXY.cy = szXYTop.cy;
+		//pControl->SetFixedXY(szXY);
+		strTmp.Format(_T("%d,%d"), szXY.cx, szXY.cy);
+		pControl->SetXMLAttribute(_T("pos2"), strTmp);
 	}
 
-	CControlUI* pParent=pFocused->GetParent();
+	CControlUI* pParent = pFocused->GetParent();
 	if(pParent)
-		pParent->SetPos(pParent->GetPos());
+		glb_SetControlPos(pParent, pParent->GetPos());
 }
 
 void CLayoutManager::AlignBottom(CControlUI* pFocused,CArray<CControlUI*,CControlUI*>& arrSelected)
 {
-	SIZE szXYBottom=pFocused->GetFixedXY();
-	int nHeight=pFocused->GetFixedHeight();
-
+	SIZE szXYBottom = pFocused->GetFixedXY();
+	int nHeight = pFocused->GetFixedHeight();
+	CString strTmp;
 	for (int i=0;i<arrSelected.GetSize();i++)
 	{
-		CControlUI* pControl=arrSelected.GetAt(i);
-		if(pControl->GetParent()!=pFocused->GetParent())
+		CControlUI* pControl = arrSelected.GetAt(i);
+		if(pControl->GetParent() != pFocused->GetParent())
 			continue;
 
-		SIZE szXY=pControl->GetFixedXY();
-		szXY.cy=szXYBottom.cy+nHeight-pControl->GetFixedHeight();
-		pControl->SetFixedXY(szXY);
+		SIZE szXY = pControl->GetFixedXY();
+		szXY.cy = szXYBottom.cy+nHeight-pControl->GetFixedHeight();
+		//pControl->SetFixedXY(szXY);
+		strTmp.Format(_T("%d,%d"), szXY.cx, szXY.cy);
+		pControl->SetXMLAttribute(_T("pos2"), strTmp);
 	}
 
 	CControlUI* pParent=pFocused->GetParent();
 	if(pParent)
-		pParent->SetPos(pParent->GetPos());
+		glb_SetControlPos(pParent, pParent->GetPos());
 }
 
 void CLayoutManager::AlignCenterVertically(CControlUI* pFocused,CArray<CControlUI*,CControlUI*>& arrSelected)
 {
-	CControlUI* pParent=pFocused->GetParent();
+	CControlUI* pParent = pFocused->GetParent();
 	if(!pParent)
 		return;
 
-	RECT rcParent=pParent->GetPos();
+	RECT rcParent = pParent->GetPos();
 
 	CRect rectUnion;
 	rectUnion.SetRectEmpty();
 	for(int i=0;i<arrSelected.GetSize();i++)
 	{
-		CControlUI* pControl=arrSelected.GetAt(i);
-		if(pControl->GetParent()!=pParent)
+		CControlUI* pControl = arrSelected.GetAt(i);
+		if(pControl->GetParent() != pParent)
 		{
 			arrSelected.RemoveAt(i);
 			continue;
@@ -1291,27 +1301,29 @@ void CLayoutManager::AlignCenterVertically(CControlUI* pFocused,CArray<CControlU
 
 		rectUnion.UnionRect(&rectUnion,&pControl->GetPos());
 	}
-
-	int nOffsetY=(rcParent.top+rcParent.bottom)/2-(rectUnion.top+rectUnion.bottom)/2;
+	CString strTmp;
+	int nOffsetY = (rcParent.top+rcParent.bottom)/2-(rectUnion.top+rectUnion.bottom)/2;
 	for(int i=0;i<arrSelected.GetSize();i++)
 	{
-		CControlUI* pControl=arrSelected.GetAt(i);
+		CControlUI* pControl = arrSelected.GetAt(i);
 
-		SIZE szXY=pControl->GetFixedXY();
-		szXY.cy+=nOffsetY;
-		pControl->SetFixedXY(szXY);
+		SIZE szXY = pControl->GetFixedXY();
+		szXY.cy += nOffsetY;
+		//pControl->SetFixedXY(szXY);
+		strTmp.Format(_T("%d,%d"), szXY.cx, szXY.cy);
+		pControl->SetXMLAttribute(_T("pos2"), strTmp);
 	}
 
-	pParent->SetPos(pParent->GetPos());
+	glb_SetControlPos(pParent, pParent->GetPos());
 }
 
 void CLayoutManager::AlignCenterHorizontally(CControlUI* pFocused,CArray<CControlUI*,CControlUI*>& arrSelected)
 {
-	CControlUI* pParent=pFocused->GetParent();
+	CControlUI* pParent = pFocused->GetParent();
 	if(!pParent)
 		return;
 
-	RECT rcParent=pParent->GetPos();
+	RECT rcParent = pParent->GetPos();
 
 	CRect rectUnion;
 	rectUnion.SetRectEmpty();
@@ -1326,23 +1338,25 @@ void CLayoutManager::AlignCenterHorizontally(CControlUI* pFocused,CArray<CContro
 
 		rectUnion.UnionRect(&rectUnion,&pControl->GetPos());
 	}
-
-	int nOffsetX=(rcParent.left+rcParent.right)/2-(rectUnion.left+rectUnion.right)/2;
+	CString strTmp;
+	int nOffsetX = (rcParent.left+rcParent.right)/2-(rectUnion.left+rectUnion.right)/2;
 	for(int i=0;i<arrSelected.GetSize();i++)
 	{
-		CControlUI* pControl=arrSelected.GetAt(i);
+		CControlUI* pControl = arrSelected.GetAt(i);
 
-		SIZE szXY=pControl->GetFixedXY();
-		szXY.cx+=nOffsetX;
-		pControl->SetFixedXY(szXY);
+		SIZE szXY = pControl->GetFixedXY();
+		szXY.cx += nOffsetX;
+		//pControl->SetFixedXY(szXY);
+		strTmp.Format(_T("%d,%d"), szXY.cx, szXY.cy);
+		pControl->SetXMLAttribute(_T("pos2"), strTmp);
 	}
 
-	pParent->SetPos(pParent->GetPos());
+	glb_SetControlPos(pParent, pParent->GetPos());
 }
 
 void CLayoutManager::AlignHorizontal(CControlUI* pFocused,CArray<CControlUI*,CControlUI*>& arrSelected)
 {
-	CControlUI* pParent=pFocused->GetParent();
+	CControlUI* pParent = pFocused->GetParent();
 	if(!pParent)
 		return;
 
@@ -1382,21 +1396,23 @@ void CLayoutManager::AlignHorizontal(CControlUI* pFocused,CArray<CControlUI*,CCo
 			arrSelected[nMin]=pControl;
 		}
 	}
-
+	CString strTmp;
 	for(int i=1;i<nCount-1;i++)
 	{
 		int right=arrSelected[i-1]->GetFixedXY().cx+arrSelected[i-1]->GetWidth();
 		SIZE szXY=arrSelected[i]->GetFixedXY();
 		szXY.cx=right+nSpaceX;
-		arrSelected[i]->SetFixedXY(szXY);
+		//arrSelected[i]->SetFixedXY(szXY);
+		strTmp.Format(_T("%d,%d"), szXY.cx, szXY.cy);
+		arrSelected[i]->SetXMLAttribute(_T("pos2"), strTmp);
 	}
 
-	pParent->SetPos(pParent->GetPos());
+	glb_SetControlPos(pParent, pParent->GetPos());
 }
 
 void CLayoutManager::AlignVertical(CControlUI* pFocused,CArray<CControlUI*,CControlUI*>& arrSelected)
 {
-	CControlUI* pParent=pFocused->GetParent();
+	CControlUI* pParent = pFocused->GetParent();
 	if(!pParent)
 		return;
 
@@ -1436,30 +1452,34 @@ void CLayoutManager::AlignVertical(CControlUI* pFocused,CArray<CControlUI*,CCont
 			arrSelected[nMin]=pControl;
 		}
 	}
-
+	CString strTmp;
 	for(int i=1;i<nCount-1;i++)
 	{
 		int bottom=arrSelected[i-1]->GetFixedXY().cy+arrSelected[i-1]->GetHeight();
 		SIZE szXY=arrSelected[i]->GetFixedXY();
 		szXY.cy=bottom+nSpaceY;
-		arrSelected[i]->SetFixedXY(szXY);
+		//arrSelected[i]->SetFixedXY(szXY);
+		strTmp.Format(_T("%d,%d"), szXY.cx, szXY.cy);
+		arrSelected[i]->SetXMLAttribute(_T("pos2"), strTmp);
 	}
 
-	pParent->SetPos(pParent->GetPos());
+	glb_SetControlPos(pParent, pParent->GetPos());
 }
 
 void CLayoutManager::AlignSameWidth(CControlUI* pFocused,CArray<CControlUI*,CControlUI*>& arrSelected)
 {
-	int nWidth=pFocused->GetFixedWidth();
-
+	int nWidth = pFocused->GetFixedWidth();
+	CString strTmp;
 	CDelayRepos DelayPos;
 	for (int i=0;i<arrSelected.GetSize();i++)
 	{
-		CControlUI* pControl=arrSelected.GetAt(i);
-		if(pControl==pFocused)
+		CControlUI* pControl = arrSelected.GetAt(i);
+		if(pControl == pFocused)
 			continue;
 
-		pControl->SetFixedWidth(nWidth);
+		//pControl->SetFixedWidth(nWidth);
+		strTmp.Format(_T("%d"), nWidth);
+		pControl->SetXMLAttribute(_T("width"), strTmp);
 		DelayPos.AddParent(pControl->GetParent());
 	}
 	DelayPos.Repos();
@@ -1468,7 +1488,7 @@ void CLayoutManager::AlignSameWidth(CControlUI* pFocused,CArray<CControlUI*,CCon
 void CLayoutManager::AlignSameHeight(CControlUI* pFocused,CArray<CControlUI*,CControlUI*>& arrSelected)
 {
 	int nHeight=pFocused->GetFixedHeight();
-
+	CString strTmp;
 	CDelayRepos DelayPos;
 	for (int i=0;i<arrSelected.GetSize();i++)
 	{
@@ -1476,7 +1496,9 @@ void CLayoutManager::AlignSameHeight(CControlUI* pFocused,CArray<CControlUI*,CCo
 		if(pControl==pFocused)
 			continue;
 
-		pControl->SetFixedHeight(nHeight);
+		//pControl->SetFixedHeight(nHeight);
+		strTmp.Format(_T("%d"), nHeight);
+		pControl->SetXMLAttribute(_T("height"), strTmp);
 		DelayPos.AddParent(pControl->GetParent());
 	}
 	DelayPos.Repos();
@@ -1486,7 +1508,7 @@ void CLayoutManager::AlignSameSize(CControlUI* pFocused,CArray<CControlUI*,CCont
 {
 	int nWidth=pFocused->GetFixedWidth();
 	int nHeight=pFocused->GetFixedHeight();
-
+	CString strTmp;
 	CDelayRepos DelayPos;
 	for (int i=0;i<arrSelected.GetSize();i++)
 	{
@@ -1494,8 +1516,12 @@ void CLayoutManager::AlignSameSize(CControlUI* pFocused,CArray<CControlUI*,CCont
 		if(pControl==pFocused)
 			continue;
 
-		pControl->SetFixedWidth(nWidth);
-		pControl->SetFixedHeight(nHeight);
+		//pControl->SetFixedWidth(nWidth);
+		//pControl->SetFixedHeight(nHeight);
+		strTmp.Format(_T("%d"), nWidth);
+		pControl->SetXMLAttribute(_T("width"), strTmp);
+		strTmp.Format(_T("%d"), nHeight);
+		pControl->SetXMLAttribute(_T("height"), strTmp);
 		DelayPos.AddParent(pControl->GetParent());
 	}
 	DelayPos.Repos();
@@ -1523,6 +1549,7 @@ bool CLayoutManager::IsShowAuxBorder() const
 
 void CLayoutManager::MicoMoveUp(CArray<CControlUI*,CControlUI*>& arrSelected,int nMoved)
 {
+	CString strTmp;
 	CDelayRepos DelayPos;
 	for(int i=0;i<arrSelected.GetSize();i++)
 	{
@@ -1530,7 +1557,9 @@ void CLayoutManager::MicoMoveUp(CArray<CControlUI*,CControlUI*>& arrSelected,int
 
 		SIZE szXY=pControl->GetFixedXY();
 		szXY.cy-=nMoved;
-		pControl->SetFixedXY(szXY);
+		//pControl->SetFixedXY(szXY);
+		strTmp.Format(_T("%d,%d"), szXY.cx, szXY.cy);
+		pControl->SetXMLAttribute(_T("pos2"), strTmp);
 		DelayPos.AddParent(pControl->GetParent());
 	}
 	DelayPos.Repos();
@@ -1538,6 +1567,7 @@ void CLayoutManager::MicoMoveUp(CArray<CControlUI*,CControlUI*>& arrSelected,int
 
 void CLayoutManager::MicoMoveDown(CArray<CControlUI*,CControlUI*>& arrSelected,int nMoved)
 {
+	CString strTmp;
 	CDelayRepos DelayPos;
 	for(int i=0;i<arrSelected.GetSize();i++)
 	{
@@ -1545,7 +1575,9 @@ void CLayoutManager::MicoMoveDown(CArray<CControlUI*,CControlUI*>& arrSelected,i
 
 		SIZE szXY=pControl->GetFixedXY();
 		szXY.cy+=nMoved;
-		pControl->SetFixedXY(szXY);
+		//pControl->SetFixedXY(szXY);
+		strTmp.Format(_T("%d,%d"), szXY.cx, szXY.cy);
+		pControl->SetXMLAttribute(_T("pos2"), strTmp);
 		DelayPos.AddParent(pControl->GetParent());
 	}
 	DelayPos.Repos();
@@ -1553,6 +1585,7 @@ void CLayoutManager::MicoMoveDown(CArray<CControlUI*,CControlUI*>& arrSelected,i
 
 void CLayoutManager::MicoMoveLeft(CArray<CControlUI*,CControlUI*>& arrSelected,int nMoved)
 {
+	CString strTmp;
 	CDelayRepos DelayPos;
 	for(int i=0;i<arrSelected.GetSize();i++)
 	{
@@ -1560,7 +1593,9 @@ void CLayoutManager::MicoMoveLeft(CArray<CControlUI*,CControlUI*>& arrSelected,i
 
 		SIZE szXY=pControl->GetFixedXY();
 		szXY.cx-=nMoved;
-		pControl->SetFixedXY(szXY);
+		//pControl->SetFixedXY(szXY);
+		strTmp.Format(_T("%d,%d"), szXY.cx, szXY.cy);
+		pControl->SetXMLAttribute(_T("pos2"), strTmp);
 		DelayPos.AddParent(pControl->GetParent());
 	}
 	DelayPos.Repos();
@@ -1568,6 +1603,7 @@ void CLayoutManager::MicoMoveLeft(CArray<CControlUI*,CControlUI*>& arrSelected,i
 
 void CLayoutManager::MicoMoveRight(CArray<CControlUI*,CControlUI*>& arrSelected,int nMoved)
 {
+	CString strTmp;
 	CDelayRepos DelayPos;
 	for(int i=0;i<arrSelected.GetSize();i++)
 	{
@@ -1575,7 +1611,9 @@ void CLayoutManager::MicoMoveRight(CArray<CControlUI*,CControlUI*>& arrSelected,
 
 		SIZE szXY=pControl->GetFixedXY();
 		szXY.cx+=nMoved;
-		pControl->SetFixedXY(szXY);
+		//pControl->SetFixedXY(szXY);
+		strTmp.Format(_T("%d,%d"), szXY.cx, szXY.cy);
+		pControl->SetXMLAttribute(_T("pos2"), strTmp);
 		DelayPos.AddParent(pControl->GetParent());
 	}
 	DelayPos.Repos();
@@ -1803,49 +1841,49 @@ void CLayoutManager::SetDefaultUIName(CControlUI* pControl)
 CString CLayoutManager::ConvertImageFileName(LPCTSTR pstrImageAttrib)
 {
 	CString strImageAttrib(pstrImageAttrib);
-	strImageAttrib.Replace(m_strSkinDir,_T(""));
-// 	CStdString sItem;
-// 	CStdString sValue;
-// 	LPTSTR pstr = (LPTSTR)pstrImageAttrib;
-// 	while( *pstr != _T('\0') )
-// 	{
-// 		sItem.Empty();
-// 		sValue.Empty();
-// 		while( *pstr != _T('\0') && *pstr != _T('=') )
-// 		{
-// 			LPTSTR pstrTemp = ::CharNext(pstr);
-// 			while( pstr < pstrTemp)
-// 			{
-// 				sItem += *pstr++;
-// 			}
-// 		}
-// 		if( *pstr++ != _T('=') ) break;
-// 		if( *pstr++ != _T('\'') ) break;
-// 		while( *pstr != _T('\0') && *pstr != _T('\'') )
-// 		{
-// 			LPTSTR pstrTemp = ::CharNext(pstr);
-// 			while( pstr < pstrTemp)
-// 			{
-// 				sValue += *pstr++;
-// 			}
-// 		}
-// 		if( *pstr++ != _T('\'') ) break;
-// 		if( !sValue.IsEmpty() ) {
-// 			if( sItem == _T("file"))
-// 				break;
-// 		}
-// 		if( *pstr++ != _T(' ') ) break;
-// 	}
-// 
-// 	if(sValue.IsEmpty())
-// 		sValue = sItem;
-// 	CString strFileName = sValue;
-// 	int nPos = strFileName.ReverseFind(_T('\\'));
-// 	if(nPos != -1)
-// 	{
-// 		strFileName = strFileName.Right(strFileName.GetLength() - nPos - 1);
-// 		strImageAttrib.Replace(sValue, strFileName);
-// 	}
+	//strImageAttrib.Replace(m_strSkinDir,_T(""));
+ //	CString sItem;
+ //	CString sValue;
+ //	LPTSTR pstr = (LPTSTR)pstrImageAttrib;
+ //	while( *pstr != _T('\0') )
+ //	{
+ //		sItem.Empty();
+ //		sValue.Empty();
+ //		while( *pstr != _T('\0') && *pstr != _T('=') )
+ //		{
+ //			LPTSTR pstrTemp = ::CharNext(pstr);
+ //			while( pstr < pstrTemp)
+ //			{
+ //				sItem += *pstr++;
+ //			}
+ //		}
+ //		if( *pstr++ != _T('=') ) break;
+ //		if( *pstr++ != _T('\'') ) break;
+ //		while( *pstr != _T('\0') && *pstr != _T('\'') )
+ //		{
+ //			LPTSTR pstrTemp = ::CharNext(pstr);
+ //			while( pstr < pstrTemp)
+ //			{
+ //				sValue += *pstr++;
+ //			}
+ //		}
+ //		if( *pstr++ != _T('\'') ) break;
+ //		if( !sValue.IsEmpty() ) {
+ //			if( sItem == _T("file"))
+ //				break;
+ //		}
+ //		if( *pstr++ != _T(' ') ) break;
+ //	}
+ //
+ //	if(sValue.IsEmpty())
+ //		sValue = sItem;
+ //	CString strFileName = sValue;
+ //	int nPos = strFileName.ReverseFind(_T('\\'));
+ //	if(nPos != -1)
+ //	{
+ //		strFileName = strFileName.Right(strFileName.GetLength() - nPos - 1);
+ //		strImageAttrib.Replace(sValue, strFileName);
+ //	}
 
 	return strImageAttrib;
 }

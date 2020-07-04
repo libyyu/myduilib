@@ -89,8 +89,8 @@ void CPropertiesWnd::SetPropValue(CControlUI* pControl,int nTag)
 	if(pCurControl != pControl)
 		return;
 
-	CMFCPropertyGridProperty* pPropUI=NULL;
-	CMFCPropertyGridProperty* pValueList=NULL;
+	CMFCPropertyGridProperty* pPropUI = NULL;
+	CMFCPropertyGridProperty* pValueList = NULL;
 }
 
 void CPropertiesWnd::SetUIValue(CMFCPropertyGridProperty* pProp,int nTag)

@@ -527,9 +527,9 @@ void CMFCPropertyGridImageProperty::OnClickButton(CPoint point)
 	CImageDialog dlg(strImage);
 	if(dlg.DoModal()==IDOK)
 	{
-		strImage=dlg.GetImage();
+		strImage = dlg.GetImage();
 	}
-
+	strImage.Replace(_T("\\"), _T("/"));
 	if (m_pWndInPlace != NULL)
 	{
 		m_pWndInPlace->SetWindowText(strImage);
@@ -889,7 +889,7 @@ static CMFCPropertyGridProperty* MakeGridProperty(DuiLib::UIPropertyGridItem& it
 	}
 	else if (item.PT == DuiLib::PT_CustomAttribute)
 	{
-		pPropUI = new CMFCPropertyGridDefaultAttribListProperty(item, UTF8_TO_CSTRING(item.title.c_str()), (_variant_t)_T(""), UTF8_TO_CSTRING(item.desc.c_str()), typeDefaultAttri);
+		pPropUI = new CMFCPropertyGridDefaultAttribListProperty(item, UTF8_TO_CSTRING(item.title.c_str()), (_variant_t)_T("ƒ¨»œ Ù–‘"), UTF8_TO_CSTRING(item.desc.c_str()), typeDefaultAttri);
 	}
 	else if (item.PT == DuiLib::PT_Select)
 	{

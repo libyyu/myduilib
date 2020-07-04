@@ -269,9 +269,14 @@ void CImageDialog::OnBnClickedButtonImageImport()
 	CFileDialog dlg(TRUE,_T(""),NULL,OFN_HIDEREADONLY|OFN_OVERWRITEPROMPT,_T("图片文件(*.bmp;*.jpg;*.png)|*.bmp;*.jpg;*.png|所有文件(*.*)|*.*||"));
 	if(dlg.DoModal()==IDOK)
 	{
-		CString strFileName = dlg.GetFileName();
+		CString szRootPath = CPaintManagerUI::GetResourcePath();
+		if (szRootPath.Right(1) != _T("\\"))
+			szRootPath += _T("\\");
+		CString strFileFullName = dlg.GetPathName();
+		CString strFileName = strFileFullName;
+		strFileName.Replace(szRootPath, _T(""));
 		int nIndex = m_lstImages.AddString(strFileName);
-		int nPos = m_strImageArray.Add(dlg.GetPathName());
+		int nPos = m_strImageArray.Add(strFileName);
 		LPCTSTR pstrPath = m_strImageArray[nPos];
 		m_lstImages.SetItemDataPtr(nIndex,(void*)pstrPath);
 		m_lstImages.SelectString(-1, strFileName);

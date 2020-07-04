@@ -2,26 +2,30 @@
 #include "HookAPI.h"
 #include <Dbghelp.h>
 
-bool CHookAPI::m_bCreateFileEnabled=false;
-TCHAR CHookAPI::m_sSkinDir[MAX_PATH]={0};
-pfnCreateFile CHookAPI::CreateFileAPI=NULL;
+bool CHookAPI::m_bCreateFileEnabled = false;
+TCHAR CHookAPI::m_sSkinDir[MAX_PATH] = {0};
+pfnCreateFile CHookAPI::CreateFileAPI = NULL;
 
-bool CHookAPI::m_bInvalidateEnabled=false;
-HOOKSTRUCT CHookAPI::m_InvalidateHookInfo={0};
+bool CHookAPI::m_bInvalidateEnabled = false;
+HOOKSTRUCT CHookAPI::m_InvalidateHookInfo = {0};
 
-bool CHookAPI::m_bGetImageExEnabled=false;
-HOOKSTRUCT CHookAPI::m_GetImageExHookInfo={0};
+bool CHookAPI::m_bGetImageExEnabled = false;
+HOOKSTRUCT CHookAPI::m_GetImageExHookInfo = {0};
 
 CHookAPI::CHookAPI(void)
 {
-	//CreateFileAPI=(pfnCreateFile)HookAPI(_T("KERNEL32.dll"),LPCSTR("CreateFileW"),(FARPROC)Hook_CreateFile,GetModuleHandle(_T("Duilib.dll")));
-	//EnableCreateFile(true);
+#ifdef UNICODE
+	CreateFileAPI = (pfnCreateFile)HookAPI(_T("KERNEL32.dll"),LPCSTR("CreateFileA"),(FARPROC)Hook_CreateFile,GetModuleHandle(_T("Duilib.dll")));
+#else
+	CreateFileAPI = (pfnCreateFile)HookAPI(_T("KERNEL32.dll"), LPCSTR("CreateFileW"), (FARPROC)Hook_CreateFile, GetModuleHandle(_T("Duilib.dll")));
+#endif
+	EnableCreateFile(true);
 
-	//HookAPI(_T("Duilib.dll"),LPCSTR("?Invalidate@CPaintManagerUI@DuiLib@@QAEXAAUtagRECT@@@Z"),(FARPROC)Hook_Invalidate,m_InvalidateHookInfo);
-	//EnableInvalidate(true);
+	HookAPI(_T("Duilib.dll"),LPCSTR("?Invalidate@CPaintManagerUI@DuiLib@@QAEXAAUtagRECT@@@Z"),(FARPROC)Hook_Invalidate,m_InvalidateHookInfo);
+	EnableInvalidate(true);
 
-	//HookAPI(_T("Duilib.dll"),LPCSTR("?GetImageEx@CPaintManagerUI@DuiLib@@QAEPAUtagTImageInfo@2@PB_W0K@Z"),(FARPROC)Hook_GetImageEx,m_GetImageExHookInfo);
-	//EnableGetImageEx(true);
+	HookAPI(_T("Duilib.dll"),LPCSTR("?GetImageEx@CPaintManagerUI@DuiLib@@QAEPAUtagTImageInfo@2@PBD0K_N@Z"),(FARPROC)Hook_GetImageEx,m_GetImageExHookInfo);
+	EnableGetImageEx(true);
 }
 
 CHookAPI::~CHookAPI(void)
@@ -30,29 +34,29 @@ CHookAPI::~CHookAPI(void)
 
 FARPROC CHookAPI::HookAPI(LPCTSTR pstrDllName,LPCSTR pstrFuncName,FARPROC pfnNewFunc,HMODULE hModCaller)
 {
-	if(hModCaller==NULL)
+	if(hModCaller == NULL)
 		return NULL;
 
 	ULONG size;
 	//获取指向PE文件中的Import中IMAGE_DIRECTORY_DESCRIPTOR数组的指针
-	PIMAGE_IMPORT_DESCRIPTOR pImportDesc=(PIMAGE_IMPORT_DESCRIPTOR)
+	PIMAGE_IMPORT_DESCRIPTOR pImportDesc = (PIMAGE_IMPORT_DESCRIPTOR)
 		ImageDirectoryEntryToData(hModCaller,TRUE,IMAGE_DIRECTORY_ENTRY_IMPORT,&size);
-	if(pImportDesc==NULL)
+	if(pImportDesc == NULL)
 		return NULL;
-	HMODULE hModule=LoadLibrary(pstrDllName);
+	HMODULE hModule = LoadLibrary(pstrDllName);
 	//纪录函数地址
-	FARPROC pfnOriginFunc=GetProcAddress(hModule,pstrFuncName);
+	FARPROC pfnOriginFunc = GetProcAddress(hModule, pstrFuncName);
 
 	//查找记录,看看有没有我们想要的DLL
 #ifdef UNICODE
 	USES_CONVERSION;
-	char* pstrDest=W2A(pstrDllName);
+	char* pstrDest = W2A(pstrDllName);
 #else
 	char* pstrDest = (char*)pstrDllName;
 #endif
-	for(;pImportDesc->Name;pImportDesc++)
+	for(;pImportDesc->Name; pImportDesc++)
 	{
-		LPSTR pszDllName=(LPSTR)((PBYTE)hModCaller+pImportDesc->Name);
+		LPSTR pszDllName = (LPSTR)((PBYTE)hModCaller+pImportDesc->Name);
 		if(lstrcmpiA(pszDllName,pstrDest)==0)
 			break;
 	}
@@ -65,8 +69,8 @@ FARPROC CHookAPI::HookAPI(LPCTSTR pstrDllName,LPCSTR pstrFuncName,FARPROC pfnNew
 	for(;pThunk->u1.Function;pThunk++)
 	{
 		//ppfn记录了与IAT表相应的地址
-		PROC*ppfn=(PROC*)&pThunk->u1.Function ;
-		if(*ppfn==pfnOriginFunc)
+		PROC*ppfn = (PROC*)&pThunk->u1.Function ;
+		if(*ppfn == pfnOriginFunc)
 		{
 			DWORD dwOldProtect;
 			//修改内存包含属性
@@ -81,16 +85,16 @@ FARPROC CHookAPI::HookAPI(LPCTSTR pstrDllName,LPCSTR pstrFuncName,FARPROC pfnNew
 
 BOOL CHookAPI::HookAPI(LPCTSTR pstrDllName,LPCSTR pstrFuncName,FARPROC pfnNewFunc,HOOKSTRUCT& HookInfo)
 {
-	HMODULE hModule=LoadLibrary(pstrDllName);
+	HMODULE hModule = LoadLibrary(pstrDllName);
 	//纪录函数地址
-	HookInfo.pfnFuncAddr=GetProcAddress(hModule,pstrFuncName);
+	HookInfo.pfnFuncAddr = GetProcAddress(hModule,pstrFuncName);
 	FreeLibrary(hModule);
 	if(HookInfo.pfnFuncAddr==NULL)
 		return FALSE;
 	//备份原函数的前5个字节，一般的WIN32 API以__stdcall声明的API理论上都可以这样进行HOOK
 	memcpy(HookInfo.OldCode,HookInfo.pfnFuncAddr,5);
 	HookInfo.NewCode[0]=0xe9;//构造JMP
-	DWORD dwJmpAddr=(DWORD)pfnNewFunc-(DWORD)HookInfo.pfnFuncAddr-5;//计算JMP地址
+	DWORD dwJmpAddr = (DWORD)pfnNewFunc-(DWORD)HookInfo.pfnFuncAddr-5;//计算JMP地址
 	memcpy(&HookInfo.NewCode[1],&dwJmpAddr,4);
 	EnableHook(HookInfo,TRUE);//开始进行HOOK
 

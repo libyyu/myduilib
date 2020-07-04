@@ -131,15 +131,20 @@ void CDialogDefaultAttribList::OnBnClickedButtonAttribAdd()
 		return;
 	}
 	*/
-	CControlUI* pControl = CLayoutManager::NewUI(strClass, CRect(0,0,0,0), NULL, NULL);
+
+	CString strUIName = strClass;
+	if (strUIName.CompareNoCase(_T("HScrollbar")) == 0 || strUIName.CompareNoCase(_T("VScrollBar"))==0)
+		strUIName = _T("ScrollBar");
+
+	CControlUI* pControl = CLayoutManager::NewUI(strUIName, CRect(0,0,0,0), NULL, NULL);
 	ASSERT(pControl);
 	if (!pControl) 
 	{
 		MessageBox(_T("控件无法创建！"), _T("提示"), MB_ICONINFORMATION);
 		return;
 	}
-	CString strName = pControl->GetClass();
-	if(m_pManager->GetDefaultAttributeList(strName) != NULL)
+
+	if(m_pManager->GetDefaultAttributeList(strClass) != NULL)
 	{
 		MessageBox(_T("此控件的默认属性已经存在，无法创建！"), _T("提示"), MB_ICONINFORMATION);
 		CLayoutManager::DeleteUI(pControl);
@@ -157,8 +162,8 @@ void CDialogDefaultAttribList::OnBnClickedButtonAttribAdd()
 			return;
 		}
 
-		m_pManager->AddDefaultAttributeList(strName, strValue);
-		int nIndex = m_lstDefaultAttrib.AddString(strName);
+		m_pManager->AddDefaultAttributeList(strClass, strValue);
+		int nIndex = m_lstDefaultAttrib.AddString(strClass);
 		m_lstDefaultAttrib.SetItemDataPtr(nIndex, pControl);
 		m_lstDefaultAttrib.SetCurSel(nIndex);
 		m_wndUIProperties.ShowProperty(pControl);
@@ -211,6 +216,9 @@ void CDialogDefaultAttribList::OnBnClickedButtonAttribModify()
 			MessageBox(_T("无法识别此控件！"), _T("提示"), MB_ICONINFORMATION);
 			return;
 		}
+		CString strUIName = strDefaultAttribName;
+		if (strUIName == _T("HScrollbar") || strUIName == _T("VScrollBar"))
+			strUIName = _T("Scrollbar");
 		pControl = CLayoutManager::NewUI(strDefaultAttribName, CRect(0, 0, 0, 0), NULL, NULL);
 		ASSERT(pControl);
 		if(!pControl)
@@ -270,6 +278,8 @@ void CDialogDefaultAttribList::OnLbnSelchangeListDefaultAttrib()
 			MessageBox(_T("无法识别此控件！"), _T("提示"), MB_ICONINFORMATION);
 			return;
 		}
+		if (strUIName.CompareNoCase(_T("HScrollbar"))==0 || strUIName.CompareNoCase(_T("VScrollBar"))==0)
+			strUIName = _T("ScrollBar");
 		pControl = CLayoutManager::NewUI(strUIName, CRect(0, 0, 0, 0), NULL, NULL);
 		ASSERT(pControl);
 		if(!pControl)

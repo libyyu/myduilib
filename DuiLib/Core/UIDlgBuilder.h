@@ -22,6 +22,8 @@ public:
         CPaintManagerUI* pManager = NULL, CControlUI* pParent = NULL);
     CControlUI* Create(IDialogBuilderCallback* pCallback = NULL, CPaintManagerUI* pManager = NULL,
         CControlUI* pParent = NULL);
+	CControlUI* Create(CMarkup* xml, LPCTSTR type = NULL, IDialogBuilderCallback* pCallback = NULL, CPaintManagerUI* pManager = NULL,
+		CControlUI* pParent = NULL);
 
     CMarkup* GetMarkup();
 
@@ -29,6 +31,7 @@ public:
     void GetLastErrorLocation(LPTSTR pstrSource, SIZE_T cchMax) const;
 private:
     CControlUI* _Parse(CMarkupNode* parent, CControlUI* pParent = NULL, CPaintManagerUI* pManager = NULL);
+	CControlUI* _Create(CMarkupNode* root, CPaintManagerUI* pManager = NULL, CControlUI* pParent = NULL);
 
     CMarkup m_xml;
     IDialogBuilderCallback* m_pCallback;

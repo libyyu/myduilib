@@ -418,13 +418,16 @@ void CUIDesignerView::Notify(TNotifyUI& msg)
 	{
 		if(GetControlType(pControl)== UITypeForm)
 		{
-			CWindowUI* pForm=m_LayoutManager.GetForm();
+			CWindowUI* pForm = m_LayoutManager.GetForm();
 			SIZE size;
-			size.cx=pForm->GetFixedWidth();
-			size.cy=pForm->GetFixedHeight();
-			pForm->SetInitSize(size.cx,size.cy);
+			size.cx = pForm->GetFixedWidth();
+			size.cy = pForm->GetFixedHeight();
+			//pForm->SetInitSize(size.cx,size.cy);
+			CString strValue;
+			strValue.Format(_T("%d,%d"), size.cx, size.cy);
+			pForm->SetXMLAttribute(_T("size"), strValue);
 
-			g_pPropertiesWnd->SetPropValue(pControl, typeRect);
+			g_pPropertiesWnd->SetPropValue(pControl, typeSize);
 			SetScrollSizes(MM_TEXT,CSize(size.cx+FORM_OFFSET_X+80,
 				size.cy+FORM_OFFSET_Y+80));
 			m_MultiTracker.SetFormSize(size);
@@ -432,8 +435,11 @@ void CUIDesignerView::Notify(TNotifyUI& msg)
 		else
 		{
 			CControlUI* pParent = pControl->GetParent();
-			if(pParent)
-				pParent->SetPos(pParent->GetPos());
+			if (pParent)
+			{
+				RECT rc = pParent->GetPos();
+				glb_SetControlPos(pParent, rc);
+			}
 
 			g_pPropertiesWnd->SetPropValue(pControl, typeRect);
 			g_pPropertiesWnd->SetPropValue(pControl, typeRect);
@@ -443,11 +449,17 @@ void CUIDesignerView::Notify(TNotifyUI& msg)
 	{
 		if(GetControlType(pControl)!= UITypeForm)
 			return;
-		CWindowUI* pForm=m_LayoutManager.GetForm();
-		SIZE size=pForm->GetInitSize();
+		CWindowUI* pForm = m_LayoutManager.GetForm();
+		SIZE size = pForm->GetInitSize();
 
-		pForm->SetFixedWidth(size.cx);
-		pForm->SetFixedHeight(size.cy);
+		//pForm->SetFixedWidth(size.cx);
+		//pForm->SetFixedHeight(size.cy);
+
+		CString strValue;
+		strValue.Format(_T("%d"), size.cx);
+		pForm->SetXMLAttribute(_T("width"), strValue);
+		strValue.Format(_T("%d"), size.cy);
+		pForm->SetXMLAttribute(_T("height"), strValue);
 
 		SetScrollSizes(MM_TEXT,CSize(size.cx+FORM_OFFSET_X+80,
 			size.cy+FORM_OFFSET_Y+80));
@@ -459,7 +471,7 @@ void CUIDesignerView::Notify(TNotifyUI& msg)
 
 void CUIDesignerView::UpDateDPtoLPOffset()
 {
-	if(m_nMapMode==0)
+	if(m_nMapMode == 0)
 		return;
 
 	CPoint point(0,0);
@@ -578,13 +590,14 @@ void CUIDesignerView::SelectUI(CControlUI* pControl)
 
 void CUIDesignerView::OnActivated()
 {
+	CPaintManagerUI::SetResourcePath(m_LayoutManager.GetSkinDir());
 	g_pPropertiesWnd->ShowProperty(m_MultiTracker.GetFocused());
 	g_HookAPI.SetSkinDir(m_LayoutManager.GetSkinDir());
 }
 
 void CUIDesignerView::InitUI(CControlUI* pControl, int depth)
 {
-	if(pControl==NULL)
+	if(pControl == NULL)
 		return;
 
 	ExtendedAttributes* pExtended = new ExtendedAttributes;
@@ -608,7 +621,7 @@ void CUIDesignerView::InitUI(CControlUI* pControl, int depth)
 void CUIDesignerView::OnFormEditTest()
 {
 	TCHAR szFileName[MAX_PATH];
-	CString strFilePath=GetDocument()->GetPathName();
+	CString strFilePath = GetDocument()->GetPathName();
 	strFilePath=strFilePath.Mid(0,strFilePath.ReverseFind(_T('\\'))+1);
 	// 在原XML文件目录中创建临时文件用于预览
 	::GetTempFileName(strFilePath, _T("Dui"), 0, szFileName);
@@ -971,7 +984,10 @@ void CUIDesignerView::PasteUI(LPCTSTR xml)
 				SIZE sz = pControl->GetFixedXY();
 				sz.cx += COPY_OFFSET_XY;
 				sz.cy += COPY_OFFSET_XY;
-				pControl->SetFixedXY(sz);
+				//pControl->SetFixedXY(sz);
+				CDuiString strValue;
+				strValue.Format(_T("%d,%d"), sz.cx, sz.cy);
+				pControl->SetXMLAttribute(_T("pos2"), strValue);
 			}
 			pContainer->Add(pControl);
 			m_MultiTracker.Add(CreateTracker(pControl));
@@ -982,7 +998,8 @@ void CUIDesignerView::PasteUI(LPCTSTR xml)
 		m_UICommandHistory.Begin(arrSelected, actionAdd);
 		m_UICommandHistory.End();
 
-		pContainer->SetPos(pContainer->GetPos());
+		//pContainer->SetPos(pContainer->GetPos());
+		glb_SetControlPos(pContainer, pContainer->GetPos());
 
 		pRootContainer->SetAutoDestroy(false);
 		delete pRootContainer;
@@ -1117,7 +1134,8 @@ void CUIDesignerView::RedoUI(CControlUI* pControl, CControlUI* pParent)
  	pControl->GetManager()->ReapObjects(pControl);
 	InitUI(pControl, pExtended->nDepth + 1);
 	m_MultiTracker.Add(CreateTracker(pControl));
-	pContainer->SetPos(pContainer->GetPos());
+	//pContainer->SetPos(pContainer->GetPos());
+	glb_SetControlPos(pContainer, pContainer->GetPos());
 }
 
 void CUIDesignerView::OnTemplateSaveAs()

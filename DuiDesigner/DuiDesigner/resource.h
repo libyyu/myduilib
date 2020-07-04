@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ generated include file.
-// Used by DuiDesigner.rc
+// Microsoft Visual C++ 生成的包含文件。
+// 供 DuiDesigner.rc 使用
 //
 #define IDD_ABOUTBOX                    100
 #define IDP_OLE_INIT_FAILED             100
@@ -142,6 +142,8 @@
 #define ID_UI_PROP_WND                  347
 #define IDD_DIALOG_UI_ATTRIB_EDIT       348
 #define IDR_MENU_UI                     349
+#define IDD_DIALOG1                     349
+#define IDD_DIALOG_ROOT_DIR             349
 #define IDD_DIALOG_CHECK_UPDATE         350
 #define IDC_BUTTON_IMAGE_IMPORT         1000
 #define IDC_BUTTON_IMAGE_CLEAR          1001
@@ -185,6 +187,7 @@
 #define IDC_STATIC_LATEST_VERSION       1040
 #define IDC_STATIC_UPDATE_INFO          1041
 #define IDC_BUTTON_DUILIB_LINK          1042
+#define IDC_EDIT_ROOT_PATH              1043
 #define ID_UI_CONTROL_LISTBOX           32792
 #define ID_UI_CONTROL_BUTTON            32793
 #define ID_UI_CONTROL_CONTROL           32794
@@ -248,9 +251,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        348
+#define _APS_NEXT_RESOURCE_VALUE        351
 #define _APS_NEXT_COMMAND_VALUE         32900
-#define _APS_NEXT_CONTROL_VALUE         1043
+#define _APS_NEXT_CONTROL_VALUE         1044
 #define _APS_NEXT_SYMED_VALUE           351
 #endif
 #endif

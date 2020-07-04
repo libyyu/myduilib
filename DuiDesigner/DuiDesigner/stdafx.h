@@ -13,8 +13,9 @@
 #endif
 
 #include "targetver.h"
-
+#ifndef _CRT_SECURE_NO_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS
+#endif
 #define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS      // 某些 CString 构造函数将是显式的
 
 // 关闭 MFC 对某些常见但经常可放心忽略的警告消息的隐藏
@@ -145,20 +146,14 @@ using DuiLib::CLabelUI;
 using DuiLib::CTextUI;
 using DuiLib::COptionUI;
 using DuiLib::CComboUI;
-//using DuiLib::CComboBoxUI;
 using DuiLib::CListUI;
 using DuiLib::CSliderUI;
 using DuiLib::CProgressUI;
 using DuiLib::CActiveXUI;
 using DuiLib::CWebBrowserUI;
-//using DuiLib::CWkeWebkitUI;
 using DuiLib::CTreeViewUI;
 using DuiLib::CRichEditUI;
-//using DuiLib::CFadeButtonUI;
-//using DuiLib::CFadeOptionUI;
-//using DuiLib::CFadeCheckBoxUI;
 using DuiLib::CCheckBoxUI;
-//using DuiLib::CRadioUI;
 using DuiLib::CFlashUI;
 using DuiLib::CGifAnimUI;
 using DuiLib::CDateTimeUI;
@@ -167,7 +162,6 @@ using DuiLib::CChildLayoutUI;
 using DuiLib::CVerticalLayoutUI;
 using DuiLib::CHorizontalLayoutUI;
 using DuiLib::CTabLayoutUI;
-//using DuiLib::CAnimationTabLayoutUI;
 using DuiLib::CTileLayoutUI;
 using DuiLib::CListHeaderUI;
 using DuiLib::CListElementUI;
@@ -195,6 +189,7 @@ extern CHookAPI g_HookAPI;
 //////////////////////////////////////////////////////////////////////////
 //Global functions
 extern UINT glb_ControlICON(CString& strClass);
+extern void glb_SetControlPos(CControlUI* pControl, RECT rc);
 
 extern void format_log(int level, const TCHAR*  filename, unsigned int line, const TCHAR* format, ...);
 
