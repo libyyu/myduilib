@@ -924,9 +924,9 @@ void CUIProperties::ShowControlProperty(CControlUI* pControl)
 		}
 		m_wndPropList.AddProperty(pPropUI);
 
-		for (int i = 0; i < pPropUI->GetSubItemsCount(); ++i)
+		for (int j = 0; j < pPropUI->GetSubItemsCount(); ++j)
 		{
-			const CMFCPropertyGridProperty* pProp = pPropUI->GetSubItem(i);
+			const CMFCPropertyGridProperty* pProp = pPropUI->GetSubItem(j);
 			ASSERT(pProp);
 			const DWORD_PTR dwData = pProp->GetData();
 			MFCPropertyGridType dwType = (MFCPropertyGridType)(DWORD)(dwData);
@@ -947,6 +947,35 @@ void CUIProperties::ShowControlProperty(CControlUI* pControl)
 		}
 
 		pPropUI->Show(TRUE, FALSE);
+	}
+}
+
+void CUIProperties::SetPropValue(int nTag)
+{
+	for (int i = 0; i < m_wndPropList.GetPropertyCount(); i++)
+	{
+		CMFCPropertyGridProperty* pPropUI = m_wndPropList.GetProperty(i);
+		ASSERT(pPropUI);
+		if(!pPropUI) continue;
+		for (int j = 0; j < pPropUI->GetSubItemsCount(); ++j)
+		{
+			const CMFCPropertyGridProperty* pProp = pPropUI->GetSubItem(j);
+			const DWORD_PTR dwData = pProp->GetData();
+			MFCPropertyGridType dwType = (MFCPropertyGridType)(DWORD)(dwData);
+			if (dwType == nTag)
+			{
+				if (dwType == typeColor)
+				{
+					CMFCPropertyGridColor32Property* pColorItem = (CMFCPropertyGridColor32Property*)pProp;
+					pColorItem->UpdateFromControl(m_pControl);
+				}
+				else if (dwType >= typeBase)
+				{
+					CMFCPropertyGridPropertyBase* pBaseItem = (CMFCPropertyGridPropertyBase*)pProp;
+					pBaseItem->UpdateFromControl(m_pControl);
+				}
+			}
+		}
 	}
 }
 

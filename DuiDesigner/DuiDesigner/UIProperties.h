@@ -245,6 +245,8 @@ public:
 	void ShowProperty(CControlUI* pControl);
 	CControlUI* GetCurUI() const { return m_pControl; }
 
+	void SetPropValue(int nTag);
+
 	CMFCPropertyGridProperty* FindPropByData(DWORD_PTR dwData, BOOL bSearchSubProps = TRUE) const;
 	static CString FormatOrigProperty(CMFCPropertyGridProperty* pProp, int nType);
 

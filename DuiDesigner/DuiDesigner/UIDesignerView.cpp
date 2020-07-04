@@ -627,7 +627,7 @@ void CUIDesignerView::OnFormEditTest()
 	::GetTempFileName(strFilePath, _T("Dui"), 0, szFileName);
 
 	this->SaveSkinFile(szFileName);
-	
+
 	m_LayoutManager.TestForm(szFileName);
 
 }

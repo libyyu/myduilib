@@ -782,16 +782,23 @@ void CTrackerElement::SetPos(RECT rect,BOOL bMove/*=FALSE*/)
 {
 	ASSERT(m_pControl);
 
-	CControlUI* pParent=m_pControl->GetParent();
+	CControlUI* pParent = m_pControl->GetParent();
 	CRect rcParent(0,0,0,0);
 	if(pParent)
-		rcParent=pParent->GetPos();
+		rcParent = pParent->GetPos();
 
-	m_pControl->SetFixedXY(CSize(rect.left-rcParent.left,rect.top-rcParent.top));
+	//m_pControl->SetFixedXY(CSize(rect.left-rcParent.left,rect.top-rcParent.top));
+	CString strTmp;
+	strTmp.Format(_T("%d,%d"), rect.left - rcParent.left, rect.top - rcParent.top);
+	m_pControl->SetXMLAttribute(_T("pos2"), strTmp.GetString());
 	if(!bMove)
 	{
-		m_pControl->SetFixedHeight(rect.bottom-rect.top);
-		m_pControl->SetFixedWidth(rect.right-rect.left);
+		//m_pControl->SetFixedHeight(rect.bottom-rect.top);
+		//m_pControl->SetFixedWidth(rect.right-rect.left);
+		strTmp.Format(_T("%d"), rect.right - rect.left);
+		m_pControl->SetXMLAttribute(_T("width"), strTmp.GetString());
+		strTmp.Format(_T("%d"), rect.bottom - rect.top);
+		m_pControl->SetXMLAttribute(_T("height"), strTmp.GetString());
 
 		TNotifyUI Msg;
 		Msg.pSender=m_pControl;

@@ -241,6 +241,18 @@ bool CWindowUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 		SetInitSize(rcPos.right - rcPos.left, rcPos.bottom - rcPos.top);
 		return true;
 	}
+	else if (_tcscmp(pstrName, _T("pos2")) == 0)
+	{
+		SIZE sz = GetInitSize();
+		RECT rcPos = { 0 };
+		LPTSTR pstr = NULL;
+		rcPos.left = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);
+		rcPos.top = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr);
+		rcPos.right = rcPos.left + sz.cx;
+		rcPos.bottom = rcPos.top + sz.cy;
+		SetInitSize(rcPos.right - rcPos.left, rcPos.bottom - rcPos.top);
+		return true;
+	}
 	else if ( _tcscmp(pstrName, _T("opacity")) == 0 || _tcscmp(pstrName, _T("alpha")) == 0)
 	{
 		SetOpacity(_ttoi(pstrValue));
@@ -302,12 +314,20 @@ bool CWindowUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 		SetDefaultLinkHoverFontColor(clrColor);
 		return true;
 	}
-	else if (_tcsicmp(pstrName, _T("trayiconid")) == 0) 
+	else if (_tcscmp(pstrName, _T("width")) == 0)
 	{
+		SIZE sz = GetInitSize();
+		sz.cx = _ttoi(pstrValue);
+		SetInitSize(sz.cx, sz.cy);
+
 		return true;
 	}
-	else if (_tcscmp(pstrName, _T("traytiptext")) == 0) 
+	else if (_tcscmp(pstrName, _T("height")) == 0)
 	{
+		SIZE sz = GetInitSize();
+		sz.cy = _ttoi(pstrValue);
+		SetInitSize(sz.cx, sz.cy);
+
 		return true;
 	}
 	else 
@@ -706,7 +726,6 @@ public:
 	virtual void SetClass(LPCTSTR className)
 	{
 		mClassName = className;
-		mClassName+=_T("UI");
 	}
 	virtual LPCTSTR GetClass() const
 	{
@@ -1060,6 +1079,9 @@ void CLayoutManager::CDelayRepos::Repos()
 
 void CLayoutManager::TestForm(LPCTSTR pstrFile)
 {
+	CString sFile = pstrFile;
+	sFile = sFile.Right(sFile.GetLength() - m_strSkinDir.GetLength());
+
 	CFormTestWnd* pFrame = new CFormTestWnd();
 	CPaintManagerUI* pManager = new CPaintManagerUI();
 	SIZE size = m_Manager.GetInitSize();
@@ -1080,8 +1102,11 @@ void CLayoutManager::TestForm(LPCTSTR pstrFile)
 	pManager->SetMaxInfo(size.cx,size.cy);
 	pManager->SetShowUpdateRect(m_Manager.IsShowUpdateRect());
 
-	if( pFrame == NULL )
+	if (pFrame == NULL)
+	{
+		DeleteFile(pstrFile);
 		return;
+	}
 
 	g_HookAPI.EnableInvalidate(false);
 
@@ -1092,9 +1117,12 @@ void CLayoutManager::TestForm(LPCTSTR pstrFile)
 	// 使用新建的XML树来预览，不会挂掉
 	pManager->Init(h_wnd);
 	CDialogBuilder builder;
-	CContainerUI* pRoot = static_cast<CContainerUI*>(builder.Create(pstrFile,(UINT)0,NULL,pManager));
-	if(pRoot == NULL)
+	CContainerUI* pRoot = static_cast<CContainerUI*>(builder.Create(sFile.GetString(),(UINT)0,NULL,pManager));
+	if (pRoot == NULL)
+	{
+		MessageBox(m_Manager.GetPaintWindow(), _T("测试窗体失败!"), _T("测试"), MB_ICONWARNING);
 		return;
+	}
 
 	//pRoot->SetManager(NULL,NULL);
 	pFrame->SetRoot(pRoot);
@@ -1711,12 +1739,6 @@ void CLayoutManager::SaveProperties(CControlUI* pControl, TiXmlElement* pParentN
 
 bool CLayoutManager::SaveSkinFile( LPCTSTR pstrPathName )
 {
-	CString strPathName(pstrPathName);
-	int nPos = strPathName.ReverseFind(_T('\\'));
-	if(nPos == -1)
-		return false;
-	m_strSkinDir = strPathName.Left(nPos + 1);
-
 	TCHAR szBuf[MAX_PATH] = {0};
 	TiXmlDocument xmlDoc(CSTRING_TO_ANI(pstrPathName));
 	TiXmlDeclaration Declaration("1.0","utf-8","yes");
@@ -1887,5 +1909,3 @@ CString CLayoutManager::ConvertImageFileName(LPCTSTR pstrImageAttrib)
 
 	return strImageAttrib;
 }
-
-CString CLayoutManager::m_strSkinDir=_T("");
