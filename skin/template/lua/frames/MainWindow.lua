@@ -223,14 +223,25 @@ function MainWindow:OnInitWindow()
 
 	local TreeView = require "frames.treeview.TreeView"
 	local pList = win:FindControl("treeview_list")
+	local cls = FLua.ForwardClass("FolderItem")
+	local cls2 = FLua.ForwardClass("TemplateItem")
 	self.m_pTreeView = TreeView.new(pList)
 	for i=1, 5 do
-		local node = self.m_pTreeView:AddFolder(">".. i)
+		local nodein = cls.new("xml/item/node_0.xml", ">"..i)
+		local node = self.m_pTreeView:Add(nodein)
 		if i== 1 then
-			node = self.m_pTreeView:AddFolder("sub", node)
+			local nodein2 = cls.new("xml/item/node_0.xml", "sub>"..i)
+			self.m_pTreeView:Add(nodein2, node)
+
+			local nodein3 = cls.new("xml/item/node_0.xml", "sub>"..i)
+			node = self.m_pTreeView:Add(nodein3, node)
+
+			local nodein4 = cls.new("xml/item/node_0.xml", "sub>sub>"..i)
+			node = self.m_pTreeView:Add(nodein4, node)
 		end
 		for j=1, 5 do
-			self.m_pTreeView:AddNode("xml/item/node.xml", node)
+			local nodein2 = cls2.new("xml/item/node.xml", "sub>"..i)
+			self.m_pTreeView:Add(nodein2, node)
 		end
 	end
 	

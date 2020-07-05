@@ -1,6 +1,92 @@
 local TreeItem = require "frames.treeview.TreeItem"
 local TreeView = FLua.Class("TreeView")
 
+local FolderItem = FLua.Class(TreeItem, "FolderItem")
+do
+    function FolderItem.new(xml, name)
+        local obj = FolderItem()
+        obj.name_ = name
+        obj.node_xml = xml
+        return obj
+    end
+    function FolderItem:__constructor()
+        self.name_ = ""
+        self.checked_ = false
+    end
+    function FolderItem:OnCreate()
+        TreeItem.OnCreate(self)
+        local pListElement = self:data().list_elment_
+        local nameObj = pListElement:FindSubControl("tree_name")
+        local checkObj = pListElement:FindSubControl("tree_expandbtn")
+        local chooseObj = pListElement:FindSubControl("tree_choose")
+        nameObj:SetTagCtrl(pListElement)
+        checkObj:SetTagCtrl(pListElement)
+        chooseObj:SetTagCtrl(pListElement)
+        nameObj:OnNotifyAdd(function(msg)
+            if msg.sType == "dbclick" then
+                if self:CanExpand() then
+                    self:SetChildVisible(not self:data().child_visible_)
+                end
+            end
+        end)
+        checkObj:OnNotifyAdd(function(msg)
+            if msg.sType == "selectchanged" then
+                if self:CanExpand() then
+                    self:SetChildVisible(not self:data().child_visible_)
+                end
+            end
+        end)
+        chooseObj:OnNotifyAdd(function(msg)
+            if msg.sType == "selectchanged" then
+                self:Choose(not self.checked_)
+            end
+        end)
+
+        nameObj:SetText(self.name_)
+    end
+
+    function FolderItem:Choose(b)
+        self.checked_ = b
+        for i=1, self:num_children() do
+            local child = self:child(i)
+            if child:is(FolderItem) then
+                child:Choose(b)
+                local chooseObj = child:data().list_elment_:FindSubControl("tree_choose")
+                chooseObj:SetCheck(b)
+            end
+        end
+        if not b then
+            local parent = self:parent()
+            while parent do
+                if parent:is(FolderItem) then
+                    local chooseObj = parent:data().list_elment_:FindSubControl("tree_choose")
+                    chooseObj:SetCheck(b)
+
+                    parent.checked_ = false 
+                end
+
+                parent = parent:parent()
+            end
+        end 
+    end
+end
+local TemplateItem = FLua.Class(TreeItem, "TemplateItem")
+do
+    function TemplateItem.new(xml, name)
+        local obj = TemplateItem()
+        obj.name_ = name
+        obj.node_xml = xml
+        return obj
+    end
+    function TemplateItem:__constructor()
+        self.name_ = ""
+    end
+    function TemplateItem:OnCreate()
+        TreeItem.OnCreate(self)
+    end
+end
+
+
 function TreeView.new(pCtrl)
     assert(pCtrl ~= nil and pCtrl:IsClass("List"), "pCtrl is nil")
     local obj = TreeView()
@@ -15,9 +101,7 @@ function TreeView:__constructor()
 	self.delay_number_ = nil 
 	self.delay_left_ = nil
 	self.text_padding_ = {left=0, top=0, right=0, bottom=0}
-	self.level_text_start_pos_ = 5
-	self.level_expand_image_ = "<i res/list/list_icon_b.png>"
-	self.level_collapse_image_ = "<i res/list/list_icon_a.png>"
+	self.level_text_start_pos_ = 2
 end
 function TreeView:__destructor()
    warn("TreeView:__destructor")
@@ -26,140 +110,43 @@ end
 function TreeView:OnInit()
     self._pTreeViewCtrl:SetItemShowHtml(true)
 
-    self.root_node_ = TreeItem.new()
+    self.root_node_ = TreeItem()
 	self.root_node_:data().level_ = 0
 	self.root_node_:data().child_visible_ = true
-	self.root_node_:data().has_child_ = true
 	self.root_node_:data().list_elment_ = nil
+end
+
+function TreeView:GetManager()
+    return self._pTreeViewCtrl:GetManager()
 end
 
 function TreeView:GetRoot()
     return self.root_node_
 end
 
-function TreeView:AddFolder(name, parent)
-    if not parent then
-        parent = self.root_node_
-    end
-    
-    local node_xml = "xml/item/node_0.xml"
-    local dlg = DuiLib.CDialogBuilder()
-    local pListElement = dlg:Create(node_xml, self._pTreeViewCtrl:GetManager())
-    assert(pListElement and pListElement:IsClass("ListContainerElement"))
-    if pListElement == nil then
-        return nil
-    end
-
-    local node = TreeItem.new()
-	node:data().level_ = parent:data().level_ + 1
-	node:data().child_visible_ = false
-	node:data().has_child_ = true
-    node:data().list_elment_ = pListElement
-    node:data().folder_ = true
-
-    if not parent:data().child_visible_ then
-        pListElement:SetVisible(false)
-    end
-
-    if parent ~= self.root_node_ and not parent:data().list_elment_:IsVisible() then
-        pListElement:SetVisible(false)
-    end
-
-    local rcPadding = {left=self.text_padding_.left,top=self.text_padding_.top,right=self.text_padding_.right,bottom=self.text_padding_.bottom}
-	for i = 1, node:data().level_ - 1 do
-		rcPadding.left = rcPadding.left + self.level_text_start_pos_
-    end
-    pListElement:SetPadding(rcPadding)
-    
-    local index = 0
-    local prev = parent:get_last_child()
-
-    if prev:data().list_elment_ then
-        index = self._pTreeViewCtrl:GetItemIndex(prev:data().list_elment_) + 1
-    end
-
-    if not self._pTreeViewCtrl:AddAt(pListElement, index) then
-        pListElement:Delete()
-        pListElement = nil
-        node = nil
-        return nil
-    end
-    
-    pListElement:SetUserData2("node", node)
-    parent:add_child(node)
-
-    local nameObj = pListElement:FindSubControl("tree_name")
-    local checkObj = pListElement:FindSubControl("tree_expandbtn")
-    nameObj:SetTagCtrl(pListElement)
-    checkObj:SetTagCtrl(pListElement)
-    nameObj:OnNotifyAdd(function(msg)
-        if msg.sType == "dbclick" then
-            if self:CanExpand(node) then
-                self:SetChildVisible(node, not node:data().child_visible_)
-            end
-        end
-    end)
-    checkObj:OnNotifyAdd(function(msg)
-        if msg.sType == "selectchanged" then
-            if self:CanExpand(node) then
-                self:SetChildVisible(node, not node:data().child_visible_)
-            end
-        end
-    end)
-
-    nameObj:SetText(name)
-
-    return node
+function TreeView:GetLevelTextStartPos()
+    return self.level_text_start_pos_
 end
 
-function TreeView:AddNode(node_xml, parent)
-    local tempNode = parent
+function TreeView:GetItemIndex(node)
+    if node == self.root_node_ then return -1 end
+    assert(self._pTreeViewCtrl)
+    assert(node:data().list_elment_)
+    return self._pTreeViewCtrl:GetItemIndex(node:data().list_elment_)
+end 
+function TreeView:GetTreeCtrl()
+    return self._pTreeViewCtrl
+end
+
+function TreeView:Add(node, parent)
     if not parent then
         parent = self.root_node_
     end
 
-    local dlg = DuiLib.CDialogBuilder()
-    local pListElement = dlg:Create(node_xml, self._pTreeViewCtrl:GetManager())
-    assert(pListElement and pListElement:IsClass("ListContainerElement"))
-    if pListElement == nil then
+    if not node:AddToTree(self, parent) then
         return nil
     end
 
-    local node = TreeItem.new()
-	node:data().level_ = parent:data().level_ + 1
-	node:data().child_visible_ = true
-	node:data().has_child_ = false
-    node:data().list_elment_ = pListElement
-
-    if not parent:data().child_visible_ then
-        pListElement:SetVisible(false)
-    end
-
-	if parent ~= self.root_node_ and not parent:data().list_elment_:IsVisible() then
-        pListElement:SetVisible(false)
-    end
-
-	local rcPadding = {left=self.text_padding_.left,top=self.text_padding_.top,right=self.text_padding_.right,bottom=self.text_padding_.bottom}
-	for i = 1, node:data().level_ do
-		rcPadding.left = rcPadding.left + self.level_text_start_pos_
-    end
-    pListElement:SetPadding(rcPadding)
-       
-    local index = 0
-	local prev = parent:get_last_child()
-	if prev:data().list_elment_ then
-        index = self._pTreeViewCtrl:GetItemIndex(prev:data().list_elment_) + 1
-    end
-
-    if not self._pTreeViewCtrl:AddAt(pListElement, index) then
-        pListElement:Delete()
-        pListElement = nil
-		node = nil
-    end
-
-    pListElement:SetUserData2("node", node)
-    parent:add_child(node)
-        
     return node
 end
 

@@ -13,6 +13,16 @@
             selectedpushedimage="file=&apos;res/tree/treeview_b.png&apos; source=&apos;16,0,32,16&apos;"
             hotimage="file=&apos;res/tree/treeview_a.png&apos; source=&apos;16,0,32,16&apos;" 
             normalimage="file=&apos;res/tree/treeview_a.png&apos; source=&apos;0,0,16,16&apos;" />
+            <CheckBox name="tree_choose"
+            padding="0,4,0,0" 
+            width="21" 
+            height="21" 
+            tooltip="选中" 
+            selectedhotimage="res/checkbox/checked.png" 
+            selectedimage="res/checkbox/checked.png" 
+            selectedpushedimage="res/checkbox/checked.png"
+            hotimage="res/checkbox/unchecked.png" 
+            normalimage="res/checkbox/unchecked.png" />
             <Label name="tree_name" text="AAA" padding="1,2,0,0" bordersize="0" textcolor="#FF000000" disabledtextcolor="#FF808080"/>
         </HorizontalLayout>
     </VerticalLayout>

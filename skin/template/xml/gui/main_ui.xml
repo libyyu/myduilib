@@ -64,7 +64,7 @@
                         </VerticalLayout>
                     </HorizontalLayout>
                     <HorizontalLayout inset="3,0,3,3">
-                        <XTreeView itemshowhtml="true" headerbkimage="file=&apos;res/background/list_header_bg.png&apos;" menu="true" itemalign="center" itembkcolor="#FFE2DDDF" vscrollbar="true" name="treeview_list" hscrollbar="true" bkcolor="#FFFFFFFF" inset="0,0,0,0">
+                        <XTreeView itemshowhtml="true" menu="true" vscrollbar="true" name="treeview_list" hscrollbar="true" bkcolor="#FFFFFFFF" inset="0,0,0,0">
                         </XTreeView>
                     </HorizontalLayout>
                 </VerticalLayout>

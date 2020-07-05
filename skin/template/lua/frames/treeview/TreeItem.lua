@@ -2,16 +2,12 @@ local TreeItem = FLua.Class("TreeItem")
 
 local NodeData = require "frames.treeview.NodeData"
 
-function TreeItem.new(data, parent)
-    local obj = TreeItem()
-    obj.data_ = data or NodeData()
-    obj.parent_ = parent
-	return obj
-end
 function TreeItem:__constructor()
     self.children_ = {}
     self.data_ = NodeData()
     self.parent_ = nil
+    self.node_xml = ""
+    self.tree = nil
 end
 function TreeItem:__destructor() 
 end
@@ -31,7 +27,8 @@ function TreeItem:has_children()
     return self:num_children() > 0
 end
 function TreeItem:add_child(child)
-    child:set_parent(self); 
+    self:data().has_child_ = true
+    child:set_parent(self)
 	table.insert(self.children_, child) 
 end
 function TreeItem:remove_child(child)    
@@ -56,6 +53,80 @@ function TreeItem:folder()
 end
 function TreeItem:set_parent(parent)
     self.parent_ = parent
+end
+
+function TreeItem:_Create(tree)
+    local dlg = DuiLib.CDialogBuilder()
+    local pListElement = dlg:Create(self.node_xml, tree:GetManager())
+    assert(pListElement and pListElement:IsClass("ListContainerElement"))
+    if pListElement == nil then
+        return false
+    end
+
+    self:data().list_elment_ = pListElement
+    return true
+end
+
+function TreeItem:OnCreate()
+    local pListElement = self:data().list_elment_
+end
+
+function TreeItem:AddToTree(tree, parent)
+    if not self:_Create(tree) then
+        return false
+    end
+    self:data().level_ = parent:data().level_ + 1
+
+    local pListElement = self:data().list_elment_
+    
+    if not parent:data().child_visible_ then
+        pListElement:SetVisible(false)
+    end
+
+    if parent ~= tree:GetRoot() and not parent:data().list_elment_:IsVisible() then
+        pListElement:SetVisible(false)
+    end
+
+    local rcPadding = {left=0,top=0,right=0,bottom=0}
+	for i = 1, self:data().level_ - 1 do
+		rcPadding.left = rcPadding.left + tree:GetLevelTextStartPos()
+    end
+    self:SetPadding(rcPadding)
+
+    local index = 0
+    local prev = parent:get_last_child()
+
+    if prev:data().list_elment_ then
+        index = tree:GetItemIndex(prev) + 1
+    end
+
+    if not tree:GetTreeCtrl():AddAt(pListElement, index) then
+        pListElement:Delete()
+        pListElement = nil
+        self:data().list_elment_ = nil
+        return false
+    end
+    
+    pListElement:SetUserData2("node", self)
+    parent:add_child(self)
+    self.tree = tree
+
+    self:OnCreate()
+
+    return true
+end
+
+function TreeItem:SetPadding(rcPadding)
+    local pListElement = self:data().list_elment_
+    pListElement:SetPadding(rcPadding)
+end
+
+function TreeItem:SetChildVisible(visible)
+    self.tree:SetChildVisible(self, visible)
+end
+
+function TreeItem:CanExpand()
+    return self.tree:CanExpand(self)
 end
 
 return TreeItem
