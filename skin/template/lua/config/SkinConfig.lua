@@ -12,7 +12,7 @@ local SkinItemBgKey = "_SkinItemBg"
 local SkinItemHoverBgKey = "_SkinItemHoverBg"
 local SkinItemPlayBgKey  = "_SkinItemPlayBg"
 
-function CSkinConfig:__ctor()
+function CSkinConfig:__constructor()
 	self.m_dwCor = 0xFFFFFFFF
 	self.m_bEnableUnityBg = false
 

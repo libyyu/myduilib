@@ -1,6 +1,6 @@
 local IBaseWindow = FLua.Abstract("IBaseWindow")
 
-function IBaseWindow:__ctor()
+function IBaseWindow:__constructor()
 	self.m_parent = nil
 	self.m_hWin = nil
 	self.m_msgTable = nil

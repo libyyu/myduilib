@@ -1,6 +1,6 @@
 local CPlayListInfo = FLua.Class("CPlayListInfo")
 
-function CPlayListInfo:__ctor()
+function CPlayListInfo:__constructor()
 	self.m_nLocalID = 0
 	self.m_nID = 0
 	self.m_sName = ""

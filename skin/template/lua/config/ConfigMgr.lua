@@ -1,6 +1,6 @@
 local CConfigMgr = FLua.Class("CConfigMgr")
 
-function CConfigMgr:__ctor()
+function CConfigMgr:__constructor()
 	self.m_pNormal = nil
 	self.m_pAlert = nil
 	self.m_pHotKey = nil

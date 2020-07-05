@@ -26,7 +26,7 @@ local function errorf(fmt, ...)
 	end
 end
 ---------------------------------------------------------
-function CUserDBase:__ctor()
+function CUserDBase:__constructor()
 	self.PlayListTableName 			= "play_lists" 			--列表                 --存储用户本地所有列表
 	self.SongListTableName 			= "song_lists" 			--歌曲表               --每个列表都对应一个歌曲表
 	self.FavoritesTableName 		= "favorites" 			--收藏				   --用户收藏表，需网络同步

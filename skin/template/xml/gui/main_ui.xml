@@ -53,33 +53,21 @@
                     </HorizontalLayout>
                 </VerticalLayout>
             </HorizontalLayout>
-            <HorizontalLayout>
-                <TreeView bkcolor="#ffffffff" visiblefolderbtn="true" visiblecheckbtn="true" vscrollbar="true" >
-                    <TreeNode text="A1" folderattr="padding=&quot;0,1,0,0&quot; width=&quot;16&quot; height=&quot;16&quot; normalimage=&quot;file='res/tree/treeview_b.png' source='0,0,16,16' &quot; hotimage=&quot;file='res/tree/treeview_b.png' source='16,0,32,16' &quot; selectedimage=&quot;file='res/tree/treeview_a.png' source='0,0,16,16' &quot; selectedhotimage=&quot;file='res/tree/treeview_a.png' source='16,0,32,16' &quot;" checkboxattr="width=&quot;16&quot; height=&quot;16&quot; normalimage=&quot;file='res/checkbox/unchecked.png' &quot; selectedimage=&quot;file='res/checkbox/checked.png' &quot;" >
-                        <TreeNode text="B1" folderattr="padding=&quot;0,1,0,0&quot; width=&quot;16&quot; height=&quot;16&quot; normalimage=&quot;file='res/tree/treeview_b.png' source='0,0,16,16' &quot; hotimage=&quot;file='res/tree/treeview_b.png' source='16,0,32,16' &quot; selectedimage=&quot;file='res/tree/treeview_a.png' source='0,0,16,16' &quot; selectedhotimage=&quot;file='res/tree/treeview_a.png' source='16,0,32,16' &quot;" checkboxattr="width=&quot;16&quot; height=&quot;16&quot; normalimage=&quot;file='res/checkbox/unchecked.png' &quot; selectedimage=&quot;file='res/checkbox/checked.png' &quot;" >
-                            <TreeNode text="C1" folderattr="padding=&quot;0,1,0,0&quot; width=&quot;16&quot; height=&quot;16&quot; normalimage=&quot;file='res/tree/treeview_b.png' source='0,0,16,16' &quot; hotimage=&quot;file='res/tree/treeview_b.png' source='16,0,32,16' &quot; selectedimage=&quot;file='res/tree/treeview_a.png' source='0,0,16,16' &quot; selectedhotimage=&quot;file='res/tree/treeview_a.png' source='16,0,32,16' &quot;" checkboxattr="width=&quot;16&quot; height=&quot;16&quot; normalimage=&quot;file='res/checkbox/unchecked.png' &quot; selectedimage=&quot;file='res/checkbox/checked.png' &quot;" >
-                                <TreeNode text="D1" folderattr="padding=&quot;0,1,0,0&quot; width=&quot;16&quot; height=&quot;16&quot; normalimage=&quot;file='Icon/treeview_b.png' source='0,0,16,16' &quot; hotimage=&quot;file='Icon/treeview_b.png' source='16,0,32,16' &quot; selectedimage=&quot;file='Icon/treeview_a.png' source='0,0,16,16' &quot; selectedhotimage=&quot;file='Icon/treeview_a.png' source='16,0,32,16' &quot;" checkboxattr="width=&quot;16&quot; height=&quot;16&quot; normalimage=&quot;file='Icon/unchecked.png' &quot; selectedimage=&quot;file='Icon/checked.png' &quot;" >
-                                    <Button text="扩展按钮" width="100" />
-                                </TreeNode>
-                                <Button text="扩展按钮" width="100" />
-                            </TreeNode>
-                            <Edit text="扩展文本框" tipvalue="扩展文本框" width="100" />
-                        </TreeNode>
-                        <Edit text="扩展文本框" tipvalue="扩展文本框" width="100" />
-                    </TreeNode>
-                    <TreeNode text="A2" folderattr="padding=&quot;0,1,0,0&quot; width=&quot;16&quot; height=&quot;16&quot; normalimage=&quot;file='res/tree/treeview_b.png' source='0,0,16,16' &quot; hotimage=&quot;file='res/tree/treeview_b.png' source='16,0,32,16' &quot; selectedimage=&quot;file='res/tree/treeview_a.png' source='0,0,16,16' &quot; selectedhotimage=&quot;file='res/tree/treeview_a.png' source='16,0,32,16' &quot;" checkboxattr="width=&quot;16&quot; height=&quot;16&quot; normalimage=&quot;file='res/checkbox/unchecked.png' &quot; selectedimage=&quot;file='res/checkbox/checked.png' &quot;" >
-                        <TreeNode text="B2" folderattr="padding=&quot;0,1,0,0&quot; width=&quot;16&quot; height=&quot;16&quot; normalimage=&quot;file='res/tree/treeview_b.png' source='0,0,16,16' &quot; hotimage=&quot;file='res/tree/treeview_b.png' source='16,0,32,16' &quot; selectedimage=&quot;file='res/tree/treeview_a.png' source='0,0,16,16' &quot; selectedhotimage=&quot;file='res/tree/treeview_a.png' source='16,0,32,16' &quot;" checkboxattr="width=&quot;16&quot; height=&quot;16&quot; normalimage=&quot;file='res/checkbox/unchecked.png' &quot; selectedimage=&quot;file='res/checkbox/checked.png' &quot;" >
-                            <TreeNode text="C2" folderattr="padding=&quot;0,1,0,0&quot; width=&quot;16&quot; height=&quot;16&quot; normalimage=&quot;file='res/tree/treeview_b.png' source='0,0,16,16' &quot; hotimage=&quot;file='res/tree/treeview_b.png' source='16,0,32,16' &quot; selectedimage=&quot;file='res/tree/treeview_a.png' source='0,0,16,16' &quot; selectedhotimage=&quot;file='res/tree/treeview_a.png' source='16,0,32,16' &quot;" checkboxattr="width=&quot;16&quot; height=&quot;16&quot; normalimage=&quot;file='res/checkbox/unchecked.png' &quot; selectedimage=&quot;file='res/checkbox/checked.png' &quot;" >
-                                <TreeNode text="D2" folderattr="padding=&quot;0,1,0,0&quot; width=&quot;16&quot; height=&quot;16&quot; normalimage=&quot;file='res/tree/treeview_b.png' source='0,0,16,16' &quot; hotimage=&quot;file='res/tree/treeview_b.png' source='16,0,32,16' &quot; selectedimage=&quot;file='res/tree/treeview_a.png' source='0,0,16,16' &quot; selectedhotimage=&quot;file='res/tree/treeview_a.png' source='16,0,32,16' &quot;" checkboxattr="width=&quot;16&quot; height=&quot;16&quot; normalimage=&quot;file='res/checkbox/unchecked.png' &quot; selectedimage=&quot;file='res/checkbox/checked.png' &quot;" >
-                                    <Option text="扩展单选框" width="100" group="RadioBoxTest" />
-                                </TreeNode>
-                                <Option text="扩展单选框" width="100" group="RadioBoxTest" />
-                            </TreeNode>
-                            <CheckBox text="扩展复选框" width="100" />
-                        </TreeNode>
-                        <CheckBox text="扩展复选框" width="100" />
-                    </TreeNode>
-                </TreeView>
+            <HorizontalLayout minwidth="210" width="250" sepwidth="4" sepimm="true" name="HorizontalLayout8" maxwidth="320">
+                <VerticalLayout>
+                    <HorizontalLayout inset="4,2,2,2" height="35">
+                        <VerticalLayout>
+                            <Edit bkimage="file=&apos;res/background/search_bg.png&apos; source=&apos;0,0,258,23&apos; corner=&apos;1,1,1,1&apos;" prompt="输入模板关键字搜索" bordercolor="#C6CFD8" height="23" />
+                        </VerticalLayout>
+                        <VerticalLayout width="63" inset="4,0,2,0">
+                            <Button textcolor="#FFFFFFFF" font="0" autocalcwidth="true" pushedimage="file=&apos;res/background/button.png&apos; source=&apos;0,23,63,46&apos;" text="搜索" hotimage="file=&apos;res/background/button.png&apos; source=&apos;0,23,63,46&apos;" normalimage="file=&apos;res/background/button.png&apos; source=&apos;0,0,63,23&apos;" />
+                        </VerticalLayout>
+                    </HorizontalLayout>
+                    <HorizontalLayout inset="3,0,3,3">
+                        <XTreeView itemshowhtml="true" headerbkimage="file=&apos;res/background/list_header_bg.png&apos;" menu="true" itemalign="center" itembkcolor="#FFE2DDDF" vscrollbar="true" name="treeview_list" hscrollbar="true" bkcolor="#FFFFFFFF" inset="0,0,0,0">
+                        </XTreeView>
+                    </HorizontalLayout>
+                </VerticalLayout>
             </HorizontalLayout>
             <HorizontalLayout name="HorizontalLayout11" pos="0,0,0,0" />
         </HorizontalLayout>

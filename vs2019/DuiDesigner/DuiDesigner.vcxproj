@@ -246,12 +246,12 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\UICommandHistory.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\UICommandHistory.cpp.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\third_party\tinyxml\tinyxmlerror.cpp">
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\ToolBoxCtrl.cpp">
       <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\third_party\tinyxml\tinyxmlerror.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\third_party\tinyxml\tinyxmlerror.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\third_party\tinyxml\tinyxmlerror.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\third_party\tinyxml\tinyxmlerror.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\ToolBoxCtrl.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\ToolBoxCtrl.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\ToolBoxCtrl.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\ToolBoxCtrl.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\DuiDesigner\DuiDesigner\third_party\tinyxml\tinystr.cpp">
       <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
@@ -260,19 +260,19 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\third_party\tinyxml\tinystr.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\third_party\tinyxml\tinystr.cpp.obj</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\UIProperties.cpp">
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\UIProperties.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\UIProperties.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\UIProperties.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\UIProperties.cpp.obj</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="..\..\DuiDesigner\DuiDesigner\ToolBoxWnd.cpp">
       <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\ToolBoxWnd.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\ToolBoxWnd.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\ToolBoxWnd.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\ToolBoxWnd.cpp.obj</ObjectFileName>
-    </ClCompile>
-    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\DialogProjectNew.cpp">
-      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\DialogProjectNew.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\DialogProjectNew.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\DialogProjectNew.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\DialogProjectNew.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\DuiDesigner\DuiDesigner\GlobalVariable.cpp">
       <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
@@ -288,19 +288,19 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\MultiUITracker.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\MultiUITracker.cpp.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\stdafx.cpp">
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\third_party\tinyxml\tinyxmlerror.cpp">
       <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\stdafx.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\stdafx.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\stdafx.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\stdafx.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\third_party\tinyxml\tinyxmlerror.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\third_party\tinyxml\tinyxmlerror.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\third_party\tinyxml\tinyxmlerror.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\third_party\tinyxml\tinyxmlerror.cpp.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\DialogRootDir.cpp">
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\UIUtil.cpp">
       <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\DialogRootDir.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\DialogRootDir.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\DialogRootDir.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\DialogRootDir.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\UIUtil.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\UIUtil.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\UIUtil.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\UIUtil.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\DuiDesigner\DuiDesigner\DialogSaveAsName.cpp">
       <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
@@ -316,6 +316,13 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\ResourceView.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\ResourceView.cpp.obj</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\FileView.cpp">
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\FileView.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\FileView.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\FileView.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\FileView.cpp.obj</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="..\..\DuiDesigner\DuiDesigner\UIDesignerView.cpp">
       <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\UIDesignerView.cpp.obj</ObjectFileName>
@@ -323,12 +330,12 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\UIDesignerView.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\UIDesignerView.cpp.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\UIDesignerDoc.cpp">
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\PropertiesWnd.cpp">
       <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\UIDesignerDoc.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\UIDesignerDoc.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\UIDesignerDoc.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\UIDesignerDoc.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\PropertiesWnd.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\PropertiesWnd.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\PropertiesWnd.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\PropertiesWnd.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\DuiDesigner\DuiDesigner\PropertyTabLayoutUI.cpp">
       <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
@@ -351,19 +358,19 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\MainFrm.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\MainFrm.cpp.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\ImagePreview.cpp">
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\UIDesignerDoc.cpp">
       <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\ImagePreview.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\ImagePreview.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\ImagePreview.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\ImagePreview.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\UIDesignerDoc.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\UIDesignerDoc.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\UIDesignerDoc.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\UIDesignerDoc.cpp.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\ClassView.cpp">
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\OutuptWnd.cpp">
       <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\ClassView.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\ClassView.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\ClassView.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\ClassView.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\OutuptWnd.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\OutuptWnd.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\OutuptWnd.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\OutuptWnd.cpp.obj</ObjectFileName>
     </ClCompile>
     <ResourceCompile Include="..\..\DuiDesigner\DuiDesigner\DuiDesigner.rc">
       <ResourceOutputFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\DuiDesigner.rc.obj</ResourceOutputFileName>
@@ -385,19 +392,19 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\DialogCustomFonts.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\DialogCustomFonts.cpp.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\UIUtil.cpp">
-      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\UIUtil.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\UIUtil.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\UIUtil.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\UIUtil.cpp.obj</ObjectFileName>
-    </ClCompile>
     <ClCompile Include="..\..\DuiDesigner\DuiDesigner\DialogTemplateOpen.cpp">
       <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\DialogTemplateOpen.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\DialogTemplateOpen.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\DialogTemplateOpen.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\DialogTemplateOpen.cpp.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\stdafx.cpp">
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\stdafx.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\stdafx.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\stdafx.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\stdafx.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\DuiDesigner\DuiDesigner\third_party\tinyxml\tinyxmlparser.cpp">
       <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
@@ -406,33 +413,12 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\third_party\tinyxml\tinyxmlparser.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\third_party\tinyxml\tinyxmlparser.cpp.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\ChildFrm.cpp">
-      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\ChildFrm.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\ChildFrm.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\ChildFrm.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\ChildFrm.cpp.obj</ObjectFileName>
-    </ClCompile>
-    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\ImageDialog.cpp">
-      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\ImageDialog.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\ImageDialog.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\ImageDialog.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\ImageDialog.cpp.obj</ObjectFileName>
-    </ClCompile>
     <ClCompile Include="..\..\DuiDesigner\DuiDesigner\DialogSkinFileNew.cpp">
       <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\DialogSkinFileNew.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\DialogSkinFileNew.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\DialogSkinFileNew.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\DialogSkinFileNew.cpp.obj</ObjectFileName>
-    </ClCompile>
-    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\third_party\tinyxml\tinyxml.cpp">
-      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\third_party\tinyxml\tinyxml.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\third_party\tinyxml\tinyxml.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\third_party\tinyxml\tinyxml.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\third_party\tinyxml\tinyxml.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\DuiDesigner\DuiDesigner\DuiDesigner.cpp">
       <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
@@ -441,6 +427,27 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\DuiDesigner.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\DuiDesigner.cpp.obj</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\ImageDialog.cpp">
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\ImageDialog.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\ImageDialog.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\ImageDialog.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\ImageDialog.cpp.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\third_party\tinyxml\tinyxml.cpp">
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\third_party\tinyxml\tinyxml.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\third_party\tinyxml\tinyxml.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\third_party\tinyxml\tinyxml.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\third_party\tinyxml\tinyxml.cpp.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\DialogProjectNew.cpp">
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\DialogProjectNew.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\DialogProjectNew.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\DialogProjectNew.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\DialogProjectNew.cpp.obj</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="..\..\DuiDesigner\DuiDesigner\DialogCheckUpdate.cpp">
       <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\DialogCheckUpdate.cpp.obj</ObjectFileName>
@@ -448,40 +455,26 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\DialogCheckUpdate.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\DialogCheckUpdate.cpp.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\FileView.cpp">
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\ChildFrm.cpp">
       <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\FileView.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\FileView.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\FileView.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\FileView.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\ChildFrm.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\ChildFrm.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\ChildFrm.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\ChildFrm.cpp.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\UIProperties.cpp">
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\ImagePreview.cpp">
       <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\UIProperties.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\UIProperties.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\UIProperties.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\UIProperties.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\ImagePreview.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\ImagePreview.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\ImagePreview.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\ImagePreview.cpp.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\ToolBoxCtrl.cpp">
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\ClassView.cpp">
       <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\ToolBoxCtrl.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\ToolBoxCtrl.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\ToolBoxCtrl.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\ToolBoxCtrl.cpp.obj</ObjectFileName>
-    </ClCompile>
-    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\PropertiesWnd.cpp">
-      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\PropertiesWnd.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\PropertiesWnd.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\PropertiesWnd.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\PropertiesWnd.cpp.obj</ObjectFileName>
-    </ClCompile>
-    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\LayoutManager.cpp">
-      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\LayoutManager.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\LayoutManager.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\LayoutManager.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\LayoutManager.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\ClassView.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\ClassView.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\ClassView.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\ClassView.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\DuiDesigner\DuiDesigner\HookAPI.cpp">
       <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
@@ -489,6 +482,20 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\HookAPI.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\HookAPI.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\HookAPI.cpp.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\DialogRootDir.cpp">
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\DialogRootDir.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\DialogRootDir.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\DialogRootDir.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\DialogRootDir.cpp.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\DuiDesigner\DuiDesigner\LayoutManager.cpp">
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\DuiDesigner\windows\x64\release\DuiDesigner\DuiDesigner\LayoutManager.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\DuiDesigner\windows\x64\debug\DuiDesigner\DuiDesigner\LayoutManager.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\DuiDesigner\windows\x86\release\DuiDesigner\DuiDesigner\LayoutManager.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\DuiDesigner\windows\x86\debug\DuiDesigner\DuiDesigner\LayoutManager.cpp.obj</ObjectFileName>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -512,6 +519,7 @@
     <ClInclude Include="..\..\DuiDesigner\DuiDesigner\LayoutManager.h" />
     <ClInclude Include="..\..\DuiDesigner\DuiDesigner\MainFrm.h" />
     <ClInclude Include="..\..\DuiDesigner\DuiDesigner\MultiUITracker.h" />
+    <ClInclude Include="..\..\DuiDesigner\DuiDesigner\OutuptWnd.h" />
     <ClInclude Include="..\..\DuiDesigner\DuiDesigner\PropertiesWnd.h" />
     <ClInclude Include="..\..\DuiDesigner\DuiDesigner\PropertyTabLayoutUI.h" />
     <ClInclude Include="..\..\DuiDesigner\DuiDesigner\resource.h" />

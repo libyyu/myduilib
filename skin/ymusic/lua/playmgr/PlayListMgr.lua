@@ -10,7 +10,7 @@ _G.EM_MODE = Enum.make
 	"EM_RAMDON",
 }
 
-function CPlayListMgr:__ctor()
+function CPlayListMgr:__constructor()
 	self.m_spSongListMap = {}
 	self.m_spRandomId = {}
 	self.m_spCurListID = -1 --记录当前播放的列表

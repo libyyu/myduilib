@@ -1,6 +1,6 @@
 local CUserContext = FLua.Class("CUserContext")
 
-function CUserContext:__ctor()
+function CUserContext:__constructor()
 	self._runtimeState = nil
 	self._user = nil
 	self._userDB = nil

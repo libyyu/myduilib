@@ -1,6 +1,6 @@
 local CCacheMgr = FLua.Class("CCacheMgr")
 
-function CCacheMgr:__ctor()
+function CCacheMgr:__constructor()
 	self.m_sCachePath = ""
 	self.m_nTotalCacheSize = 0
 	self.m_sLrcPath = ""

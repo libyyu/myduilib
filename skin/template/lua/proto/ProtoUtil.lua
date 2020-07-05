@@ -1,9 +1,9 @@
 importdll "protos"
-local proto_file = "pb/config_common.pb"
+local proto_file = "pb/config_common.proto"
 
 local ProtoUtils = FLua.FinalClass("ProtoUtils")
 
-function ProtoUtils:__ctor()
+function ProtoUtils:__constructor()
     self.m_MessageWrapperMap = nil
     self.m_MessageBinaryDataMap = {}
     self.m_MessagePosInfoMap = {}
@@ -21,7 +21,7 @@ end
 
 function ProtoUtils:LoadProtoFileIfNeed()
     if not self.m_MessageWrapperMap then
-        self.m_MessageWrapperMap = require "Utility.DynamicProtobufWrapper".LoadFile(self.m_PbName)
+        self.m_MessageWrapperMap = require "proto.DynamicProtobufWrapper".LoadFile(self.m_PbName)
     end
 end
 
@@ -98,19 +98,26 @@ function ProtoUtils:GetTemplateIndexes(message_name)
     return rt
 end
 
-function ProtoUtils:GetEnumTable(name)
-	self:LoadProtoFileIfNeed()
-    return self.m_MessageWrapperMap[name] or {}
+function ProtoUtils:GetTmplClass(message_name)
+    self:LoadProtoFileIfNeed()
+    return self.m_MessageWrapperMap[message_name]
 end
 
 function ProtoUtils:GetAllTemplate()
     self:LoadProtoFileIfNeed()
-    return self.m_MessageWrapperMap
+    local result = {}
+    for name, m in pairs(self.m_MessageWrapperMap) do
+        if type(m) == "table" and m.__pDescriptor then
+            table.insert(result, m)
+        end
+    end
+
+    return result
 end
 
-function ProtoUtils:GetTmplClass(message_name)
-    self:LoadProtoFileIfNeed()
-    return self.m_MessageWrapperMap[message_name]
+function ProtoUtils:GetEnumTable(name)
+	self:LoadProtoFileIfNeed()
+    return self.m_MessageWrapperMap[name] or {}
 end
 
 

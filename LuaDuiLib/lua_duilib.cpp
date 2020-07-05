@@ -646,6 +646,7 @@ namespace DuiLib
 			WRAP_METHOD(GetSoundNameDown)
 			WRAP_METHOD(SetSoundNameDown)
 			WRAP_METHOD(SetBindEventCtrl)
+			WRAP_METHOD(SetBindNotifyCtrl)
 			LAMBDA_METHOD2("DoEvent", CControlUI_DoEvent)
 			LAMBDA_METHOD2("OnInitAdd", CControlUI_OnInitAdd)
 			LAMBDA_METHOD2("OnDestroyAdd", CControlUI_OnDestroyAdd)
@@ -1332,7 +1333,11 @@ namespace DuiLib
 			WRAP_METHOD(IsExpanded)
 			WRAP_METHOD(Expand)
 			WRAP_METHOD(IsExpandable)
-			WRAP_METHOD(SetExpandable);
+			WRAP_METHOD(SetExpandable)
+			WRAP_METHOD(GetIndex)
+			WRAP_METHOD(SetIndex)
+			WRAP_METHOD(GetDrawIndex)
+			WRAP_METHOD(SetDrawIndex);
 #undef WRAP_METHOD
 		//CTreeViewUI
 #define WRAP_METHOD(m) .def(#m, &CTreeViewUI::m)
@@ -2148,7 +2153,6 @@ namespace DuiLib
 		}
 		return 0;
 	}
-
 	static int LuaWindow_RegisterSkin(lua_State* l)
 	{
 		CLuaWindow* pWin = nullptr;
@@ -2224,6 +2228,18 @@ namespace DuiLib
 	static void LuaWindow_ListenUIPaint(CLuaWindow* pWin, CControlUI* pControl)
 	{
 		pControl->OnPaint += MakeDelegate(pWin, &CLuaWindow::onUIPaint);
+	}
+
+	//CDialogBuilder
+	static int LuaDialogBuilder_Create(lua_State* l)
+	{
+		CDialogBuilder* pDlg = NULL;
+		CDuiString szXMLFileName;
+		CPaintManagerUI* pManager = NULL;
+		lua::get(l, 1, &pDlg, &szXMLFileName, &pManager);
+		CControlUI* pControl = pDlg->Create(szXMLFileName.GetData(), (UINT)0, NULL, pManager);
+		lua::push(l, pControl);
+		return 1;
 	}
 
 	//CResourceManager
@@ -2686,6 +2702,7 @@ namespace DuiLib
 		lua::lua_register_t<CDialogBuilder>(l, "DuiLib.CDialogBuilder")
 			.def(lua::constructor<>())
 			.def(lua::destructor())
+			LAMBDA_METHOD2("Create", LuaDialogBuilder_Create)
 			WRAP_METHOD(GetMarkup);
 #undef WRAP_METHOD
 		//CMarkup

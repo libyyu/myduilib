@@ -3,7 +3,7 @@ require "client"
 
 local App = FLua.Class("App")
 do
-	function App:__ctor()
+	function App:__constructor()
 		self._spMainWin = nil
 		self._spRuntimeState = nil
 	end
@@ -49,7 +49,7 @@ do
 		self._spMainWin = mainFrame
 	end
 	function App:Exit()
-		--local ProtoUtil = require "utility.ProtoUtil"
+		--local ProtoUtil = require "proto.ProtoUtil"
 		--ProtoUtil.ClearProtos()
 		for panel, v in pairs( _G.FRAME_MAPS ) do
 			if v and panel:IsValid() then

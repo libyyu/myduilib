@@ -1,6 +1,6 @@
 local CRuntimeState = FLua.Class("CRuntimeState")
 
-function CRuntimeState:__ctor()
+function CRuntimeState:__constructor()
 	self._isOnline = false
 
 	self._spCacheMgr = nil

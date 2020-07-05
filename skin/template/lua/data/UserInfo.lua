@@ -1,6 +1,6 @@
 local CUserInfo = FLua.Class("CUserInfo")
 
-function CUserInfo:__ctor()
+function CUserInfo:__constructor()
 	self.sUserID = ""
 	self.sNickName = ""
 	self.sArea = ""

@@ -6,7 +6,7 @@ local CUpdateConfig = FLua.Class(CConfigBase, "CUpdateConfig")
 
 local AutoUpdateKey = "_AutoUpdate"
 
-function CUpdateConfig:__ctor()
+function CUpdateConfig:__constructor()
 	self.m_autoUpdate = false
 end
 function CUpdateConfig:Load()

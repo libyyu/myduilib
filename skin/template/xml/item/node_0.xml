@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window size="290,80">
+  <ListContainerElement height="32">
+    <VerticalLayout inset="1,2,1,2">
+        <HorizontalLayout>
+            <CheckBox name="tree_expandbtn"
+            padding="0,4,0,0" 
+            width="21" 
+            height="21" 
+            tooltip="展开" 
+            selectedhotimage="file=&apos;res/tree/treeview_b.png&apos; source=&apos;16,0,32,16&apos;" 
+            selectedimage="file=&apos;res/tree/treeview_b.png&apos; source=&apos;0,0,16,16&apos;" 
+            selectedpushedimage="file=&apos;res/tree/treeview_b.png&apos; source=&apos;16,0,32,16&apos;"
+            hotimage="file=&apos;res/tree/treeview_a.png&apos; source=&apos;16,0,32,16&apos;" 
+            normalimage="file=&apos;res/tree/treeview_a.png&apos; source=&apos;0,0,16,16&apos;" />
+            <Label name="tree_name" text="AAA" padding="1,2,0,0" bordersize="0" textcolor="#FF000000" disabledtextcolor="#FF808080"/>
+        </HorizontalLayout>
+    </VerticalLayout>
+  </ListContainerElement>
+</Window>

@@ -9,7 +9,7 @@ local function fformat(fmt, ...)
 	end
 end
 ---------------------------------------------------------
-function CDatabase:__ctor()
+function CDatabase:__constructor()
 	self.m_pDB = ldb.New(
 	{
 		OnCreateTables = function() return self:OnCreateTables() end,

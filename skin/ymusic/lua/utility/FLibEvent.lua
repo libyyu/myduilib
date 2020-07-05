@@ -6,7 +6,7 @@ do
 		o.name = name
 		return o
 	end
-	function FLibEvent:__ctor()
+	function FLibEvent:__constructor()
 		self.name = "unknow"
 		self.events = {}
 	end

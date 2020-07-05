@@ -5,7 +5,7 @@ function PlayListItem.new(list_id, lsit_info)
 	obj.spListInfo = lsit_info
 	return obj
 end
-function PlayListItem:__ctor()
+function PlayListItem:__constructor()
 	self.list_id = -1
 	self.spListInfo = nil
 	self.pItemObj = nil
@@ -14,6 +14,8 @@ function PlayListItem:__ctor()
 	self._spRenameEdit = nil
 	self._spPlayIco = nil
 	self._status = -1
+end
+function PlayListItem:__destructor()
 end
 function PlayListItem:GetID()
 	return self.list_id

@@ -26,7 +26,7 @@ local function errorf(fmt, ...)
 	end
 end
 ---------------------------------------------------------
-function CGlobalDBase:__ctor()
+function CGlobalDBase:__constructor()
 	self.UserInfoTableName = "user_lists"
 	self.LastLogonUserKey = "_lastLogonUser"
 end

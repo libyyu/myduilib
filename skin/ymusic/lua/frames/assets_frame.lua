@@ -9,7 +9,7 @@ function AssetsFrame.new()
 	return obj
 end
 
-function AssetsFrame:__ctor()
+function AssetsFrame:__constructor()
 	self.mTimerId = nil
 	self._pList = nil
 	self._message_name = ""

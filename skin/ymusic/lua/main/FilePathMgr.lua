@@ -1,6 +1,6 @@
 local CFilePathMgr = FLua.Class("CFilePathMgr")
 
-function CFilePathMgr:__ctor()
+function CFilePathMgr:__constructor()
 	self.m_sTemplateDatabasePath = ""
 	self.m_sDatabasePath = ""
 	self.m_sOnlineResourcePath = ""

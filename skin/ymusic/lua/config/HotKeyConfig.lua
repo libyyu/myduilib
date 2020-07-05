@@ -13,7 +13,7 @@ local UpVolKey = "_UpVolKey"
 local DownVolKey = "_DownVolKey"
 local MusicLibWindowHotKey = "_OpenMusicLibKey"
 
-function CHotKeyConfig:__ctor()
+function CHotKeyConfig:__constructor()
 	self._dwChangeModeHotKey = 1617
 	self._dwLrcWindowHotKey = 1604
 	self._dwPlayControlHotKey = 1652

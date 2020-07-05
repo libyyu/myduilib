@@ -28,7 +28,7 @@ local function errorf(fmt, ...)
 	end
 end
 
-function CDatabaseManager:__ctor()
+function CDatabaseManager:__constructor()
 	self.m_spUserInfo = nil
 	self.m_sDatabasePath = ""
 

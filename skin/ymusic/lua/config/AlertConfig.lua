@@ -8,7 +8,7 @@ local PrivateMsgKey = "_PrivateMsgKey"
 local CommentMsgKey = "_CommentMsgKey"
 local PraiseMsgKey = "_PraiseMsgKey"
 
-function CAlertConfig:__ctor()
+function CAlertConfig:__constructor()
 	self._enablePrivateMsg = false
 	self._enableCommentMsg = false
 	self._enablePraiseMsg  = false

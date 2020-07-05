@@ -26,7 +26,7 @@ local function errorf(fmt, ...)
 	end
 end
 ---------------------------------------------------------
-function CUserDBase:__ctor()
+function CUserDBase:__constructor()
 end
 
 

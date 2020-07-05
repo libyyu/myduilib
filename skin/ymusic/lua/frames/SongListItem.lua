@@ -4,7 +4,7 @@ function SongListItem.new(songInfo)
 	obj.songInfo = songInfo
 	return obj
 end
-function SongListItem:__ctor()
+function SongListItem:__constructor()
 	self._status = -1
 	self.songInfo = nil
 	self.pItemObj = nil

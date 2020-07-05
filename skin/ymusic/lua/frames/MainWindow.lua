@@ -1,5 +1,5 @@
 local IBaseWindow = require "frames.IBaseWindow"
-local ProtoUtil = require "utility.ProtoUtil"
+local ProtoUtil = require "proto.ProtoUtil"
 
 local _uTaskbarCreatedMsg
 local _uTaskbarButtonCreateMsg
@@ -13,7 +13,7 @@ function MainWindow.new()
 	return obj
 end
 
-function MainWindow:__ctor()
+function MainWindow:__constructor()
 	self.m_pPlayList = nil
 	self.m_pSongList = nil
 	self.m_PlayListInfo = {}
@@ -473,7 +473,7 @@ function MainWindow:OnAddPlayList(bSelect)
 	local item = PlayListItemT.new(PlayListInfo.m_nLocalID, PlayListInfo)
 	item:Init(pListItem)
 	pListItem:SetUserData2("__list_info", item)
-	self.m_PlayListInfo[PlayListInfo.m_nLocalID] = PlayListInfo
+	self.m_PlayListInfo[PlayListInfo.m_nLocalID] = item
 	local delta = not self.m_bAddingSongs and 2000 or nil
 	self:ShowInfo("添加列表【"..sListName.."】成功", delta)
 	if bSelect then
@@ -508,7 +508,7 @@ function MainWindow:UpdatePlayList()
 		local item = PlayListItemT.new(list_id, spListInfo)
 		item:Init(pListItem)
 		pListItem:SetUserData2("__list_info", item)
-		self.m_PlayListInfo[list_id] = spListInfo
+		self.m_PlayListInfo[list_id] = item
 	end
 	if nCount == 0 then
 		return

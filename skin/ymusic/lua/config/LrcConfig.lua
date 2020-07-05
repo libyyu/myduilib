@@ -26,7 +26,7 @@ local LrcFontStyle =
 	BoldItalicFont = 3,
 }
 
-function CLrcConfig:__ctor()
+function CLrcConfig:__constructor()
 	self.m_sLrcPanelFontName = ""
 	self.m_dLrcPanelFontStyle = LrcFontStyle.NormalFont
 	self.m_dLrcPanelFontSize = 10

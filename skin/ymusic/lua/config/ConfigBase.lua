@@ -1,6 +1,6 @@
 local CConfigBase = FLua.Class("CConfigBase")
 
-function CConfigBase:__ctor()
+function CConfigBase:__constructor()
 	self.m_bModify = false
 	self.m_spUserDataBase = nil
 end

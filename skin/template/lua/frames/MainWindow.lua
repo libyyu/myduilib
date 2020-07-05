@@ -1,5 +1,5 @@
 local IBaseWindow = require "frames.IBaseWindow"
-local ProtoUtil = require "utility.ProtoUtil"
+local ProtoUtil = require "proto.ProtoUtil"
 
 local _uTaskbarCreatedMsg
 local _uTaskbarButtonCreateMsg
@@ -12,11 +12,12 @@ function MainWindow.new()
 	return obj
 end
 
-function MainWindow:__ctor()
+function MainWindow:__constructor()
 	self.m_pGlobalTimer = nil
 	self.m_bHandleNotify = false
 	self.m_TimerId = nil
 	self.m_pList = nil
+	self.m_pTreeView = nil
 	self.m_message_list = {}
 
 
@@ -206,10 +207,11 @@ function MainWindow:OnInitWindow()
 	collectgarbage("collect")
 
 	self.m_message_list = {}
-	local message_map = config_common:GetAllTemplate()
-	for name, m in pairs(message_map) do
-		if type(m) == "table" and m.__pDescriptor and m:FindFieldDescriptor('index') and m:FindFieldDescriptor('version') then
-			table.insert(self.m_message_list, name)
+	local message_list = config_common:GetAllTemplate()
+	for i, m in ipairs(message_list) do
+		if m:FindFieldDescriptor('index') and m:FindFieldDescriptor('version') then
+			local l,t = m:GetSourceLocation(m.__pDescriptor)
+			table.insert(self.m_message_list, l and #l >0 and l or m:GetName())
 		end
 	end
 
@@ -217,7 +219,20 @@ function MainWindow:OnInitWindow()
 	self.m_pList = win:FindControl("config_list")
 	self.m_pList:RemoveAll()
 	win:SetListCallback(self.m_pList)
-	self.m_TimerId = win:SetTimer(100, 0.1)
+	--self.m_TimerId = win:SetTimer(100, 0.1)
+
+	local TreeView = require "frames.treeview.TreeView"
+	local pList = win:FindControl("treeview_list")
+	self.m_pTreeView = TreeView.new(pList)
+	for i=1, 5 do
+		local node = self.m_pTreeView:AddFolder(">".. i)
+		if i== 1 then
+			node = self.m_pTreeView:AddFolder("sub", node)
+		end
+		for j=1, 5 do
+			self.m_pTreeView:AddNode("xml/item/node.xml", node)
+		end
+	end
 	
 	self.m_pGlobalTimer = Timer.AddGlobalTimer(100, function()
 		MainThreadTask.tick()
@@ -284,6 +299,10 @@ end
 
 function MainWindow:CreateControl(pstrClass)
 	print("CreateControl -->", pstrClass)
+	if pstrClass == "XTreeView" then
+		local pList = DuiLib.CListUI.New()
+		return pList
+	end
 	local pControl = MyControl.CreateControl(pstrClass)
 	if pControl then
 		return pControl

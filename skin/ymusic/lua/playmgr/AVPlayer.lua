@@ -7,7 +7,7 @@ _G.em_play_status =
 	em_pause = 2,
 };
 local thePlayer
-function CAVPlayer:__ctor()
+function CAVPlayer:__constructor()
 	self._pPlayer = nil
 	self._StreamInfo = nil
 	thePlayer = self

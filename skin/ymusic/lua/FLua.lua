@@ -6,7 +6,16 @@ local setmetatable = setmetatable
 local error = error
 local print = print
 local warn = warn or print
+local tonumber = tonumber
 local _G = _G
+
+local _, _, majorv, minorv, rev = string.find(_VERSION, "(%d).(%d)[.]?([%d]?)")
+local VersionNumber = tonumber(majorv) * 100 + tonumber(minorv) * 10 + (((string.len(rev) == 0) and 0) or tonumber(rev))
+-- Declare current version number.
+local TX_VERSION = VersionNumber
+local TX_VERSION_510 = 510
+local TX_VERSION_520 = 520
+local TX_VERSION_530 = 530
 
 local _M = {}
 do
@@ -100,7 +109,9 @@ do
                 k == "__fields" or
                 k == "__tryget" or
                 k == "__class" or
-                k == "__ctor" or
+                k == "__constructor" or
+                k == "__gc" or
+                k == "__destructor" or
                 k == "__pointer" then
                 error("field: '" .. k .. "' not enable for class '" .. tostring(cls) .. "'", 1)
             end
@@ -141,13 +152,18 @@ do
             end
             local instance = {__class = cls, __attributes={}, __fields={}}
             instance.__pointer = tostring(instance)
-            local pointer = instance.__pointer
-            local objName = "\"" .. className .. "(".. pointer .. ")\""
+            
             setmetatable(instance, cls)
 
             local __tostring = cls.__tryget(instance, "toString", false)
             cls.__tostring = function(t)
-                return __tostring and __tostring(t) or objName
+                if __tostring then 
+                    return __tostring(t)
+                else
+                    local pointer = t.__pointer
+                    local objName = "\"" .. className .. "(".. pointer .. ")\""
+                    return objName
+                end
             end
 
             do
@@ -181,18 +197,51 @@ do
                 end
             end
 
-            local function ctor(o, c)
-                local __ctor = rawget(c, "__ctor")
-                if __ctor then
-                    __ctor(o)
+            local clsList = {}
+            local pcls = cls
+            while pcls ~= nil do
+                table.insert(clsList, pcls)
+                pcls = pcls.__parent
+            end
+
+            do --gc
+                local function destructor_a(o, c)
+                    local __destructor = rawget(c, "__destructor")
+                    if __destructor then
+                        __destructor(o)
+                    end
+                end
+                local function __destructor(o)
+                    for i = 1, #clsList do
+                        local _cls = clsList[i]
+                        destructor_a(o, _cls)
+                    end
+                end
+
+                if TX_VERSION < TX_VERSION_520 then
+                    -- Create a empty userdata with empty metatable.
+                    -- And mark gc method for destructor.
+                    local proxy = newproxy(true)
+                    getmetatable(proxy).__gc = function (o)
+                        __destructor(instance)
+                    end
+        
+                    -- Hold the one and only reference to the proxy userdata.
+                    rawget(instance, "__gc", proxy)
+                else
+                    -- Directly set __gc field of the metatable for destructor of this object.
+                    cls.__gc = function(o)
+                        __destructor(instance)
+                    end
                 end
             end
-            do
-                local clsList = {}
-                local pcls = cls
-                while pcls ~= nil do
-                    table.insert(clsList, pcls)
-                    pcls = pcls.__parent
+
+            do --constructor
+                local function ctor(o, c)
+                    local __constructor = rawget(c, "__constructor")
+                    if __constructor then
+                        __constructor(o)
+                    end
                 end
                 typeMeta.__check = false
                 for i = #clsList, 1, -1 do
@@ -316,13 +365,17 @@ if false then
     print(FBaseObject)
     local FTest = FLua.FinalClass()
     local FTest2 = FLua.FinalClass()
-    function FTest:__ctor()
-       self.a = 1
+    function FTest:__constructor()
+        self.a = 1
     end
     function FTest:toString()
         return "<FTest>" .. self:GetPointer()
     end
+    function FTest:__destructor()
+        print(self, "__destructor")
+    end
     local t = FTest()
+    local b = FTest()
     print(FTest)
     print(t:GetClass())
     print(t)
@@ -332,6 +385,9 @@ if false then
     print(t:is(FTest))
     print(t:is(FBaseObject))
     print(t:is(FTest2))
+    print(t, b)
+    t = nil
+    collectgarbage()
 
     local A = FLua.Abstract("A")
     local a = A()

@@ -24,7 +24,7 @@ local RelateOGGKey = "_OGGKey"
 local RelateWAVKey = "_WAVKey"
 local EnableUrlProtoKey = "_EnableUrlProtoKey"
 
-function CNormalConfig:__ctor()
+function CNormalConfig:__constructor()
 	self.m_bToTray = true --关闭到托盘
 	self.m_bVolOff = false
 	self.m_nVol =100

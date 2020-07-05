@@ -1,6 +1,6 @@
 local CSongInfo = FLua.Class("CSongInfo")
 
-function CSongInfo:__ctor()
+function CSongInfo:__constructor()
 	self.m_nLocalID 			= 0 	--本地ID
 	self.m_bFromNet 			= false --if bLocal is true then nSongID is 0;
 	self.m_nSongID 				= 0		--歌曲ID

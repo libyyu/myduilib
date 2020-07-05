@@ -9,7 +9,7 @@ local MaxCacheKey = "_MaxCacheKey"
 local MaxCacheSize = 1024
 local MinCacheSize = 512
 
-function CCacheConfig:__ctor()
+function CCacheConfig:__constructor()
 	self.m_sCacheDir = theApp:GetRuntimeState():GetCacheMgr():GetCacheDir()
 	self.m_sMaxCacheSpace = 512
 end

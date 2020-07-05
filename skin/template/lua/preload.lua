@@ -38,3 +38,7 @@ function CControlUI_meta:GetUserData2(key)
 	end
 	return t[key]
 end
+
+function _T(x)
+	return x
+end 
