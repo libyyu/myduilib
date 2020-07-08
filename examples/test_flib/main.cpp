@@ -15,15 +15,19 @@ void test_buffer()
 
 	std::string as = "this is std::string";
 	std::wstring ws = L"this is std::wstring";
+	std::wstring ws2 = L"你好中文";
 	_FStd(FBuffer) buffer;
-	buffer << 1 << "hello world" << true << as << ws;
+	buffer << 1 << "hello world" << true << as << ws << "你好中文" << ws2 << L"你好中文";
 	int v;
 	char buf[100] = { 0 };
 	bool b;
 	std::string oas;
 	std::wstring ows;
-	buffer >> v >> buf >> b >> oas >> ows;
-	printf("v=%d,buf=%s, b = %d\n", v, buf, b);
+	std::string chi;
+	std::wstring wchi;
+	std::wstring wchi2;
+	buffer >> v >> buf >> b >> oas >> ows >> chi >> wchi >> wchi2;
+	printf("v=%d,buf=%s, b = %d, chi=%s\n", v, buf, b, chi.c_str());
 }
 
 void test_string()

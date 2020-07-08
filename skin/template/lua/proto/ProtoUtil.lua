@@ -1,10 +1,17 @@
 importdll "protos"
 local proto_file = "pb/config_common.proto"
+local FileDescriptor = DynamicProtobuf.FileDescriptor
+local Descriptor = DynamicProtobuf.Descriptor
+local EnumDescriptor = DynamicProtobuf.EnumDescriptor
+local EnumValueDescriptor = DynamicProtobuf.EnumValueDescriptor
+local FieldDescriptor = DynamicProtobuf.FieldDescriptor
+local Message = DynamicProtobuf.Message
 
 local ProtoUtils = FLua.FinalClass("ProtoUtils")
 
 function ProtoUtils:__constructor()
     self.m_MessageWrapperMap = nil
+    self.m_MessageFileWrapper = nil
     self.m_MessageBinaryDataMap = {}
     self.m_MessagePosInfoMap = {}
     self.m_MessageMap = {}
@@ -21,7 +28,7 @@ end
 
 function ProtoUtils:LoadProtoFileIfNeed()
     if not self.m_MessageWrapperMap then
-        self.m_MessageWrapperMap = require "proto.DynamicProtobufWrapper".LoadFile(self.m_PbName)
+        self.m_MessageWrapperMap, self.m_MessageFileWrapper = require "proto.DynamicProtobufWrapper".LoadFile(self.m_PbName)
     end
 end
 
@@ -120,6 +127,22 @@ function ProtoUtils:GetEnumTable(name)
     return self.m_MessageWrapperMap[name] or {}
 end
 
+function ProtoUtils:GetEnumName(name, fieldName)
+    self:LoadProtoFileIfNeed()
+    do
+        local pd = self.m_MessageFileWrapper[3].Enums[name]
+        if pd then
+            local pdv = EnumDescriptor.FindValueByName(pd, fieldName)
+            local l, t = Descriptor.GetSourceLocation(pdv)
+            if t and #t >0 then
+                return t
+            end
+        end
+        return fieldName
+    end
+    return nil
+end
+
 
 --[[
 	清空缓存
@@ -127,6 +150,7 @@ end
 
 function ProtoUtils:Cleanup()
     self.m_MessageWrapperMap = nil
+    self.m_MessageFileWrapper = nil
     self.m_MessageBinaryDataMap = {}
     self.m_MessagePosInfoMap = {}
     self.m_MessageMap = {}

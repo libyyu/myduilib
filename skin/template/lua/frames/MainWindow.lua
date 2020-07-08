@@ -16,9 +16,8 @@ function MainWindow:__constructor()
 	self.m_pGlobalTimer = nil
 	self.m_bHandleNotify = false
 	self.m_TimerId = nil
-	self.m_pList = nil
 	self.m_pTreeView = nil
-	self.m_message_list = {}
+	self.m_config_type_list = {}
 
 
 	_uTaskbarCreatedMsg 	 = Application.RegisterWindowMessage("TaskbarCreated")
@@ -45,8 +44,8 @@ function MainWindow:SkinFile()
 end
 
 function MainWindow:Release()
-	self.m_pList = nil
-	self.m_message_list = nil
+	self.m_pTreeView = nil
+	self.m_config_type_list = nil
 end
 
 function MainWindow:OnDestroy(wParam,lParam)
@@ -160,6 +159,9 @@ function MainWindow:OnNotify(msg)
 	local msgType = msg.sType
 	local sender = msg.pSender
 	if not sender or sender.isnil then return end
+	if msgType ~= "timer" then
+		print(">>>>>>>>>>>>>>>>>>>>>msgType", msgType, sender)
+	end
 	self.m_bHandleNotify = false
 	if msgType == "click" then
 		self:OnClick(msg)
@@ -206,19 +208,21 @@ function MainWindow:OnInitWindow()
 	-- 强制进行一次垃圾收集
 	collectgarbage("collect")
 
-	self.m_message_list = {}
-	local message_list = config_common:GetAllTemplate()
-	for i, m in ipairs(message_list) do
-		if m:FindFieldDescriptor('index') and m:FindFieldDescriptor('version') then
-			local l,t = m:GetSourceLocation(m.__pDescriptor)
-			table.insert(self.m_message_list, l and #l >0 and l or m:GetName())
-		end
+	--主线程任务
+	self.m_pGlobalTimer = Timer.AddGlobalTimer(100, function()
+		MainThreadTask.tick()
+	end)
+
+	self.m_config_type_list = {}
+	local CONFIG_TYPE = config_common:GetEnumTable("CONFIG_TYPE")
+	for name, m in pairs(CONFIG_TYPE) do
+		table.insert(self.m_config_type_list, name)
 	end
 
 	local win = self.m_hWin
-	self.m_pList = win:FindControl("config_list")
-	self.m_pList:RemoveAll()
-	win:SetListCallback(self.m_pList)
+	--self.m_pList = win:FindControl("config_list")
+	--self.m_pList:RemoveAll()
+	--win:SetListCallback(self.m_pList)
 	--self.m_TimerId = win:SetTimer(100, 0.1)
 
 	local TreeView = require "frames.treeview.TreeView"
@@ -226,29 +230,29 @@ function MainWindow:OnInitWindow()
 	local cls = FLua.ForwardClass("FolderItem")
 	local cls2 = FLua.ForwardClass("TemplateItem")
 	self.m_pTreeView = TreeView.new(pList)
-	for i=1, 5 do
-		local nodein = cls.new("xml/item/node_0.xml", ">"..i)
-		local node = self.m_pTreeView:Add(nodein)
-		if i== 1 then
-			local nodein2 = cls.new("xml/item/node_0.xml", "sub>"..i)
-			self.m_pTreeView:Add(nodein2, node)
+	-- for i=1, 5 do
+	-- 	local nodein = cls.new("xml/item/node_0.xml", ">"..i)
+	-- 	local node = self.m_pTreeView:Add(nodein)
+	-- 	if i== 1 then
+	-- 		local nodein2 = cls.new("xml/item/node_0.xml", "sub>"..i)
+	-- 		self.m_pTreeView:Add(nodein2, node)
 
-			local nodein3 = cls.new("xml/item/node_0.xml", "sub>"..i)
-			node = self.m_pTreeView:Add(nodein3, node)
+	-- 		local nodein3 = cls.new("xml/item/node_0.xml", "sub>"..i)
+	-- 		node = self.m_pTreeView:Add(nodein3, node)
 
-			local nodein4 = cls.new("xml/item/node_0.xml", "sub>sub>"..i)
-			node = self.m_pTreeView:Add(nodein4, node)
-		end
-		for j=1, 5 do
-			local nodein2 = cls2.new("xml/item/node.xml", "sub>"..i)
-			self.m_pTreeView:Add(nodein2, node)
-		end
-	end
-	
-	self.m_pGlobalTimer = Timer.AddGlobalTimer(100, function()
-		MainThreadTask.tick()
-	end)
+	-- 		local nodein4 = cls.new("xml/item/node_0.xml", "sub>sub>"..i)
+	-- 		node = self.m_pTreeView:Add(nodein4, node)
+	-- 	end
+	-- 	for j=1, 5 do
+	-- 		local nodein2 = cls2.new("xml/item/node.xml", "sub>"..i)
+	-- 		self.m_pTreeView:Add(nodein2, node)
+	-- 	end
+	-- end
 
+	for i=1, #self.m_config_type_list do
+		local nodein = cls.new("xml/item/node_0.xml", self.m_config_type_list[i])
+		self.m_pTreeView:Add(nodein)
+	end 
 end
 
 function MainWindow:OnClick(msg)
@@ -286,6 +290,12 @@ end
 function MainWindow:OnMenu(msg)
 	local win = self.m_hWin
 	local sender = msg.pSender
+
+	if sender:IsName("treeview_list") then
+		local pMenu = DuiLib.CMenuWnd.New(self:GetHWND())
+		pMenu:SetTag(_G.emMenuType.EMT_TEMPLATE_TREE_ROOT)
+		pMenu:Init(nil, "xml/menu/menu-template-root.xml", "", Application.GetCursorPos())
+	end
 end
 
 function MainWindow:OnValueChanged(msg)

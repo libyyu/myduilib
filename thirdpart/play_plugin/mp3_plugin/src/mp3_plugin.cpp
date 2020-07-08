@@ -99,7 +99,7 @@ public:
 
 	int set_cur_position(int n_pos)
 	{
-		return mn_cur_position == n_pos;
+		return mn_cur_position = n_pos;
 	}
 	
 	int get_cur_position(int n_pos)
@@ -210,7 +210,7 @@ static decoder_handle mp3_open(const char * sz_file_name,bool b_is_online,int nF
 		}
 
 		p_decoder_data->mn_file_size = p_decoder_data->mh_read.GetSize();
-		p_decoder_data->mb_data_completed= false;
+		p_decoder_data->mb_data_completed = true;
 	}
 	mad_stream_init(&p_decoder_data->m_stream);
 	mad_frame_init(&p_decoder_data->m_frame);

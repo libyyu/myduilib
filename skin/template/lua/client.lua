@@ -32,3 +32,9 @@ _G.USER_MSG = Enum.make
 	"WM_TRAY_NOTIFY",
 	"WM_ENDING_SCROLL",
 }
+
+_G.emMenuType = Enum.make 
+{
+    "EMT_MAIN",
+	"EMT_TEMPLATE_TREE_ROOT",
+}

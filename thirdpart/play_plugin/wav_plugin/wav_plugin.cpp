@@ -22,7 +22,16 @@ struct wav_decoder_data
 	float mf_cur_percent;
 	bool mb_online;
 	bool mb_data_completed;
+	int mn_audio_begin;
+	int mn_audio_end;
+	int mn_file_size;
+	std::string s_file_name;
+	int mn_download_file_size;
+	int mn_cur_rec_bytes;
+	int mn_cur_download_bytes;
+
 	std::list<pcm_data_buf *> m_raw_pcm_data_list;
+	_FStd(FFile) mh_write;
 	_FStd(FFile) mh_read;
 	player_audio_info *mp_audio_info;
 };
@@ -48,7 +57,7 @@ extern "C" {
 #ifdef _MSC_VER
 	__declspec(dllexport)
 #endif
-		void* get_xiami_decoder_proc()
+	void* get_xiami_decoder_proc()
 	{
 		decoder_plugin* p_plugin = new decoder_plugin();
 		p_plugin->n_size = sizeof(decoder_plugin);
@@ -106,7 +115,7 @@ public:
 
 	int set_cur_position(int n_pos)
 	{
-		return mn_cur_position == n_pos;
+		return mn_cur_position = n_pos;
 	}
 
 	int get_cur_position(int n_pos)
@@ -121,8 +130,8 @@ public:
 		{
 			n_copy = n_size;
 		}
-		memcpy(p_data,mp_data + mn_cur_position,n_copy);
-		mn_cur_position +=n_copy;
+		memcpy(p_data, mp_data + mn_cur_position, n_copy);
+		mn_cur_position += n_copy;
 		return n_copy;
 	}
 
@@ -136,6 +145,57 @@ public:
 		return mn_cur_position == mn_size; 
 	}
 };
+
+static bool init_wav_decoder_data(wav_decoder_data* p_decoder_data, _FStd(FFile)* mh_read)
+{
+	p_decoder_data->mn_file_size = mh_read->GetSize();
+	p_decoder_data->mp_audio_info->n_file_size = p_decoder_data->mn_file_size;
+
+	long dwRead = mh_read->Read(p_decoder_data->buf_head, 44);
+	if (dwRead < 44)
+	{
+		return false;
+	}
+
+	if ((p_decoder_data->buf_head[0] != 'R' ||
+		p_decoder_data->buf_head[1] != 'I' ||
+		p_decoder_data->buf_head[2] != 'F' ||
+		p_decoder_data->buf_data[3] != 'F') &&
+		(p_decoder_data->buf_head[8] != 'W' ||
+			p_decoder_data->buf_head[9] != 'A' ||
+			p_decoder_data->buf_head[10] != 'V' ||
+			p_decoder_data->buf_head[11] != 'E'))
+	{
+		return false;
+	}
+	p_decoder_data->mp_audio_info->n_channal = *((p_decoder_data->buf_head) + 22);
+	p_decoder_data->mp_audio_info->n_sample_size_in_bit = *(p_decoder_data->buf_head + 34);
+	if (p_decoder_data->mp_audio_info->n_sample_size_in_bit == 0)
+	{
+		return false;
+	}
+	mh_read->Seek(-20, _FStd(FFile)::ENUM_SEEK::SEEK_FILE_CURRENT);
+	dwRead = mh_read->Read(&p_decoder_data->nSampleRate, sizeof(int));
+
+	p_decoder_data->mp_audio_info->n_sample_rate = p_decoder_data->nSampleRate;
+	p_decoder_data->byte_read = 0;
+	p_decoder_data->mn_cur_position = 44;
+	p_decoder_data->mf_cur_percent = 0.0;
+	if (p_decoder_data->mp_audio_info->n_channal != 0 &&
+		p_decoder_data->mp_audio_info->n_sample_size_in_bit != 0 &&
+		p_decoder_data->mp_audio_info->n_sample_rate != 0
+		)
+	{
+		__int64 nTemp1 = ((__int64)p_decoder_data->mp_audio_info->n_file_size - 44) * 8000;
+		p_decoder_data->mp_audio_info->n_total_play_time_in_ms = nTemp1 / (p_decoder_data->mp_audio_info->n_channal * p_decoder_data->mp_audio_info->n_sample_rate * p_decoder_data->mp_audio_info->n_sample_size_in_bit);
+	}
+	p_decoder_data->mn_audio_begin = p_decoder_data->mn_cur_position;
+	p_decoder_data->mn_audio_end = p_decoder_data->mp_audio_info->n_total_play_time_in_ms;
+	p_decoder_data->mb_data_completed = true;
+
+	return true;
+}
+
 static decoder_handle wav_open(const char * sz_file_name,bool is_online,int nFileType,int nBegin,int nEnd)
 {
 	if(sz_file_name == NULL)
@@ -152,68 +212,65 @@ static decoder_handle wav_open(const char * sz_file_name,bool is_online,int nFil
 	wav_decoder_data *p_decoder_data = new wav_decoder_data();
 	if(p_decoder_data == NULL)
 		return NULL;
-	p_decoder_data->mp_audio_info= new player_audio_info();
+	p_decoder_data->mn_size = sizeof(wav_decoder_data);
+	p_decoder_data->s_file_name = s_file_name;
+	p_decoder_data->mp_audio_info = NULL;
+	p_decoder_data->mn_cur_position = 0;
+	p_decoder_data->mf_cur_percent = 0.0;
+	p_decoder_data->mn_availiable_bytes_count = 0;
+	p_decoder_data->mn_file_size = 0;
+	p_decoder_data->mn_audio_begin = 0;
+	p_decoder_data->mn_audio_end = 0;
+	p_decoder_data->mn_download_file_size = 0;
+	p_decoder_data->mn_cur_download_bytes = 0;
+	p_decoder_data->mn_cur_rec_bytes = 0;
+	p_decoder_data->mb_online = is_online;
+	p_decoder_data->mp_audio_info = new player_audio_info();
 	if(p_decoder_data->mp_audio_info == NULL)
 	{
 		delete p_decoder_data;
 		return NULL;
 	}
-	p_decoder_data->mn_size = sizeof(wav_decoder_data);
+	
 	memset(p_decoder_data->buf_head,0,sizeof(p_decoder_data->buf_head));
 	memset(p_decoder_data->buf_data,0,sizeof(p_decoder_data->buf_data));
 
-	p_decoder_data->mh_read.Open(sz_file_name, true);
-	if (!(p_decoder_data->mh_read))
+	if (p_decoder_data->mb_online)
 	{
-		delete p_decoder_data;
-		return NULL;
+		p_decoder_data->mh_write.Open(sz_file_name, false);
+		if (!(p_decoder_data->mh_write))
+		{
+			//DWORD DW_Res = GetLastError();
+			//sLog(_T("创建在线文件失败:%s,错误码<%d>"),s_file_name.GetBuffer(),DW_Res);
+			delete p_decoder_data;
+			return NULL;
+		}
+		p_decoder_data->mb_data_completed = false;
+		p_decoder_data->mh_read.Open(sz_file_name, false);
+		if (!(p_decoder_data->mh_read))
+		{
+			//DWORD DW_Res = GetLastError();
+			//sLog(_T("打开在线文件失败:%s,错误码<%d>"),s_file_name.GetBuffer(),DW_Res);
+			p_decoder_data->mh_write.Close();
+			delete p_decoder_data;
+			return NULL;
+		}
 	}
-	p_decoder_data->mp_audio_info->n_file_size = p_decoder_data->mh_read.GetSize();
-	long dwRead = p_decoder_data->mh_read.Read(p_decoder_data->buf_head, 44);
-	if (dwRead < 44)
+	else 
 	{
-		//sLog(_T("%s:锟侥硷拷锟斤拷锟斤拷锟斤拷"),s_file_name.GetBuffer());
-		p_decoder_data->mh_read.Close();
-		delete p_decoder_data;
-		return NULL;
-	}
-
-	if ((p_decoder_data->buf_head[0] != 'R' ||
-		p_decoder_data->buf_head[1] != 'I' ||
-		p_decoder_data->buf_head[2] != 'F' ||
-		p_decoder_data->buf_data[3] != 'F') && 
-		(p_decoder_data->buf_head[8] != 'W' ||
-		p_decoder_data->buf_head[9] != 'A' ||
-		p_decoder_data->buf_head[10] != 'V' ||
-		p_decoder_data->buf_head[11] != 'E'))
-	{
-		//sLog(_T("%s:锟斤拷锟角憋拷准WAV锟侥硷拷"),s_file_name.GetBuffer());
-		p_decoder_data->mh_read.Close();
-		delete p_decoder_data;
-		return NULL;
-	}
-	p_decoder_data->mp_audio_info->n_channal = *((p_decoder_data->buf_head)+22);
-	p_decoder_data->mp_audio_info->n_sample_size_in_bit = *(p_decoder_data->buf_head+34);
-	if(p_decoder_data->mp_audio_info->n_sample_size_in_bit == 0)
-	{
-		p_decoder_data->mh_read.Close();
-		delete p_decoder_data;
-		return NULL;
-	}
-	p_decoder_data->mh_read.Seek(-20, _FStd(FFile)::ENUM_SEEK::SEEK_FILE_CURRENT);
-	dwRead = p_decoder_data->mh_read.Read(&p_decoder_data->nSampleRate,sizeof(int));
-
-	p_decoder_data->mp_audio_info->n_sample_rate = p_decoder_data->nSampleRate;
-	p_decoder_data->byte_read = 0;
-	p_decoder_data->mn_cur_position = 44;
-	p_decoder_data->mf_cur_percent = 0.0;
-	if (p_decoder_data->mp_audio_info->n_channal            != 0 &&
-		p_decoder_data->mp_audio_info->n_sample_size_in_bit != 0 &&
-		p_decoder_data->mp_audio_info->n_sample_rate        != 0
-		)
-	{
-		__int64 nTemp1 = ((__int64)p_decoder_data->mp_audio_info->n_file_size - 44) * 8000 ;
-		p_decoder_data->mp_audio_info->n_total_play_time_in_ms = nTemp1 / (p_decoder_data->mp_audio_info->n_channal * p_decoder_data->mp_audio_info->n_sample_rate * p_decoder_data->mp_audio_info->n_sample_size_in_bit);
+		p_decoder_data->mh_read.Open(sz_file_name, true);
+		if (!(p_decoder_data->mh_read))
+		{
+			delete p_decoder_data;
+			return NULL;
+		}
+		
+		if (!init_wav_decoder_data(p_decoder_data, &(p_decoder_data->mh_read)))
+		{
+			p_decoder_data->mh_read.Close();
+			delete p_decoder_data;
+			return NULL;
+		}
 	}
 	return p_decoder_data;
 }
@@ -299,6 +356,59 @@ static int wav_get_data(decoder_handle handle,unsigned char *p_data,int n_buf_si
 }
 static int wav_write_data(decoder_handle handle,unsigned char *p_data,int n_buf_size)
 {
+	wav_decoder_data* p_decoder_data = (wav_decoder_data*)handle;
+	if (p_decoder_data == NULL)
+		return DECODER_ERROR;
+	if (p_data == NULL)
+	{
+		if (p_decoder_data->mb_online == true)
+		{
+			if (n_buf_size == 0) //download finished
+			{
+				p_decoder_data->mb_data_completed = true;
+				//获得wav时长、音频部分的开始位置和结束位置 
+
+				if (!(p_decoder_data->mh_write))
+				{
+					p_decoder_data->mh_write.Close();
+				}
+				_FStd(FFile) mh_read;
+				mh_read.Open(p_decoder_data->s_file_name.c_str(), true);
+				if ((mh_read))
+				{
+					init_wav_decoder_data(p_decoder_data, &(mh_read));
+				}
+
+				return DECODER_WAIT;
+			}
+			else
+			{
+				p_decoder_data->mn_download_file_size = n_buf_size;
+				p_decoder_data->mn_file_size = n_buf_size;
+				return DECODER_WAIT;
+			}
+		}
+		else
+		{
+			return DECODER_ERROR;
+		}
+	}
+	int n_cur_pos = 0;
+	while (n_cur_pos < n_buf_size)
+	{
+		if (!(p_decoder_data->mh_write))
+			return 0;
+		long n_result = 0;
+		n_result = p_decoder_data->mh_write.Write(p_data + n_cur_pos, n_buf_size - n_cur_pos);
+		p_decoder_data->mh_write.Flush();
+
+		if (n_result < 0)
+			return DECODER_ERROR;
+		n_cur_pos += n_result;
+		p_decoder_data->mn_cur_download_bytes += n_result;
+	}
+	return n_cur_pos;
+
 	return DECODER_ERROR;
 }
 static __int64 wav_seek(decoder_handle handle,float f_percent)
@@ -367,6 +477,10 @@ static void wav_close(decoder_handle handle)
 	if(!(p_decoder_data->mh_read))
 	{
 		p_decoder_data->mh_read.Close();
+	}
+	if ((p_decoder_data->mh_write))
+	{
+		p_decoder_data->mh_write.Close();
 	}
 	if(p_decoder_data->mp_audio_info != NULL)
 	{

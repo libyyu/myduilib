@@ -664,6 +664,7 @@ do
 		l_filecache[filePath] = true
 		
 		local lib = {}
+		local wrapper = {}
 			
 		local pFileDescriptorArray = DynamicProtobuf.LoadFileDescriptor(filePath)
 		if not pFileDescriptorArray then
@@ -672,11 +673,16 @@ do
 		-- mesage
 		for iDescriptor = 1, #pFileDescriptorArray do
 			local pFileDescriptor = pFileDescriptorArray[iDescriptor]
+
+			wrapper[iDescriptor] = { FileDescriptor = pFileDescriptor, Messages = {}, Enums = {}}
+
 			for iMessage = 1, FileDescriptor.message_type_count(pFileDescriptor) do
 				local pDescriptor = FileDescriptor.message_type(pFileDescriptor, iMessage - 1)
 				local name = Descriptor.name(pDescriptor)
 				local MessageClass = WrapperHelper.Wrap_MessageClass(pDescriptor)
 				lib[name] = MessageClass
+
+				table.insert(wrapper[iDescriptor].Messages, name)
 			end
 		end
 		
@@ -686,10 +692,13 @@ do
 			for iEnum = 1, FileDescriptor.enum_type_count(pFileDescriptor) do
 				local pEnumDescriptor = FileDescriptor.enum_type(pFileDescriptor, iEnum - 1)
 				WrapperHelper._FieldEnumDefines(pEnumDescriptor, lib)
+				
+				local name = EnumDescriptor.name(pEnumDescriptor)
+				wrapper[iDescriptor].Enums[name] = pEnumDescriptor
 			end
 		end
 
-		return lib
+		return lib, wrapper
 	end
 
 	DynamicProtobufWrapper.EnumFieldDescriptor =	--	杂项定义

@@ -34,7 +34,7 @@
             </HorizontalLayout>
         </HorizontalLayout>
         <HorizontalLayout name="HorizontalLayout7">
-            <HorizontalLayout minwidth="210" width="250" sepwidth="4" sepimm="true" name="HorizontalLayout8" maxwidth="320">
+            <!--HorizontalLayout minwidth="210" width="250" sepwidth="4" sepimm="true" name="HorizontalLayout8" maxwidth="320">
                 <VerticalLayout name="VerticalLayout2">
                     <HorizontalLayout name="HorizontalLayout9" inset="4,2,2,2" height="35">
                         <VerticalLayout name="VerticalLayout3">
@@ -52,7 +52,7 @@
                         </List>
                     </HorizontalLayout>
                 </VerticalLayout>
-            </HorizontalLayout>
+            </HorizontalLayout-->
             <HorizontalLayout minwidth="210" width="250" sepwidth="4" sepimm="true" name="HorizontalLayout8" maxwidth="320">
                 <VerticalLayout>
                     <HorizontalLayout inset="4,2,2,2" height="35">
@@ -64,7 +64,7 @@
                         </VerticalLayout>
                     </HorizontalLayout>
                     <HorizontalLayout inset="3,0,3,3">
-                        <XTreeView itemshowhtml="true" menu="true" vscrollbar="true" name="treeview_list" hscrollbar="true" bkcolor="#FFFFFFFF" inset="0,0,0,0">
+                        <XTreeView header="hidden" itemshowhtml="true" menu="true" vscrollbar="true" name="treeview_list" hscrollbar="true" bkcolor="#FFFFFFFF" inset="0,0,0,0">
                         </XTreeView>
                     </HorizontalLayout>
                 </VerticalLayout>

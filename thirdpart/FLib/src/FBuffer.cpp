@@ -356,7 +356,7 @@ FOStream& FBuffer::operator <<(const wchar_t* v)
 	assert(v);
 	size_t len = wcslen(v);
 	Write<uint32>((uint32)len);
-	Write((uint8 const*)v, len);
+	Write((uint8 const*)v, len * sizeof(wchar_t));
 	return *this;
 }
 FOStream& FBuffer::operator <<(char v[])

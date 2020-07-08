@@ -422,8 +422,51 @@ static int Descriptor_unknow_field(lua_State* L)
 	//这里v必须使用引用方式，不然传递到lua会导致数据异常
 	const pb::UnknownField& v = self->options().unknown_fields().field(index);
 	PushValue(L, &v);
-
+	
 	return 1;
+}
+
+static std::string& trim_comment(std::string& text)
+{
+	if (!text.empty())
+	{
+		text.erase(0, text.find_first_not_of((" \n\r\t")));
+		text.erase(text.find_last_not_of((" \n\r\t")) + 1);
+
+		size_t pos = text.find_first_of(',');
+		if (pos != std::string::npos)
+		{
+			text = text.substr(0, pos);
+		}
+	}
+	return text;
+}
+
+static int Descriptor_GetSourceLocation(lua_State* L)
+{
+	const pb::Descriptor* self = checkClassInstancePtr<pb::Descriptor const>(L, 1);
+	if (!self)
+	{
+		luaL_error(L, "Descriptor_GetSourceLocation: argument #1 must be Descriptor");
+		return 0;
+	}
+
+	pb::SourceLocation* location = new pb::SourceLocation;
+	if (self->GetSourceLocation(location))
+	{
+		std::string leading_comments = location->leading_comments;
+		std::string trailing_comments = location->trailing_comments;
+
+		delete location;
+
+		lua_pushstring(L, trim_comment(leading_comments).c_str());
+		lua_pushstring(L, trim_comment(trailing_comments).c_str());
+
+		return 2;
+	}
+
+	delete location;
+	return 0;
 }
 
 static const struct luaL_Reg Descriptor_funcs[] =
@@ -447,6 +490,7 @@ static const struct luaL_Reg Descriptor_funcs[] =
 
 	{ "unknow_field_count", Descriptor_unknow_field_count },
 	{ "unknow_field", Descriptor_unknow_field },
+	{ "GetSourceLocation", Descriptor_GetSourceLocation },
 	{ NULL, NULL },
 };
 
