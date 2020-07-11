@@ -237,8 +237,11 @@ namespace DuiLib
 	template<>
 	void CLogger::_Vfprintf(const char* fmt, va_list& va, Log_Level lev)
 	{
-		char szBuffer[4097] = { 0 };
+		int len = ::_vscprintf(fmt, va); // _vscprintf doesn't count, terminating '\0'
+		
+		char* szBuffer = new char[len+1];
 		int iRet = ::vsprintf(szBuffer, fmt, va);
+		szBuffer[len] = '\0';
 		if (LogWrapFunc != NULL)
 		{
 			LogWrapFunc(lev, szBuffer);
@@ -247,14 +250,16 @@ namespace DuiLib
 		{
 			write(szBuffer, lev);
 		}
+		delete[] szBuffer;
 	}
 
 	template<>
 	void CLogger::_Vfprintf(const wchar_t* fmt, va_list& va, Log_Level lev)
 	{
-		wchar_t szBuffer[4097] = { 0 };
+		int len = ::_vscwprintf(fmt, va);
+		wchar_t* szBuffer = new wchar_t[len+1];
 		int iRet = ::vswprintf(szBuffer, fmt, va);
-
+		szBuffer[len] = L'\0';
 		if (LogWrapFunc != NULL)
 		{
 			std::string s = to_string(szBuffer);
@@ -264,6 +269,8 @@ namespace DuiLib
 		{
 			write(szBuffer, lev);
 		}
+
+		delete[] szBuffer;
 	}
 
 	void CLogger::flush()
