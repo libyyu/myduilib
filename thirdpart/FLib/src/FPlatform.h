@@ -136,6 +136,8 @@
 #endif//FLIB_DLL_EXPORTS
 #endif//FLIB_STATIC_EXPORT
 #define F_DLL_API FLIB_DLL_API
+#define F_API	  F_DLL_API
+#define FLIB_API  F_DLL_API
 
 #if defined(_UNICODE) || defined(UNICODE)
 #define FLIB_UNICODE	1

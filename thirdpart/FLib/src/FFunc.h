@@ -82,7 +82,7 @@ typedef enum FErrRet
     FERRRET_ABORT
 } FErrRet;
 
-FErrRet FNotifyAssert(const char* condition, const char* fileName, int lineNumber, const char* formats, ...);
+F_DLL_API FErrRet FNotifyAssert(const char* condition, const char* fileName, int lineNumber, const char* formats, ...);
 
 
 _FStdEnd

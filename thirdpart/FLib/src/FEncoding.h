@@ -11,7 +11,7 @@ class F_DLL_API FEncoding
 public:
     enum Encoding
     {
-        None,				// Unknown or binary
+        None = 0,			// Unknown or binary
         ANSI,				// 0-255
         ASCII,				// 0-127
         UTF8_BOM,			// UTF8 with BOM

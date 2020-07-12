@@ -1,6 +1,6 @@
 local i64lib = {}
 
-local mt = {}
+local mt = {magic64=true}
 
 function i64lib.new(v, unsigned)
 	local r = {value=v, unsigned=unsigned}

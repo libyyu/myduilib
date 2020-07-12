@@ -12,6 +12,7 @@ local ProtoUtils = FLua.FinalClass("ProtoUtils")
 function ProtoUtils:__constructor()
     self.m_MessageWrapperMap = nil
     self.m_MessageFileWrapper = nil
+    self.m_EnumCacheMap = nil
     self.m_MessageBinaryDataMap = {}
     self.m_MessagePosInfoMap = {}
     self.m_MessageMap = {}
@@ -127,20 +128,51 @@ function ProtoUtils:GetEnumTable(name)
     return self.m_MessageWrapperMap[name] or {}
 end
 
-function ProtoUtils:GetEnumName(name, fieldName)
+function ProtoUtils:GetMessageExtensionValue(name)
     self:LoadProtoFileIfNeed()
-    do
-        local pd = self.m_MessageFileWrapper[3].Enums[name]
-        if pd then
-            local pdv = EnumDescriptor.FindValueByName(pd, fieldName)
-            local l, t = Descriptor.GetSourceLocation(pdv)
-            if t and #t >0 then
-                return t
+    for fileName, v in pairs(self.m_MessageFileWrapper) do
+        for vname, value in pairs(v.MessageExtension) do
+            if vname == name then
+                return value
             end
         end
-        return fieldName
     end
-    return nil
+end
+
+function ProtoUtils:GetEnumSourceLocation(name, fieldNameOrfieldValue)
+    self:LoadProtoFileIfNeed()
+    if self.m_EnumCacheMap and self.m_EnumCacheMap[name] then
+        local fileName = self.m_EnumCacheMap[name]
+        local pEnumDescriptor = self.m_MessageFileWrapper[fileName].Enums[name]
+        local pEnumValueDescriptor
+        if type(fieldNameOrfieldValue) == "number" then
+            pEnumValueDescriptor = EnumDescriptor.FindValueByNumber(pEnumDescriptor, fieldNameOrfieldValue)
+        else
+            pEnumValueDescriptor = EnumDescriptor.FindValueByName(pEnumDescriptor, fieldNameOrfieldValue)
+        end
+        if pEnumValueDescriptor then
+            return EnumValueDescriptor.GetSourceLocation(pEnumValueDescriptor)
+        end
+    end
+    self.m_EnumCacheMap = {}
+    for fileName, v in pairs(self.m_MessageFileWrapper) do
+        for enum_name, pEnumDescriptor in pairs(v.Enums) do
+            if enum_name == name then
+                self.m_EnumCacheMap[name] = fileName
+                local pEnumValueDescriptor
+                if type(fieldNameOrfieldValue) == "number" then
+                    pEnumValueDescriptor = EnumDescriptor.FindValueByNumber(pEnumDescriptor, fieldNameOrfieldValue)
+                elseif type(fieldNameOrfieldValue) == "table" and getmetatable(fieldNameOrfieldValue) and getmetatable(fieldNameOrfieldValue).magic64 then
+                    pEnumValueDescriptor = EnumDescriptor.FindValueByNumber(pEnumDescriptor, fieldNameOrfieldValue.value)
+                else
+                    pEnumValueDescriptor = EnumDescriptor.FindValueByName(pEnumDescriptor, fieldNameOrfieldValue)
+                end
+                if pEnumValueDescriptor then
+                    return EnumValueDescriptor.GetSourceLocation(pEnumValueDescriptor)
+                end
+            end
+        end
+    end
 end
 
 
@@ -154,6 +186,7 @@ function ProtoUtils:Cleanup()
     self.m_MessageBinaryDataMap = {}
     self.m_MessagePosInfoMap = {}
     self.m_MessageMap = {}
+    self.m_EnumCacheMap = nil
 end
 
 

@@ -145,6 +145,7 @@
 #define _FStdUsing  _FUsing(FStd)
 #define _FStd(x)	FStd::x
 #define _FStr(x)    _T(x)
+
 /********************************************************************************
  
  Base integer types for all target OS's and CPU's
@@ -222,12 +223,12 @@ typedef std::vector<uchar> ByteArray;
 #define FLIB_MAX(a,b) ((a)>(b)) ? (a) : (b)
 #define FLIB_ABS(a) ((a) < (0) ? (-a) : (a))
 
-#define min2(a, b) (((a) > (b)) ? (b) : (a))
-#define min3(a, b, c) (min2(min2((a), (b)), (c)))
-#define max2(a, b) (((a) > (b)) ? (a) : (b))
-#define max3(a, b, c) (max2(max2((a), (b)), (c)))
-#define min4(a, b, c, d) (min2(min2((a), (b)), min2((c), (d))))
-#define max4(a, b, c, d) (max2(max2((a), (b)), max2((c), (d))))
+#define flib_min2(a, b) (((a) > (b)) ? (b) : (a))
+#define flib_min3(a, b, c) (flib_min2(flib_min2((a), (b)), (c)))
+#define flib_max2(a, b) (((a) > (b)) ? (a) : (b))
+#define flib_max3(a, b, c) (flib_max2(flib_max2((a), (b)), (c)))
+#define flib_min4(a, b, c, d) (flib_min2(flib_min2((a), (b)), flib_min2((c), (d))))
+#define flib_max4(a, b, c, d) (flib_max2(flib_max2((a), (b)), flib_max2((c), (d))))
 
 #define FLIB_JOIN( X, Y ) FLIB_DO_JOIN( X, Y )
 #define FLIB_DO_JOIN( X, Y ) FLIB_DO_JOIN2(X,Y)

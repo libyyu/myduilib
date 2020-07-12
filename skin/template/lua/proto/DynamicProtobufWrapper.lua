@@ -55,6 +55,7 @@ local EnumDescriptor = DynamicProtobuf.EnumDescriptor
 local EnumValueDescriptor = DynamicProtobuf.EnumValueDescriptor
 local FieldDescriptor = DynamicProtobuf.FieldDescriptor
 local Message = DynamicProtobuf.Message
+local UnknownField = DynamicProtobuf.UnknownField
 local type = type
 local setmetatable = setmetatable
 local getmetatable = getmetatable
@@ -220,32 +221,32 @@ do
 	-- Helper
 	--
 	
-	function WrapperHelper._FieldEnumDefines(pEnumDescriptor, t)
-		local ENUM_NAME = EnumDescriptor.name(pEnumDescriptor)
-		t[ENUM_NAME] = t[ENUM_NAME] or {}
+	function WrapperHelper._FieldEnumDefines(pEnumDescriptor, lib)
+		local enum_name = EnumDescriptor.name(pEnumDescriptor)
+		lib[enum_name] = lib[enum_name] or {}
 		
-		local ENUM = t[ENUM_NAME]
+		local e = lib[enum_name]
 		local max_value = 0
 		for iEnumValue = 1, EnumDescriptor.value_count(pEnumDescriptor) do
 			local pEnumValueDescriptor = EnumDescriptor.value(pEnumDescriptor, iEnumValue - 1)
 			local name = EnumValueDescriptor.name(pEnumValueDescriptor)
 			local number = EnumValueDescriptor.number(pEnumValueDescriptor)
-			ENUM[name] = number --建议这种，后期还是采用枚举名称.枚举定义名的形式访问吧
+			e[name] = number --建议这种，后期还是采用枚举名称.枚举定义名的形式访问吧
 			max_value = number
 		end
 
 		--取枚举最后一个值+1，避免定义xxx_COUNT
-		local count_name = EnumValueDescriptor.name(pEnumDescriptor).."_COUNT"
-		if not t[count_name] then
+		local count_name = enum_name.."_COUNT"
+		if not e[count_name] then
 			local last_index = EnumDescriptor.value_count(pEnumDescriptor)-1
 			local pEnumValueDescriptor = EnumDescriptor.value(pEnumDescriptor, last_index)
 			local number = EnumValueDescriptor.number(pEnumValueDescriptor)
-			ENUM[count_name] = number + 1
+			e[count_name] = number + 1
 		end
 
 		--跟服务器C++一致， 生成一个XXX_MAX
-		if not ENUM[ENUM_NAME .. "_MAX"] then
-			ENUM[ENUM_NAME .. "_MAX"] = max_value
+		if not e[enum_name .. "_MAX"] then
+			e[enum_name .. "_MAX"] = max_value
 		end
 	end
 	
@@ -274,14 +275,14 @@ do
 		return members
 	end
 	
-
-	---@param self table
-	---@return userdata
 	function WrapperHelper._MessageClass_GetDescriptor(self)
 		return self.__pDescriptor
 	end
-	
 
+	function WrapperHelper._MessageClass__GetOptionDescriptor(self)
+		return Descriptor.GetOptionDescriptor(self.__pDescriptor)
+	end
+	
 	function WrapperHelper._MessageClass_FindFieldDescriptor(self, fieldName)
 		return Descriptor.FindFieldByName(self.__pDescriptor, fieldName)
 	end
@@ -290,9 +291,119 @@ do
 		return Descriptor.name(self.__pDescriptor)
 	end
 
+	function WrapperHelper._MessageClass__extension_range_count(self)
+		return Descriptor.extension_range_count(self.__pDescriptor)
+	end
+
+	local l__ExtensionRange_methods
+	function WrapperHelper._MessageClass__ExtensionRange_index(self, k)
+		local ExtensionRangeOptions = DynamicProtobuf.ExtensionRangeOptions
+		if not l__ExtensionRange_methods then
+			l__ExtensionRange_methods =
+			{
+				unknown_field_count = function(self)
+					return ExtensionRangeOptions.unknown_field_count(self.__ExtensionRange)
+				end,
+				unknown_field = function(self, i)
+					return ExtensionRangeOptions.unknown_field(self.__ExtensionRange, i)
+				end,
+				unknown_fields = function(self)
+					return ExtensionRangeOptions.unknown_fields(self.__ExtensionRange)
+				end,
+			}
+		end
+		local method = l__ExtensionRange_methods[k]
+		if method then
+			return method
+		end
+		return nil
+	end
+	function WrapperHelper._MessageClass__extension_range_count(self, index)
+		assert(index>0 and index <= self:extension_range_count())
+		local e = Descriptor.extension_range(self.__pDescriptor, index)
+		if e then
+			local meta = {
+				__index = WrapperHelper._MessageClass__ExtensionRange_index,
+			}
+			return setmetatable({__ExtensionRange = e.options, options=e.options, start=e.start, tail=e['end']}, meta)
+		end
+		return nil
+	end
+
 	function WrapperHelper._MessageClass_GetSourceLocation(self)
 		return Descriptor.GetSourceLocation(self.__pDescriptor)
 	end
+
+	function WrapperHelper._MessageClass__unknow_field_count(self)
+		return Descriptor.unknow_field_count(self.__pDescriptor)
+	end
+
+	local l__unknow_field_methods
+	function WrapperHelper._MessageClass__unknow_field_index(self, k)
+		if not l__unknow_field_methods then
+			l__unknow_field_methods =
+			{
+				type = function(self)
+					return UnknownField.type(self.__unknow_field)
+				end,
+				number = function(self)
+					return UnknownField.number(self.__unknow_field)
+				end,
+				varint = function(self)
+					return UnknownField.varint(self.__unknow_field)
+				end,
+				fixed32 = function(self)
+					return UnknownField.fixed32(self.__unknow_field)
+				end,
+				fixed64 = function(self)
+					return UnknownField.fixed64(self.__unknow_field)
+				end,
+				length_delimited = function(self)
+					return UnknownField.length_delimited(self.__unknow_field)
+				end,
+			}
+		end
+		local method = l__unknow_field_methods[k]
+		if method then
+			return method
+		end
+		return nil
+	end
+
+	function WrapperHelper._MessageClass__unknow_field(self, index)
+		assert(index>0 and index <= self:unknow_field_count())
+		local unknow_field = Descriptor.unknow_field(self.__pDescriptor, index-1)
+		if unknow_field then
+			local meta = {
+				__index = WrapperHelper._MessageClass__unknow_field_index,
+			}
+			return setmetatable({__unknow_field = unknow_field}, meta)
+		end
+		return nil
+	end
+
+	function WrapperHelper._MessageClass__unknow_fields(self)
+		local result = {}
+		for i=1, self:unknow_field_count() do
+			local p = self:unknow_field(i)
+			table.insert(result, p)
+		end
+		return result
+	end
+
+	function WrapperHelper._MessageClass__unknow_field_by_value(self, v)
+		for i=1, self:unknow_field_count() do
+			local p = self:unknow_field(i)
+			if p:number() == v then
+				return p
+			end
+		end
+	end
+
+	function WrapperHelper._MessageClass__FindExtensionByName(self, name)
+		return Descriptor.FindExtensionByName(self.__pDescriptor, name)
+	end
+
 	
 	local l_MessageClass_methods = nil
 	
@@ -304,7 +415,15 @@ do
 				FindFieldDescriptor = WrapperHelper._MessageClass_FindFieldDescriptor,
 				GenMessageFromAny = WrapperHelper._MessageClass_GenMessageFromAny,
 				GetName = WrapperHelper._MessageClass_GetName,
+				GetOptionDescriptor = WrapperHelper._MessageClass__GetOptionDescriptor,
 				GetSourceLocation = WrapperHelper._MessageClass_GetSourceLocation,
+				unknow_field_count = WrapperHelper._MessageClass__unknow_field_count,
+				unknow_field = WrapperHelper._MessageClass__unknow_field,
+				unknow_fields = WrapperHelper._MessageClass__unknow_fields,
+				unknow_field_by_value = WrapperHelper._MessageClass__unknow_field_by_value,
+				extension_range_count = WrapperHelper._MessageClass__extension_range_count,
+				extension_range = WrapperHelper._MessageClass__extension_range,
+				FindExtensionByName = WrapperHelper._MessageClass__FindExtensionByName,
 			}
 		end
 		
@@ -427,6 +546,14 @@ do
 		local meta = getmetatable(self)
 		return meta.__MessageClass
 	end
+
+	function WrapperHelper._message_CopyFrom(self, ths)
+		local meta = getmetatable(self)
+		local pMessage = meta.__pMessage
+		local meta_ths = getmetatable(ths)
+		local pMessage_ths = meta_ths.__pMessage
+		Message.CopyFrom(pMessage, pMessage_ths)
+	end
 	
 	function WrapperHelper._message_SerializeToString(self)
 		--(递归)写回 repeated field 字段值
@@ -505,6 +632,11 @@ do
 				SetInParent = WrapperHelper._message_SetInParent,
 				_WriteBack = WrapperHelper._message_WriteBack,
 				tryget = WrapperHelper._message_tryget,
+				CopyField = WrapperHelper._message_CopyField,
+				GetFieldIndex = WrapperHelper._message_GetFieldIndex,
+				CopyFrom = WrapperHelper._message_CopyFrom,
+				IsRepeated = WrapperHelper._message_IsRepeated,
+				IsMessage = WrapperHelper._message_IsMessage,
 			}
 		end
 
@@ -529,9 +661,117 @@ do
 	function WrapperHelper._message_tryget(self, k)
 		return l_message_methods and l_message_methods[k]
 	end
+
+	function WrapperHelper._message_CopyField(self, src, field_name)
+		local self_meta = getmetatable(self)
+		local self_message = self_meta.__pMessage
+		if not self_message then
+			warn("message is nil.")
+			return false
+		end
+		if self_meta.__cachedMembers then
+			self_meta.__cachedMembers[field_name] = nil
+		end
+		local src_message = getmetatable(src).__pMessage
+		if not src_message then
+			warn("src message is nil.")
+			return false
+		end
+		local self_descriptor = Message.GetDescriptor(self_message)
+		if not self_descriptor then
+			warn("message type is unknown:", self_message)
+			return false
+		end
+
+		local src_descriptor = Message.GetDescriptor(src_message)
+		if not src_descriptor then
+			warn("src message type is unknown:", src_message)
+			return false
+		end
+
+		if self_descriptor ~= src_descriptor then
+			warn(string.format("different message type:self(%s), src(%s)", Descriptor.name(self_descriptor), Descriptor.name(src_descriptor)))
+			return false
+		end
+
+		local field_descriptor = Descriptor.FindFieldByName(self_descriptor, field_name)
+		Message.ClearField(self_message, field_descriptor)
+		if FieldDescriptor.is_repeated(field_descriptor) then
+			Message.CopyRepeatField(self_message, field_descriptor, src_message)
+		else
+			local is_message = FieldDescriptor.is_message(field_descriptor)
+			if is_message then
+				local dest_field_message = Message.Get(self_message, field_descriptor)
+				local src_field_message = Message.Get(src_message, field_descriptor)
+				Message.CopyFrom(dest_field_message, src_field_message)
+			else
+				Message.Set(self_message, field_descriptor, Message.Get(src_message, field_descriptor))
+			end
+		end
+		return true
+	end
+
+	function WrapperHelper._message_IsMessage(self, field_name)
+		local self_meta = getmetatable(self)
+		local self_message = self_meta.__pMessage
+		if not self_message then
+			warn("message is nil.")
+			return false
+		end
+		local self_descriptor = Message.GetDescriptor(self_message)
+		if not self_descriptor then
+			warn("message type is unknown:", self_message)
+			return false
+		end
+
+		local field_descriptor = Descriptor.FindFieldByName(self_descriptor, field_name)
+		return FieldDescriptor.is_message(field_descriptor)
+	end
+
+	function WrapperHelper._message_GetFieldIndex(self, field_name)
+		local self_meta = getmetatable(self)
+		local self_message = self_meta.__pMessage
+		if not self_message then
+			warn("message is nil.")
+			return -1
+		end
+
+		local self_descriptor = Message.GetDescriptor(self_message)
+		if not self_descriptor then
+			warn("message type is unknown:", self_message)
+			return -1
+		end
+
+		local field_descriptor = Descriptor.FindFieldByName(self_descriptor, field_name)
+		if field_descriptor then
+			return FieldDescriptor.index(field_descriptor)
+		end
+		return -1
+	end
+
 	--
 	-- repeated field
 	--
+
+	function WrapperHelper._message_IsRepeated(self, field_name)
+		local self_meta = getmetatable(self)
+		local self_message = self_meta.__pMessage
+		if not self_message then
+			warn("message is nil.")
+			return false, false
+		end
+
+		local self_descriptor = Message.GetDescriptor(self_message)
+		if not self_descriptor then
+			warn("message type is unknown:", self_message)
+			return false, false
+		end
+
+		local field_descriptor = Descriptor.FindFieldByName(self_descriptor, field_name)
+		local is_repeated = FieldDescriptor.is_repeated(field_descriptor)
+		local cpp_type = FieldDescriptor.cpp_type(field_descriptor)
+		return is_repeated, cpp_type == DynamicProtobufWrapper.CPPTYPE.CPPTYPE_MESSAGE
+	end
 
 	function WrapperHelper._repeated_field_append(self, value)
 		local meta = getmetatable(self)
@@ -673,31 +913,36 @@ do
 		-- mesage
 		for iDescriptor = 1, #pFileDescriptorArray do
 			local pFileDescriptor = pFileDescriptorArray[iDescriptor]
+			local fileName = FileDescriptor.name(pFileDescriptor)
+			if not fileName:find("google/protobuf") then
+				wrapper[fileName] = { FileDescriptor = pFileDescriptor, Messages = {}, Enums = {}, MessageExtension={}}
 
-			wrapper[iDescriptor] = { FileDescriptor = pFileDescriptor, Messages = {}, Enums = {}}
+				for iMessage = 1, FileDescriptor.message_type_count(pFileDescriptor) do
+					local pDescriptor = FileDescriptor.message_type(pFileDescriptor, iMessage - 1)
+					local name = Descriptor.name(pDescriptor)
+					local MessageClass = WrapperHelper.Wrap_MessageClass(pDescriptor)
+					lib[name] = MessageClass
 
-			for iMessage = 1, FileDescriptor.message_type_count(pFileDescriptor) do
-				local pDescriptor = FileDescriptor.message_type(pFileDescriptor, iMessage - 1)
-				local name = Descriptor.name(pDescriptor)
-				local MessageClass = WrapperHelper.Wrap_MessageClass(pDescriptor)
-				lib[name] = MessageClass
+					table.insert(wrapper[fileName].Messages, name)
+				end
 
-				table.insert(wrapper[iDescriptor].Messages, name)
-			end
+				for iEnum = 1, FileDescriptor.enum_type_count(pFileDescriptor) do
+					local pEnumDescriptor = FileDescriptor.enum_type(pFileDescriptor, iEnum - 1)
+					WrapperHelper._FieldEnumDefines(pEnumDescriptor, lib)
+					
+					local name = EnumDescriptor.name(pEnumDescriptor)
+					wrapper[fileName].Enums[name] = pEnumDescriptor
+				end
+
+				for i=1, FileDescriptor.extension_count(pFileDescriptor) do
+					local pFileDescriptor = FileDescriptor.extension(pFileDescriptor, i-1)
+					local name = FieldDescriptor.name(pFileDescriptor)
+					local value = FieldDescriptor.number(pFileDescriptor)
+					wrapper[fileName].MessageExtension[name] = value
+				end
+			end		
 		end
 		
-		-- Enum
-		for iDescriptor = 1, #pFileDescriptorArray do
-			local pFileDescriptor = pFileDescriptorArray[iDescriptor]
-			for iEnum = 1, FileDescriptor.enum_type_count(pFileDescriptor) do
-				local pEnumDescriptor = FileDescriptor.enum_type(pFileDescriptor, iEnum - 1)
-				WrapperHelper._FieldEnumDefines(pEnumDescriptor, lib)
-				
-				local name = EnumDescriptor.name(pEnumDescriptor)
-				wrapper[iDescriptor].Enums[name] = pEnumDescriptor
-			end
-		end
-
 		return lib, wrapper
 	end
 

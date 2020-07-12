@@ -214,9 +214,25 @@ function MainWindow:OnInitWindow()
 	end)
 
 	self.m_config_type_list = {}
-	local CONFIG_TYPE = config_common:GetEnumTable("CONFIG_TYPE")
-	for name, m in pairs(CONFIG_TYPE) do
-		table.insert(self.m_config_type_list, name)
+	local all_templates = config_common:GetAllTemplate()
+	local id = config_common:GetMessageExtensionValue("ConfigType")
+	for _, v in ipairs(all_templates) do
+		local uf = v:unknow_field_by_value(id)
+		if uf then 
+			local l, t = v:GetSourceLocation()
+	        if l and #l >0 then
+	        	table.insert(self.m_config_type_list, l)
+	        else
+	        	local msg_id = uf:varint()
+				msg_id = tonumber(msg_id.value)
+	        	l, t = config_common:GetEnumSourceLocation("CONFIG_TYPE", msg_id)
+	        	if t and #t >0 then
+	        		table.insert(self.m_config_type_list, t)
+	        	else
+					table.insert(self.m_config_type_list, v:GetName())
+	        	end
+	        end
+	    end
 	end
 
 	local win = self.m_hWin

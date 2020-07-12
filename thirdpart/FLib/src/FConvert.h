@@ -99,4 +99,13 @@ protected:
 };
 _FStdEnd
 
+
+#define UTF16_TO_UTF8(x)   _FStd(FConvert)::UTF16ToUTF8(x).c_str()
+#define UTF16_TO_GB2312(x)   _FStd(FConvert)::UTF16ToGB2312(x).c_str()
+#define GB2312_TO_UTF16(x)   _FStd(FConvert)::GB2312ToUTF16(x).c_str()
+#define GB2312_TO_UTF8(x)   _FStd(FConvert)::GB2312ToUTF8(x).c_str()
+#define UTF8_TO_UTF16(x)   _FStd(FConvert)::UTF8ToUTF16(x).c_str()
+#define UTF8_TO_GB2312(x)   _FStd(FConvert)::UTF8ToGB2312(x).c_str()
+
+
 #endif//__FLIB_CONVERT_H__

@@ -40,6 +40,49 @@ static void pushClassInstancePtr(lua_State* L, ClassType* ptr)
 		lua_pushnil(L);
 }
 
+static int push_stack(lua_State* l, int64_t value)
+{
+	std::stringstream ss;
+	ss << value;
+	std::string str = ss.str();
+
+	lua_getglobal(l, "make_i64");
+	if (lua_isfunction(l, -1))
+	{
+		lua_pushlstring(l, str.c_str(), str.length());
+		lua_pushboolean(l, false);
+		lua_pcall(l, 2, 1, 0);
+	}
+	else
+	{
+		lua_pop(l, 1);
+		lua_pushlstring(l, str.c_str(), str.length());
+	}
+
+	return 1;
+}
+static int push_stack(lua_State* l, uint64_t value)
+{
+	std::stringstream ss;
+	ss << value;
+	std::string str = ss.str();
+
+	lua_getglobal(l, "make_i64");
+	if (lua_isfunction(l, -1))
+	{
+		lua_pushlstring(l, str.c_str(), str.length());
+		lua_pushboolean(l, true);
+		lua_pcall(l, 2, 1, 0);
+	}
+	else
+	{
+		lua_pop(l, 1);
+		lua_pushlstring(l, str.c_str(), str.length());
+	}
+
+	return 1;
+}
+
 static pb::uint64 checkUInt64(lua_State *L, int n)
 {
 	size_t len;
@@ -55,7 +98,7 @@ static pb::uint64 checkUInt64(lua_State *L, int n)
 
 static void pushUInt64(lua_State *L, pb::uint64 value)
 {
-	lua_pushlstring(L, (const char*)&value, 8);
+	push_stack(L, (uint64_t)value);
 }
 
 static pb::int64 checkInt64(lua_State *L, int n)
@@ -73,7 +116,7 @@ static pb::int64 checkInt64(lua_State *L, int n)
 
 static void pushInt64(lua_State *L, pb::int64 value)
 {
-	lua_pushlstring(L, (const char*)&value, 8);
+	push_stack(L, (int64_t)value);
 }
 
 
@@ -244,6 +287,27 @@ static void PushValue(lua_State* L, std::string const& v)
 	lua_pushlstring(L, v.c_str(), v.size());
 }
 
+static void PushValue(lua_State* L, pb::Descriptor::ExtensionRange const* v)
+{
+	if (!v)
+		lua_pushnil(L);
+	else
+	{
+		lua_newtable(L);
+		lua_pushstring(L, "start");
+		lua_pushinteger(L, v->start);
+		lua_settable(L, -3);
+
+		lua_pushstring(L, "end");
+		lua_pushinteger(L, v->end);
+		lua_settable(L, -3);
+
+		lua_pushstring(L, "options");
+		pushClassInstancePtr(L, v->options_);
+		lua_settable(L, -3);
+	}
+}
+
 template <typename ValueType>
 static void PushValue(lua_State* L, ValueType* v)
 {
@@ -380,6 +444,11 @@ static const struct luaL_Reg FileDescriptor_funcs[] =
 	{ "FindEnumTypeByName", BindLuaFunc_1_const<pb::FileDescriptor const, pb::EnumDescriptor const*, std::string const&, &pb::FileDescriptor::FindEnumTypeByName>::value },
 	{ "FindEnumValueByName", BindLuaFunc_1_const<pb::FileDescriptor const, pb::EnumValueDescriptor const*, std::string const&, &pb::FileDescriptor::FindEnumValueByName>::value },
 	{ "DebugString", BindLuaFunc_0_const<pb::FileDescriptor const, std::string, &pb::FileDescriptor::DebugString>::value },
+	{ "FindExtensionByName", BindLuaFunc_1_const<pb::FileDescriptor const, pb::FieldDescriptor const*, std::string const&, &pb::FileDescriptor::FindExtensionByName>::value },
+	{ "FindExtensionByLowercaseName", BindLuaFunc_1_const<pb::FileDescriptor const, pb::FieldDescriptor const*, std::string const&, &pb::FileDescriptor::FindExtensionByLowercaseName>::value },
+	{ "FindExtensionByCamelcaseName", BindLuaFunc_1_const<pb::FileDescriptor const, pb::FieldDescriptor const*, std::string const&, &pb::FileDescriptor::FindExtensionByCamelcaseName>::value },
+	{ "extension_count", BindLuaFunc_0_const<pb::FileDescriptor const, int, &pb::FileDescriptor::extension_count>::value },
+	{ "extension", BindLuaFunc_1_const<pb::FileDescriptor const, pb::FieldDescriptor const*, int, &pb::FileDescriptor::extension>::value },
 	{ NULL, NULL },
 };
 
@@ -426,6 +495,19 @@ static int Descriptor_unknow_field(lua_State* L)
 	return 1;
 }
 
+static int Descriptor_option_GetDescriptor(lua_State* L)
+{
+	const pb::Descriptor* self = checkClassInstancePtr<pb::Descriptor const>(L, 1);
+	if (!self)
+	{
+		luaL_error(L, "Descriptor_option_GetDescriptor: argument #1 must be Descriptor");
+		return 0;
+	}
+	const pb::Descriptor* od = self->options().GetDescriptor();
+	pushClassInstancePtr(L, od);
+	return 1;
+}
+
 static std::string& trim_comment(std::string& text)
 {
 	if (!text.empty())
@@ -441,10 +523,10 @@ static std::string& trim_comment(std::string& text)
 	}
 	return text;
 }
-
+template<typename T>
 static int Descriptor_GetSourceLocation(lua_State* L)
 {
-	const pb::Descriptor* self = checkClassInstancePtr<pb::Descriptor const>(L, 1);
+	T* self = checkClassInstancePtr<T>(L, 1);
 	if (!self)
 	{
 		luaL_error(L, "Descriptor_GetSourceLocation: argument #1 must be Descriptor");
@@ -487,10 +569,17 @@ static const struct luaL_Reg Descriptor_funcs[] =
 	{ "enum_type", BindLuaFunc_1_const<pb::Descriptor const, pb::EnumDescriptor const*, int, &pb::Descriptor::enum_type>::value },
 	{ "FindEnumTypeByName", BindLuaFunc_1_const<pb::Descriptor const, pb::EnumDescriptor const*, std::string const&, &pb::Descriptor::FindEnumTypeByName>::value },
 	{ "FindEnumValueByName", BindLuaFunc_1_const<pb::Descriptor const, pb::EnumValueDescriptor const*, std::string const&, &pb::Descriptor::FindEnumValueByName>::value },
+	{ "extension_count", BindLuaFunc_0_const<pb::Descriptor const, int, &pb::Descriptor::extension_count>::value },
+	{ "extension", BindLuaFunc_1_const<pb::Descriptor const, pb::FieldDescriptor const*, int, &pb::Descriptor::extension>::value },
+	{ "extension_range_count", BindLuaFunc_0_const<pb::Descriptor const, int, &pb::Descriptor::extension_range_count>::value },
+	{ "extension_range", BindLuaFunc_1_const<pb::Descriptor const, pb::Descriptor::ExtensionRange const*, int, &pb::Descriptor::extension_range>::value },
+	{ "FindExtensionByName", BindLuaFunc_1_const<pb::Descriptor const, pb::FieldDescriptor const*, std::string const&, &pb::Descriptor::FindExtensionByName>::value },
+	
 
 	{ "unknow_field_count", Descriptor_unknow_field_count },
 	{ "unknow_field", Descriptor_unknow_field },
-	{ "GetSourceLocation", Descriptor_GetSourceLocation },
+	{ "GetOptionDescriptor", Descriptor_option_GetDescriptor },
+	{ "GetSourceLocation", Descriptor_GetSourceLocation<pb::Descriptor> },
 	{ NULL, NULL },
 };
 
@@ -509,6 +598,7 @@ static const struct luaL_Reg EnumDescriptor_funcs[] =
 	{ "FindValueByNumber", BindLuaFunc_1_const<pb::EnumDescriptor const, pb::EnumValueDescriptor const*, int, &pb::EnumDescriptor::FindValueByNumber>::value },
 	{ "containing_type", BindLuaFunc_0_const<pb::EnumDescriptor const, pb::Descriptor const*, &pb::EnumDescriptor::containing_type>::value },
 	{ "DebugString", BindLuaFunc_0_const<pb::EnumDescriptor const, std::string, &pb::EnumDescriptor::DebugString>::value },
+	{ "GetSourceLocation", Descriptor_GetSourceLocation<pb::EnumDescriptor> },
 	{ NULL, NULL },
 };
 
@@ -523,6 +613,7 @@ static const struct luaL_Reg EnumValueDescriptor_funcs[] =
 	{ "full_name", BindLuaFunc_0_const<pb::EnumValueDescriptor const, std::string const&, &pb::EnumValueDescriptor::full_name>::value },
 	{ "type", BindLuaFunc_0_const<pb::EnumValueDescriptor const, pb::EnumDescriptor const*, &pb::EnumValueDescriptor::type>::value },
 	{ "DebugString", BindLuaFunc_0_const<pb::EnumValueDescriptor const, std::string, &pb::EnumValueDescriptor::DebugString>::value },
+	{ "GetSourceLocation", Descriptor_GetSourceLocation<pb::EnumValueDescriptor> },
 	{ NULL, NULL },
 };
 
@@ -633,6 +724,7 @@ static const struct luaL_Reg FieldDescriptor_funcs[] =
 	{ "is_packable", BindLuaFunc_0_const<pb::FieldDescriptor const, bool, &pb::FieldDescriptor::is_packable>::value },
 	{ "is_packed", BindLuaFunc_0_const<pb::FieldDescriptor const, bool, &pb::FieldDescriptor::is_packed>::value },
 	{ "index", BindLuaFunc_0_const<pb::FieldDescriptor const, int, &pb::FieldDescriptor::index>::value },
+	{ "number", BindLuaFunc_0_const<pb::FieldDescriptor const, int, &pb::FieldDescriptor::number>::value },
 	{ "has_default_value", BindLuaFunc_0_const<pb::FieldDescriptor const, bool, &pb::FieldDescriptor::has_default_value>::value },
 	{ "default_value_int32", BindLuaFunc_0_const<pb::FieldDescriptor const, int, &pb::FieldDescriptor::default_value_int32>::value },
 	{ "default_value_int64", BindLuaFunc_0_const<pb::FieldDescriptor const, pb::int64, &pb::FieldDescriptor::default_value_int64>::value },
@@ -651,6 +743,7 @@ static const struct luaL_Reg FieldDescriptor_funcs[] =
 	//新增
 	{ "is_message", FieldDescriptor_is_message },
 	{ "GetDefaultValue", FieldDescriptor_GetDefaultValue },
+	{ "GetSourceLocation", Descriptor_GetSourceLocation<pb::FieldDescriptor> },
 
 	{ NULL, NULL },
 };
@@ -1395,6 +1488,76 @@ static const struct luaL_Reg Message_funcs[] =
 	{ NULL, NULL },
 };
 
+
+static int ExtensionRangeOptions_unknown_fields(lua_State* L)
+{
+	const pb::ExtensionRangeOptions* self = checkClassInstancePtr<pb::ExtensionRangeOptions const>(L, 1);
+	if (!self)
+	{
+		luaL_error(L, "ExtensionRangeOptions_unknown_fields: argument #1 must be ExtensionRangeOptions");
+		return 0;
+	}
+	const pb::UnknownFieldSet& unknow_field_set = self->unknown_fields();
+
+	lua_newtable(L);
+	for (int i=0; i<unknow_field_set.field_count(); ++i)
+	{
+		const pb::UnknownField& v = unknow_field_set.field(i);
+
+		lua_pushinteger(L, i+1);
+		PushValue(L, &v);
+		lua_settable(L, -3);
+	}
+	return 1;
+}
+static int ExtensionRangeOptions_unknown_field_count(lua_State* L)
+{
+	const pb::ExtensionRangeOptions* self = checkClassInstancePtr<pb::ExtensionRangeOptions const>(L, 1);
+	if (!self)
+	{
+		luaL_error(L, "ExtensionRangeOptions_unknown_field_count: argument #1 must be ExtensionRangeOptions");
+		return 0;
+	}
+	int count = self->unknown_fields().field_count();
+	lua_pushinteger(L, count);
+	return 1;
+}
+static int ExtensionRangeOptions_unknown_field(lua_State* L)
+{
+	const pb::ExtensionRangeOptions* self = checkClassInstancePtr<pb::ExtensionRangeOptions const>(L, 1);
+	if (!self)
+	{
+		luaL_error(L, "ExtensionRangeOptions_unknown_field: argument #1 must be ExtensionRangeOptions");
+		return 0;
+	}
+	if (!lua_isnumber(L, 2))
+	{
+		luaL_error(L, "ExtensionRangeOptions_field: argument #2 must be integer");
+		return 0;
+	}
+	int index = lua_tointeger(L, 2);
+	int count = self->unknown_fields().field_count();
+	if (index < 0 || index >= count)
+	{
+		luaL_error(L, "ExtensionRangeOptions_field: argument #2 must be range[0, %d]", count - 1);
+		return 0;
+	}
+	//这里v必须使用引用方式，不然传递到lua会导致数据异常
+	const pb::UnknownField& v = self->unknown_fields().field(index);
+	PushValue(L, &v);
+
+	return 1;
+}
+
+
+static const struct luaL_Reg ExtensionRangeOptions_funcs[] =
+{
+	{ "unknown_fields", ExtensionRangeOptions_unknown_fields },
+	{ "unknown_field_count", ExtensionRangeOptions_unknown_field_count },
+	{ "unknown_field", ExtensionRangeOptions_unknown_field },
+	{NULL, NULL}
+};
+
 //
 // DynamicProtobuf
 //
@@ -1713,8 +1876,8 @@ extern "C"
 		luaL_register(L, "DynamicProtobuf.EnumValueDescriptor", EnumValueDescriptor_funcs);
 		luaL_register(L, "DynamicProtobuf.FieldDescriptor", FieldDescriptor_funcs);
 		luaL_register(L, "DynamicProtobuf.UnknownField", UnknownField_funcs);
-		luaL_register(L, "DynamicProtobuf.Message", Message_funcs);
-
+		luaL_register(L, "DynamicProtobuf.Message", Message_funcs); 
+		luaL_register(L, "DynamicProtobuf.ExtensionRangeOptions_funcs", ExtensionRangeOptions_funcs);
 		luaL_register(L, "DynamicProtobuf", DynamicProtobuf_funcs);
 		return 1;
 	}
