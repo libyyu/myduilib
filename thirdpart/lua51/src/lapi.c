@@ -239,7 +239,7 @@ LUA_API void lua_pushvalue (lua_State *L, int idx) {
 */
 
 
-LUA_API int lua_type (lua_State *L, int idx) {
+LUA_API int (lua_type) (lua_State *L, int idx) {
   StkId o = index2adr(L, idx);
   return (o == luaO_nilobject) ? LUA_TNONE : ttype(o);
 }

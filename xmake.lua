@@ -189,6 +189,44 @@ rule("flib.static")
     end)
 rule_end()
 
+rule("lua.shared")
+    after_load(function (target)
+        target:add("deps", "lua51")
+        target:add("links", 'lua51')
+        target:add("includedirs", "$(projectdir)/thirdpart/lua51/src")
+        if is_plat("windows") then
+            target:add("defines", "LUA_BUILD_AS_DLL")
+        end
+    end)
+rule_end()
+
+rule("lua.static")
+    after_load(function (target)
+        target:add("deps", "liblua51")
+        target:add("links", 'lua51')
+        target:add("includedirs", "$(projectdir)/thirdpart/lua51/src")
+    end)
+rule_end()
+
+rule("luajit.shared")
+    after_load(function (target)
+        --target:add("deps", "luajit")
+        target:add("links", 'luajit')
+        target:add("includedirs", "$(projectdir)/thirdpart/luajit/src")
+        if is_plat("windows") then
+            target:add("defines", "LUA_BUILD_AS_DLL")
+        end
+    end)
+rule_end()
+
+rule("luajit.static")
+    after_load(function (target)
+        --target:add("deps", "libluajit")
+        target:add("links", 'luajit')
+        target:add("includedirs", "$(projectdir)/thirdpart/luajit/src")
+    end)
+rule_end()
+
 rule("ffmpeg.shared")
     after_load(function (target)
     	target:add("includedirs", "$(projectdir)/thirdpart/play_plugin/general_plugin/ext/ffmpeg")

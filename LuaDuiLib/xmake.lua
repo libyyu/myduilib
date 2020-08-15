@@ -6,18 +6,22 @@ target("LuaDuiLib")
 	-- set language: c99, c++11
 	set_languages("cxx11")
     --添加链接库
-    add_deps("lua51", "DuiLib")
-    add_links("lua51", "DuiLib")
+    add_deps("DuiLib")
+    add_links("DuiLib")
 	-- add includes directory
     add_includedirs(
-    	"../thirdpart/lua51/src"
-    	,"../DuiLib"
+    	"../DuiLib"
         ,"../"
     )
+    if has_config("luajit") then
+        add_rules("luajit.shared")
+    else
+        add_rules("lua.shared")
+    end
 
     add_files("*.cpp", "*.c")
 
-    add_defines("UILIB_STACK_DUMP", "LUA_BUILD_AS_DLL", "BUILD_AS_DLL", "LUA_OBJECT_EXTERN", "USE_DLL_EXPORT")
+    add_defines("UILIB_STACK_DUMP", "BUILD_AS_DLL", "LUA_OBJECT_EXTERN", "USE_DLL_EXPORT")
     add_rules("app.dll")
 
     add_options("stack_dump")

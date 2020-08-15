@@ -9,6 +9,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\LuaDuiLib\LuaApplication.cpp" />
+    <ClCompile Include="..\..\LuaDuiLib\LuaWindow.cpp" />
+    <ClCompile Include="..\..\LuaDuiLib\lua_global.cpp" />
+    <ClCompile Include="..\..\LuaDuiLib\lua_duilib.cpp" />
+    <ClCompile Include="..\..\LuaDuiLib\lua_int64.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\base\lua_object.hpp">
@@ -23,5 +28,11 @@
     <ClInclude Include="..\..\base\LuaEnv.hpp">
       <Filter>..\base</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\LuaDuiLib\LuaApplication.h" />
+    <ClInclude Include="..\..\LuaDuiLib\LuaWindow.h" />
+    <ClInclude Include="..\..\LuaDuiLib\lua_duilib.h" />
+    <ClInclude Include="..\..\LuaDuiLib\lua_duilib_extend_wrapper.hpp" />
+    <ClInclude Include="..\..\LuaDuiLib\lua_duilib_wrapper.hpp" />
+    <ClInclude Include="..\..\LuaDuiLib\lua_op_define.hpp" />
   </ItemGroup>
 </Project>

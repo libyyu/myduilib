@@ -133,6 +133,8 @@ namespace lua
 extern int lua_register_Database(lua_State* L);
 extern int lua_register_PlayCenter(lua_State* L);
 extern int lua_register_AudioTagInfo(lua_State* L);
+extern int luaopen_lfs(lua_State* L);
+extern int lua_register_encoding(lua_State* L);
 
 extern "C"
 {
@@ -149,6 +151,8 @@ extern "C"
 		lua_register_Database(L);
 		lua_register_PlayCenter(L);
 		lua_register_AudioTagInfo(L);
+		luaopen_lfs(L);
+		lua_register_encoding(L);
 
 		{
 			int nTop = lua_gettop(L);

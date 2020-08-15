@@ -23,7 +23,7 @@
             selectedpushedimage="res/checkbox/checked.png"
             hotimage="res/checkbox/unchecked.png" 
             normalimage="res/checkbox/unchecked.png" />
-            <Label name="tree_name" text="AAA" padding="1,2,0,0" bordersize="0" textcolor="#FF000000" disabledtextcolor="#FF808080"/>
+            <Label name="tree_name" text="AAA" padding="1,0,0,0" bordersize="0" textcolor="#FF000000" disabledtextcolor="#FF808080"/>
         </HorizontalLayout>
     </VerticalLayout>
   </ListContainerElement>

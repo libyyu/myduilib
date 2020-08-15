@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window>
+  <VerticalLayout name="tmpl_layout">
+  	<HorizontalLayout height="32" inset="2,0,2,0">
+	    <Label name="filed_name" text="程序名" textcolor="#FF000000" disabledtextcolor="#FF808080" autocalcwidth="false" align="center"/>
+	    <Label name="field_comment" text="注释" textcolor="#FF000000" disabledtextcolor="#FF808080" autocalcwidth="false" align="center"/>
+	    <Label name="field_value" text="内容" textcolor="#FF000000" disabledtextcolor="#FF808080" autocalcwidth="false" align="center"/>
+	</HorizontalLayout>
+  	<TemplList name="layout_list" itemalign="center" headerbkimage="file='res/list/list_header_bg.png'" header="hidden" itemshowhtml="true" menu="true" vscrollbar="true" hscrollbar="true" inset="2,0,2,0" template_xml="xml/item/tmpl_item.xml">
+  		<!--ListHeader height="24" menu="true">
+			<ListHeaderItem text="No" font="1" hotimage="file='res/list/list_header_hot.png'" pushedimage="file='res/list/list_header_pushed.png'" sepimage="file='res/list/list_header_sep.png'" sepwidth="1"/>
+			<ListHeaderItem text="Domain" font="1" hotimage="file='res/list/list_header_hot.png'" pushedimage="file='res/list/list_header_pushed.png'" sepimage="file='res/list/list_header_sep.png'" sepwidth="1"/>
+			<ListHeaderItem text="Description" font="1" hotimage="file='res/list/list_header_hot.png'" pushedimage="file='res/list/list_header_pushed.png'" sepimage="file='res/list/list_header_sep.png'" sepwidth="1"/>
+		</ListHeader-->
+  	</TemplList>
+  </VerticalLayout>
+</Window>

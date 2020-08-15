@@ -1,4 +1,4 @@
-importdll "protos"
+importluadll "protos"
 local proto_file = "pb/config_common.proto"
 local FileDescriptor = DynamicProtobuf.FileDescriptor
 local Descriptor = DynamicProtobuf.Descriptor
@@ -147,8 +147,16 @@ function ProtoUtils:GetEnumSourceLocation(name, fieldNameOrfieldValue)
         local pEnumValueDescriptor
         if type(fieldNameOrfieldValue) == "number" then
             pEnumValueDescriptor = EnumDescriptor.FindValueByNumber(pEnumDescriptor, fieldNameOrfieldValue)
-        else
+        elseif IsInt64(fieldNameOrfieldValue) then
+            if type(fieldNameOrfieldValue) == "table" then
+                pEnumValueDescriptor = EnumDescriptor.FindValueByNumber(pEnumDescriptor, fieldNameOrfieldValue:tostring())
+            else
+                pEnumValueDescriptor = EnumDescriptor.FindValueByNumber(pEnumDescriptor, fieldNameOrfieldValue)
+            end
+        elseif type(fieldNameOrfieldValue) == "string" then
             pEnumValueDescriptor = EnumDescriptor.FindValueByName(pEnumDescriptor, fieldNameOrfieldValue)
+        else
+            error(("bad argument #3, expected 'number' or 'string', got '%s'"):format(type(fieldNameOrfieldValue)))
         end
         if pEnumValueDescriptor then
             return EnumValueDescriptor.GetSourceLocation(pEnumValueDescriptor)
@@ -162,10 +170,16 @@ function ProtoUtils:GetEnumSourceLocation(name, fieldNameOrfieldValue)
                 local pEnumValueDescriptor
                 if type(fieldNameOrfieldValue) == "number" then
                     pEnumValueDescriptor = EnumDescriptor.FindValueByNumber(pEnumDescriptor, fieldNameOrfieldValue)
-                elseif type(fieldNameOrfieldValue) == "table" and getmetatable(fieldNameOrfieldValue) and getmetatable(fieldNameOrfieldValue).magic64 then
-                    pEnumValueDescriptor = EnumDescriptor.FindValueByNumber(pEnumDescriptor, fieldNameOrfieldValue.value)
-                else
+                elseif IsInt64(fieldNameOrfieldValue) then
+                    if type(fieldNameOrfieldValue) == "table" then
+                        pEnumValueDescriptor = EnumDescriptor.FindValueByNumber(pEnumDescriptor, fieldNameOrfieldValue:tostring())
+                    else
+                        pEnumValueDescriptor = EnumDescriptor.FindValueByNumber(pEnumDescriptor, fieldNameOrfieldValue)
+                    end
+                elseif type(fieldNameOrfieldValue) == "string" then
                     pEnumValueDescriptor = EnumDescriptor.FindValueByName(pEnumDescriptor, fieldNameOrfieldValue)
+                else
+                    error(("bad argument #3, expected 'number' or 'string', got '%s'"):format(type(fieldNameOrfieldValue)))
                 end
                 if pEnumValueDescriptor then
                     return EnumValueDescriptor.GetSourceLocation(pEnumValueDescriptor)

@@ -21,7 +21,7 @@ target("DuiLib")
         ,"*.cpp"
     )
 
-    add_defines("UILIB_EXPORTS", "LUA_BUILD_AS_DLL", "BUILD_AS_DLL", "_USEIMM")
+    add_defines("UILIB_EXPORTS",  "BUILD_AS_DLL", "_USEIMM")
 
     add_options("stack_dump")
     if has_config("stack_dump") then

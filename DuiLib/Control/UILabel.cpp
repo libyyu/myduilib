@@ -21,6 +21,8 @@ namespace DuiLib
 		m_dwDisabledTextColor(0),
 		m_iFont(-1),
 		m_bShowHtml(false),
+		m_bAutoCalcWidth(false),
+		m_bAutoCalcHeight(false),
         m_bNeedEstimateSize(true),
 		m_EnableEffect(false),
 		m_bEnableLuminous(false),
@@ -102,6 +104,11 @@ namespace DuiLib
 			::ZeroMemory(m_pWideText, (iLen + 1) * sizeof(WCHAR));
 			::MultiByteToWideChar(CP_ACP, 0, pstrText, -1, (LPWSTR)m_pWideText, iLen);
 #endif
+		}
+
+		if (GetAutoCalcWidth() || GetAutoCalcHeight()) {
+			Invalidate();
+			NeedParentUpdate();
 		}
 	}
 
@@ -194,7 +201,7 @@ namespace DuiLib
 
 	SIZE CLabelUI::EstimateSize(SIZE szAvailable)
 	{
-        if (m_cxyFixed.cx > 0 && m_cxyFixed.cy > 0) return m_cxyFixed;
+        //if (m_cxyFixed.cx > 0 && m_cxyFixed.cy > 0) return m_cxyFixed;
 
         if ((m_uTextStyle & DT_SINGLELINE) == 0 && 
             (szAvailable.cx != m_szAvailableLast.cx || szAvailable.cy != m_szAvailableLast.cy)) {
@@ -202,41 +209,46 @@ namespace DuiLib
         }
 
         if (m_bNeedEstimateSize) {
+			CDuiString sText = GetText();
+
             m_bNeedEstimateSize = false;
             m_szAvailableLast = szAvailable;
             m_cxyFixedLast = m_cxyFixed;
             if ((m_uTextStyle & DT_SINGLELINE) != 0) {
+				// 高度
                 if (m_cxyFixedLast.cy == 0) {
                     m_cxyFixedLast.cy = m_pManager->GetFontInfo(m_iFont)->tm.tmHeight + 8;
                     m_cxyFixedLast.cy += m_rcTextPadding.top + m_rcTextPadding.bottom;
                 }
-                if (m_cxyFixedLast.cx == 0) {
-                    RECT rcText = { 0, 0, 9999, m_cxyFixedLast.cy };
-                    if( m_bShowHtml ) {
-                        int nLinks = 0;
-                        CRenderEngine::DrawHtmlText(m_pManager->GetPaintDC(), m_pManager, rcText, m_sText, 0, NULL, NULL, nLinks, m_iFont, DT_CALCRECT | m_uTextStyle & ~DT_RIGHT & ~DT_CENTER);
-                    }
-                    else {
-                        CRenderEngine::DrawText(m_pManager->GetPaintDC(), m_pManager, rcText, m_sText, 0, m_iFont, DT_CALCRECT | m_uTextStyle & ~DT_RIGHT & ~DT_CENTER);
-                    }
-                    m_cxyFixedLast.cx = rcText.right - rcText.left + m_rcTextPadding.left + m_rcTextPadding.right;
-                }
+				// 宽度
+				if (m_cxyFixedLast.cx == 0) {
+					if (m_bAutoCalcWidth) {
+						RECT rcText = { 0, 0, 9999, m_cxyFixedLast.cy };
+						if (m_bShowHtml) {
+							int nLinks = 0;
+							CRenderEngine::DrawHtmlText(m_pManager->GetPaintDC(), m_pManager, rcText, sText, 0, NULL, NULL, nLinks, m_iFont, DT_CALCRECT | m_uTextStyle & ~DT_RIGHT & ~DT_CENTER);
+						}
+						else {
+							CRenderEngine::DrawText(m_pManager->GetPaintDC(), m_pManager, rcText, sText, 0, m_iFont, DT_CALCRECT | m_uTextStyle & ~DT_RIGHT & ~DT_CENTER);
+						}
+						m_cxyFixedLast.cx = rcText.right - rcText.left + m_rcTextPadding.left + m_rcTextPadding.right;
+					}
+				}
             }
-            else {
-                if( m_cxyFixedLast.cx == 0 ) {
-                    m_cxyFixedLast.cx = szAvailable.cx;
-                }
-                RECT rcText = { 0, 0, m_cxyFixedLast.cx, 9999 };
-                rcText.left += m_rcTextPadding.left;
-                rcText.right -= m_rcTextPadding.right;
-                if( m_bShowHtml ) {
-                    int nLinks = 0;
-                    CRenderEngine::DrawHtmlText(m_pManager->GetPaintDC(), m_pManager, rcText, m_sText, 0, NULL, NULL, nLinks, m_iFont, DT_CALCRECT | m_uTextStyle & ~DT_RIGHT & ~DT_CENTER);
-                }
-                else {
-                    CRenderEngine::DrawText(m_pManager->GetPaintDC(), m_pManager, rcText, m_sText, 0, m_iFont, DT_CALCRECT | m_uTextStyle & ~DT_RIGHT & ~DT_CENTER);
-                }
-                m_cxyFixedLast.cy = rcText.bottom - rcText.top + m_rcTextPadding.top + m_rcTextPadding.bottom;
+			else if (m_cxyFixedLast.cy == 0) {
+				if (m_bAutoCalcHeight) {
+					RECT rcText = { 0, 0, m_cxyFixedLast.cx, 9999 };
+					rcText.left += m_rcTextPadding.left;
+					rcText.right -= m_rcTextPadding.right;
+					if (m_bShowHtml) {
+						int nLinks = 0;
+						CRenderEngine::DrawHtmlText(m_pManager->GetPaintDC(), m_pManager, rcText, m_sText, 0, NULL, NULL, nLinks, m_iFont, DT_CALCRECT | m_uTextStyle & ~DT_RIGHT & ~DT_CENTER);
+					}
+					else {
+						CRenderEngine::DrawText(m_pManager->GetPaintDC(), m_pManager, rcText, m_sText, 0, m_iFont, DT_CALCRECT | m_uTextStyle & ~DT_RIGHT & ~DT_CENTER);
+					}
+					m_cxyFixedLast.cy = rcText.bottom - rcText.top + m_rcTextPadding.top + m_rcTextPadding.bottom;
+				}
             }
         }
         return m_cxyFixedLast;
@@ -362,6 +374,14 @@ namespace DuiLib
 			LPTSTR pstr = NULL;
 			DWORD clrColor = _tcstoul(pstrValue, &pstr, 16);
 			SetStrokeColor(clrColor);
+			return true;
+		}
+		else if (_tcsicmp(pstrName, _T("autocalcwidth")) == 0) {
+			SetAutoCalcWidth(_tcsicmp(pstrValue, _T("true")) == 0);
+			return true;
+		}
+		else if (_tcsicmp(pstrName, _T("autocalcheight")) == 0) {
+			SetAutoCalcHeight(_tcsicmp(pstrValue, _T("true")) == 0);
 			return true;
 		}
 		else return CControlUI::SetAttribute(pstrName, pstrValue);
@@ -657,6 +677,26 @@ namespace DuiLib
 		return m_GradientLength;
 	}
 
+	bool CLabelUI::GetAutoCalcWidth() const
+	{
+		return m_bAutoCalcWidth;
+	}
+
+	void CLabelUI::SetAutoCalcWidth(bool bAutoCalcWidth)
+	{
+		m_bAutoCalcWidth = bAutoCalcWidth;
+	}
+
+	bool CLabelUI::GetAutoCalcHeight() const
+	{
+		return m_bAutoCalcHeight;
+	}
+
+	void CLabelUI::SetAutoCalcHeight(bool bAutoCalcHeight)
+	{
+		m_bAutoCalcHeight = bAutoCalcHeight;
+	}
+
 
 	void CLabelUI::GetPropertyList(std::vector<UIPropertyGrid>& property_list)
 	{
@@ -708,6 +748,8 @@ namespace DuiLib
 		items.push_back(UIPropertyGridItem(PropertyType::PT_Color, "TextShadowColorA", "字体阴影渐变色A", _variant_t((LONG)(ARGB(0, 0, 0, 0)))));
 		items.push_back(UIPropertyGridItem(PropertyType::PT_Color, "TextShadowColorB", "字体阴影渐变色B", _variant_t((LONG)(ARGB(0, 0, 0, 0)))));
 		items.push_back(UIPropertyGridItem(PropertyType::PT_Color, "StrokeColor", "字体描边的颜色B", _variant_t((LONG)(ARGB(0, 0, 0, 0)))));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Boolean, "autocalcwidth", "自适应宽度", _variant_t(bool(false))));
+		items.push_back(UIPropertyGridItem(PropertyType::PT_Boolean, "autocalcheight", "自适应高度", _variant_t(bool(false))));
 
 #undef ARGB
 	}

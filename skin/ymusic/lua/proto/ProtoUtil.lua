@@ -1,4 +1,4 @@
-importdll "protos"
+importluadll "protos"
 local proto_file = "pb/config_common.proto"
 
 local ProtoUtils = FLua.FinalClass("ProtoUtils")

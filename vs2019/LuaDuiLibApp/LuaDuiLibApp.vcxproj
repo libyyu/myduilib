@@ -91,7 +91,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
     <Link>
       <AdditionalLibraryDirectories>..\..\release\windows\x86;..\..\libs\windows\release\x86;..\..\libs\windows\release;..\..\libs\windows;..\..\release\windows;..\..\release\windows\x86\plugins;..\..\release\windows\plugins;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>LuaMyControls.lib;MyControls.lib;protos.lib;protobuf.lib;LuaDuiLib.lib;lua51.lib;DuiLib.lib;StackDump.lib;ws2_32.lib;-nodefaultlib:"LIBCMT.lib";-nodefaultlib:"LIBC.lib";-nodefaultlib:"msvcrt.lib";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LuaMyControls.lib;MyControls.lib;protos.lib;protobuf.lib;lua51.lib;LuaDuiLib.lib;DuiLib.lib;StackDump.lib;ws2_32.lib;-nodefaultlib:"LIBCMT.lib";-nodefaultlib:"LIBC.lib";-nodefaultlib:"msvcrt.lib";%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>-nologo -dynamicbase -nxcompat %(AdditionalOptions)</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <ProgramDatabaseFile>..\..\release\windows\x86\LuaDuiLibApp.pdb</ProgramDatabaseFile>
@@ -124,7 +124,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
     <Link>
       <AdditionalLibraryDirectories>..\..\release\windows\x64;..\..\libs\windows\release\x64;..\..\libs\windows\release;..\..\libs\windows;..\..\release\windows;..\..\release\windows\x64\plugins;..\..\release\windows\plugins;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>LuaMyControls.lib;MyControls.lib;protos.lib;protobuf.lib;LuaDuiLib.lib;lua51.lib;DuiLib.lib;StackDump.lib;ws2_32.lib;-nodefaultlib:"LIBCMT.lib";-nodefaultlib:"LIBC.lib";-nodefaultlib:"msvcrt.lib";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LuaMyControls.lib;MyControls.lib;protos.lib;protobuf.lib;lua51.lib;LuaDuiLib.lib;DuiLib.lib;StackDump.lib;ws2_32.lib;-nodefaultlib:"LIBCMT.lib";-nodefaultlib:"LIBC.lib";-nodefaultlib:"msvcrt.lib";%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>-nologo -dynamicbase -nxcompat %(AdditionalOptions)</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <ProgramDatabaseFile>..\..\release\windows\x64\LuaDuiLibApp.pdb</ProgramDatabaseFile>
@@ -157,7 +157,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
     <Link>
       <AdditionalLibraryDirectories>..\..\debug\windows\x86;..\..\libs\windows\debug\x86;..\..\libs\windows\debug;..\..\libs\windows;..\..\debug\windows;..\..\debug\windows\x86\plugins;..\..\debug\windows\plugins;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>LuaMyControls.lib;MyControls.lib;protos.lib;protobuf.lib;LuaDuiLib.lib;lua51.lib;DuiLib.lib;StackDump.lib;ws2_32.lib;-nodefaultlib:"LIBCMT.lib";-nodefaultlib:"LIBC.lib";-nodefaultlib:"msvcrt.lib";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LuaMyControls.lib;MyControls.lib;protos.lib;protobuf.lib;lua51.lib;LuaDuiLib.lib;DuiLib.lib;StackDump.lib;ws2_32.lib;-nodefaultlib:"LIBCMT.lib";-nodefaultlib:"LIBC.lib";-nodefaultlib:"msvcrt.lib";%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>-nologo -dynamicbase -nxcompat %(AdditionalOptions)</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>..\..\debug\windows\x86\LuaDuiLibApp.pdb</ProgramDatabaseFile>
@@ -190,7 +190,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
     <Link>
       <AdditionalLibraryDirectories>..\..\debug\windows\x64;..\..\libs\windows\debug\x64;..\..\libs\windows\debug;..\..\libs\windows;..\..\debug\windows;..\..\debug\windows\x64\plugins;..\..\debug\windows\plugins;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>LuaMyControls.lib;MyControls.lib;protos.lib;protobuf.lib;LuaDuiLib.lib;lua51.lib;DuiLib.lib;StackDump.lib;ws2_32.lib;-nodefaultlib:"LIBCMT.lib";-nodefaultlib:"LIBC.lib";-nodefaultlib:"msvcrt.lib";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LuaMyControls.lib;MyControls.lib;protos.lib;protobuf.lib;lua51.lib;LuaDuiLib.lib;DuiLib.lib;StackDump.lib;ws2_32.lib;-nodefaultlib:"LIBCMT.lib";-nodefaultlib:"LIBC.lib";-nodefaultlib:"msvcrt.lib";%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>-nologo -dynamicbase -nxcompat %(AdditionalOptions)</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>..\..\debug\windows\x64\LuaDuiLibApp.pdb</ProgramDatabaseFile>

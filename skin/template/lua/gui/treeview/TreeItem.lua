@@ -1,6 +1,6 @@
 local TreeItem = FLua.Class("TreeItem")
 
-local NodeData = require "frames.treeview.NodeData"
+local NodeData = require "gui.treeview.NodeData"
 
 function TreeItem:__constructor()
     self.children_ = {}

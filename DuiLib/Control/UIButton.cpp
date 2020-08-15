@@ -57,11 +57,15 @@ namespace DuiLib
 				}
 			}
 		}
-		if( event.Type == UIEVENT_BUTTONDOWN || event.Type == UIEVENT_DBLCLICK )
+		if( event.Type == UIEVENT_BUTTONDOWN)
 		{
 			if( ::PtInRect(&m_rcItem, event.ptMouse) && IsEnabled() ) {
 				m_uButtonState |= UISTATE_PUSHED | UISTATE_CAPTURED;
 				Invalidate();
+
+				if (!m_sSoundNameDown.IsEmpty()) {
+					CPaintManagerUI::PlaySound(m_sSoundNameDown.GetData());
+				}
 			}
 			return;
 		}
@@ -83,6 +87,30 @@ namespace DuiLib
 			}
 			return;
 		}
+		if (event.Type == UIEVENT_RBUTTONUP)
+		{		
+			if (::PtInRect(&m_rcItem, event.ptMouse) && IsEnabled()) {
+				m_pManager->SendNotify(this, DUI_MSGTYPE_RCLICK, event.wParam, event.lParam);
+			}
+		}
+		if (event.Type == UIEVENT_DBLCLICK)
+		{
+			if (::PtInRect(&m_rcItem, event.ptMouse) && IsEnabled()) {
+				m_uButtonState |= UISTATE_PUSHED | UISTATE_CAPTURED;
+				Activate();
+				Invalidate();
+				m_pManager->SendNotify(this, DUI_MSGTYPE_DBCLICK, event.wParam, event.lParam);
+				if (!m_sSoundNameDown.IsEmpty()) {
+					CPaintManagerUI::PlaySound(m_sSoundNameDown.GetData());
+				}
+			}
+		}
+		if (event.Type == UIEVENT_RDBLCLICK)
+		{
+			if (::PtInRect(&m_rcItem, event.ptMouse) && IsEnabled()) {
+				m_pManager->SendNotify(this, DUI_MSGTYPE_RDBCLICK, event.wParam, event.lParam);
+			}
+		}
 		if( event.Type == UIEVENT_CONTEXTMENU )
 		{
 			if( IsContextMenuUsed() && IsEnabled()) {
@@ -98,6 +126,10 @@ namespace DuiLib
                         m_uButtonState |= UISTATE_HOT;
                         Invalidate();
                     }
+
+					if (!m_sSoundNameOver.IsEmpty()) {
+						CPaintManagerUI::PlaySound(m_sSoundNameOver.GetData());
+					}
                 }
             }
 			if ( GetFadeAlphaDelta() > 0 ) {

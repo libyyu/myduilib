@@ -26,6 +26,7 @@ function CRuntimeState:Init(dwMainThreadId)
 	--文件管理器
 	local FilePathMgrT = require "main.FilePathMgr"
 	self._spFilePathMgr = FilePathMgrT()
+	self._spFilePathMgr:Init()
 	--缓存管理器
 	local CacheMgrT = require "main.CacheMgr"
 	self._spCacheMgr = CacheMgrT()

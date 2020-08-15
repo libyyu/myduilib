@@ -106,6 +106,9 @@ namespace DuiLib
 		}
 		BOOL CreateDirectory(LPCTSTR lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes)
 		{
+			if (IsDirectoryExist(lpPathName))
+				return TRUE;
+
 			TCHAR cPathUtil[MAX_PATH] = { 0 };
 			TCHAR cTmpPath[MAX_PATH] = { 0 };
 			TCHAR * lpPos = NULL;
@@ -141,6 +144,9 @@ namespace DuiLib
 				}
 				lpPos = _tcschr(lpPos, _T('/'));
 			}
+
+			if (!IsDirectoryExist(lpPathName) && !::CreateDirectory(lpPathName, lpSecurityAttributes))
+				return FALSE;
 
 			return TRUE;
 		}

@@ -18,6 +18,7 @@ namespace lua { \
 			std::string meta = "DuiLib."; \
 			meta += szClass; \
 			meta += "_meta"; \
+			/*printf("%s push: %p\n", meta.c_str(), (void*)value); \*/
 			pushobject(l, (void*)(value), meta.c_str()); \
 			return 1; \
 		} \

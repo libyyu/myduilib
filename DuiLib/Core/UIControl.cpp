@@ -965,39 +965,7 @@ void CControlUI::DoEvent(TEventUI& event)
             return;
         }
     }
-	//begin modify 2018/6/4
-    if( event.Type == UIEVENT_BUTTONDOWN || event.Type == UIEVENT_DBLCLICK )
-    {
-        if( ::PtInRect(&m_rcItem, event.ptMouse) && IsEnabled() ) {
-            if (!m_sSoundNameDown.IsEmpty()) {
-                CPaintManagerUI::PlaySound(m_sSoundNameDown.GetData());
-            }
-        }
-    }
-	if (event.Type == UIEVENT_RBUTTONUP)
-	{
-		m_pManager->SendNotify(this, DUI_MSGTYPE_RCLICK, event.wParam, event.lParam);
-		return;
-	}
-	if (event.Type == UIEVENT_DBLCLICK)
-	{
-		m_pManager->SendNotify(this, DUI_MSGTYPE_DBCLICK, event.wParam, event.lParam);
-		return;
-	}
-	if (event.Type == UIEVENT_RDBLCLICK)
-	{
-		m_pManager->SendNotify(this, DUI_MSGTYPE_RDBCLICK, event.wParam, event.lParam);
-		return;
-	}
-    if( event.Type == UIEVENT_MOUSEENTER )
-    {
-        if( ::PtInRect(&m_rcItem, event.ptMouse ) && IsEnabled() ) {
-            if (!m_sSoundNameOver.IsEmpty()) {
-                CPaintManagerUI::PlaySound(m_sSoundNameOver.GetData());
-            }
-        }
-    }
-	//end
+
     if( m_pParent != NULL ) m_pParent->DoEvent(event);
 }
 
@@ -1193,7 +1161,7 @@ bool CControlUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
     else if (_tcscmp(pstrName, _T("soundpushed")) == 0) { SetSoundNameDown(pstrValue); return true; }
 	else {
 		AddCustomAttribute(pstrName, pstrValue);
-        DuiLogWarning(_T("attribute:%s not support!!!"), pstrName);
+        //DuiLogWarning(_T("attribute:%s not support!!!"), pstrName);
         return false;
 	}
 }

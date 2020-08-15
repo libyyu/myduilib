@@ -111,10 +111,12 @@ namespace DuiLib
 		switch (level)
 		{
 		case 3:
+		{
 			DuiLogError(s.GetData());
 			MessageBox(NULL, s.GetData(), _T("Error"), 0);
 			DuiException(s.GetData());
-			break;
+		}
+		break;
 		case 2: //error
 			DuiLogError(s.GetData());
 			//MessageBox(NULL, s.GetData(), _T("Error"), 0);
@@ -163,7 +165,25 @@ namespace DuiLib
 		int n = lua_gettop(L);
 		std::string fileName = lua_tostring(L, 1);
 		CDuiString szDllName = toDuiString(fileName.c_str());
-		bool b = LuaApplication::Instance()->ImportLuaDLL(szDllName, NULL);
+		CDuiString szEntryFunc(_T("luaopen_")); szEntryFunc += szDllName;
+
+		bool b = LuaApplication::Instance()->ImportLuaDLL(szDllName, szEntryFunc);
+		if (!b)
+		{
+			lua_error(L);
+			return 1;
+		}
+		else
+		{
+			return lua_gettop(L) - n;
+		}
+	}
+	int on_import_plugin(lua_State* L)
+	{
+		int n = lua_gettop(L);
+		std::string fileName = lua_tostring(L, 1);
+		CDuiString szDllName = toDuiString(fileName.c_str());
+		bool b = CPaintManagerUI::LoadPlugin(szDllName);
 		if (!b)
 		{
 			lua_error(L);
@@ -574,7 +594,7 @@ namespace DuiLib
 				FIND_DATA = (WIN32_FIND_DATA*)lua_touserdata(l, -1);
 			lua_pop(l, 1);
 		}
-
+		
 		CDuiString strPath;
 		lua::get(l, 2, &strPath);
 
@@ -582,7 +602,7 @@ namespace DuiLib
 		{
 			lua_newtable(l);
 			lua::push(l, "cFileName");
-			lua::push(l, FIND_DATA->cFileName);
+			lua::push(l, Convert::ToUTF8(FIND_DATA->cFileName));
 			lua_settable(l, -3);
 
 			lua::push(l, "dwFileAttributes");
@@ -597,18 +617,28 @@ namespace DuiLib
 			lua::push(l, FIND_DATA->nFileSizeLow);
 			lua_settable(l, -3);
 
-			CDuiString strFullPath = Path::CombinePath(strPath, FIND_DATA->cFileName);
 
-			lua::push(l, "cFullPath");
-			lua::push(l, strFullPath);
-			lua_settable(l, -3);
+			if ((FIND_DATA->dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
+			{
+				lua::push(l, "mode");
+				lua::push(l, "directory");
+				lua_settable(l, -3);
+			}
+			else
+			{
+				lua::push(l, "mode");
+				lua::push(l, "file");
+				lua_settable(l, -3);
+			}
+
+			CDuiString strFullPath = Path::CombinePath(strPath, FIND_DATA->cFileName);
 
 			struct _tstat stat_info;
 			_tstat(strFullPath, &stat_info);
 			lua::push(l, "st_size");
 			lua::push(l, (unsigned int)(stat_info.st_size));
 			lua_settable(l, -3);
-
+			
 			return 1;
 		}
 		else
@@ -900,7 +930,23 @@ namespace DuiLib
 
 		return 0;
 	}
+	static int lua_GetTickCount(lua_State* l)
+	{
+		DWORD dwV = ::GetTickCount();
+		lua::push(l, dwV);
+		return 1;
+	}
+	static int lua_GetLastError(lua_State* l)
+	{
+		UINT code = ::GetLastError();
+		lua::push(l, code);
+		return 1;
+	}
 
+	static int lua_OnInitEnv(lua_State* l)
+	{
+		return 0;
+	}
 
 	static bool RegisterApplicationAPIToLua(lua_State* l)
 	{
@@ -940,6 +986,8 @@ namespace DuiLib
 			.def("FindClose", lua_FindClose)
 			.def("SetMainWindow", lua_SetMainWindow)
 			.def("QuitApp", lua_QuitApp)
+			.def("GetLastError", lua_GetLastError)
+			.def("OnInitEnv", lua_OnInitEnv)
 #ifdef _DEBUG
 			.readonly("IsDebug", true);
 #else
@@ -965,7 +1013,7 @@ namespace DuiLib
 		}
 	}
 
-	void LuaApplication::OnCallbackTimer(IDuiTimer* pDuiTimer, HWND, CLuaWindow*, WPARAM)
+	void LuaApplication::OnDuiTimerCallback(IDuiTimer* pDuiTimer, HWND, CLuaWindow*, WPARAM)
 	{
 		int iref = pDuiTimer->GetUserData().iInt;
 		if (globalLuaEnv && iref)
@@ -980,10 +1028,16 @@ namespace DuiLib
 		}
 	}
 
+	void LuaApplication::OnGlobalTimerCallback(IDuiTimer* pDuiTimer, void*)
+	{
+		DWORD id = ::GetCurrentThreadId();
+		OutputDebugString(_T("current Thread:"));
+	}
+
 	IDuiTimer* LuaApplication::AddTimer(CLuaWindow* pWindow, int iInterval, int iTotalTimer/* = NULL*/, bool bAutoRun/* = true*/, bool bLoop/* = false*/, bool bRevers/* = false*/, unUserData* userdata/* = NULL*/)
 	{
 		DuiAssert(pWindow && ::IsWindow(*pWindow));
-		auto DuiTimer = MakeDuiTimer(this, &LuaApplication::OnCallbackTimer,
+		auto DuiTimer = MakeDuiTimer(this, &LuaApplication::OnDuiTimerCallback,
 			pWindow->GetHWND(), pWindow, (WPARAM)0, iInterval, iTotalTimer, bAutoRun, bLoop, bRevers);
 		if (userdata) {
 			DuiTimer.SetUserData(*userdata);
@@ -1051,11 +1105,14 @@ namespace DuiLib
 		//Timer
 		lua::lua_register_t<void>(l, "Timer")
 			.def("AddGlobalTimer", lua_AddGlobalTimer)
-			.def("RemoveGlobalTimer", lua_RemoveGlobalTimer);
+			.def("RemoveGlobalTimer", lua_RemoveGlobalTimer)
+			.def("GetTickCount", lua_GetTickCount);
 
 		return true;
 	}
 }
+
+extern int luaopen_int64(lua_State*);
 
 namespace DuiLib 
 {
@@ -1063,6 +1120,7 @@ namespace DuiLib
 	////
 	LuaApplication::LuaApplication(): valid(false), exiting(false), m_pMainWindow(NULL)
 	{
+		mainThreadId = ::GetCurrentThreadId();
 		Initialize();
 	}
 	LuaApplication::~LuaApplication()
@@ -1091,6 +1149,7 @@ namespace DuiLib
 			return false;
 		}
 		valid = true;
+
 		return true;
 	}
 
@@ -1137,7 +1196,10 @@ namespace DuiLib
 		{
 			lua::stack_gurad guard(*globalLuaEnv);
 			lua_pushcfunction(*globalLuaEnv, on_import_luadll);
-			lua_setfield(*globalLuaEnv, LUA_GLOBALSINDEX, "importdll");
+			lua_setfield(*globalLuaEnv, LUA_GLOBALSINDEX, "importluadll");
+
+			lua_pushcfunction(*globalLuaEnv, on_import_plugin);
+			lua_setfield(*globalLuaEnv, LUA_GLOBALSINDEX, "importplugin");
 			
 			lua_pushboolean(*globalLuaEnv, exiting);
 			lua_setfield(*globalLuaEnv, LUA_GLOBALSINDEX, "CLOSING");
@@ -1186,9 +1248,11 @@ namespace DuiLib
 
 	extern bool register_lua_scripts(lua_State*);
 	extern int make_lua_global(lua_State*);
+	
 	bool LuaApplication::RegisterScript()
 	{
 		make_lua_global(*globalLuaEnv);
+		luaopen_int64(*globalLuaEnv);
 		return register_lua_scripts(*globalLuaEnv) && RegisterTimerAPIToLua(*globalLuaEnv) && RegisterApplicationAPIToLua(*globalLuaEnv);
 	}
 	bool LuaApplication::ImportLuaDLL(LPCTSTR dllName, LPCTSTR dllEntry)
@@ -1200,21 +1264,23 @@ namespace DuiLib
 
 		CDuiString szDllName = dllName;
 		CDuiString szDllNameWithExt = szDllName + _T(".dll");
-		CDuiString szEntryFunc(_T("luaopen_")); szEntryFunc += szDllName;
-		if (dllEntry != NULL) szEntryFunc = dllEntry;
+		CDuiString szEntryFunc = dllEntry;
 
 		HPLUGINS hDll = CSystem::Instance()->LoadPlugin(szDllNameWithExt);
 		if (hDll)
 		{
-			typedef int(*LuaOpenEntryFunc)(lua_State *);
-			LuaOpenEntryFunc lpfunc = CSystem::Instance()->GetFunction<LuaOpenEntryFunc>(hDll, szEntryFunc);
-			if (!lpfunc)
+			if (dllEntry)
 			{
-				CSystem::Instance()->FreePlugin(hDll);
-				DuiLogError(_T("Failed to GetFunction : %s@%s"), szDllName, szEntryFunc);
-				return false;
+				typedef int(*LuaOpenEntryFunc)(lua_State*);
+				LuaOpenEntryFunc lpfunc = CSystem::Instance()->GetFunction<LuaOpenEntryFunc>(hDll, szEntryFunc);
+				if (!lpfunc)
+				{
+					CSystem::Instance()->FreePlugin(hDll);
+					DuiLogError(_T("Failed to GetFunction : %s@%s"), szDllName, szEntryFunc);
+					return false;
+				}
+				lpfunc(*globalLuaEnv);
 			}
-			lpfunc(*globalLuaEnv);
 			lua_plugins.Insert(dllName, hDll);
 			return true;
 		}

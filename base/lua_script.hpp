@@ -108,6 +108,85 @@ namespace lua
 	template<typename T>
 	struct lua_op_t;
 
+	template<>
+	struct lua_op_t<::int64>
+	{
+		static int push_stack(lua_State* l, ::int64 value)
+		{
+			lua_pushlstring(l, (const char*)&value, 8);
+
+			return 1;
+		}
+		static void from_stack(lua_State* l, int pos, ::int64* value)
+		{	
+			LUA_CHECK_ERROR(lua_isnumber(l, pos) || lua_isstring(l, pos), LUA_TSTRING, pos);
+			if (lua_isnumber(l, pos))
+			{
+				lua_Number n = luaL_checknumber(l, pos);
+				*value = (::int64)n;
+				return;
+			}
+			size_t len = 0;
+			const char* str = luaL_checklstring(l, pos, &len);
+			if (len != 8)
+			{
+				luaL_error(l, "bad int64 string length (8 expected, got %d)", int(len));
+				return;
+			}
+			*value = *(::int64*)str;
+		}
+		static bool try_get(lua_State* l, int pos, ::int64* value)
+		{
+			if (lua_isstring(l, pos) || lua_isnumber(l, pos))
+			{
+				from_stack(l, pos, value);
+				return true;
+			}
+			else
+				return false;
+		}
+	};
+
+	template<>
+	struct lua_op_t<::uint64>
+	{
+		static int push_stack(lua_State* l, ::uint64 value)
+		{
+			lua_pushlstring(l, (const char*)&value, 8);
+
+			return 1;
+		}
+		static void from_stack(lua_State* l, int pos, ::uint64* value)
+		{
+			LUA_CHECK_ERROR(lua_isnumber(l, pos) || lua_isstring(l, pos), LUA_TSTRING, pos);
+			if (lua_isnumber(l, pos))
+			{
+				lua_Number n = luaL_checknumber(l, pos);
+				*value = (::int64)n;
+				return;
+			}
+			size_t len = 0;
+			const char* str = luaL_checklstring(l, pos, &len);
+			if (len != 8)
+			{
+				luaL_error(l, "bad uint64 string length (8 expected, got %d)", int(len));
+				return;
+			}
+			
+			*value = *(::uint64*)str;
+		}
+		static bool try_get(lua_State* l, int pos, ::uint64* value)
+		{
+			if (lua_isnumber(l, pos) || lua_isstring(l, pos))
+			{
+				from_stack(l, pos, value);
+				return true;
+			}
+			else
+				return false;
+		}
+	};
+
 	struct lua_nil_t {
 		lua_nil_t(){}
 	};
@@ -196,16 +275,12 @@ namespace lua
 		}
 		static void from_stack(lua_State* l, int pos, char* value)
 		{
-			if (lua_isnoneornil(l, pos))
-			{
-				return;
-			}
 			LUA_CHECK_ERROR(0 != lua_isnumber(l, pos), LUA_TNUMBER, pos);
 			*value = (char)luaL_checknumber(l, pos);
 		}
 		static bool try_get(lua_State * l, int pos, char* value)
 		{
-			if (lua_isnoneornil(l, pos) || lua_isnumber(l, pos))
+			if (lua_isnumber(l, pos))
 			{
 				from_stack(l, pos, value);
 				return true;
@@ -225,16 +300,12 @@ namespace lua
 		}
 		static void from_stack(lua_State* l, int pos, unsigned char* value)
 		{
-			if (lua_isnoneornil(l, pos))
-			{
-				return;
-			}
 			LUA_CHECK_ERROR(0 != lua_isnumber(l, pos), LUA_TNUMBER, pos);
 			*value = (unsigned char)luaL_checknumber(l, pos);
 		}
 		static bool try_get(lua_State * l, int pos, unsigned char* value)
 		{
-			if (lua_isnoneornil(l, pos) || lua_isnumber(l, pos))
+			if (lua_isnumber(l, pos))
 			{
 				from_stack(l, pos, value);
 				return true;
@@ -254,16 +325,12 @@ namespace lua
 		}
 		static void from_stack(lua_State* l, int pos, signed char* value)
 		{
-			if (lua_isnoneornil(l, pos))
-			{
-				return;
-			}
 			LUA_CHECK_ERROR(0 != lua_isnumber(l, pos), LUA_TNUMBER, pos);
 			*value = (signed char)luaL_checknumber(l, pos);
 		}
 		static bool try_get(lua_State * l, int pos, signed char* value)
 		{
-			if (lua_isnoneornil(l, pos) || lua_isnumber(l, pos))
+			if (lua_isnumber(l, pos))
 			{
 				from_stack(l, pos, value);
 				return true;
@@ -477,11 +544,23 @@ namespace lua
 		}
 		static void from_stack(lua_State* l, int pos, int* value)
 		{
+			if (!lua_isnumber(l, pos) && lua_isstring(l, pos)) {
+				::int64 p;
+				lua_op_t<::int64>::from_stack(l, pos, &p);
+				*value = (int)p;
+				return;
+			}
 			LUA_CHECK_ERROR(0 != lua_isnumber(l, pos), LUA_TNUMBER, pos);
 			*value = (int)luaL_checkinteger(l, pos);
 		}
 		static bool try_get(lua_State * l, int pos, int* value)
 		{
+			if (!lua_isnumber(l, pos) && lua_isstring(l, pos)) {
+				::int64 p;
+				bool b = lua_op_t<::int64>::try_get(l, pos, &p);
+				*value = (int)p;
+				return b;
+			}
 			if (lua_isnumber(l, pos))
 			{
 				from_stack(l, pos, value);
@@ -502,11 +581,23 @@ namespace lua
 		}
 		static void from_stack(lua_State* l, int pos, unsigned int* value)
 		{
+			if (!lua_isnumber(l, pos) && lua_isstring(l, pos)) {
+				::uint64 p;
+				lua_op_t<::uint64>::from_stack(l, pos, &p);
+				*value = (unsigned int)p;
+				return;
+			}
 			LUA_CHECK_ERROR(0 != lua_isnumber(l, pos), LUA_TNUMBER, pos);
 			*value = (unsigned int)luaL_checkinteger(l, pos);
 		}
 		static bool try_get(lua_State * l, int pos, unsigned int* value)
 		{
+			if (!lua_isnumber(l, pos) && lua_isstring(l, pos)) {
+				uint64 p;
+				bool b = lua_op_t<uint64>::try_get(l, pos, &p);
+				*value = (unsigned int)p;
+				return b;
+			}
 			if (lua_isnumber(l, pos))
 			{
 				from_stack(l, pos, value);
@@ -602,11 +693,23 @@ namespace lua
 		}
 		static void from_stack(lua_State* l, int pos, double* value)
 		{
+			if (!lua_isnumber(l, pos) && lua_isstring(l, pos)) {
+				::int64 p;
+				lua_op_t<::int64>::from_stack(l, pos, &p);
+				*value = (double)p;
+				return;
+			}
 			LUA_CHECK_ERROR(0 != lua_isnumber(l, pos), LUA_TNUMBER, pos);
 			*value = (double)luaL_checknumber(l, pos);
 		}
 		static bool try_get(lua_State * l, int pos, double* value)
 		{
+			if (!lua_isnumber(l, pos) && lua_isstring(l, pos)) {
+				::int64 p;
+				bool b = lua_op_t<::int64>::try_get(l, pos, &p);
+				*value = (double)p;
+				return b;
+			}
 			if (lua_isnumber(l, pos))
 			{
 				from_stack(l, pos, value);
@@ -627,11 +730,23 @@ namespace lua
 		}
 		static void from_stack(lua_State* l, int pos, long* value)
 		{
+			if (!lua_isnumber(l, pos) && lua_isstring(l, pos)) {
+				::int64 p;
+				lua_op_t<::int64>::from_stack(l, pos, &p);
+				*value = (long)p;
+				return;
+			}
 			LUA_CHECK_ERROR(0 != lua_isnumber(l, pos), LUA_TNUMBER, pos);
 			*value = (long)luaL_checknumber(l, pos);
 		}
 		static bool try_get(lua_State * l, int pos, long* value)
 		{
+			if (!lua_isnumber(l, pos) && lua_isstring(l, pos)) {
+				::int64 p;
+				bool b = lua_op_t<::int64>::try_get(l, pos, &p);
+				*value = (long)p;
+				return b;
+			}
 			if (lua_isnumber(l, pos))
 			{
 				from_stack(l, pos, value);
@@ -652,11 +767,23 @@ namespace lua
 		}
 		static void from_stack(lua_State* l, int pos, unsigned long* value)
 		{
+			if (!lua_isnumber(l, pos) && lua_isstring(l, pos)) {
+				::uint64 p;
+				lua_op_t<::uint64>::from_stack(l, pos, &p);
+				*value = (unsigned long)p;
+				return;
+			}
 			LUA_CHECK_ERROR(0 != lua_isnumber(l, pos), LUA_TNUMBER, pos);
 			*value = (unsigned long)luaL_checknumber(l, pos);
 		}
 		static bool try_get(lua_State * l, int pos, unsigned long* value)
 		{
+			if (!lua_isnumber(l, pos) && lua_isstring(l, pos)) {
+				::uint64 p;
+				bool b = lua_op_t<::uint64>::try_get(l, pos, &p);
+				*value = (unsigned long)p;
+				return b;
+			}
 			if (lua_isnumber(l, pos))
 			{
 				from_stack(l, pos, value);
@@ -668,137 +795,6 @@ namespace lua
 	};
 #endif//BUILD_64BIT
     
-	template<>
-	struct lua_op_t<::int64>
-	{
-		static int push_stack(lua_State* l, ::int64 value)
-		{
-			std::stringstream ss;
-			ss << value;
-			std::string str = ss.str();
-
-			lua_getglobal(l, "make_i64");
-			if (lua_isfunction(l, -1))
-			{
-				lua_pushlstring(l, str.c_str(), str.length());
-				lua_pushboolean(l, false);
-				lua_pcall(l, 2, 1, 0);
-			}
-			else
-			{
-				lua_pop(l, 1);
-				lua_pushlstring(l, str.c_str(), str.length());
-			}
-			
-			return 1;
-		}
-		static void from_stack(lua_State* l, int pos, ::int64* value)
-		{
-			if (lua_isnoneornil(l, pos))
-			{
-				return;
-			}
-			LUA_CHECK_ERROR(lua_isstring(l, pos) || lua_istable(l, pos), LUA_TSTRING, pos);
-			lua_getglobal(l, "get_i64");
-			const char* str;
-			if (lua_isfunction(l, -1))
-			{
-				lua_pushvalue(l, pos);
-				lua_pcall(l, 1, 2, 0);
-				bool unsignedflag;
-				str = lua_tostring(l, -2);
-				unsignedflag = lua_toboolean(l, -1);
-				assert(!unsignedflag);
-			}
-			else
-			{
-				lua_pop(l, 1);
-				size_t len = 0;
-				str = luaL_checklstring(l, pos, &len);
-			}
-			std::istringstream iss(str);
-			int64 num;
-			iss >> num;
-			*value = (::int64)num;
-		}
-		static bool try_get(lua_State * l, int pos, ::int64* value)
-		{
-			if (lua_isnoneornil(l, pos) || lua_isstring(l, pos) || lua_istable(l, pos))
-			{
-				from_stack(l, pos, value);
-				return true;
-			}
-			else
-				return false;
-		}
-	};
-
-	template<>
-	struct lua_op_t<::uint64>
-	{
-		static int push_stack(lua_State* l, ::uint64 value)
-		{
-			std::stringstream ss;
-			ss << value;
-			std::string str = ss.str();
-
-			lua_getglobal(l, "make_i64");
-			if (lua_isfunction(l, -1))
-			{
-				lua_pushlstring(l, str.c_str(), str.length());
-				lua_pushboolean(l, true);
-				lua_pcall(l, 2, 1, 0);
-			}
-			else
-			{
-				lua_pop(l, 1);
-				lua_pushlstring(l, str.c_str(), str.length());
-			}
-
-			return 1;
-		}
-		static void from_stack(lua_State* l, int pos, ::uint64* value)
-		{
-			if (lua_isnoneornil(l, pos))
-			{
-				return;
-			}
-			LUA_CHECK_ERROR(lua_isstring(l, pos) || lua_istable(l, pos), LUA_TSTRING, pos);
-			lua_getglobal(l, "get_i64");
-			std::string str;
-			if (lua_isfunction(l, -1))
-			{
-				lua_pushvalue(l, pos);
-				lua_pcall(l, 1, 2, 0);
-				bool unsignedflag;
-				str = lua_tostring(l, -2);
-				unsignedflag = lua_toboolean(l, -1);
-				assert(unsignedflag);
-			}
-			else
-			{
-				lua_pop(l, 1);
-				size_t len = 0;
-				str = luaL_checklstring(l, pos, &len);
-			}
-
-			std::istringstream iss(str.c_str());
-			uint64 num;
-			iss >> num;
-			*value = (::uint64)num;
-		}
-		static bool try_get(lua_State * l, int pos, ::uint64* value)
-		{
-			if (lua_isnoneornil(l, pos) || lua_isstring(l, pos) || lua_istable(l, pos))
-			{
-				from_stack(l, pos, value);
-				return true;
-			}
-			else
-				return false;
-		}
-	};
-
 	template<>
 	struct lua_op_t<std::string>
 	{

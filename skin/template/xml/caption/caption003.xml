@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window>
+  <Include source="xml/style/style001.xml"/>
+  <Control width="10" />
+  <Label name="title" text="" textcolor="#00FFFBF0" font="1"/>
+  <HorizontalLayout width="115" inset="0,2,0,2">
+    <HorizontalLayout />
+    <Control width="2" />
+    <Button name="closebtn" style="closebtn" />
+  </HorizontalLayout>
+</Window>

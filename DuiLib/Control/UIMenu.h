@@ -78,6 +78,7 @@ UILIB_API extern const TCHAR* const kMenuElementUIClassName;// = _T("MenuElement
 UILIB_API extern const TCHAR* const kMenuElementUIInterfaceName;// = _T("MenuElement);
 
 class CMenuElementUI;
+class CMenuWnd;
 struct UILIB_API MenuCmdMsg
 {
 	UINT_PTR    nMenuTag;
@@ -85,6 +86,7 @@ struct UILIB_API MenuCmdMsg
 	UINT_PTR    nItemTag;
 	CDuiString  sItemName;
 	CDuiString  sItemText;
+	CMenuWnd*   pMenuWnd;
 };
 
 #pragma warning(push)

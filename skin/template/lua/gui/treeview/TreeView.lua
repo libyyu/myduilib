@@ -1,4 +1,4 @@
-local TreeItem = require "frames.treeview.TreeItem"
+local TreeItem = require "gui.treeview.TreeItem"
 local TreeView = FLua.Class("TreeView")
 
 local FolderItem = FLua.Class(TreeItem, "FolderItem")
@@ -12,9 +12,15 @@ do
     function FolderItem:__constructor()
         self.name_ = ""
         self.checked_ = false
+        self.userdata_ = nil
+        self.path_ = ""
+    end
+    function TreeItem:toString()
+        return string.format("[%s][%s] num_children:%d, folder:%s", self:GetPointer(), self.name_, self:num_children(), tostring(self:folder()))
     end
     function FolderItem:OnCreate()
         TreeItem.OnCreate(self)
+        self:data().folder_ = true
         local pListElement = self:data().list_elment_
         local nameObj = pListElement:FindSubControl("tree_name")
         local checkObj = pListElement:FindSubControl("tree_expandbtn")
@@ -22,10 +28,11 @@ do
         nameObj:SetTagCtrl(pListElement)
         checkObj:SetTagCtrl(pListElement)
         chooseObj:SetTagCtrl(pListElement)
-        nameObj:OnNotifyAdd(function(msg)
-            if msg.sType == "dbclick" then
+        pListElement:OnNotifyAdd(function(msg)
+            if msg.sType == "itemactivate" then
                 if self:CanExpand() then
                     self:SetChildVisible(not self:data().child_visible_)
+                    checkObj:SetCheck(not checkObj:GetCheck(), false)
                 end
             end
         end)
@@ -43,6 +50,43 @@ do
         end)
 
         nameObj:SetText(self.name_)
+
+        _G.coro.start(function()
+            Utils.SearchPath(self:GetPath() .. self:GetName(), false, function(is_file, name, fullpath)
+                if not is_file then
+                    theApp:GetRuntimeState():GetEventMgr():Fire(_G.Event.AddTreeNode, self, true, name)
+                    _G.coro.yield()
+                elseif fullpath:endswith(".tmpl") then
+                    local config_type_info = self:GetUserData()
+                    local class_name = config_type_info.class_name
+                    local msg_class = config_common:GetTmplClass(class_name)
+
+                    local Tmpl = require "data.Tmpl"
+                    local tmpl = Tmpl.new(fullpath, msg_class) 
+
+                    theApp:GetRuntimeState():GetEventMgr():Fire(_G.Event.AddTreeNode, self, false, name, tmpl)
+                    
+                    _G.coro.yield()
+                end
+            end)
+
+            -- local mb_root = helper.UTF8ToMB(root_dir)
+            -- for x, _ in lfs.dir(mb_root .. "*.*") do
+            --     if x ~= "." and x ~= ".."then
+            --         local attr = lfs.attributes(mb_root .. x)
+            --         Utils.printValue("x", helper.MBToUTF8(x), attr)
+            --         if attr.mode == "directory" then
+            --             local folder_name = helper.MBToUTF8(x)
+            --             theApp:GetRuntimeState():GetEventMgr():Fire(_G.Event.AddTreeNode, self, true, folder_name)
+            --             _G.coro.yield()
+            --         elseif attr.mode == "file" then
+            --             local file_name = helper.MBToUTF8(x)
+            --             theApp:GetRuntimeState():GetEventMgr():Fire(_G.Event.AddTreeNode, self, false, file_name)
+            --             _G.coro.yield()
+            --         end
+            --     end
+            -- end
+        end)
     end
 
     function FolderItem:Choose(b)
@@ -69,20 +113,66 @@ do
             end
         end 
     end
+
+    function FolderItem:SetUserData(u)
+        self.userdata_ = u
+    end
+    function FolderItem:GetUserData()
+        return self.userdata_
+    end
+
+    function FolderItem:GetName()
+        return self.name_
+    end
+    function FolderItem:SetPath(p)
+        self.path_ = p
+    end
+    function FolderItem:GetPath()
+        return self.path_
+    end
 end
 local TemplateItem = FLua.Class(TreeItem, "TemplateItem")
 do
-    function TemplateItem.new(xml, name)
+    local Tmpl = require "data.Tmpl"
+    function TemplateItem.new(xml)
         local obj = TemplateItem()
-        obj.name_ = name
         obj.node_xml = xml
         return obj
     end
     function TemplateItem:__constructor()
-        self.name_ = ""
+        self.userdata_ = nil
+        self.tmpl_ = nil 
     end
     function TemplateItem:OnCreate()
         TreeItem.OnCreate(self)
+
+        local pListElement = self:data().list_elment_
+        local nameObj = pListElement:FindSubControl("tmpl_name")
+        local idObj = pListElement:FindSubControl("tmpl_id")
+        nameObj:SetTagCtrl(pListElement)
+        idObj:SetTagCtrl(pListElement)
+
+        nameObj:SetText(self.tmpl_:GetTmplName())
+
+        pListElement:OnNotifyAdd(function(msg)
+            if msg.sType == "itemactivate" then
+                theApp:GetRuntimeState():GetEventMgr():Fire(_G.Event.OnOpenTmpl, self.tmpl_)
+            end
+        end)
+    end
+
+    function TemplateItem:SetUserData(u)
+        self.userdata_ = u
+    end
+    function TemplateItem:GetUserData()
+        return self.userdata_
+    end
+
+    function TemplateItem:SetTmpl(tmpl)
+        self.tmpl_ = tmpl
+    end
+    function TemplateItem:GetTmpl()
+        return self.tmpl_
     end
 end
 
@@ -101,7 +191,9 @@ function TreeView:__constructor()
 	self.delay_number_ = nil 
 	self.delay_left_ = nil
 	self.text_padding_ = {left=0, top=0, right=0, bottom=0}
-	self.level_text_start_pos_ = 2
+	self.level_text_start_pos_ = 8
+
+    
 end
 function TreeView:__destructor()
    warn("TreeView:__destructor")

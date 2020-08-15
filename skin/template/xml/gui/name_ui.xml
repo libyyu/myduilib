@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window caption="0,0,0,30" roundcorner="5,5,5,5" size="400,80">
+<Include source="xml/config/config.xml"/>
+<VerticalLayout bkimage="file='res/background/bg.png' corner='10,100,10,10' hole='true'" bkcolor="#FF313C00">
+	<HorizontalLayout height="37" inset="0,2,0,0">
+		<Include source="xml/caption/caption003.xml"/>
+	</HorizontalLayout>
+	<HorizontalLayout inset="3,0,3,3">
+		<Edit name="input_name" prompt="aaa" />
+		<Control width="2" />
+		<Button name="submit" text="確定" width="36" padding="0, 2, 2, 2"/>
+	</HorizontalLayout>
+</VerticalLayout>
+</Window>

@@ -17,6 +17,12 @@ function CFilePathMgr:__constructor()
 	--em_utility::misc::confirm_dir(m_sExpressionPath,_T('/'));
 	self.m_sDefaultCachePath = self:GetDataPath() .. "cache/"
 	self.m_sLogPath = self:GetDataPath() .. "log/"
+	--tmpl
+	self.m_TmpRootPath = self:GetAppPath() .. "tmpl/"
+end
+
+function CFilePathMgr:Init()
+	assert(Application.CreateDirectory(self:GetTmplRootPath()))
 end
 
 function CFilePathMgr:LinkAvatarPath(nUserID)
@@ -56,7 +62,12 @@ end
 function CFilePathMgr:GetLrcFilePath()
 end
 function CFilePathMgr:GetAppPath()
-	return Application.GetModulePath()
+	local tempPath = Application.GetModulePath()
+	tempPath = tempPath:gsub("\\", "/")
+	if tempPath:sub(-1,-1) ~= "/" then
+		tempPath = tempPath .. "/"
+	end
+	return tempPath
 end
 function CFilePathMgr:GetDataPath()
 	local tempPath = Application.GetTempPath()
@@ -70,6 +81,10 @@ function CFilePathMgr:GetWebServiceCatchPath()
 end
 function CFilePathMgr:GetLogPath()
 	return self.m_sLogPath
+end
+
+function CFilePathMgr:GetTmplRootPath()
+	return self.m_TmpRootPath
 end
 
 return CFilePathMgr

@@ -66,7 +66,7 @@ function Utils.printValue(...)
 	warn(table.concat(sb, " "))
 end
 
-local userdata_hash_id_table = setmetatable({}, { __mode = "k" })
+local userdata_hash_id_table = setmetatable({}, { __mode = "v" })
 local userdata_hash_ud_table = setmetatable({}, { __mode = "k" })
 function Utils.CastToString(ud)
 	assert( type(ud) == "userdata",  "argument #1 must be userdata")
@@ -89,5 +89,42 @@ function Utils.CastToUserData(id)
 	end
 	return nil
 end
+
+function Utils.SearchPath(inpath, reversal, callback)
+	local root_dir = inpath:gsub("\\", "/")
+	if root_dir:sub(-1,-1) ~= "/" then
+		root_dir = root_dir .. "/"
+	end
+    local data = Application.FindFirstFile(root_dir .. "*.*")
+    local bStop = false
+    while true do 
+        if not data or bStop then
+            break
+        end
+
+        local info = Application.GetFindData(data, root_dir)
+        if info.cFileName ~= "." and info.cFileName ~= ".." then
+        	local fullpath = root_dir .. info.cFileName
+            if info.mode == "directory" then
+                local folder_name = info.cFileName
+                callback(false, folder_name, fullpath)
+                if reversal then
+                	Utils.SearchPath(root_dir .. folder_name, reversal, callback)
+                end
+            else
+                local file_name = path.basename(fullpath)
+                callback(true, file_name, fullpath)
+            end
+        end
+
+        if not Application.FindNextFile(data) then
+            bStop = true
+        end
+    end
+    if data then
+        Application.FindClose(data)
+    end
+end
+
 
 return Utils

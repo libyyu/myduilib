@@ -4,8 +4,27 @@
 #include <algorithm>
 #include <functional>
 #include <time.h>
+
 namespace 
 {
+	static int Int64ToString(lua_State* l)
+	{
+		uint64 n; lua::get(l, 1, &n);
+		std::stringstream ss;
+		ss << n;
+		lua::push(l, ss.str());
+
+		return 1;
+	}
+
+	static int Int64ToInt_(lua_State* l)
+	{
+		uint64 n; lua::get(l, 1, &n);
+		lua_Number v = n;
+		lua::push(l, v);
+		return 1;
+	}
+
 	static int IntToInt64(lua_State* l)
 	{
 		lua_Number v = lua_tonumber(l, 1);
@@ -57,17 +76,16 @@ namespace
 
 	static int UserDataToUInt64(lua_State* l)
 	{
-		void* ptr = lua::getobject(l, 1);
-		uint64 address = (uint64)ptr;
-		lua::push(l, address);
+		void* p = lua_touserdata(l, 1);
+		uint64 n = (uint64)(intptr_t)p;
+		lua::push(l, n);
 		return 1;
 	}
 	static int UInt64ToUserData(lua_State* l)
 	{
-		uint64 address;
-		lua::get(l, 1, &address);
-		void* ptr = reinterpret_cast<void*>(address);
-		lua::pushobject(l, ptr, NULL);
+		uint64 n; lua::get(l, 1, &n);
+		void* p = (void*)(intptr_t)n;
+		lua_pushlightuserdata(l, p);
 		return 1;
 	}
 
@@ -215,24 +233,147 @@ namespace
 	}
 
 	template<typename T>
+	static T pow64(T a, T b) {
+		if (b == 1) {
+			return a;
+		}
+		T a2 = a * a;
+		if (b % 2 == 1) {
+			return pow64(a2, b / 2) * a;
+		}
+		else {
+			return pow64(a2, b / 2);
+		}
+	}
+
+	template<typename T>
 	static int MInt64Pow(lua_State* l)
 	{
+		T p;
 		T a;
 		lua::get(l, 1, &a);
 		if (lua_isnumber(l, 2))
 		{
-			int b = (int)lua_tonumber(l, 2);
-			a = (T)pow(a, b);
+			int b = (int)luaL_checkinteger(l, 2);
+			if (b > 0) {
+				p = pow64(a, (T)b);
+			}
+			else if (b == 0) {
+				p = 1;
+			}
+			else {
+				return luaL_error(l, "pow by nagtive number %d", b);
+			}
 		}
 		else
 		{
 			T b;
 			lua::get(l, 2, &b);
-			a = (T)pow(a, b);
+			if (b > 0) {
+				p = pow64(a, b);
+			}
+			else if (b == 0) {
+				p = 1;
+			}
+			else {
+				return luaL_error(l, "pow by nagtive number %d", (int)b);
+			}
 		}
 
-		lua::push(l, a);
+		lua::push(l, p);
 		return 1;
+	}
+
+	template<typename T>
+	static int not64(lua_State* l)
+	{
+		T a;
+		lua::get(l, 1, &a);
+
+		return lua::push(l, ~a);
+	}
+	template<typename T>
+	static int band64(lua_State* l)
+	{
+		T p;
+		lua::get(l, 1, &p);
+		int n = lua_gettop(l);
+		for (int i = 2; i <= n; i++) {
+			T b;
+			lua::get(l, i, &b);
+			p &= b;
+		}
+		
+		return lua::push(l, p);
+	}
+	template<typename T>
+	static int bor64(lua_State* l)
+	{
+		T p;
+		lua::get(l, 1, &p);
+		int n = lua_gettop(l);
+		for (int i = 2; i <= n; i++) {
+			T b;
+			lua::get(l, i, &b);
+			p |= b;
+		}
+
+		return lua::push(l, p);
+	}
+	template<typename T>
+	static int bxor64(lua_State* l)
+	{
+		T p;
+		lua::get(l, 1, &p);
+		int n = lua_gettop(l);
+		for (int i = 2; i <= n; i++) {
+			T b;
+			lua::get(l, i, &b);
+			p ^= b;
+		}
+
+		return lua::push(l, p);
+	}
+
+	template<typename T>
+	static int lshift64(lua_State* l)
+	{
+		T p;
+		int n;
+		lua::get(l, 1, &p, &n);
+		p << n;
+		return lua::push(l, p);
+	}
+	template<typename T>
+	static int rshift64(lua_State* l)
+	{
+		T p;
+		int n;
+		lua::get(l, 1, &p, &n);
+		p >> n;
+		return lua::push(l, p);
+	}
+
+	static int lua_isint64(lua_State* l)
+	{
+		if (!lua_isstring(l, 1))
+		{
+			return lua::push(l, false);
+		}
+		size_t len = 0;
+		const char* str = luaL_checklstring(l, 1, &len);
+		if (len != 8)
+		{
+			return lua::push(l, false);
+		}
+		std::istringstream iss(str);
+		::uint64 num;
+		if (!(iss >> num))
+		{
+			return lua::push(l, false);
+		}
+
+		return lua::push(l, true);
 	}
 
 	static int Mgmtime_s(lua_State* l)
@@ -283,6 +424,28 @@ namespace
 		return 1;
 	}
 
+	static int lua_GetTimeOfDay(lua_State* l)
+	{
+		struct timeval tpend;
+		//gettimeofday(&tpend, NULL);
+
+		//int secofday = (tpend.tv_sec + 3600 * 8) % 86400;
+		//int hours = secofday / 3600;
+		//int minutes = (secofday - hours * 3600) / 60;
+		//int seconds = secofday % 60;
+		//int milliseconds = tpend.tv_usec / 1000;
+
+#define MSET(x) t.set(#x, tpend.x)
+		lua::lua_table_ref_t t(l, (char*)NULL);
+		MSET(tv_sec);
+		MSET(tv_usec);
+		lua::push(l, t);
+		t.unref();
+#undef MSET
+
+		return 1;
+	}
+
 	static int lua_HIWORD(lua_State* l)
 	{
 		DWORD dw;
@@ -299,13 +462,35 @@ namespace
 		lua::push(l, r);
 		return 1;
 	}
+
+	static int lua_MBToUTF8(lua_State* L)
+	{
+		const char* mb = lua_tostring(L, 1);
+		std::string u8 = DuiLib::Convert::MBToUTF8(mb);
+		lua::push(L, u8);
+		return 1;
+	}
+	static int lua_UTF8ToMB(lua_State* L)
+	{
+		const char* u8 = lua_tostring(L, 1);
+		std::string mb = DuiLib::Convert::UTF8ToMB(u8);
+		lua::push(L, mb);
+		return 1;
+	}
 }
 
 namespace DuiLib {
-	int make_lua_global(lua_State* l)
+	int make_lib64(lua_State* l)
 	{
 		lua::stack_gurad guard(l);
 		lua_createtable(l, 0, 0);
+		lua_pushstring(l, "Int64ToInt");
+		lua_pushcfunction(l, Int64ToInt_);
+		lua_rawset(l, -3);
+		lua_pushstring(l, "Int64ToString");
+		lua_pushcfunction(l, Int64ToString);
+		lua_rawset(l, -3);
+
 		lua_pushstring(l, "IntToInt64");
 		lua_pushcfunction(l, IntToInt64);
 		lua_rawset(l, -3);
@@ -385,11 +570,40 @@ namespace DuiLib {
 		lua_pushcfunction(l, MInt64Pow<uint64>);
 		lua_rawset(l, -3);
 
+		lua_pushstring(l, "bnot");
+		lua_pushcfunction(l, not64<int64>);
+		lua_rawset(l, -3);
+		lua_pushstring(l, "band");
+		lua_pushcfunction(l, band64<int64>);
+		lua_rawset(l, -3);
+		lua_pushstring(l, "bor");
+		lua_pushcfunction(l, bor64<int64>);
+		lua_rawset(l, -3);
+		lua_pushstring(l, "bxor");
+		lua_pushcfunction(l, bxor64<int64>);
+		lua_rawset(l, -3);
+		lua_pushstring(l, "isint64");
+		lua_pushcfunction(l, lua_isint64);
+		lua_rawset(l, -3);
+
+		lua_setglobal(l, "lib64");
+		return 1;
+	}
+	int make_lua_global(lua_State* l)
+	{
+		make_lib64(l);
+
+		lua::stack_gurad guard(l);
+		lua_createtable(l, 0, 0);
+
 		lua_pushstring(l, "gmtime");
 		lua_pushcfunction(l, Mgmtime_s);
 		lua_rawset(l, -3);
 		lua_pushstring(l, "strftime");
 		lua_pushcfunction(l, Mtcsftime);
+		lua_rawset(l, -3);
+		lua_pushstring(l, "gettimeofday");
+		lua_pushcfunction(l, lua_GetTimeOfDay);
 		lua_rawset(l, -3);
 
 		lua_pushstring(l, "HIWORD");
@@ -397,6 +611,14 @@ namespace DuiLib {
 		lua_rawset(l, -3);
 		lua_pushstring(l, "LOWORD");
 		lua_pushcfunction(l, lua_LOWORD);
+		lua_rawset(l, -3);
+
+		lua_pushstring(l, "MBToUTF8");
+		lua_pushcfunction(l, lua_MBToUTF8);
+		lua_rawset(l, -3);
+
+		lua_pushstring(l, "UTF8ToMB");
+		lua_pushcfunction(l, lua_UTF8ToMB);
 		lua_rawset(l, -3);
 
 		lua_setglobal(l, "helper");

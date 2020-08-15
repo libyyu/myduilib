@@ -45,6 +45,7 @@ namespace lua
 			}
 			else
 				lua_pushnil(l);
+			
 			return 1;
 		}
 		static void from_stack(lua_State* l, int pos, wchar_t** value)

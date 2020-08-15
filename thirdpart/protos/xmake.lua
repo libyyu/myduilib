@@ -11,13 +11,12 @@ target("protos")
     add_includedirs(
         ".."
 		, "../protobuf"
-		)
-	if has_config("luajit") then
-        add_includedirs("../luajit/src")
-        add_deps("luajit")
+        )
+        
+    if has_config("luajit") then
+        add_rules("luajit.shared")
     else
-        add_includedirs("../lua51/src")
-        add_deps("lua51")
+        add_rules("lua.shared")
     end
 	-- links
 	add_deps("protobuf")
@@ -34,10 +33,7 @@ target("protos")
 	
 	-- add defines
     add_defines("BUILD_AS_DLL")
-    if is_plat("windows") then
-        add_defines("LUA_BUILD_AS_DLL")
-    end
-
+    
     add_rules("thirdpart.shared")
 
     set_values("vs.folder", "thirdpart/pb")

@@ -6,8 +6,8 @@ require "utility.i64lib"
 _G.FLua = require "FLua"
 _G.Utils = require "utility.Utils"
 _G.Enum = require "utility.Enum"
-importdll "LuaMyControls"
-importdll "luaext"
+importluadll "LuaMyControls"
+importluadll "luaext"
 _G.Event = require "events"
 
 function _G.LoadAsset(filename, type_)

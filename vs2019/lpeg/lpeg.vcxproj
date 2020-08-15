@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="release|Win32">
+      <Configuration>release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="release|x64">
+      <Configuration>release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="debug|Win32">
+      <Configuration>debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="debug|x64">
+      <Configuration>debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{E11F55CF-4267-E37D-3829-B331DE8FC9BC}</ProjectGuid>
+    <RootNamespace>lpeg</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
+    <OutDir>..\..\release\windows\x86\</OutDir>
+    <IntDir>..\..\build\.objs\windows\x86\release\lpeg\windows\x86\release\</IntDir>
+    <TargetName>lpeg</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
+    <OutDir>..\..\release\windows\x64\</OutDir>
+    <IntDir>..\..\build\.objs\windows\x64\release\lpeg\windows\x64\release\</IntDir>
+    <TargetName>lpeg</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
+    <OutDir>..\..\debug\windows\x86\</OutDir>
+    <IntDir>..\..\build\.objs\windows\x86\debug\lpeg\windows\x86\debug\</IntDir>
+    <TargetName>lpeg</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
+    <OutDir>..\..\debug\windows\x64\</OutDir>
+    <IntDir>..\..\build\.objs\windows\x64\debug\lpeg\windows\x64\debug\</IntDir>
+    <TargetName>lpeg</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
+    <Link>
+      <AdditionalLibraryDirectories>..\..\libs\windows\release\x86;..\..\libs\windows\release;..\..\libs\windows;..\..\release\windows\x86;..\..\release\windows;..\..\release\windows\x86\plugins;..\..\release\windows\plugins;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>lua51.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>-nologo %(AdditionalOptions)</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <ProgramDatabaseFile>..\..\release\windows\x86\lpeg.pdb</ProgramDatabaseFile>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <WarningLevel>Level3</WarningLevel>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";LPEG_DLL_EXPORT;__DLL_EXPORT_;BUILD_AS_DLL;LUA_BUILD_AS_DLL;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>..\..\thirdpart\lua51\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\thirdpart\lua51\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";LPEG_DLL_EXPORT;__DLL_EXPORT_;BUILD_AS_DLL;LUA_BUILD_AS_DLL;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <AdditionalOptions>-EHsc -nologo -FS %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <PreBuildEvent>
+      <Command>@call pre-build.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PreBuildEvent>
+    <PreLinkEvent>
+      <Command>@call pre-link.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PreLinkEvent>
+    <PostBuildEvent>
+      <Command>@call post-build.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
+    <Link>
+      <AdditionalLibraryDirectories>..\..\libs\windows\release\x64;..\..\libs\windows\release;..\..\libs\windows;..\..\release\windows\x64;..\..\release\windows;..\..\release\windows\x64\plugins;..\..\release\windows\plugins;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>lua51.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>-nologo %(AdditionalOptions)</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <ProgramDatabaseFile>..\..\release\windows\x64\lpeg.pdb</ProgramDatabaseFile>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <WarningLevel>Level3</WarningLevel>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;_WIN64;ROOT_DIR="D:\\Workspace\\MyDuiLib";LPEG_DLL_EXPORT;__DLL_EXPORT_;BUILD_AS_DLL;LUA_BUILD_AS_DLL;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>..\..\thirdpart\lua51\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\thirdpart\lua51\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;_WIN64;ROOT_DIR="D:\\Workspace\\MyDuiLib";LPEG_DLL_EXPORT;__DLL_EXPORT_;BUILD_AS_DLL;LUA_BUILD_AS_DLL;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <AdditionalOptions>-EHsc -nologo -FS %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <PreBuildEvent>
+      <Command>@call pre-build.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PreBuildEvent>
+    <PreLinkEvent>
+      <Command>@call pre-link.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PreLinkEvent>
+    <PostBuildEvent>
+      <Command>@call post-build.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
+    <Link>
+      <AdditionalLibraryDirectories>..\..\libs\windows\debug\x86;..\..\libs\windows\debug;..\..\libs\windows;..\..\debug\windows\x86;..\..\debug\windows;..\..\debug\windows\x86\plugins;..\..\debug\windows\plugins;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>lua51.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>-nologo %(AdditionalOptions)</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>..\..\debug\windows\x86\lpeg.pdb</ProgramDatabaseFile>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <WarningLevel>Level3</WarningLevel>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";LPEG_DLL_EXPORT;__DLL_EXPORT_;BUILD_AS_DLL;LUA_BUILD_AS_DLL;__config_debug__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>..\..\thirdpart\lua51\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\thirdpart\lua51\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;ROOT_DIR="D:\\Workspace\\MyDuiLib";LPEG_DLL_EXPORT;__DLL_EXPORT_;BUILD_AS_DLL;LUA_BUILD_AS_DLL;__config_debug__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <AdditionalOptions>-EHsc -nologo %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <PreBuildEvent>
+      <Command>@call pre-build.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PreBuildEvent>
+    <PreLinkEvent>
+      <Command>@call pre-link.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PreLinkEvent>
+    <PostBuildEvent>
+      <Command>@call post-build.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
+    <Link>
+      <AdditionalLibraryDirectories>..\..\libs\windows\debug\x64;..\..\libs\windows\debug;..\..\libs\windows;..\..\debug\windows\x64;..\..\debug\windows;..\..\debug\windows\x64\plugins;..\..\debug\windows\plugins;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>lua51.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>-nologo %(AdditionalOptions)</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>..\..\debug\windows\x64\lpeg.pdb</ProgramDatabaseFile>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <WarningLevel>Level3</WarningLevel>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;_WIN64;ROOT_DIR="D:\\Workspace\\MyDuiLib";LPEG_DLL_EXPORT;__DLL_EXPORT_;BUILD_AS_DLL;LUA_BUILD_AS_DLL;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>..\..\thirdpart\lua51\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\thirdpart\lua51\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;DEBUG;_CRT_SECURE_NO_WARNINGS;_WIN32;_WIN64;ROOT_DIR="D:\\Workspace\\MyDuiLib";LPEG_DLL_EXPORT;__DLL_EXPORT_;BUILD_AS_DLL;LUA_BUILD_AS_DLL;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <AdditionalOptions>-EHsc -nologo %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <PreBuildEvent>
+      <Command>@call pre-build.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PreBuildEvent>
+    <PreLinkEvent>
+      <Command>@call pre-link.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PreLinkEvent>
+    <PostBuildEvent>
+      <Command>@call post-build.bat $(Configuration) $(Platform) $(OutDir)$(TargetName)$(TargetExt) $(OutDir) $(ProjectDir)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\thirdpart\lpeg\lpcap.c">
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\lpeg\windows\x86\release\thirdpart\lpeg\lpcap.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\lpeg\windows\x86\debug\thirdpart\lpeg\lpcap.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\lpeg\windows\x64\debug\thirdpart\lpeg\lpcap.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\lpeg\windows\x64\release\thirdpart\lpeg\lpcap.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\lpeg\lpcode.c">
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\lpeg\windows\x86\debug\thirdpart\lpeg\lpcode.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\lpeg\windows\x64\debug\thirdpart\lpeg\lpcode.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\lpeg\windows\x86\release\thirdpart\lpeg\lpcode.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\lpeg\windows\x64\release\thirdpart\lpeg\lpcode.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\lpeg\lpvm.c">
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\lpeg\windows\x86\release\thirdpart\lpeg\lpvm.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\lpeg\windows\x64\debug\thirdpart\lpeg\lpvm.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\lpeg\windows\x64\release\thirdpart\lpeg\lpvm.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\lpeg\windows\x86\debug\thirdpart\lpeg\lpvm.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\lpeg\lptree.c">
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\lpeg\windows\x86\debug\thirdpart\lpeg\lptree.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\lpeg\windows\x64\debug\thirdpart\lpeg\lptree.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\lpeg\windows\x86\release\thirdpart\lpeg\lptree.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\lpeg\windows\x64\release\thirdpart\lpeg\lptree.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\lpeg\lpprint.c">
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\lpeg\windows\x86\release\thirdpart\lpeg\lpprint.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\lpeg\windows\x64\debug\thirdpart\lpeg\lpprint.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\lpeg\windows\x86\debug\thirdpart\lpeg\lpprint.c.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\lpeg\windows\x64\release\thirdpart\lpeg\lpprint.c.obj</ObjectFileName>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\thirdpart\lpeg\lpcap.h" />
+    <ClInclude Include="..\..\thirdpart\lpeg\lpcode.h" />
+    <ClInclude Include="..\..\thirdpart\lpeg\lpprint.h" />
+    <ClInclude Include="..\..\thirdpart\lpeg\lptree.h" />
+    <ClInclude Include="..\..\thirdpart\lpeg\lptypes.h" />
+    <ClInclude Include="..\..\thirdpart\lpeg\lpvm.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

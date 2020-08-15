@@ -42,49 +42,24 @@ static void pushClassInstancePtr(lua_State* L, ClassType* ptr)
 
 static int push_stack(lua_State* l, int64_t value)
 {
-	std::stringstream ss;
-	ss << value;
-	std::string str = ss.str();
-
-	lua_getglobal(l, "make_i64");
-	if (lua_isfunction(l, -1))
-	{
-		lua_pushlstring(l, str.c_str(), str.length());
-		lua_pushboolean(l, false);
-		lua_pcall(l, 2, 1, 0);
-	}
-	else
-	{
-		lua_pop(l, 1);
-		lua_pushlstring(l, str.c_str(), str.length());
-	}
+	lua_pushlstring(l, (const char*)&value, 8);
 
 	return 1;
 }
 static int push_stack(lua_State* l, uint64_t value)
 {
-	std::stringstream ss;
-	ss << value;
-	std::string str = ss.str();
-
-	lua_getglobal(l, "make_i64");
-	if (lua_isfunction(l, -1))
-	{
-		lua_pushlstring(l, str.c_str(), str.length());
-		lua_pushboolean(l, true);
-		lua_pcall(l, 2, 1, 0);
-	}
-	else
-	{
-		lua_pop(l, 1);
-		lua_pushlstring(l, str.c_str(), str.length());
-	}
+	lua_pushlstring(l, (const char*)&value, 8);
 
 	return 1;
 }
 
-static pb::uint64 checkUInt64(lua_State *L, int n)
+static pb::uint64 checkUInt64(lua_State* L, int n)
 {
+	if (lua_isnumber(L, n))
+	{
+		lua_Number n = luaL_checknumber(L, n);
+		return (pb::int64)n;
+	}
 	size_t len;
 	const char* str = luaL_checklstring(L, n, &len);
 	if (len != 8)
@@ -96,13 +71,18 @@ static pb::uint64 checkUInt64(lua_State *L, int n)
 	return *(pb::uint64*)str;
 }
 
-static void pushUInt64(lua_State *L, pb::uint64 value)
+static void pushUInt64(lua_State* L, pb::uint64 value)
 {
 	push_stack(L, (uint64_t)value);
 }
 
-static pb::int64 checkInt64(lua_State *L, int n)
+static pb::int64 checkInt64(lua_State* L, int n)
 {
+	if (lua_isnumber(L, n))
+	{
+		lua_Number n = luaL_checknumber(L, n);
+		return (pb::int64)n;
+	}
 	size_t len;
 	const char* str = luaL_checklstring(L, n, &len);
 	if (len != 8)
@@ -130,6 +110,11 @@ struct CheckValue<pb::int32>
 {
 	static pb::int32 value(lua_State* L, int n)
 	{
+		if (!lua_isnumber(L, n) && lua_isstring(L, n))
+		{
+			pb::int64 tmp = checkInt64(L, n);
+			return (pb::int32)tmp;
+		}
 		return luaL_checkinteger(L, n);
 	}
 };
@@ -148,6 +133,11 @@ struct CheckValue<pb::uint32>
 {
 	static pb::uint32 value(lua_State* L, int n)
 	{
+		if (!lua_isnumber(L, n) && lua_isstring(L, n))
+		{
+			pb::int64 tmp = checkInt64(L, n);
+			return (pb::uint32)(pb::uint64)(pb::int64)tmp;
+		}
 		return (pb::uint32)(pb::uint64)(pb::int64)luaL_checkinteger(L, n);
 	}
 };
@@ -175,6 +165,11 @@ struct CheckValue<double>
 {
 	static double value(lua_State* L, int n)
 	{
+		if (!lua_isnumber(L, n) && lua_isstring(L, n))
+		{
+			pb::int64 tmp = checkInt64(L, n);
+			return (double)(pb::uint64)(pb::int64)tmp;
+		}
 		return luaL_checknumber(L, n);
 	}
 };
@@ -235,6 +230,24 @@ struct CheckValue<RetType const&>
 	}
 };
 
+template <>
+struct CheckValue<pb::FieldDescriptor::Type>
+{
+	static pb::FieldDescriptor::Type value(lua_State* L, int n)
+	{
+		return (pb::FieldDescriptor::Type)luaL_checkinteger(L, n);
+	}
+};
+
+template <>
+struct CheckValue<pb::FieldDescriptor::CppType>
+{
+	static pb::FieldDescriptor::CppType value(lua_State* L, int n)
+	{
+		return (pb::FieldDescriptor::CppType)luaL_checkinteger(L, n);
+	}
+};
+
 // PushValue<T> 用于压返回值
 
 static void PushValue(lua_State* L, pb::int32 v)
@@ -273,6 +286,15 @@ static void PushValue(lua_State* L, bool v)
 }
 
 static void PushValue(lua_State* L, pb::UnknownField::Type v)
+{
+	lua_pushnumber(L, (int)v);
+}
+
+static void PushValue(lua_State* L, pb::FieldDescriptor::Type v)
+{
+	lua_pushnumber(L, (int)v);
+}
+static void PushValue(lua_State* L, pb::FieldDescriptor::CppType v)
 {
 	lua_pushnumber(L, (int)v);
 }
@@ -455,9 +477,10 @@ static const struct luaL_Reg FileDescriptor_funcs[] =
 //
 // DynamicProtobuf.Descriptor
 //
+template<typename T>
 static int Descriptor_unknow_field_count(lua_State* L)
 {
-	const pb::Descriptor* self = checkClassInstancePtr<pb::Descriptor const>(L, 1);
+	T* self = checkClassInstancePtr<T>(L, 1);
 	if (!self)
 	{
 		luaL_error(L, "Descriptor_unknow_field_count: argument #1 must be Descriptor");
@@ -467,10 +490,10 @@ static int Descriptor_unknow_field_count(lua_State* L)
 	lua_pushinteger(L, count);
 	return 1;
 }
-
+template<typename T>
 static int Descriptor_unknow_field(lua_State* L)
 {
-	const pb::Descriptor* self = checkClassInstancePtr<pb::Descriptor const>(L, 1);
+	T* self = checkClassInstancePtr<T>(L, 1);
 	if (!self)
 	{
 		luaL_error(L, "Descriptor_unknow_field: argument #1 must be Descriptor");
@@ -515,11 +538,11 @@ static std::string& trim_comment(std::string& text)
 		text.erase(0, text.find_first_not_of((" \n\r\t")));
 		text.erase(text.find_last_not_of((" \n\r\t")) + 1);
 
-		size_t pos = text.find_first_of(',');
+		/*size_t pos = text.find_first_of(',');
 		if (pos != std::string::npos)
 		{
 			text = text.substr(0, pos);
-		}
+		}*/
 	}
 	return text;
 }
@@ -576,8 +599,8 @@ static const struct luaL_Reg Descriptor_funcs[] =
 	{ "FindExtensionByName", BindLuaFunc_1_const<pb::Descriptor const, pb::FieldDescriptor const*, std::string const&, &pb::Descriptor::FindExtensionByName>::value },
 	
 
-	{ "unknow_field_count", Descriptor_unknow_field_count },
-	{ "unknow_field", Descriptor_unknow_field },
+	{ "unknow_field_count", Descriptor_unknow_field_count<const pb::Descriptor> },
+	{ "unknow_field", Descriptor_unknow_field<const pb::Descriptor> },
 	{ "GetOptionDescriptor", Descriptor_option_GetDescriptor },
 	{ "GetSourceLocation", Descriptor_GetSourceLocation<pb::Descriptor> },
 	{ NULL, NULL },
@@ -625,6 +648,14 @@ static int FieldDescriptor_is_message(lua_State* L)
 	const pb::FieldDescriptor* self = checkClassInstancePtr<pb::FieldDescriptor const>(L, 1);
 	bool ret = self->cpp_type() == pb::FieldDescriptor::CPPTYPE_MESSAGE;
 	lua_pushboolean(L, ret ? 1 : 0);
+	return 1;
+}
+
+static int FieldDescriptor_TypeName(lua_State* L)
+{
+	const pb::FieldDescriptor* self = checkClassInstancePtr<pb::FieldDescriptor const>(L, 1);
+	pb::FieldDescriptor::Type tp = (pb::FieldDescriptor::Type)(lua_tointeger(L, 2));
+	lua_pushstring(L, self->TypeName(tp));
 	return 1;
 }
 
@@ -744,6 +775,9 @@ static const struct luaL_Reg FieldDescriptor_funcs[] =
 	{ "is_message", FieldDescriptor_is_message },
 	{ "GetDefaultValue", FieldDescriptor_GetDefaultValue },
 	{ "GetSourceLocation", Descriptor_GetSourceLocation<pb::FieldDescriptor> },
+	{ "TypeName", FieldDescriptor_TypeName },
+	{ "unknow_field_count", Descriptor_unknow_field_count<const pb::FieldDescriptor> },
+	{ "unknow_field", Descriptor_unknow_field<const pb::FieldDescriptor> },
 
 	{ NULL, NULL },
 };

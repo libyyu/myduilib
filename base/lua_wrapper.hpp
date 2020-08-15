@@ -801,10 +801,32 @@ namespace lua
 				lua_remove(l, -2);//t, key, val
 				if (strict && lua_isnil(l, -1) && LUA_TUSERDATA == type)
 				{
-					luaL_error(l, "can't find '%s' class variable. (forgot registering class variable ?)", lua_tostring(l, 2));
+					bool has_mt = lua_getmetatable(l, 1);
+					if (has_mt)
+					{
+						lua_pushstring(l, "__mtname");// ..., mt, key
+						lua_rawget(l, -2); //..., mt, mtname
+						if (lua_isstring(l, -1))
+						{
+							const char* mtname = lua_tostring(l, -1);
+							lua_pop(l, 2); //...
+
+							luaL_error(l, "can't find '%s@%s:%p' class variable. (forgot registering class variable ?)", lua_tostring(l, 2), mtname, lua_topointer(l, 1));
+						}
+						else
+						{
+							lua_pop(l, 2); //...
+							luaL_error(l, "can't find '%s:%p' class variable. (forgot registering class variable ?)", lua_tostring(l, 2), lua_topointer(l, 1));
+						}
+					}
+					else
+						luaL_error(l, "can't find '%s:%p' class variable. (forgot registering class variable ?)", lua_tostring(l, 2), lua_topointer(l, 1));
 				}
 			}
-			
+			else
+			{
+				lua_remove(l, -2);//t, key, val
+			}
 			return 1;
 		}
 		static int __newindex(lua_State* l)

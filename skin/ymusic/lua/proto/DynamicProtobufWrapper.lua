@@ -48,7 +48,7 @@
 		为此，只能填充 table，放弃数组的访问检查
 		注意：用户需自行保证访问规则，不可写入 message 类型子字段，也不可写入类型不匹配的字段值
 ]]
-importdll "protos"
+importluadll "protos"
 local FileDescriptor = DynamicProtobuf.FileDescriptor
 local Descriptor = DynamicProtobuf.Descriptor
 local EnumDescriptor = DynamicProtobuf.EnumDescriptor

@@ -30,4 +30,4 @@ if has_config("boost_dir") then
 	includes('operationQueue')
 	includes('play_plugin')
 end
-includes('vlc', 'luaext')
+includes('vlc', 'luaext', 'lpeg')

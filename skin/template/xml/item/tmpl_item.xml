@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window  size="290,80">
+  <TemplListItem height="32">
+    <HorizontalLayout>
+    	<Label name="filed_name" textcolor="#FF000000" disabledtextcolor="#FF808080" autocalcwidth="false" align="center" />
+    	<Label name="field_comment" textcolor="#FF000000" disabledtextcolor="#FF808080" autocalcwidth="false" align="center" />
+    	<Label name="field_value" textcolor="#FF000000" disabledtextcolor="#FF808080" autocalcwidth="false" align="center" />
+	</HorizontalLayout>
+  </TemplListItem>
+</Window>

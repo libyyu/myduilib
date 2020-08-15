@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="..\..\thirdpart\luaext\lplaycenter.cpp" />
+    <ClCompile Include="..\..\thirdpart\luaext\lfs.cpp" />
+    <ClCompile Include="..\..\thirdpart\luaext\ltag.cpp" />
+    <ClCompile Include="..\..\thirdpart\luaext\ldatabase.cpp" />
+    <ClCompile Include="..\..\thirdpart\luaext\luaext.cpp" />
+    <ClCompile Include="..\..\thirdpart\luaext\lencoding.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\thirdpart\luaext\luaext.h" />
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>

@@ -360,7 +360,7 @@ function FLua.IsClass( cls )
 end
 function FLua.Is(obj)
     local mt = getmetatable(obj)
-    return mt and not not mt.__class
+    return mt and getmetatable(mt) and not not getmetatable(mt).__class
 end
 
 if false then

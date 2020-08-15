@@ -63,7 +63,8 @@ namespace DuiLib
 		void Init(const char_type* filename = _T("duilib.log"), Log_Level lev = Log_Level::InfoLog, Log_Type type = Log_Type::DAY, size_t maxSaveLogCnt = 3);
 		CLogger();
 		virtual ~CLogger();
-		bool isValid()const { return _IsOpen(); }
+		bool isValid() const { return _IsOpen(); }
+		bool hasInit() const { return _inited; }
 	protected:
 		CLogger(const self_type&) {}
 		self_type& operator = (const self_type&) { return *this; }
@@ -90,6 +91,7 @@ namespace DuiLib
 		char_type				 _timename[256];
 		FILE*                    _file;
 		CDuiLock*                _plock;
+		bool                     _inited;
 	};
 
 	UILIB_API extern CLogger* duiLogger; 
@@ -98,9 +100,9 @@ namespace DuiLib
 
 	UILIB_API void SetLogCallback(void (*LogFunc)(int, const char*));
 }
-#define  DuiLogInfo(fmt,...)  { if(DuiLib::duiLogger){DuiLib::duiLogger->formatLog(__FILET__,__LINE__,DuiLib::CLogger::Log_Level::InfoLog,fmt,##__VA_ARGS__);} else {DuiLib::Console::WriteLine(fmt,##__VA_ARGS__);} }
-#define  DuiLogWarning(fmt,...) { if(DuiLib::duiLogger){DuiLib::duiLogger->formatLog(__FILET__,__LINE__,DuiLib::CLogger::Log_Level::WarningLog,fmt,##__VA_ARGS__);} else {DuiLib::Console::WarningLine(fmt,##__VA_ARGS__);} }
-#define  DuiLogError(fmt,...) { if(DuiLib::duiLogger){DuiLib::duiLogger->formatLog(__FILET__,__LINE__,DuiLib::CLogger::Log_Level::ErrorLog,fmt,##__VA_ARGS__);} else {DuiLib::Console::ErrorLine(fmt,##__VA_ARGS__);} }
+#define  DuiLogInfo(fmt,...)  { if(DuiLib::duiLogger && DuiLib::duiLogger->hasInit()){DuiLib::duiLogger->formatLog(__FILET__,__LINE__,DuiLib::CLogger::Log_Level::InfoLog,fmt,##__VA_ARGS__);} else {DuiLib::Console::WriteLine(fmt,##__VA_ARGS__);} }
+#define  DuiLogWarning(fmt,...) { if(DuiLib::duiLogger && DuiLib::duiLogger->hasInit()){DuiLib::duiLogger->formatLog(__FILET__,__LINE__,DuiLib::CLogger::Log_Level::WarningLog,fmt,##__VA_ARGS__);} else {DuiLib::Console::WarningLine(fmt,##__VA_ARGS__);} }
+#define  DuiLogError(fmt,...) { if(DuiLib::duiLogger && DuiLib::duiLogger->hasInit()){DuiLib::duiLogger->formatLog(__FILET__,__LINE__,DuiLib::CLogger::Log_Level::ErrorLog,fmt,##__VA_ARGS__);} else {DuiLib::Console::ErrorLine(fmt,##__VA_ARGS__);} }
 
 #define GLog(a, lev, fmt, ...) { a.formatLog(__FILET__,__LINE__,lev,fmt,##__VA_ARGS__); }
 #define GInfo(a, fmt, ...) GLog(a, DuiLib::CLogger::Log_Level::InfoLog, fmt, ##__VA_ARGS__)

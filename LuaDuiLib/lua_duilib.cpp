@@ -85,9 +85,14 @@ namespace DuiLib
 		}
 	}
 
-	static CDuiString CControlUI_ToString(CControlUI* p)
+	static int CControlUI_ToString(lua_State* l)
 	{
-		return p->ToString();
+		CControlUI* p = nullptr;
+		lua::get(l, 1, &p);
+		CDuiString szStr;
+		szStr.Format(_T("%s:%p:%p"), p->ToString().GetData(), lua_topointer(l, 1), (void*)p);
+		
+		return lua::push(l, szStr);
 	}
 
 	static int CControlUI_SetText(lua_State* l)
@@ -127,8 +132,8 @@ namespace DuiLib
 	{
 		CControlUI* pControl = nullptr;
 		lua::get(l, 1, &pControl);
-		lua_pushvalue(*globalLuaEnv, 2);
-		int luaFunc = luaL_ref(*globalLuaEnv, LUA_REGISTRYINDEX);
+		lua_pushvalue(l, 2);
+		int luaFunc = luaL_ref(l, LUA_REGISTRYINDEX);
 		pControl->OnInit += MakeDelegate(luaFunc, [=](void* param, int luaFunc)->bool
 		{
 			if (!globalLuaEnv) return true;
@@ -151,8 +156,8 @@ namespace DuiLib
 	{
 		CControlUI* pControl = nullptr;
 		lua::get(l, 1, &pControl);
-		lua_pushvalue(*globalLuaEnv, 2);
-		int luaFunc = luaL_ref(*globalLuaEnv, LUA_REGISTRYINDEX);
+		lua_pushvalue(l, 2);
+		int luaFunc = luaL_ref(l, LUA_REGISTRYINDEX);
 		pControl->OnDestroy += MakeDelegate(luaFunc, [=](void* param, int luaFunc)->bool
 			{
 				if (!globalLuaEnv) return true;
@@ -175,8 +180,8 @@ namespace DuiLib
 	{
 		CControlUI* pControl = nullptr;
 		lua::get(l, 1, &pControl);
-		lua_pushvalue(*globalLuaEnv, 2);
-		int luaFunc = luaL_ref(*globalLuaEnv, LUA_REGISTRYINDEX);
+		lua_pushvalue(l, 2);
+		int luaFunc = luaL_ref(l, LUA_REGISTRYINDEX);
 		pControl->OnSize += MakeDelegate(luaFunc, [=](void* param, int luaFunc)->bool
 			{
 				if (!globalLuaEnv) return true;
@@ -199,8 +204,8 @@ namespace DuiLib
 	{
 		CControlUI* pControl = nullptr;
 		lua::get(l, 1, &pControl);
-		lua_pushvalue(*globalLuaEnv, 2);
-		int luaFunc = luaL_ref(*globalLuaEnv, LUA_REGISTRYINDEX);
+		lua_pushvalue(l, 2);
+		int luaFunc = luaL_ref(l, LUA_REGISTRYINDEX);
 		pControl->OnEvent += MakeDelegate(luaFunc, [=](void* param, int luaFunc)->bool
 			{
 				if (!globalLuaEnv) return true;
@@ -223,14 +228,14 @@ namespace DuiLib
 	{
 		CControlUI* pControl = nullptr;
 		lua::get(l, 1, &pControl);
-		lua_pushvalue(*globalLuaEnv, 2);
-		int luaFunc = luaL_ref(*globalLuaEnv, LUA_REGISTRYINDEX);
-		pControl->OnNotify += MakeDelegate(luaFunc, [=](void* param, int luaFunc)->bool
+		lua_pushvalue(l, 2);
+		int luaFunc = luaL_ref(l, LUA_REGISTRYINDEX);
+		pControl->OnNotify += MakeDelegate(luaFunc, [=](void* param, int luaFuncRef)->bool
 			{
-				if (!globalLuaEnv) return true;
+				if (!globalLuaEnv || luaFuncRef == -1) return true;
 				TNotifyUI* pMsg = (TNotifyUI*)param;
 				lua::stack_gurad g(*globalLuaEnv);
-				if (globalLuaEnv->doFunc(luaFunc, pMsg))
+				if (globalLuaEnv->doFunc(luaFuncRef, pMsg))
 				{
 					if (lua_isboolean(*globalLuaEnv, -1))
 					{
@@ -247,8 +252,8 @@ namespace DuiLib
 	{
 		CControlUI* pControl = nullptr;
 		lua::get(l, 1, &pControl);
-		lua_pushvalue(*globalLuaEnv, 2);
-		int luaFunc = luaL_ref(*globalLuaEnv, LUA_REGISTRYINDEX);
+		lua_pushvalue(l, 2);
+		int luaFunc = luaL_ref(l, LUA_REGISTRYINDEX);
 		pControl->OnPaint += MakeDelegate(luaFunc, [=](void* param, int luaFunc)->bool
 			{
 				if (!globalLuaEnv) return true;
@@ -271,8 +276,8 @@ namespace DuiLib
 	{
 		CControlUI* pControl = nullptr;
 		lua::get(l, 1, &pControl);
-		lua_pushvalue(*globalLuaEnv, 2);
-		int luaFunc = luaL_ref(*globalLuaEnv, LUA_REGISTRYINDEX);
+		lua_pushvalue(l, 2);
+		int luaFunc = luaL_ref(l, LUA_REGISTRYINDEX);
 		pControl->OnPostPaint += MakeDelegate(luaFunc, [=](void* param, int luaFunc)->bool
 			{
 				if (!globalLuaEnv) return true;
@@ -1878,6 +1883,11 @@ namespace DuiLib
 		CDuiString pstrName;
 		DWORD dwStyle, dwExStyle;
 		lua::get(l, 1, &pWin, &hwndParent, &pstrName, &dwStyle, &dwExStyle);
+		//dwStyle = UI_WNDSTYLE_FRAME; //282001408
+		//dwExStyle = WS_EX_WINDOWEDGE; //256
+		//dwStyle = UI_WNDSTYLE_FRAME | WS_CLIPCHILDREN;
+		//dwExStyle = WS_EX_WINDOWEDGE | WS_EX_OVERLAPPEDWINDOW;
+		//globalLuaEnv->doString("helper.bor(DuiLib.UI_WNDSTYLE_FRAME, DuiLib.WS_CLIPCHILDREN)");
 		if (lua_isnoneornil(l, 6))
 		{
 			return lua::push(l, pWin->Create(hwndParent, pstrName, dwStyle, dwExStyle));
@@ -1913,11 +1923,11 @@ namespace DuiLib
 			wParam = (WPARAM)(lua_toboolean(l, 3));
 		else if (lua_isuserdata(l, 3))
 			wParam = (WPARAM)(lua_touserdata(l, 3));
-		else if (lua_isstring(l, 3))
+		else
 		{
-			CDuiString str;
-			lua::get(l, 3, &str);
-			wParam = (WPARAM)str.GetData();
+			int64 p;
+			lua::get(l, 3, &p);
+			wParam = (WPARAM)p;
 		}
 		if (lua_isnumber(l, 4))
 			lParam = (LPARAM)(lua_tonumber(l, 4));
@@ -1925,11 +1935,11 @@ namespace DuiLib
 			lParam = (LPARAM)(lua_toboolean(l,43));
 		else if (lua_isuserdata(l, 4))
 			lParam = (LPARAM)(lua_touserdata(l, 4));
-		else if (lua_isstring(l, 4))
+		else
 		{
-			CDuiString str;
-			lua::get(l, 4, &str);
-			lParam = (LPARAM)str.GetData();
+			int64 p;
+			lua::get(l, 4, &p);
+			lParam = (LPARAM)p;
 		}
 		pWin->SendMessage(uMsg, wParam, lParam);
 		return 0;
@@ -1947,9 +1957,9 @@ namespace DuiLib
 			wParam = (WPARAM)(lua_touserdata(l, 3));
 		else if (lua_isstring(l, 3))
 		{
-			CDuiString str;
-			lua::get(l, 3, &str);
-			wParam = (WPARAM)str.GetData();
+			int64 p;
+			lua::get(l, 3, &p);
+			wParam = (WPARAM)p;
 		}
 		if (lua_isnumber(l, 4))
 			lParam = (LPARAM)(lua_tonumber(l, 4));
@@ -1959,9 +1969,9 @@ namespace DuiLib
 			lParam = (LPARAM)(lua_touserdata(l, 4));
 		else if (lua_isstring(l, 4))
 		{
-			CDuiString str;
-			lua::get(l, 4, &str);
-			lParam = (LPARAM)str.GetData();
+			int64 p;
+			lua::get(l, 4, &p);
+			lParam = (LPARAM)p;
 		}
 		pWin->PostMessage(uMsg, wParam, lParam);
 		return 0;
@@ -1993,7 +2003,7 @@ namespace DuiLib
 		if (lua_istable(l, 2))
 		{
 			RECT rt;
-			BOOL bRepaint = TRUE;
+			bool bRepaint = TRUE;
 			lua::get(l, 2, &rt);
 			if (lua_isboolean(l, 3)) lua::get(l, 3, &bRepaint);
 			return lua::push(l, pWin->MoveWindow(&rt, bRepaint));
@@ -2002,7 +2012,7 @@ namespace DuiLib
 		{
 			int x, y, nWidth, nHeight;
 			lua::get(l, 2, &x, &y, &nWidth, &nHeight);
-			BOOL bRepaint = TRUE;
+			bool bRepaint = TRUE;
 			if (lua_isboolean(l, 3)) lua::get(l, 3, &bRepaint);
 			return lua::push(l, pWin->MoveWindow(x, y, nWidth, nHeight, bRepaint));
 		}
@@ -2237,7 +2247,44 @@ namespace DuiLib
 		CDuiString szXMLFileName;
 		CPaintManagerUI* pManager = NULL;
 		lua::get(l, 1, &pDlg, &szXMLFileName, &pManager);
-		CControlUI* pControl = pDlg->Create(szXMLFileName.GetData(), (UINT)0, NULL, pManager);
+
+		IDialogBuilderCallback* pCallback = NULL;
+
+		if (lua_isfunction(l, 4))
+		{
+			lua_pushvalue(l, 4);
+			int luaFunc = luaL_ref(l, LUA_REGISTRYINDEX);
+
+			class LuaDialogBuilderCallBack : public IDialogBuilderCallback
+			{
+				int luaFunc;
+			public:
+				LuaDialogBuilderCallBack(int nRef) : luaFunc(nRef) {}
+				virtual CControlUI* CreateControl(LPCTSTR pstrClass)
+				{
+					if (!globalLuaEnv) {
+						return NULL;
+					}
+					lua::stack_gurad g(*globalLuaEnv);
+					if (globalLuaEnv->doFunc(luaFunc, pstrClass))
+					{
+						if (!lua_isnoneornil(*globalLuaEnv, -1))
+						{
+							CControlUI* pRet = NULL;
+							lua::pop(*globalLuaEnv, &pRet);
+							return pRet;
+						}
+					}
+
+					return NULL;
+				}
+			};
+
+			pCallback = new LuaDialogBuilderCallBack(luaFunc);
+		}
+
+		CControlUI* pControl = pDlg->Create(szXMLFileName.GetData(), (UINT)0, pCallback, pManager);
+		if (pCallback) delete pCallback;
 		lua::push(l, pControl);
 		return 1;
 	}
@@ -2510,7 +2557,7 @@ namespace DuiLib
 	static void RegisterDuiLibCoreToLua(lua_State* l)
 	{
 		//DuiLib
-#define WRAP_METHOD(m) .readonly(#m, m)
+#define WRAP_METHOD(m) .readonly(#m, (uint64)m)
 		lua::lua_register_t<void>(l, "DuiLib")
 			WRAP_METHOD(UI_WNDSTYLE_CONTAINER)
 			WRAP_METHOD(UI_WNDSTYLE_FRAME)
@@ -3125,7 +3172,8 @@ namespace DuiLib
 				WRAP_METHOD(nMenuUserData)
 				WRAP_METHOD(nItemTag)
 				WRAP_METHOD(sItemText)
-				WRAP_METHOD(sItemName);
+				WRAP_METHOD(sItemName)
+				WRAP_METHOD(pMenuWnd);
 #undef WRAP_METHOD
 
 	}

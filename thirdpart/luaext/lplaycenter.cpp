@@ -106,43 +106,13 @@ private:
 ///////////////////////////////////////////////////////////////////////////////////////
 static int push_stack(lua_State* l, int64_t value)
 {
-	std::stringstream ss;
-	ss << value;
-	std::string str = ss.str();
-
-	lua_getglobal(l, "make_i64");
-	if (lua_isfunction(l, -1))
-	{
-		lua_pushlstring(l, str.c_str(), str.length());
-		lua_pushboolean(l, false);
-		lua_pcall(l, 2, 1, 0);
-	}
-	else
-	{
-		lua_pop(l, 1);
-		lua_pushlstring(l, str.c_str(), str.length());
-	}
+	lua_pushlstring(l, (const char*)&value, 8);
 
 	return 1;
 }
 static int push_stack(lua_State* l, uint64_t value)
 {
-	std::stringstream ss;
-	ss << value;
-	std::string str = ss.str();
-
-	lua_getglobal(l, "make_i64");
-	if (lua_isfunction(l, -1))
-	{
-		lua_pushlstring(l, str.c_str(), str.length());
-		lua_pushboolean(l, true);
-		lua_pcall(l, 2, 1, 0);
-	}
-	else
-	{
-		lua_pop(l, 1);
-		lua_pushlstring(l, str.c_str(), str.length());
-	}
+	lua_pushlstring(l, (const char*)&value, 8);
 
 	return 1;
 }

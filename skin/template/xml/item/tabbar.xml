@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window>
+  	 <Option menu="true" selected="true" group="main_tabbar" width="100" text="我的游戏" textpadding="2,0,0,0" normalimage="file='res/button/main_wnd_tab_item.png' source='0,0,43,32' corner='20,0,20,0'" hotimage="file='res/button/main_wnd_tab_item.png' source='43,0,86,32' corner='20,0,20,0'" pushedimage="file='res/button/main_wnd_tab_item.png' source='86,0,129,32' corner='20,0,20,0'" selectedimage="file='res/button/main_wnd_tab_item.png' source='86,0,129,32' corner='20,0,20,0'"/>
+</Window>

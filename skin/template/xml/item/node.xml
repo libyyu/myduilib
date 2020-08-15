@@ -1,45 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Window  size="290,80">
-  <ListContainerElement height="52">
+  <ListContainerElement height="32">
     <VerticalLayout>
 		<HorizontalLayout>
-			<VerticalLayout name="logo_container" width="50" padding="1,1,1,1">
-				<Button name="logo" width="48" height="48" 
-						hotimage="file='res/button/hotmask.png' corner='5,5,5,5'"
-						bkimage="file='res/list/default.png' dest='4,4,44,44' corner='5,5,5,5'"
-						normalimage=""
-						pushedimage=""/>
-			</VerticalLayout>
-			<VerticalLayout>
-				<HorizontalLayout height="32" padding="2, 0, 0, 0">
-				<Label name="nickname" bordersize="0"  text="" textcolor="#FF000000" disabledtextcolor="#FF808080" />
-					<Label name="description" bordersize="0" text="[共0人]" textcolor="#FF808080" />
-				</HorizontalLayout>
-			<VerticalLayout name="operation" height="18" visible="true">
-			<HorizontalLayout width="72" padding="2, 0, 0, 0">
-				<Button name="friend" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" 
-							bkimage="file='res/list/friend_circle.png' mask='0xffffffff'" 
-							normalimage="file='res/list/friend_circle.png' mask='0xffffffff'" 
-							hotimage="file='res/button/allbtn_over.png' corner='2,2,2,2' mask='0xffffffff'" 
-							pushedimage="file='res/button/allbtn_down.png' corner='2,2,2,2'  mask='0xffffffff'" />
-			<Button name="mail" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" 
-							bkimage="file='res/list/mail.png' mask='0xffffffff'" 
-							normalimage="file='res/list/mail.png' mask='0xffffffff'" 
-							hotimage="file='res/button/allbtn_over.png' corner='2,2,2,2' mask='0xffffffff'" 
-							pushedimage="file='res/button/allbtn_down.png' corner='2,2,2,2'  mask='0xffffffff'" />
-			<Button name="xiaoyou" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" 
-							bkimage="file='res/list/MainPanelServiceBarExt_XiaoYou.png' mask='0xffffffff'" 
-							normalimage="file='res/list/MainPanelServiceBarExt_XiaoYou.png' mask='0xffffffff'" 
-							hotimage="file='res/button/allbtn_over.png' mask='0xffffffff'" 
-							pushedimage="file='res/button/allbtn_down.png' mask='0xffffffff'" />
-			<Button name="soso" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" 
-							bkimage="file='res/list/soso.png' mask='0xffffffff'" 
-							normalimage="file='res/list/soso.png' mask='0xffffffff'" 
-							hotimage="file='res/button/allbtn_over.png' corner='2,2,2,2' mask='0xffffffff'" 
-							pushedimage="file='res/button/allbtn_down.png' corner='2,2,2,2'  mask='0xffffffff'" />
-			</HorizontalLayout>
-			</VerticalLayout >
-			</VerticalLayout>
+			<Control name="tmpl_id" width="32" padding="1,1,1,1" />
+			<Label name="tmpl_name" padding="1,0,0,0" bordersize="0" textcolor="#FF000000" disabledtextcolor="#FF808080"/>
 		</HorizontalLayout>
     </VerticalLayout>
   </ListContainerElement>

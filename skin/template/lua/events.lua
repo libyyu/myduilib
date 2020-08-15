@@ -8,8 +8,7 @@ end
 
 local events = makeKey
 {	
-	"BeginPlaying",
-	"PlayingPosChanged",
-	"PlayingEndReached",
+	"AddTreeNode",
+	"OnOpenTmpl"
 }
 return events

@@ -107,6 +107,9 @@ public:
 		lua_pushcfunction(m_L, warn);
 		lua_setfield(m_L, LUA_GLOBALSINDEX, "warn");
 
+		lua_pushcfunction(m_L, printerror);
+		lua_setfield(m_L, LUA_GLOBALSINDEX, "printerror");
+
 		lua_pushcfunction(m_L, error_traceback);
 		m_errRef = luaL_ref(m_L, LUA_REGISTRYINDEX);
 
@@ -323,6 +326,12 @@ protected:
 	{
 		std::string s = "[LUA][Warn]" + on_print_handler(l);
 		LuaOutHandler::Get().Stdout(s.c_str(), true);
+		return 0;
+	}
+	static int printerror(lua_State* l)
+	{
+		std::string s = "[LUA][Error]" + on_print_handler(l);
+		LuaOutHandler::Get().Stderr(s.c_str());
 		return 0;
 	}
 	static int error_traceback(lua_State* l)

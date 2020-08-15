@@ -12,12 +12,11 @@ target("luaext")
 	-- links
 	add_deps("database", "playcenter",  "taglib_plugin", "MainThreadTask")
     add_links("database", "playcenter",  "taglib_plugin", "MainThreadTask")
-	if has_config("luajit") then
-        add_includedirs("../luajit/src")
-        add_deps("luajit")
+
+    if has_config("luajit") then
+        add_rules("luajit.shared")
     else
-        add_includedirs("../lua51/src")
-        add_deps("lua51")
+        add_rules("lua.shared")
     end
 
 	-- source files
@@ -25,9 +24,6 @@ target("luaext")
 	
 	-- add defines
     add_defines("BUILD_AS_DLL")
-    if is_plat("windows") then
-        add_defines("LUA_BUILD_AS_DLL")
-    end
     add_rules("flib.static")
     add_rules("thirdpart.shared")
 

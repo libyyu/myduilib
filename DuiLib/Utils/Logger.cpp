@@ -43,7 +43,8 @@ namespace DuiLib
 
 		//bool b = _Open();
 		//assert(b && "open log file error!");
-		
+		_inited = true;
+
 		time_t t = time(NULL);
 		tm* aTm = localtime(&t);
 		_NewLog(aTm);
@@ -52,6 +53,7 @@ namespace DuiLib
 	CLogger::CLogger()
 		: _file(NULL)
 		, _plock(NULL)
+		, _inited(false)
 	{
 		memset(_filename, 0, sizeof(_filename));
 		memset(_timename, 0, sizeof(_timename));
@@ -64,6 +66,7 @@ namespace DuiLib
 		if (_plock)
 			delete _plock;
 		_plock = NULL;
+		_inited = false;
 	}
 
 	void CLogger::_NewLog(tm* atm)

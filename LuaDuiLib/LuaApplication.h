@@ -26,7 +26,8 @@ namespace DuiLib
 		bool Initialize();
 		void Unitialize();
 		bool RunInternal(HINSTANCE, HINSTANCE, LPSTR, int);
-		void OnCallbackTimer(IDuiTimer*, HWND, CLuaWindow*, WPARAM);
+		void OnDuiTimerCallback(IDuiTimer*, HWND, CLuaWindow*, WPARAM);
+		void OnGlobalTimerCallback(IDuiTimer*, void*);
 	private:
 		bool StartupLua();
 		bool ShutdownLua();
@@ -38,6 +39,7 @@ namespace DuiLib
 		CDuiStringPtrMap lua_plugins;
 		bool             valid;
 		bool			 exiting;
+		DWORD            mainThreadId;
 	};
 }
 

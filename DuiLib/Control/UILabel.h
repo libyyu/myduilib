@@ -49,6 +49,11 @@ namespace DuiLib
 		bool IsShowHtml();
 		void SetShowHtml(bool bShowHtml = true);
 
+		bool GetAutoCalcWidth() const;
+		void SetAutoCalcWidth(bool bAutoCalcWidth);
+		bool GetAutoCalcHeight() const;
+		void SetAutoCalcHeight(bool bAutoCalcHeight);
+
 		SIZE EstimateSize(SIZE szAvailable);
 		void DoEvent(TEventUI& event);
 	protected:
@@ -94,6 +99,8 @@ namespace DuiLib
         SIZE    m_szAvailableLast;
         SIZE    m_cxyFixedLast;
         bool    m_bNeedEstimateSize;
+		bool    m_bAutoCalcWidth;
+		bool    m_bAutoCalcHeight;
 
 		float					m_fLuminousFuzzy;
 		int						m_GradientLength;
