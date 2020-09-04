@@ -102,12 +102,12 @@ m_pBindNotifyCtrl(NULL)
     ::ZeroMemory(&m_rcPaint, sizeof(RECT));
 	::ZeroMemory(&m_rcBorderSize,sizeof(RECT));
 	m_piFloatPercent.left = m_piFloatPercent.top = m_piFloatPercent.right = m_piFloatPercent.bottom = 0.0f;
-	m_hasDeleted = false;
 }
 
 CControlUI::~CControlUI()
 {
-	m_hasDeleted = true;
+    IMPLEMENT_GCOBJ()
+
     if( m_pCover != NULL ) {
         m_pCover->Delete();
         m_pCover = NULL;
@@ -121,8 +121,6 @@ CControlUI::~CControlUI()
 
 void CControlUI::Delete()
 {
-	if (m_hasDeleted) return;
-	m_hasDeleted = true;
     if (m_pManager) m_pManager->RemoveMouseLeaveNeeded(this);
     delete this;
 }

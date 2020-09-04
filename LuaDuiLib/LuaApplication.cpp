@@ -1,7 +1,6 @@
 #define LUA_LIB
 #include "UIlib.h"
 #include "LuaApplication.h"
-#include "base/lua_wrapper.hpp"
 #include "lua_duilib_wrapper.hpp"
 #include "lua_duilib_extend_wrapper.hpp"
 #include "base/LuaEnv.hpp"
@@ -14,17 +13,18 @@
 #endif
 LuaEnv* globalLuaEnv = NULL;
 
-#ifdef LUA_OBJECT_EXTERN
-namespace lua
+class LuaObjectGC : public IObjectGC
 {
-	static LuaObjectContainer lua_hash_objs_container;
-
-	LuaObjectContainer& get_luaobj_container()
+public:
+	virtual void OnGC(void* obj)
 	{
-		return lua_hash_objs_container;
+		if (globalLuaEnv) {
+			lua::remove_object_from_lua_global_table(*globalLuaEnv, obj);
+			lua::remove_from_weaktable(*globalLuaEnv, obj);
+		}
 	}
-}
-#endif//LUA_OBJECT_EXTERN
+};
+static LuaObjectGC GCCollector;
 
 namespace DuiLib
 {
@@ -113,7 +113,7 @@ namespace DuiLib
 		case 3:
 		{
 			DuiLogError(s.GetData());
-			MessageBox(NULL, s.GetData(), _T("Error"), 0);
+			MessageBox(::GetActiveWindow(), s.GetData(), _T("Error"), 0);
 			DuiException(s.GetData());
 		}
 		break;
@@ -823,7 +823,7 @@ namespace DuiLib
 		while (lua_next(l, real_pos) != 0)
 		{
 			THUMBBUTTON b;
-			lua::lua_table_ref_t t;
+			lua::table t;
 			lua::get(l, -1, &t);
 			t.get("id", &(b.iId));
 			if (t.has("mask"))
@@ -849,7 +849,6 @@ namespace DuiLib
 				t.get("icon", &b.hIcon);
 			if (t.has("bitmap"))
 				t.get("bitmap", &b.iBitmap);
-			t.unref();
 			lua_pop(l, 1);
 			buttons.push_back(b);
 		}
@@ -873,7 +872,7 @@ namespace DuiLib
 		int iButton;
 		lua::get(l, 1, &hWnd, &iButton);
 		THUMBBUTTON b;
-		lua::lua_table_ref_t t;
+		lua::table t;
 		lua::get(l, 3, &t);
 		t.get("id", &(b.iId));
 		if (t.has("mask"))
@@ -899,7 +898,6 @@ namespace DuiLib
 			t.get("icon", &b.hIcon);
 		if (t.has("bitmap"))
 			t.get("bitmap", &b.iBitmap);
-		t.unref();
 
 		HRESULT hr = LuaApplication::Instance()->TaskbarList->ThumbBarUpdateButtons(hWnd, iButton, &b);
 		if (SUCCEEDED(hr))
@@ -1018,7 +1016,7 @@ namespace DuiLib
 		int iref = pDuiTimer->GetUserData().iInt;
 		if (globalLuaEnv && iref)
 		{
-			lua::stack_gurad guard(*globalLuaEnv);
+			lua::lua_stack_gurad guard(*globalLuaEnv);
 			globalLuaEnv->doFunc(iref);
 			CDuiTimerBase* pTimerUI = (CDuiTimerBase*)pDuiTimer;
 			if (!pTimerUI->GetTimerID())
@@ -1112,7 +1110,7 @@ namespace DuiLib
 	}
 }
 
-extern int luaopen_int64(lua_State*);
+//extern int luaopen_int64(lua_State*);
 
 namespace DuiLib 
 {
@@ -1122,10 +1120,13 @@ namespace DuiLib
 	{
 		mainThreadId = ::GetCurrentThreadId();
 		Initialize();
+
+		SetObjectGCInterface(&GCCollector);
 	}
 	LuaApplication::~LuaApplication()
 	{
 		Unitialize();
+		SetObjectGCInterface(NULL);
 	}
 
 	bool LuaApplication::Initialize()
@@ -1194,7 +1195,7 @@ namespace DuiLib
 		globalLuaEnv = new LuaEnv(true);
 		globalLuaEnv->SetSearcher(on_lua_loader);
 		{
-			lua::stack_gurad guard(*globalLuaEnv);
+			lua::lua_stack_gurad guard(*globalLuaEnv);
 			lua_pushcfunction(*globalLuaEnv, on_import_luadll);
 			lua_setfield(*globalLuaEnv, LUA_GLOBALSINDEX, "importluadll");
 
@@ -1209,6 +1210,9 @@ namespace DuiLib
 			const char* s = ROOT_DIR;
 			lua_pushstring(*globalLuaEnv, s);
 			lua_setfield(*globalLuaEnv, LUA_GLOBALSINDEX, "ROOT_DIR");
+
+			lua_pushlightuserdata(*globalLuaEnv, &GCCollector);
+			lua_setfield(*globalLuaEnv, LUA_GLOBALSINDEX, "__UD_GCCollector");
 		}
 		return true;
 	}
@@ -1252,7 +1256,7 @@ namespace DuiLib
 	bool LuaApplication::RegisterScript()
 	{
 		make_lua_global(*globalLuaEnv);
-		luaopen_int64(*globalLuaEnv);
+		//luaopen_int64(*globalLuaEnv);
 		return register_lua_scripts(*globalLuaEnv) && RegisterTimerAPIToLua(*globalLuaEnv) && RegisterApplicationAPIToLua(*globalLuaEnv);
 	}
 	bool LuaApplication::ImportLuaDLL(LPCTSTR dllName, LPCTSTR dllEntry)

@@ -1,6 +1,6 @@
 #define LUA_LIB
 #include "UIlib.h"
-#include "base/lua_wrapper.hpp"
+#include "base/lua_script.hpp"
 #include <algorithm>
 #include <functional>
 #include <time.h>
@@ -9,7 +9,7 @@ namespace
 {
 	static int Int64ToString(lua_State* l)
 	{
-		uint64 n; lua::get(l, 1, &n);
+		lua::uint64 n; lua::get(l, 1, &n);
 		std::stringstream ss;
 		ss << n;
 		lua::push(l, ss.str());
@@ -19,7 +19,7 @@ namespace
 
 	static int Int64ToInt_(lua_State* l)
 	{
-		uint64 n; lua::get(l, 1, &n);
+		lua::uint64 n; lua::get(l, 1, &n);
 		lua_Number v = n;
 		lua::push(l, v);
 		return 1;
@@ -28,62 +28,62 @@ namespace
 	static int IntToInt64(lua_State* l)
 	{
 		lua_Number v = lua_tonumber(l, 1);
-		lua::push(l, (int64)v);
+		lua::push(l, (lua::int64)v);
 		return 1;
 	}
 	static int UIntToInt64(lua_State* l)
 	{
 		lua_Number v = lua_tonumber(l, 1);
-		lua::push(l, (int64)(uint64)v);
+		lua::push(l, (lua::int64)(lua::uint64)v);
 		return 1;
 	}
 	static int LongToInt64(lua_State* l)
 	{
 		lua_Number v = lua_tonumber(l, 1);
-		lua::push(l, (int64)(long)v);
+		lua::push(l, (lua::int64)(long)v);
 		return 1;
 	}
 	static int ULongToInt64(lua_State* l)
 	{
 		lua_Number v = lua_tonumber(l, 1);
-		lua::push(l, (int64)(uint64)(unsigned long)v);
+		lua::push(l, (lua::int64)(lua::uint64)(unsigned long)v);
 		return 1;
 	}
 	static int MIntToUInt64(lua_State* l)
 	{
 		lua_Number v = lua_tonumber(l, 1);
-		lua::push(l, (uint64)v);
+		lua::push(l, (lua::uint64)v);
 		return 1;
 	}
 	static int MLongToUInt64(lua_State* l)
 	{
 		lua_Number v = lua_tonumber(l, 1);
-		lua::push(l, (uint64)(int64)(long)v);
+		lua::push(l, (lua::uint64)(lua::int64)(long)v);
 		return 1;
 	}
 	static int UIntToUInt64(lua_State* l)
 	{
 		lua_Number v = lua_tonumber(l, 1);
-		lua::push(l, (uint64)(unsigned int)v);
+		lua::push(l, (lua::uint64)(unsigned int)v);
 		return 1;
 	}
 	static int ULongToUInt64(lua_State* l)
 	{
 		lua_Number v = lua_tonumber(l, 1);
-		lua::push(l, (uint64)(unsigned long)v);
+		lua::push(l, (lua::uint64)(unsigned long)v);
 		return 1;
 	}
 
 	static int UserDataToUInt64(lua_State* l)
 	{
 		void* p = lua_touserdata(l, 1);
-		uint64 n = (uint64)(intptr_t)p;
+		lua::uint64 n = (lua::uint64)(intptr_t)p;
 		lua::push(l, n);
 		return 1;
 	}
 	static int UInt64ToUserData(lua_State* l)
 	{
-		uint64 n; lua::get(l, 1, &n);
+		lua::uint64 n; lua::get(l, 1, &n);
 		void* p = (void*)(intptr_t)n;
 		lua_pushlightuserdata(l, p);
 		return 1;
@@ -367,7 +367,7 @@ namespace
 			return lua::push(l, false);
 		}
 		std::istringstream iss(str);
-		::uint64 num;
+		lua::uint64 num;
 		if (!(iss >> num))
 		{
 			return lua::push(l, false);
@@ -378,14 +378,14 @@ namespace
 
 	static int Mgmtime_s(lua_State* l)
 	{
-		int64 tt;
+		lua::int64 tt;
 		lua::get(l, 1, &tt);
 		time_t timeCurrent = tt;
 		struct tm   tmCurrent;
 		gmtime_s(&tmCurrent, &timeCurrent);
 
 #define MSET(x) t.set(#x, tmCurrent.x)
-		lua::lua_table_ref_t t(l, (char*)NULL);
+		lua::table t(l, (char*)NULL);
 		MSET(tm_sec);
 		MSET(tm_min);
 		MSET(tm_hour);
@@ -396,7 +396,6 @@ namespace
 		MSET(tm_yday);
 		MSET(tm_isdst);
 		lua::push(l, t);
-		t.unref();
 #undef MSET
 		return 1;
 	}
@@ -404,7 +403,7 @@ namespace
 	static int Mtcsftime(lua_State* l)
 	{
 		struct tm   tmCurrent;
-		lua::lua_table_ref_t t;
+		lua::table t;
 		lua::get(l, 1, &t);
 #define MGET(x) tmCurrent.x = t.get<int>(#x)
 		MGET(tm_sec);
@@ -416,7 +415,6 @@ namespace
 		MGET(tm_wday);
 		MGET(tm_yday);
 		MGET(tm_isdst);
-		t.unref();
 #undef MGET
 		TCHAR       szCurrent[MAX_PATH] = { 0 };
 		_tcsftime(szCurrent, MAX_PATH, _T("%X"), &tmCurrent);
@@ -436,11 +434,10 @@ namespace
 		//int milliseconds = tpend.tv_usec / 1000;
 
 #define MSET(x) t.set(#x, tpend.x)
-		lua::lua_table_ref_t t(l, (char*)NULL);
+		lua::table t(l, (char*)NULL);
 		MSET(tv_sec);
 		MSET(tv_usec);
 		lua::push(l, t);
-		t.unref();
 #undef MSET
 
 		return 1;
@@ -482,7 +479,7 @@ namespace
 namespace DuiLib {
 	int make_lib64(lua_State* l)
 	{
-		lua::stack_gurad guard(l);
+		lua::lua_stack_gurad guard(l);
 		lua_createtable(l, 0, 0);
 		lua_pushstring(l, "Int64ToInt");
 		lua_pushcfunction(l, Int64ToInt_);
@@ -522,65 +519,65 @@ namespace DuiLib {
 		lua_pushcfunction(l, UInt64ToUserData);
 		lua_rawset(l, -3);
 		lua_pushstring(l, "Int64Compare");
-		lua_pushcfunction(l, MInt64Compare<int64>);
+		lua_pushcfunction(l, MInt64Compare<lua::int64>);
 		lua_rawset(l, -3);
 		lua_pushstring(l, "Int64Add");
-		lua_pushcfunction(l, MInt64Add<int64>);
+		lua_pushcfunction(l, MInt64Add<lua::int64>);
 		lua_rawset(l, -3);
 		lua_pushstring(l, "Int64Sub");
-		lua_pushcfunction(l, MInt64Sub<int64>);
+		lua_pushcfunction(l, MInt64Sub<lua::int64>);
 		lua_rawset(l, -3);
 		lua_pushstring(l, "Int64Mul");
-		lua_pushcfunction(l, MInt64Mul<int64>);
+		lua_pushcfunction(l, MInt64Mul<lua::int64>);
 		lua_rawset(l, -3);
 		lua_pushstring(l, "Int64Div");
-		lua_pushcfunction(l, MInt64Div<int64>);
+		lua_pushcfunction(l, MInt64Div<lua::int64>);
 		lua_rawset(l, -3);
 		lua_pushstring(l, "Int64Mod");
-		lua_pushcfunction(l, MInt64Mod<int64>);
+		lua_pushcfunction(l, MInt64Mod<lua::int64>);
 		lua_rawset(l, -3);
 		lua_pushstring(l, "Int64Unm");
-		lua_pushcfunction(l, MInt64Unm<int64>);
+		lua_pushcfunction(l, MInt64Unm<lua::int64>);
 		lua_rawset(l, -3);
 		lua_pushstring(l, "Int64Pow");
-		lua_pushcfunction(l, MInt64Pow<int64>);
+		lua_pushcfunction(l, MInt64Pow<lua::int64>);
 		lua_rawset(l, -3);
 		lua_pushstring(l, "UInt64Compare");
-		lua_pushcfunction(l, MInt64Compare<uint64>);
+		lua_pushcfunction(l, MInt64Compare<lua::uint64>);
 		lua_rawset(l, -3);
 		lua_pushstring(l, "UInt64Add");
-		lua_pushcfunction(l, MInt64Add<uint64>);
+		lua_pushcfunction(l, MInt64Add<lua::uint64>);
 		lua_rawset(l, -3);
 		lua_pushstring(l, "UInt64Sub");
-		lua_pushcfunction(l, MInt64Sub<uint64>);
+		lua_pushcfunction(l, MInt64Sub<lua::uint64>);
 		lua_rawset(l, -3);
 		lua_pushstring(l, "UInt64Mul");
-		lua_pushcfunction(l, MInt64Mul<uint64>);
+		lua_pushcfunction(l, MInt64Mul<lua::uint64>);
 		lua_rawset(l, -3);
 		lua_pushstring(l, "UInt64Div");
-		lua_pushcfunction(l, MInt64Div<uint64>);
+		lua_pushcfunction(l, MInt64Div<lua::uint64>);
 		lua_rawset(l, -3);
 		lua_pushstring(l, "UInt64Mod");
-		lua_pushcfunction(l, MInt64Mod<uint64>);
+		lua_pushcfunction(l, MInt64Mod<lua::uint64>);
 		lua_rawset(l, -3);
 		lua_pushstring(l, "UInt64Unm");
-		lua_pushcfunction(l, MInt64Unm<uint64>);
+		lua_pushcfunction(l, MInt64Unm<lua::uint64>);
 		lua_rawset(l, -3);
 		lua_pushstring(l, "UInt64Pow");
-		lua_pushcfunction(l, MInt64Pow<uint64>);
+		lua_pushcfunction(l, MInt64Pow<lua::uint64>);
 		lua_rawset(l, -3);
 
 		lua_pushstring(l, "bnot");
-		lua_pushcfunction(l, not64<int64>);
+		lua_pushcfunction(l, not64<lua::int64>);
 		lua_rawset(l, -3);
 		lua_pushstring(l, "band");
-		lua_pushcfunction(l, band64<int64>);
+		lua_pushcfunction(l, band64<lua::int64>);
 		lua_rawset(l, -3);
 		lua_pushstring(l, "bor");
-		lua_pushcfunction(l, bor64<int64>);
+		lua_pushcfunction(l, bor64<lua::int64>);
 		lua_rawset(l, -3);
 		lua_pushstring(l, "bxor");
-		lua_pushcfunction(l, bxor64<int64>);
+		lua_pushcfunction(l, bxor64<lua::int64>);
 		lua_rawset(l, -3);
 		lua_pushstring(l, "isint64");
 		lua_pushcfunction(l, lua_isint64);
@@ -593,7 +590,7 @@ namespace DuiLib {
 	{
 		make_lib64(l);
 
-		lua::stack_gurad guard(l);
+		lua::lua_stack_gurad guard(l);
 		lua_createtable(l, 0, 0);
 
 		lua_pushstring(l, "gmtime");

@@ -21,8 +21,8 @@ function _G.FindAsset(filename, type_)
 	return DuiLib.CResourceManager.FindAsset(filename, type_)
 end
 
-local CControlUI_meta = _G.DuiLib.CControlUI.__methods
-local CWindowWnd_meta = _G.DuiLib.CWindowWnd.__methods
+local CControlUI_meta = _G.DuiLib.CControlUI.class()
+local CWindowWnd_meta = _G.DuiLib.CWindowWnd.class()
 
 local __lua_userdata = {}
 setmetatable(__lua_userdata, {__mode = "k"})

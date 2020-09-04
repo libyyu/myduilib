@@ -25,6 +25,9 @@ function i64lib.new(v, unsigned)
 	function r:equal(ths)
 		return lib64.Int64Compare(self.value, param64(ths)) == 0
 	end
+	function r:ToString()
+		return lib64.Int64ToString(self.value)
+	end
 
 	return r
 end
@@ -45,58 +48,58 @@ end
 function mt:__add(ths)
 	print("add")
 	local v = lib64.Int64Add(self.value, param64(ths))
-	self.value = v.value
+	self.value = v
 	return self
 end
 function mt:__sub(ths)
 	local v = lib64.Int64Sub(self.value, param64(ths))
-	self.value = v.value
+	self.value = v
 	return self 
 end
 function mt:__mul(ths)
 	local v = lib64.Int64Mul(self.value, param64(ths))
-	self.value = v.value
+	self.value = v
 	return self 
 end
 function mt:__div(ths)
 	local v = lib64.Int64Div(self.value, param64(ths))
-	self.value = v.value
+	self.value = v
 	return self 
 end
 function mt:__mod(ths)
 	local v = lib64.Int64Mod(self.value, param64(ths))
-	self.value = v.value
+	self.value = v
 	return self 
 end
 function mt:__unm()
 	local v = lib64.Int64Unm(self.value)
-	self.value = v.value
+	self.value = v
 	return self 
 end
 function mt:__pow(ths)
 	local v = lib64.Int64Pow(self.value, param64(ths))
-	self.value = v.value
+	self.value = v
 	return self 
 end
 
 function mt:bnot()
 	local v = lib64.bnot(self.value)
-	self.value = v.value
+	self.value = v
 	return self 
 end
 function mt:band(ths)
 	local v = lib64.band(self.value, param64(ths))
-	self.value = v.value
+	self.value = v
 	return self 
 end
 function mt:bor(ths)
 	local v = lib64.bor(self.value, param64(ths))
-	self.value = v.value
+	self.value = v
 	return self 
 end
 function mt:bxor(ths)
 	local v = lib64.bxor(self.value, param64(ths))
-	self.value = v.value
+	self.value = v
 	return self 
 end
 

@@ -1,4 +1,4 @@
-local IBaseWindow = require "frames.IBaseWindow"
+local IBaseWindow = require "gui.IBaseWindow"
 --local ProtoUtil = require "utility.ProtoUtil"
 
 local AssetsFrame = FLua.Class(IBaseWindow,"AssetsFrame")

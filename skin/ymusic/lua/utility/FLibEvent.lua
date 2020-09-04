@@ -17,7 +17,7 @@ do
 		local eventlist = self.events[eventname] or {}
 		for obj, callback in pairs(eventlist) do
 			if type(obj) == "function" then
-				obj(eventname, ...)
+				obj(...)
 			elseif FLua.Is(obj) then
 				local func = obj:tryget(eventname)
 				if func then
@@ -30,7 +30,7 @@ do
 				end
 			else
 				if obj[eventname] then
-					obj[eventname](obj, eventname, ...)
+					obj[eventname](obj, ...)
 				elseif obj.OnEvent then
 					obj:OnEvent(eventname, ...)
 				end

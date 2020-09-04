@@ -224,13 +224,6 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\LuaDuiLib\windows\x86\debug\LuaDuiLib\LuaApplication.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\LuaDuiLib\windows\x64\release\LuaDuiLib\LuaApplication.cpp.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="..\..\LuaDuiLib\LuaWindow.cpp">
-      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\LuaDuiLib\windows\x64\debug\LuaDuiLib\LuaWindow.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\LuaDuiLib\windows\x86\debug\LuaDuiLib\LuaWindow.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\LuaDuiLib\windows\x86\release\LuaDuiLib\LuaWindow.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\LuaDuiLib\windows\x64\release\LuaDuiLib\LuaWindow.cpp.obj</ObjectFileName>
-    </ClCompile>
     <ClCompile Include="..\..\LuaDuiLib\lua_global.cpp">
       <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\LuaDuiLib\windows\x64\debug\LuaDuiLib\lua_global.cpp.obj</ObjectFileName>
@@ -245,7 +238,13 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\LuaDuiLib\windows\x86\debug\LuaDuiLib\lua_duilib.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\LuaDuiLib\windows\x64\release\LuaDuiLib\lua_duilib.cpp.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="..\..\LuaDuiLib\lua_int64.cpp" />
+    <ClCompile Include="..\..\LuaDuiLib\LuaWindow.cpp">
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\LuaDuiLib\windows\x64\debug\LuaDuiLib\LuaWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\LuaDuiLib\windows\x86\debug\LuaDuiLib\LuaWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\LuaDuiLib\windows\x86\release\LuaDuiLib\LuaWindow.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\LuaDuiLib\windows\x64\release\LuaDuiLib\LuaWindow.cpp.obj</ObjectFileName>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\LuaDuiLib\LuaApplication.h" />
@@ -254,9 +253,7 @@
     <ClInclude Include="..\..\LuaDuiLib\lua_duilib_extend_wrapper.hpp" />
     <ClInclude Include="..\..\LuaDuiLib\lua_duilib_wrapper.hpp" />
     <ClInclude Include="..\..\LuaDuiLib\lua_op_define.hpp" />
-    <ClInclude Include="..\..\base\lua_object.hpp" />
     <ClInclude Include="..\..\base\lua_script.hpp" />
-    <ClInclude Include="..\..\base\lua_wrapper.hpp" />
     <ClInclude Include="..\..\base\LuaEnv.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

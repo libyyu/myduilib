@@ -1,4 +1,4 @@
-local IBaseWindow = require "frames.IBaseWindow"
+local IBaseWindow = require "gui.IBaseWindow"
 local ProtoUtil = require "proto.ProtoUtil"
 
 local _uTaskbarCreatedMsg
@@ -8,7 +8,6 @@ local _hOfflineIcon
 
 local MainWindow = FLua.Class(IBaseWindow,"MainWindow")
 function MainWindow.new()
-	print("new MainWindow")
 	local obj = MainWindow()
 	return obj
 end
@@ -22,8 +21,6 @@ function MainWindow:__constructor()
 	self.m_pPlayProgress = nil
 	self.m_pTimeUsed = nil
 	self.m_pTimeTotal = nil
-	self.m_pGlobalTimer = nil
-	self.m_bHandleNotify = false
 	theApp:GetRuntimeState():GetEventMgr():AddEvent(self, _G.Event.BeginPlaying)
 	theApp:GetRuntimeState():GetEventMgr():AddEvent(self, _G.Event.PlayingPosChanged)
 	theApp:GetRuntimeState():GetEventMgr():AddEvent(self, _G.Event.PlayingEndReached)
@@ -32,14 +29,6 @@ function MainWindow:__constructor()
 	_uTaskbarButtonCreateMsg = Application.RegisterWindowMessage("TaskbarButtonCreated")
 	print("_uTaskbarCreatedMsg", _uTaskbarCreatedMsg)
 	print("_uTaskbarButtonCreateMsg", _uTaskbarButtonCreateMsg)
-end
-
-function MainWindow:CreateControl(pstrClass)
-	local pControl = MyControl.CreateControl(pstrClass)
-	if pControl then
-		return pControl
-	end
-	return nil
 end
 
 function MainWindow:WindowClass()
@@ -64,6 +53,7 @@ end
 function MainWindow:Release()
 	self.m_pPlayList = nil
 	self.m_pSongList = nil
+	IBaseWindow.Release(self)
 end
 
 function MainWindow:OnDestroy(wParam,lParam)
@@ -76,19 +66,14 @@ function MainWindow:OnDestroy(wParam,lParam)
 		_hOfflineIcon = nil
 	end
 	self:Stop()
-	if self.m_pGlobalTimer then
-		Timer.RemoveGlobalTimer(self.m_pGlobalTimer)
-		self.m_pGlobalTimer = nil
-	end
 	IBaseWindow.OnDestroy(self,wParam,lParam)
 end
 
 function MainWindow:OnSysCommand(wParam,lParam)
-	--warn("OnSysCommand", wParam, lParam, type(wParam),DuiLib.SC_CLOSE,DuiLib.IntToUInt64(DuiLib.SC_CLOSE) )
-	if type(wParam) == "number" and wParam == DuiLib.SC_CLOSE then
-		_G.CLOSING = true
-		self:PostMessage(DuiLib.MsgArgs.WM_QUIT, 0, 0)
-	elseif( wParam == helper.IntToUInt64(DuiLib.SC_CLOSE) ) then
+	warn("OnSysCommand", wParam, lParam, type(wParam),type(DuiLib.SC_CLOSE))
+	local sc_close = make_i64(DuiLib.SC_CLOSE)
+	print("sc_close", sc_close)
+	if sc_close:equal(wParam) then
 		_G.CLOSING = true
 		self:PostMessage(DuiLib.MsgArgs.WM_QUIT, 0, 0)
 	end
@@ -107,7 +92,7 @@ function MainWindow:ProcessWindowMessage(uMsgId,wParam,lParam)
 	--[[if uMsgId == MsgArgs.WM_USER + 2500 then
 		self:OnAddListItem(wParam,lParam)
 	elseif uMsgId == MsgArgs.WM_TIMER then
-		self:OnTimer(wParam,lParam);
+		self:OnWinTimer(wParam,lParam);
 	elseif uMsgId == MsgArgs.WM_QUIT then
 		print("WM_QUIT")
 	elseif uMsgId == MsgArgs.WM_KEYDOWN then
@@ -209,7 +194,7 @@ function MainWindow:GetItemText(pListElement,iIndex,iSubItem)
 	end
 end
 
-function MainWindow:OnTimer(wParam,lParam)
+function MainWindow:OnWinTimer(wParam,lParam)
 end
 
 function MainWindow:OnNotify(msg)
@@ -247,8 +232,6 @@ function MainWindow:OnNotify(msg)
 end
 
 function MainWindow:OnInitWindow()
-	Application.SetMainWindow(self.m_hWin)
-
 
 	local PaintManagerUI = DuiLib.CPaintManagerUI
 	local path = PaintManagerUI.GetResourcePath() .. "/res"
@@ -271,9 +254,6 @@ function MainWindow:OnInitWindow()
 	-- 强制进行一次垃圾收集
 	collectgarbage("collect")
 	
-	self.m_pGlobalTimer = Timer.AddGlobalTimer(100, function()
-		MainThreadTask.tick()
-	end)
 
 	--self:ShowInfo("Hello", 1)
 end
@@ -466,7 +446,7 @@ function MainWindow:OnAddPlayList(bSelect)
 	end
 
 	--添加到UI显示
-	local PlayListItemT = require "frames.PlayListItem"
+	local PlayListItemT = require "gui.PlayListItem"
 	local pListItem = self.m_pPlayList:AddOne()
 	pListItem:SetName("list-"..PlayListInfo.m_nLocalID)
 
@@ -493,7 +473,7 @@ function MainWindow:UpdatePlayList()
 	local listMap = thePlayListMgr:GetAllPlayList()
 	local nCount = 0
 	self.m_pPlayList:RemoveAll()
-	local PlayListItemT = require "frames.PlayListItem"
+	local PlayListItemT = require "gui.PlayListItem"
 	local default_list_id
 	for list_id, song_list in pairs(listMap) do
 		nCount = nCount + 1
@@ -533,7 +513,7 @@ function MainWindow:UpdateSongList(list_id)
 	self.m_pSongList:RemoveAll()
 	self.m_SongListInfo = {}
 
-	local SongListItemT = require "frames.SongListItem"
+	local SongListItemT = require "gui.SongListItem"
 
 	local thePlayListMgr = _G.theApp:GetRuntimeState():GetPlayListMgr()
 	local song_list = thePlayListMgr:GetSongListByListID(list_id)
@@ -591,7 +571,7 @@ function MainWindow:OnAddSongsToList(song_list)
 	pInfoLabel:SetText("搜索歌曲中...")
 
 	local pCountLabel = win:FindControl("show_count")
-	local SongListItemT = require "frames.SongListItem"
+	local SongListItemT = require "gui.SongListItem"
 	--当前列表id
 	local pListItem = self:GetCurrentPlayListInfo()
 	local u_listId = pListItem:GetID() 
@@ -868,9 +848,12 @@ function MainWindow:PlayPrev()
 end
 
 function MainWindow:BeginPlaying(...)
-	warn("BeginPlaying")
-	local timeTotal = theApp:GetRuntimeState():GetPlayCenter():GetTotalTime() / 1000
-	local tmTotal = helper.gmtime(timeTotal)
+	local time_total = make_i64(theApp:GetRuntimeState():GetPlayCenter():GetTotalTime(), true)
+	print("time_total", time_total)
+	local timeTotal = time_total / 1000
+	print("timeTotal", timeTotal)
+	print(timeTotal, timeTotal:ToString())
+	local tmTotal = helper.gmtime(timeTotal:ToString())
 	local szTotal = helper.strftime(tmTotal)
 	if not self.m_pTimeTotal then
 		self.m_pTimeTotal = self.m_hWin:FindControl("time_total")
@@ -883,10 +866,10 @@ function MainWindow:PlayingPosChanged(...)
 	end
 	local p = theApp:GetRuntimeState():GetPlayCenter():GetPos()
 	self.m_pPlayProgress:SetValue(p)
-
-	local timeCurrent = theApp:GetRuntimeState():GetPlayCenter():GetTime() / 1000
+	local time_current = make_i64(theApp:GetRuntimeState():GetPlayCenter():GetTime(), true)
+	local timeCurrent = time_current / 1000
 	
-	local tmCurrent = helper.gmtime(timeCurrent)
+	local tmCurrent = helper.gmtime(timeCurrent:ToString())
 	
 	local szCurrent = helper.strftime(tmCurrent)
 	
@@ -896,8 +879,9 @@ function MainWindow:PlayingPosChanged(...)
 	
 	self.m_pTimeUsed:SetText(szCurrent)
 
-	local timeTotal = theApp:GetRuntimeState():GetPlayCenter():GetTotalTime() / 1000
-	local tmTotal = helper.gmtime(timeTotal)
+	local time_total = make_i64(theApp:GetRuntimeState():GetPlayCenter():GetTotalTime(), true)
+	local timeTotal = time_total / 1000
+	local tmTotal = helper.gmtime(timeTotal:ToString())
 	local szTotal = helper.strftime(tmTotal)
 	if not self.m_pTimeTotal then
 		self.m_pTimeTotal = self.m_hWin:FindControl("time_total")

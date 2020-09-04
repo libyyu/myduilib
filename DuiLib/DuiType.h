@@ -108,6 +108,20 @@ namespace DuiLib
 
 };
 
+class IObjectGC
+{
+public:
+	virtual void OnGC(void*) = 0;
+};
+
+UILIB_API IObjectGC* GetObjectGCInterface();
+UILIB_API void SetObjectGCInterface(IObjectGC*);
+
+#define IMPLEMENT_GCOBJ() \
+		if(GetObjectGCInterface() != NULL) { \
+			GetObjectGCInterface()->OnGC(this); \
+		}
+		
 
 #define DECLARE_CLASS(Cls) \
         public:\
@@ -115,5 +129,6 @@ namespace DuiLib
         { \
             return _T(#Cls); \
         };
+
 
 #endif//_DuiType_H

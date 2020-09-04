@@ -10,19 +10,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\LuaDuiLib\LuaApplication.cpp" />
-    <ClCompile Include="..\..\LuaDuiLib\LuaWindow.cpp" />
     <ClCompile Include="..\..\LuaDuiLib\lua_global.cpp" />
     <ClCompile Include="..\..\LuaDuiLib\lua_duilib.cpp" />
-    <ClCompile Include="..\..\LuaDuiLib\lua_int64.cpp" />
+    <ClCompile Include="..\..\LuaDuiLib\LuaWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\base\lua_object.hpp">
-      <Filter>..\base</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\base\lua_script.hpp">
-      <Filter>..\base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\base\lua_wrapper.hpp">
       <Filter>..\base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\base\LuaEnv.hpp">

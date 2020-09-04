@@ -20,6 +20,7 @@ local TX_VERSION_530 = 530
 local _M = {}
 do
     _M.__all_class = {}
+    _M.__forward_class = {}
     _M.defaultClassName = function()
         local start = 1
         local toFind = "Anonymous" .. start
@@ -255,6 +256,7 @@ do
         end
         setmetatable(cls, typeMeta)
         _M.__all_class[className] = cls
+        _M.__forward_class[className] = nil
         return cls
     end
 
@@ -262,9 +264,11 @@ do
         if _M.__all_class[className] then
             return _M.__all_class[className]
         end
-        error("ForwardClass " .. className .. " not exits", 1)
+        if _M.__forward_class[className] then
+            return _M.__forward_class[className]
+        end
+        _M.__forward_class[className] = {}
     end
-
 end
 
 local FBaseObject = _M.Class(nil, "FBaseObject")
@@ -356,7 +360,7 @@ function FLua.IsClass( cls )
 end
 function FLua.Is(obj)
     local mt = getmetatable(obj)
-    return mt and not not mt.__class
+    return mt and getmetatable(mt) and not not getmetatable(mt).__class
 end
 
 if false then

@@ -1,4 +1,4 @@
-includes("test_flib", "test_http_plugin", "test_playcenter")
+includes("test_flib", "test_http_plugin", "test_playcenter", "test_lua")
 
 if is_plat("windows") then
 	includes(

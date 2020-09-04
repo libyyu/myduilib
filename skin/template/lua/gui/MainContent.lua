@@ -57,12 +57,10 @@ function MainContent:OnOpenTmpl(tmpl)
 	pLayout:SetUserData2("tmpl", tmpl)
 
 	self.pTabLayout:SelectItem(nCount)
-
 	pBar:OnNotifyAdd(function(msg)
         if msg.sType == "menu" then
             self:OnMenuTabBar(msg.pSender:GetUserData2("tmpl"))
         elseif msg.sType == "click" then
-        	print("on open ", msg)
         	self:OnOpenTmpl(msg.pSender:GetUserData2("tmpl"))
         end
     end)

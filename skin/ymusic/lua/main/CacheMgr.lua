@@ -102,7 +102,9 @@ function CCacheMgr:CleanFolder(sPath)
 			bStop = true
 		end
 	end
-	Application.FindClose(data)
+	if data then
+		Application.FindClose(data)
+	end
 end
 function CCacheMgr:StatFolderSize(nNewFileSize)
 end

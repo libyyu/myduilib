@@ -12,7 +12,7 @@ namespace DuiLib {
     {
 
     }
-    CDialogBuilder::~CDialogBuilder() {}
+    CDialogBuilder::~CDialogBuilder() { IMPLEMENT_GCOBJ() }
 
     CControlUI* CDialogBuilder::Create(STRINGorID xml, LPCTSTR type, IDialogBuilderCallback* pCallback, CPaintManagerUI* pManager, CControlUI* pParent)
     {

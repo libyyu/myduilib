@@ -495,6 +495,7 @@ LRESULT CWindowWnd::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 void CWindowWnd::OnFinalMessage(HWND /*hWnd*/)
 {
+    IMPLEMENT_GCOBJ()
 }
 
 } // namespace DuiLib

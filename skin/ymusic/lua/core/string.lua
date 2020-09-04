@@ -192,25 +192,16 @@ end
 -- ("1\n\n2\n3"):split('\n', {limit = 2}) => 1, 2\n3
 -- ("1.2.3.4.5"):split('%.', {limit = 3}) => 1, 2, 3.4.5
 --
-function string:split(delimiter, opt)
-    local result = {}
-    local start = 1
-    local pos, epos = self:find(delimiter, start, opt and opt.plain) 
-    while pos do
-        local substr = self:sub(start, pos - 1)
-        if (#substr > 0) or (opt and opt.strict) then
-            if opt and opt.limit and opt.limit > 0 and #result + 1 >= opt.limit then
-                break
-            end
-            table.insert(result, substr)
-        end
-        start = epos + 1
-        pos, epos = self:find(delimiter, start, opt and opt.plain) 
-    end
-    if start <= #self then
-        table.insert(result, self:sub(start))
-    end
-    return result
+function string.split(self, delimiter)
+    local sep, fields = delimiter or "\t", {}
+
+    local pattern = string.format("([^%s]+)", sep)
+
+    string.gsub(self, pattern, function(c)
+        fields[#fields+1] = c
+    end)
+
+    return fields
 end
 
 -- trim the spaces

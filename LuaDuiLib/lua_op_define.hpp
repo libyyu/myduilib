@@ -7,41 +7,41 @@ namespace lua { \
 	template<> \
 	struct lua_op_t < TYPE* > \
 	{ \
-		static int push_stack(lua_State* l, const TYPE* value) \
+		static int push_stack(lua_State* L, const TYPE* value) \
 		{ \
 			if (!value) \
 			{ \
-				lua_pushnil(l); \
+				lua_pushnil(L); \
 				return 1; \
 			} \
 			std::string szClass = DuiLib::Convert::ToUTF8(value->GetClassName()); \
 			std::string meta = "DuiLib."; \
 			meta += szClass; \
 			meta += "_meta"; \
-			/*printf("%s push: %p\n", meta.c_str(), (void*)value); \*/
-			pushobject(l, (void*)(value), meta.c_str()); \
+			push_object(L, (void*)(value), meta.c_str()); \
+			record_object_to_lua_global_table(L, (void*)(value)); \
 			return 1; \
 		} \
-		static void from_stack(lua_State* l, int pos, TYPE** value) \
+		static void from_stack(lua_State* L, int pos, TYPE** value) \
 		{ \
-			if (lua_isnoneornil(l, pos)) \
+			if (lua_isnoneornil(L, pos)) \
 			{ \
 				*value = 0; \
 				return; \
 			} \
-			LUA_CHECK_ERROR(lua_isuserdata(l, pos) != 0, LUA_TUSERDATA, pos); \
-			*value = checkobject<TYPE>(l, pos); \
+			LUA_CHECK_PARAM(lua_isuserdata(L, pos) != 0, type::userdata, pos); \
+			*value = check_type<TYPE>(L, pos); \
 		} \
-		static bool try_get(lua_State* l, int pos, TYPE** value) \
+		static bool try_get(lua_State* L, int pos, TYPE** value) \
 		{ \
-			if (lua_isnoneornil(l, pos) || lua_isuserdata(l, pos)) \
+			if (lua_isnoneornil(L, pos) || lua_isuserdata(L, pos)) \
 			{ \
-				if (lua_isnoneornil(l, pos)) \
+				if (lua_isnoneornil(L, pos)) \
 				{ \
 					*value = 0; \
 					return true; \
 				} \
-				*value = checkobject<TYPE>(l, pos, false); \
+				*value = get_type<TYPE>(L, pos); \
 				return true; \
 			} \
 			else \

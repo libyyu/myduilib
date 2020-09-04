@@ -1,7 +1,6 @@
 ﻿#define LUA_LIB
 #include "UIlib.h"
 #include "LuaWindow.h"
-#include "base/lua_wrapper.hpp"
 #include "lua_duilib_wrapper.hpp"
 #include "lua_duilib_extend_wrapper.hpp"
 #include <algorithm>
@@ -72,9 +71,7 @@ namespace DuiLib
 	inline void DeleteControl(void* p)
 	{
 		if(!p) return;
-		//bool b = CDuiObjectMgr::Get().FindObject(p);
-		//if(!b) return;
-		//
+
 		__try
 		{
 			T* pControl = static_cast<T*>(p);
@@ -138,7 +135,7 @@ namespace DuiLib
 		{
 			if (!globalLuaEnv) return true;
 			CControlUI* pTargetControl = (CControlUI*)param;
-			lua::stack_gurad g(*globalLuaEnv);
+			lua::lua_stack_gurad g(*globalLuaEnv);
 			if (globalLuaEnv->doFunc(luaFunc, pTargetControl))
 			{
 				if (lua_isboolean(*globalLuaEnv, -1))
@@ -162,7 +159,7 @@ namespace DuiLib
 			{
 				if (!globalLuaEnv) return true;
 				CControlUI* pTargetControl = (CControlUI*)param;
-				lua::stack_gurad g(*globalLuaEnv);
+				lua::lua_stack_gurad g(*globalLuaEnv);
 				if (globalLuaEnv->doFunc(luaFunc, pTargetControl))
 				{
 					if (lua_isboolean(*globalLuaEnv, -1))
@@ -186,7 +183,7 @@ namespace DuiLib
 			{
 				if (!globalLuaEnv) return true;
 				CControlUI* pTargetControl = (CControlUI*)param;
-				lua::stack_gurad g(*globalLuaEnv);
+				lua::lua_stack_gurad g(*globalLuaEnv);
 				if (globalLuaEnv->doFunc(luaFunc, pTargetControl))
 				{
 					if (lua_isboolean(*globalLuaEnv, -1))
@@ -210,7 +207,7 @@ namespace DuiLib
 			{
 				if (!globalLuaEnv) return true;
 				TEventUI* pEvent = (TEventUI*)param;
-				lua::stack_gurad g(*globalLuaEnv);
+				lua::lua_stack_gurad g(*globalLuaEnv);
 				if (globalLuaEnv->doFunc(luaFunc, pEvent))
 				{
 					if (lua_isboolean(*globalLuaEnv, -1))
@@ -234,7 +231,7 @@ namespace DuiLib
 			{
 				if (!globalLuaEnv || luaFuncRef == -1) return true;
 				TNotifyUI* pMsg = (TNotifyUI*)param;
-				lua::stack_gurad g(*globalLuaEnv);
+				lua::lua_stack_gurad g(*globalLuaEnv);
 				if (globalLuaEnv->doFunc(luaFuncRef, pMsg))
 				{
 					if (lua_isboolean(*globalLuaEnv, -1))
@@ -258,7 +255,7 @@ namespace DuiLib
 			{
 				if (!globalLuaEnv) return true;
 				CControlUI* pTargetControl = (CControlUI*)param;
-				lua::stack_gurad g(*globalLuaEnv);
+				lua::lua_stack_gurad g(*globalLuaEnv);
 				if (globalLuaEnv->doFunc(luaFunc, pTargetControl))
 				{
 					if (lua_isboolean(*globalLuaEnv, -1))
@@ -282,7 +279,7 @@ namespace DuiLib
 			{
 				if (!globalLuaEnv) return true;
 				CControlUI* pTargetControl = (CControlUI*)param;
-				lua::stack_gurad g(*globalLuaEnv);
+				lua::lua_stack_gurad g(*globalLuaEnv);
 				if (globalLuaEnv->doFunc(luaFunc, pTargetControl))
 				{
 					if (lua_isboolean(*globalLuaEnv, -1))
@@ -336,13 +333,12 @@ namespace DuiLib
 		CLabelUI* pLabel = nullptr;
 		lua::get(l, 1, &pLabel);
 		auto offset = pLabel->GetShadowOffset();
-		lua::lua_table_ref_t t(l, (char*)NULL);
+		lua::table t(l, (char*)NULL);
 		t.set("X", (float)(offset.X));
 		t.set("Y", (float)(offset.Y));
 		t.set("Width", (float)(offset.Width));
 		t.set("Height", (float)(offset.Height));
 		lua::push(l, t);
-		t.unref();
 		return 1;
 	}
 
@@ -374,7 +370,7 @@ namespace DuiLib
 		lua::get(l, 1, &pDt);
 		SYSTEMTIME st = pDt->GetTime();
 		
-		lua::lua_table_ref_t t(l, (char*)NULL);
+		lua::table t(l, (char*)NULL);
 		t.set("wYear", st.wYear);
 		t.set("wMonth", st.wMonth);
 		t.set("wDayOfWeek", st.wDayOfWeek);
@@ -384,16 +380,15 @@ namespace DuiLib
 		t.set("wSecond", st.wSecond);
 		t.set("wMilliseconds", st.wMilliseconds);
 		lua::push(l, t);
-		t.unref();
 		return 1;
 	}
-	static int CDateTimeUI_SetTime(lua_State* l)
+	static int CDateTimeUI_SetTime(lua_State* L)
 	{
 		CDateTimeUI* pDt = nullptr;
-		lua::get(l, 1, &pDt);
-		lua::error_report(l, lua_istable(l, 2) != 0, LUA_TTABLE, 2, "lua_istable(l, 2) != 0", __FILE__, __LINE__);
-		lua::lua_table_ref_t t;
-		lua::get(l, 2, &t);
+		lua::get(L, 1, &pDt);
+		LUA_CHECK_PARAM(lua_istable(L, 2) != 0, lua::type::table, 2);
+		lua::table t;
+		lua::get(L, 2, &t);
 		SYSTEMTIME st;
 		t.get("wYear", &(st.wYear));
 		t.get("wMonth", &(st.wMonth));
@@ -403,7 +398,6 @@ namespace DuiLib
 		t.get("wMinute", &(st.wMinute));
 		t.get("wSecond", &(st.wSecond));
 		t.get("wMilliseconds", &(st.wMilliseconds));
-		t.unref();
 		pDt->SetTime(&st);
 		return 0;
 	}
@@ -535,14 +529,14 @@ namespace DuiLib
 	{
 		//Control
 #define WRAP_METHOD(m) .def(#m, &CControlUI::m)
-		lua::lua_register_t<CControlUI>(l, "DuiLib.CControlUI", DeleteControl<CControlUI>)
+		lua::lua_register_t<CControlUI>(l, "DuiLib.CControlUI")
 			.def(lua::constructor<>())
 			.def("New", NewControl<CControlUI>)
-			.def("__tostring", CControlUI_ToString)
+			//.def("__tostring", CControlUI_ToString)
 			WRAP_METHOD(ToString)
-			WRAP_METHOD(Delete)
 			WRAP_METHOD(IsClass)
 			WRAP_METHOD(GetClass)
+			WRAP_METHOD(Delete)
 			WRAP_METHOD(IsName)
 			WRAP_METHOD(GetName)
 			WRAP_METHOD(SetName)
@@ -664,11 +658,10 @@ namespace DuiLib
 #undef WRAP_METHOD
 		//CContainerUI
 #define WRAP_METHOD(m) .def(#m, &CContainerUI::m)
-		lua::lua_register_t<CContainerUI>(l, "DuiLib.CContainerUI", DeleteControl<CContainerUI>)
+		lua::lua_register_t<CContainerUI>(l, "DuiLib.CContainerUI")
 			.extend<CControlUI>()
 			.def(lua::constructor<>())
 			.def("New", NewControl<CContainerUI>)
-			.def("__tostring", CControlUI_ToString)
 			WRAP_METHOD(GetItemAt)
 			WRAP_METHOD(GetItemIndex)
 			WRAP_METHOD(SetItemIndex)
@@ -724,11 +717,10 @@ namespace DuiLib
 #undef WRAP_METHOD
 		//CHorizontalLayoutUI
 #define WRAP_METHOD(m) .def(#m, &CHorizontalLayoutUI::m)
-		lua::lua_register_t<CHorizontalLayoutUI>(l, "DuiLib.CHorizontalLayoutUI", DeleteControl<CHorizontalLayoutUI>)
+		lua::lua_register_t<CHorizontalLayoutUI>(l, "DuiLib.CHorizontalLayoutUI")
 			.extend<CContainerUI>()
 			.def(lua::constructor<>())
 			.def("New", NewControl<CHorizontalLayoutUI>)
-			.def("__tostring", CControlUI_ToString)
 			WRAP_METHOD(SetSepWidth)
 			WRAP_METHOD(GetSepWidth)
 			WRAP_METHOD(SetSepImmMode)
@@ -737,11 +729,10 @@ namespace DuiLib
 #undef WRAP_METHOD
 		//CVerticalLayoutUI
 #define WRAP_METHOD(m) .def(#m, &CVerticalLayoutUI::m)
-		lua::lua_register_t<CVerticalLayoutUI>(l, "DuiLib.CVerticalLayoutUI", DeleteControl<CVerticalLayoutUI>)
+		lua::lua_register_t<CVerticalLayoutUI>(l, "DuiLib.CVerticalLayoutUI")
 			.extend<CContainerUI>()
 			.def(lua::constructor<>())
 			.def("New", NewControl<CVerticalLayoutUI>)
-			.def("__tostring", CControlUI_ToString)
 			WRAP_METHOD(SetSepHeight)
 			WRAP_METHOD(GetSepHeight)
 			WRAP_METHOD(SetSepImmMode)
@@ -750,21 +741,19 @@ namespace DuiLib
 #undef WRAP_METHOD
 		//CTabLayoutUI
 #define WRAP_METHOD(m) .def(#m, &CTabLayoutUI::m)
-		lua::lua_register_t<CTabLayoutUI>(l, "DuiLib.CTabLayoutUI", DeleteControl<CTabLayoutUI>)
+		lua::lua_register_t<CTabLayoutUI>(l, "DuiLib.CTabLayoutUI")
 			.extend<CContainerUI>()
 			.def(lua::constructor<>())
 			.def("New", NewControl<CTabLayoutUI>)
-			.def("__tostring", CControlUI_ToString)
 			WRAP_METHOD(GetCurSel)
 			LAMBDA_METHOD2("SelectItem", CTabLayoutUI_SelectItem);
 #undef WRAP_METHOD
 		//CTileLayoutUI
 #define WRAP_METHOD(m) .def(#m, &CTileLayoutUI::m)
-		lua::lua_register_t<CTileLayoutUI>(l, "DuiLib.CTileLayoutUI", DeleteControl<CTileLayoutUI>)
+		lua::lua_register_t<CTileLayoutUI>(l, "DuiLib.CTileLayoutUI")
 			.extend<CContainerUI>()
 			.def(lua::constructor<>())
 			.def("New", NewControl<CTileLayoutUI>)
-			.def("__tostring", CControlUI_ToString)
 			WRAP_METHOD(GetFixedColumns)
 			WRAP_METHOD(SetFixedColumns)
 			WRAP_METHOD(GetChildVPadding)
@@ -776,22 +765,20 @@ namespace DuiLib
 #undef WRAP_METHOD
 		//CChildLayoutUI
 #define WRAP_METHOD(m) .def(#m, &CChildLayoutUI::m)
-		lua::lua_register_t<CChildLayoutUI>(l, "DuiLib.CChildLayoutUI", DeleteControl<CChildLayoutUI>)
+		lua::lua_register_t<CChildLayoutUI>(l, "DuiLib.CChildLayoutUI")
 			.extend<CContainerUI>()
 			.def(lua::constructor<>())
 			.def("New", NewControl<CChildLayoutUI>)
-			.def("__tostring", CControlUI_ToString)
 			WRAP_METHOD(Init)
 			WRAP_METHOD(SetChildLayoutXML)
 			WRAP_METHOD(GetChildLayoutXML);
 #undef WRAP_METHOD
 		//CActiveXUI
 #define WRAP_METHOD(m) .def(#m, &CActiveXUI::m)
-		lua::lua_register_t<CActiveXUI>(l, "DuiLib.CActiveXUI", DeleteControl<CActiveXUI>)
+		lua::lua_register_t<CActiveXUI>(l, "DuiLib.CActiveXUI")
 			.extend<CControlUI>()
 			.def(lua::constructor<>())
 			.def("New", NewControl<CActiveXUI>)
-			.def("__tostring", CControlUI_ToString)
 			WRAP_METHOD(Init)
 			WRAP_METHOD(GetNativeWindow)
 			WRAP_METHOD(IsDelayCreate)
@@ -801,11 +788,10 @@ namespace DuiLib
 #undef WRAP_METHOD
 		//CComboUI
 #define WRAP_METHOD(m) .def(#m, &CComboUI::m)
-		lua::lua_register_t<CComboUI>(l, "DuiLib.CComboUI", DeleteControl<CComboUI>)
+		lua::lua_register_t<CComboUI>(l, "DuiLib.CComboUI")
 			.extend<CContainerUI>()
 			.def(lua::constructor<>())
 			.def("New", NewControl<CComboUI>)
-			.def("__tostring", CControlUI_ToString)
 			WRAP_METHOD(GetDropBoxAttributeList)
 			WRAP_METHOD(SetDropBoxAttributeList)
 			WRAP_METHOD(GetDropBoxSize)
@@ -880,11 +866,10 @@ namespace DuiLib
 #undef WRAP_METHOD
 		//CLabelUI
 #define WRAP_METHOD(m) .def(#m, &CLabelUI::m)
-		lua::lua_register_t<CLabelUI>(l, "DuiLib.CLabelUI", DeleteControl<CLabelUI>)
+		lua::lua_register_t<CLabelUI>(l, "DuiLib.CLabelUI")
 			.extend<CControlUI>()
 			.def(lua::constructor<>())
 			.def("New", NewControl<CLabelUI>)
-			.def("__tostring", CControlUI_ToString)
 			WRAP_METHOD(SetTextStyle)
 			WRAP_METHOD(GetTextStyle)
 			WRAP_METHOD(IsMultiLine)
@@ -928,11 +913,10 @@ namespace DuiLib
 #undef WRAP_METHOD
 		//CDateTimeUI
 #define WRAP_METHOD(m) .def(#m, &CDateTimeUI::m)
-		lua::lua_register_t<CDateTimeUI>(l, "DuiLib.CDateTimeUI", DeleteControl<CDateTimeUI>)
+		lua::lua_register_t<CDateTimeUI>(l, "DuiLib.CDateTimeUI")
 			.extend<CLabelUI>()
 			.def(lua::constructor<>())
 			.def("New", NewControl<CDateTimeUI>)
-			.def("__tostring", CControlUI_ToString)
 			WRAP_METHOD(SetReadOnly)
 			WRAP_METHOD(IsReadOnly)
 			WRAP_METHOD(UpdateText)
@@ -942,20 +926,18 @@ namespace DuiLib
 #undef WRAP_METHOD
 		//CTextUI
 #define WRAP_METHOD(m) .def(#m, &CTextUI::m)
-		lua::lua_register_t<CTextUI>(l, "DuiLib.CTextUI", DeleteControl<CTextUI>)
+		lua::lua_register_t<CTextUI>(l, "DuiLib.CTextUI")
 			.extend<CLabelUI>()
 			.def(lua::constructor<>())
 			.def("New", NewControl<CTextUI>)
-			.def("__tostring", CControlUI_ToString)
 			WRAP_METHOD(GetLinkContent);
 #undef WRAP_METHOD
 		//CButtonUI
 #define WRAP_METHOD(m) .def(#m, &CButtonUI::m)
-		lua::lua_register_t<CButtonUI>(l, "DuiLib.CButtonUI", DeleteControl<CButtonUI>)
+		lua::lua_register_t<CButtonUI>(l, "DuiLib.CButtonUI")
 			.extend<CLabelUI>()
 			.def(lua::constructor<>())
 			.def("New", NewControl<CButtonUI>)
-			.def("__tostring", CControlUI_ToString)
 			WRAP_METHOD(GetNormalImage)
 			WRAP_METHOD(SetNormalImage)
 			WRAP_METHOD(GetHotImage)
@@ -983,11 +965,10 @@ namespace DuiLib
 #undef WRAP_METHOD
 		//COptionUI
 #define WRAP_METHOD(m) .def(#m, &COptionUI::m)
-		lua::lua_register_t<COptionUI>(l, "DuiLib.COptionUI", DeleteControl<COptionUI>)
+		lua::lua_register_t<COptionUI>(l, "DuiLib.COptionUI")
 			.extend<CButtonUI>()
 			.def(lua::constructor<>())
 			.def("New", NewControl<COptionUI>)
-			.def("__tostring", CControlUI_ToString)
 			WRAP_METHOD(GetSelectedImage)
 			WRAP_METHOD(SetSelectedImage)
 			WRAP_METHOD(GetSelectedHotImage)
@@ -1007,21 +988,19 @@ namespace DuiLib
 #undef WRAP_METHOD
 		//CCheckBoxUI
 #define WRAP_METHOD(m) .def(#m, &CCheckBoxUI::m)
-		lua::lua_register_t<CCheckBoxUI>(l, "DuiLib.CCheckBoxUI", DeleteControl<CCheckBoxUI>)
+		lua::lua_register_t<CCheckBoxUI>(l, "DuiLib.CCheckBoxUI")
 			.extend<COptionUI>()
 			.def(lua::constructor<>())
 			.def("New", NewControl<CCheckBoxUI>)
-			.def("__tostring", CControlUI_ToString)
 			WRAP_METHOD(SetCheck)
 			WRAP_METHOD(GetCheck);
 #undef WRAP_METHOD
 		//CEditUI
 #define WRAP_METHOD(m) .def(#m, &CEditUI::m)
-		lua::lua_register_t<CEditUI>(l, "DuiLib.CEditUI", DeleteControl<CEditUI>)
+		lua::lua_register_t<CEditUI>(l, "DuiLib.CEditUI")
 			.extend<CLabelUI>()
 			.def(lua::constructor<>())
 			.def("New", NewControl<CEditUI>)
-			.def("__tostring", CControlUI_ToString)
 			WRAP_METHOD(GetNativeWindow)
 			WRAP_METHOD(SetMaxChar)
 			WRAP_METHOD(GetMaxChar)
@@ -1054,11 +1033,10 @@ namespace DuiLib
 #undef WRAP_METHOD
 		//CGifAnimUI
 #define WRAP_METHOD(m) .def(#m, &CGifAnimUI::m)
-		lua::lua_register_t<CGifAnimUI>(l, "DuiLib.CGifAnimUI", DeleteControl<CGifAnimUI>)
+		lua::lua_register_t<CGifAnimUI>(l, "DuiLib.CGifAnimUI")
 			.extend<CControlUI>()
 			.def(lua::constructor<>())
 			.def("New", NewControl<CGifAnimUI>)
-			.def("__tostring", CControlUI_ToString)
 			WRAP_METHOD(SetAutoPlay)
 			WRAP_METHOD(IsAutoPlay)
 			WRAP_METHOD(SetAutoSize)
@@ -1069,11 +1047,10 @@ namespace DuiLib
 #undef WRAP_METHOD
 		//CProgressUI
 #define WRAP_METHOD(m) .def(#m, &CProgressUI::m)
-		lua::lua_register_t<CProgressUI>(l, "DuiLib.CProgressUI", DeleteControl<CProgressUI>)
+		lua::lua_register_t<CProgressUI>(l, "DuiLib.CProgressUI")
 			.extend<CLabelUI>()
 			.def(lua::constructor<>())
 			.def("New", NewControl<CProgressUI>)
-			.def("__tostring", CControlUI_ToString)
 			WRAP_METHOD(IsHorizontal)
 			WRAP_METHOD(SetHorizontal)
 			WRAP_METHOD(GetMinValue)
@@ -1087,11 +1064,10 @@ namespace DuiLib
 #undef WRAP_METHOD
 		//CSliderUI
 #define WRAP_METHOD(m) .def(#m, &CSliderUI::m)
-		lua::lua_register_t<CSliderUI>(l, "DuiLib.CSliderUI", DeleteControl<CSliderUI>)
+		lua::lua_register_t<CSliderUI>(l, "DuiLib.CSliderUI")
 			.extend<CProgressUI>()
 			.def(lua::constructor<>())
 			.def("New", NewControl<CSliderUI>)
-			.def("__tostring", CControlUI_ToString)
 			WRAP_METHOD(GetChangeStep)
 			WRAP_METHOD(SetChangeStep)
 			WRAP_METHOD(SetThumbSize)
@@ -1107,11 +1083,10 @@ namespace DuiLib
 #undef WRAP_METHOD
 		//CScrollBarUI
 #define WRAP_METHOD(m) .def(#m, &CScrollBarUI::m)
-		lua::lua_register_t<CScrollBarUI>(l, "DuiLib.CScrollBarUI", DeleteControl<CScrollBarUI>)
+		lua::lua_register_t<CScrollBarUI>(l, "DuiLib.CScrollBarUI")
 			.extend<CControlUI>()
 			.def(lua::constructor<>())
 			.def("New", NewControl<CScrollBarUI>)
-			.def("__tostring", CControlUI_ToString)
 			WRAP_METHOD(GetOwner)
 			WRAP_METHOD(SetOwner)
 			WRAP_METHOD(IsHorizontal)
@@ -1177,11 +1152,10 @@ namespace DuiLib
 #undef WRAP_METHOD
 		//CListUI
 #define WRAP_METHOD(m) .def(#m, &CListUI::m)
-		lua::lua_register_t<CListUI>(l, "DuiLib.CListUI", DeleteControl<CListUI>)
+		lua::lua_register_t<CListUI>(l, "DuiLib.CListUI")
 			.extend<CVerticalLayoutUI>()
 			.def(lua::constructor<>())
 			.def("New", NewControl<CListUI>)
-			.def("__tostring", CControlUI_ToString)
 			WRAP_METHOD(GetScrollSelect)
 			WRAP_METHOD(SetScrollSelect)
 			WRAP_METHOD(SetTextCallback)
@@ -1242,25 +1216,22 @@ namespace DuiLib
 #undef WRAP_METHOD
 		//CListBodyUI
 #define WRAP_METHOD(m) .def(#m, &CListBodyUI::m)
-		lua::lua_register_t<CListBodyUI>(l, "DuiLib.CListBodyUI", DeleteControl<CListBodyUI>)
-			.extend<CVerticalLayoutUI>()
-			.def("__tostring", CControlUI_ToString);
+		lua::lua_register_t<CListBodyUI>(l, "DuiLib.CListBodyUI")
+			.extend<CVerticalLayoutUI>();
 #undef WRAP_METHOD
 		//CListHeaderUI
 #define WRAP_METHOD(m) .def(#m, &CListHeaderUI::m)
-		lua::lua_register_t<CListHeaderUI>(l, "DuiLib.CListHeaderUI", DeleteControl<CListHeaderUI>)
+		lua::lua_register_t<CListHeaderUI>(l, "DuiLib.CListHeaderUI")
 			.extend<CHorizontalLayoutUI>()
 			.def(lua::constructor<>())
-			.def("New", NewControl<CListHeaderUI>)
-			.def("__tostring", CControlUI_ToString);
+			.def("New", NewControl<CListHeaderUI>);
 #undef WRAP_METHOD
 		//CListHeaderItemUI
 #define WRAP_METHOD(m) .def(#m, &CListHeaderItemUI::m)
-		lua::lua_register_t<CListHeaderItemUI>(l, "DuiLib.CListHeaderItemUI", DeleteControl<CListHeaderItemUI>)
+		lua::lua_register_t<CListHeaderItemUI>(l, "DuiLib.CListHeaderItemUI")
 			.extend<CControlUI>()
 			.def(lua::constructor<>())
 			.def("New", NewControl<CListHeaderItemUI>)
-			.def("__tostring", CControlUI_ToString)
 			WRAP_METHOD(IsDragable)
 			WRAP_METHOD(SetDragable)
 			WRAP_METHOD(GetSepWidth)
@@ -1290,11 +1261,10 @@ namespace DuiLib
 #undef WRAP_METHOD
 		//CListElementUI
 #define WRAP_METHOD(m) .def(#m, &CListElementUI::m)
-		lua::lua_register_t<CListElementUI>(l, "DuiLib.CListElementUI", DeleteControl<CListElementUI>)
+		lua::lua_register_t<CListElementUI>(l, "DuiLib.CListElementUI")
 			.extend<CControlUI>()
 			.def(lua::constructor<>())
 			.def("New", NewControl<CListElementUI>)
-			.def("__tostring", CControlUI_ToString)
 			WRAP_METHOD(GetIndex)
 			WRAP_METHOD(SetIndex)
 			WRAP_METHOD(GetDrawIndex)
@@ -1308,29 +1278,26 @@ namespace DuiLib
 #undef WRAP_METHOD
 		//CListLabelElementUI
 #define WRAP_METHOD(m) .def(#m, &CListLabelElementUI::m)
-		lua::lua_register_t<CListLabelElementUI>(l, "DuiLib.CListLabelElementUI", DeleteControl<CListLabelElementUI>)
+		lua::lua_register_t<CListLabelElementUI>(l, "DuiLib.CListLabelElementUI")
 			.extend<CListElementUI>()
 			.def(lua::constructor<>())
-			.def("New", NewControl<CListLabelElementUI>)
-			.def("__tostring", CControlUI_ToString);
+			.def("New", NewControl<CListLabelElementUI>);
 #undef WRAP_METHOD
 		//CListTextElementUI
 #define WRAP_METHOD(m) .def(#m, &CListTextElementUI::m)
-		lua::lua_register_t<CListTextElementUI>(l, "DuiLib.CListTextElementUI", DeleteControl<CListTextElementUI>)
+		lua::lua_register_t<CListTextElementUI>(l, "DuiLib.CListTextElementUI")
 			.extend<CListLabelElementUI>()
 			.def(lua::constructor<>())
 			.def("New", NewControl<CListTextElementUI>)
-			.def("__tostring", CControlUI_ToString)
 			LAMBDA_METHOD2("SetText2", ListTextElementUI_SetText)
 			LAMBDA_METHOD2("GetText2", ListTextElementUI_GetText);
 #undef WRAP_METHOD
 		//CListContainerElementUI
 #define WRAP_METHOD(m) .def(#m, &CListContainerElementUI::m)
-		lua::lua_register_t<CListContainerElementUI>(l, "DuiLib.CListContainerElementUI", DeleteControl<CListContainerElementUI>)
+		lua::lua_register_t<CListContainerElementUI>(l, "DuiLib.CListContainerElementUI")
 			.extend<CContainerUI>()
 			.def(lua::constructor<>())
 			.def("New", NewControl<CListContainerElementUI>)
-			.def("__tostring", CControlUI_ToString)
 			WRAP_METHOD(GetOwner)
 			WRAP_METHOD(SetOwner)
 			WRAP_METHOD(IsSelected)
@@ -1346,11 +1313,10 @@ namespace DuiLib
 #undef WRAP_METHOD
 		//CTreeViewUI
 #define WRAP_METHOD(m) .def(#m, &CTreeViewUI::m)
-		lua::lua_register_t<CTreeViewUI>(l, "DuiLib.CTreeViewUI", DeleteControl<CTreeViewUI>)
+		lua::lua_register_t<CTreeViewUI>(l, "DuiLib.CTreeViewUI")
 			.extend<CListUI>()
 			.def(lua::constructor<>())
 			.def("New", NewControl<CTreeViewUI>)
-			.def("__tostring", CControlUI_ToString)
 			LAMBDA_METHOD2("AddTreeNode", CTreeViewUI_AddTreeNode)
 			WRAP_METHOD(SetItemCheckBox)
 			WRAP_METHOD(SetItemExpand)
@@ -1367,11 +1333,10 @@ namespace DuiLib
 #undef WRAP_METHOD
 		//CTreeNodeUI
 #define WRAP_METHOD(m) .def(#m, &CTreeNodeUI::m)
-		lua::lua_register_t<CTreeNodeUI>(l, "DuiLib.CTreeNodeUI", DeleteControl<CTreeNodeUI>)
+		lua::lua_register_t<CTreeNodeUI>(l, "DuiLib.CTreeNodeUI")
 			.extend<CListContainerElementUI>()
 			.def(lua::constructor<>())
 			.def("New", NewControl<CTreeNodeUI>)
-			.def("__tostring", CControlUI_ToString)
 			WRAP_METHOD(SetVisibleTag)
 			WRAP_METHOD(GetVisibleTag)
 			LAMBDA_METHOD2("SetItemText", CTreeNodeUI_SetItemText)
@@ -1410,11 +1375,10 @@ namespace DuiLib
 #undef WRAP_METHOD
 		//CWebBrowserUI
 #define WRAP_METHOD(m) .def(#m, &CWebBrowserUI::m)
-		lua::lua_register_t<CWebBrowserUI>(l, "DuiLib.CWebBrowserUI", DeleteControl<CWebBrowserUI>)
+		lua::lua_register_t<CWebBrowserUI>(l, "DuiLib.CWebBrowserUI")
 			.extend<CActiveXUI>()
 			.def(lua::constructor<>())
 			.def("New", NewControl<CWebBrowserUI>)
-			.def("__tostring", CControlUI_ToString)
 			WRAP_METHOD(SetHomePage)
 			WRAP_METHOD(GetHomePage)
 			WRAP_METHOD(SetAutoNavigation)
@@ -1429,11 +1393,10 @@ namespace DuiLib
 #undef WRAP_METHOD
 		//CRichEditUI
 #define WRAP_METHOD(m) .def(#m, &CRichEditUI::m)
-		lua::lua_register_t<CRichEditUI>(l, "DuiLib.CRichEditUI", DeleteControl<CRichEditUI>)
+		lua::lua_register_t<CRichEditUI>(l, "DuiLib.CRichEditUI")
 			.extend<CContainerUI>()
 			.def(lua::constructor<>())
 			.def("New", NewControl<CRichEditUI>)
-			.def("__tostring", CControlUI_ToString)
 			WRAP_METHOD(IsWantTab)
 			WRAP_METHOD(SetWantTab)
 			WRAP_METHOD(IsWantReturn)
@@ -1883,11 +1846,6 @@ namespace DuiLib
 		CDuiString pstrName;
 		DWORD dwStyle, dwExStyle;
 		lua::get(l, 1, &pWin, &hwndParent, &pstrName, &dwStyle, &dwExStyle);
-		//dwStyle = UI_WNDSTYLE_FRAME; //282001408
-		//dwExStyle = WS_EX_WINDOWEDGE; //256
-		//dwStyle = UI_WNDSTYLE_FRAME | WS_CLIPCHILDREN;
-		//dwExStyle = WS_EX_WINDOWEDGE | WS_EX_OVERLAPPEDWINDOW;
-		//globalLuaEnv->doString("helper.bor(DuiLib.UI_WNDSTYLE_FRAME, DuiLib.WS_CLIPCHILDREN)");
 		if (lua_isnoneornil(l, 6))
 		{
 			return lua::push(l, pWin->Create(hwndParent, pstrName, dwStyle, dwExStyle));
@@ -1925,7 +1883,7 @@ namespace DuiLib
 			wParam = (WPARAM)(lua_touserdata(l, 3));
 		else
 		{
-			int64 p;
+			lua::int64 p;
 			lua::get(l, 3, &p);
 			wParam = (WPARAM)p;
 		}
@@ -1937,7 +1895,7 @@ namespace DuiLib
 			lParam = (LPARAM)(lua_touserdata(l, 4));
 		else
 		{
-			int64 p;
+			lua::int64 p;
 			lua::get(l, 4, &p);
 			lParam = (LPARAM)p;
 		}
@@ -1957,7 +1915,7 @@ namespace DuiLib
 			wParam = (WPARAM)(lua_touserdata(l, 3));
 		else if (lua_isstring(l, 3))
 		{
-			int64 p;
+			lua::int64 p;
 			lua::get(l, 3, &p);
 			wParam = (WPARAM)p;
 		}
@@ -1969,7 +1927,7 @@ namespace DuiLib
 			lParam = (LPARAM)(lua_touserdata(l, 4));
 		else if (lua_isstring(l, 4))
 		{
-			int64 p;
+			lua::int64 p;
 			lua::get(l, 4, &p);
 			lParam = (LPARAM)p;
 		}
@@ -2053,7 +2011,7 @@ namespace DuiLib
 	{
 		CWin* pWin = nullptr;
 		lua::get(l, 1, &pWin);
-		lua::lua_table_ref_t t;
+		lua::table t;
 		lua::get(l, 2, &t);
 		if (t.has("left"))
 		{
@@ -2069,14 +2027,13 @@ namespace DuiLib
 			bool b = pWin->ClientToScreen(&pt);
 			b ? lua::push(l, pt) : lua::push(l);
 		}
-		t.unref();
 		return 1;
 	}
 	static int CWin_ScreenToClient(lua_State* l)
 	{
 		CWin* pWin = nullptr;
 		lua::get(l, 1, &pWin);
-		lua::lua_table_ref_t t;
+		lua::table t;
 		lua::get(l, 2, &t);
 		if (t.has("left"))
 		{
@@ -2092,7 +2049,6 @@ namespace DuiLib
 			bool b = pWin->ScreenToClient(&pt);
 			b ? lua::push(l, pt) : lua::push(l);
 		}
-		t.unref();
 		return 1;
 	}
 	static CControlUI* CWin_FindControl(CWin* pWindow, CDuiString pstrText)
@@ -2260,12 +2216,19 @@ namespace DuiLib
 				int luaFunc;
 			public:
 				LuaDialogBuilderCallBack(int nRef) : luaFunc(nRef) {}
+				~LuaDialogBuilderCallBack()
+				{
+					if (!globalLuaEnv) {
+						return;
+					}
+					lua_unref(*globalLuaEnv, luaFunc);
+				}
 				virtual CControlUI* CreateControl(LPCTSTR pstrClass)
 				{
 					if (!globalLuaEnv) {
 						return NULL;
 					}
-					lua::stack_gurad g(*globalLuaEnv);
+					lua::lua_stack_gurad g(*globalLuaEnv);
 					if (globalLuaEnv->doFunc(luaFunc, pstrClass))
 					{
 						if (!lua_isnoneornil(*globalLuaEnv, -1))
@@ -2557,7 +2520,7 @@ namespace DuiLib
 	static void RegisterDuiLibCoreToLua(lua_State* l)
 	{
 		//DuiLib
-#define WRAP_METHOD(m) .readonly(#m, (uint64)m)
+#define WRAP_METHOD(m) .readonly(#m, (lua::uint64)m)
 		lua::lua_register_t<void>(l, "DuiLib")
 			WRAP_METHOD(UI_WNDSTYLE_CONTAINER)
 			WRAP_METHOD(UI_WNDSTYLE_FRAME)
@@ -2686,7 +2649,7 @@ namespace DuiLib
 		lua::lua_register_t<TNotifyUI>(l, "DuiLib.TNotifyUI")
 			.def(lua::constructor<>())
 			.def(lua::destructor())
-			LAMBDA_METHOD2("__tostring", TNotifyUI_ToString)
+			//LAMBDA_METHOD2("__tostring", TNotifyUI_ToString)
 			WRAP_METHOD(sType)
 			WRAP_METHOD(sVirtualWnd)
 			WRAP_METHOD(pSender)
@@ -2700,7 +2663,7 @@ namespace DuiLib
 		lua::lua_register_t<TFontInfo>(l, "DuiLib.TFontInfo")
 			.def(lua::constructor<>())
 			.def(lua::destructor())
-			LAMBDA_METHOD2("__tostring", TFontInfo_ToString)
+			//LAMBDA_METHOD2("__tostring", TFontInfo_ToString)
 			WRAP_METHOD(hFont)
 			WRAP_METHOD(sFontName)
 			WRAP_METHOD(iSize)
@@ -2713,7 +2676,7 @@ namespace DuiLib
 		lua::lua_register_t<TImageInfo>(l, "DuiLib.TImageInfo")
 			.def(lua::constructor<>())
 			.def(lua::destructor())
-			LAMBDA_METHOD2("__tostring", TImageInfo_ToString)
+			//LAMBDA_METHOD2("__tostring", TImageInfo_ToString)
 			WRAP_METHOD(hBitmap)
 			WRAP_METHOD(pBits)
 			WRAP_METHOD(pSrcBits)
@@ -2729,7 +2692,7 @@ namespace DuiLib
 		lua::lua_register_t<TDrawInfo>(l, "DuiLib.TDrawInfo")
 			.def(lua::constructor<>())
 			.def(lua::destructor())
-			LAMBDA_METHOD2("__tostring", TDrawInfo_ToString)
+			//LAMBDA_METHOD2("__tostring", TDrawInfo_ToString)
 			WRAP_METHOD(Clear)
 			WRAP_METHOD(sDrawString)
 			WRAP_METHOD(sImageName)
@@ -2775,7 +2738,7 @@ namespace DuiLib
 #undef WRAP_METHOD
 		//CRenderEngine
 #define WRAP_METHOD(m) .def(#m, &CRenderEngine::m)
-		lua::lua_register_t<CRenderEngine>(l, "DuiLib.CRenderEngine", nullptr)
+		lua::lua_register_t<CRenderEngine>(l, "DuiLib.CRenderEngine")
 			WRAP_METHOD(AdjustColor)
 			WRAP_METHOD(CreateARGB32Bitmap)
 			WRAP_METHOD(AdjustImage)
@@ -3030,8 +2993,6 @@ namespace DuiLib
 				WRAP_METHOD(IsWindowVisible)
 				WRAP_METHOD(IsWindowUnicode)
 				WRAP_METHOD(IsParentDialog)
-				WRAP_METHOD(SetTimer)
-				WRAP_METHOD(KillTimer)
 				WRAP_METHOD(SetActiveWindow)
 				WRAP_METHOD(SetCapture)
 				WRAP_METHOD(SetFocus)
@@ -3059,7 +3020,24 @@ namespace DuiLib
 				WRAP_METHOD(GetTag)
 				WRAP_METHOD(SetTag)
 				WRAP_METHOD(IsValid)
-				LAMBDA_METHOD2("MsgBox", CWin_MsgBox);
+				LAMBDA_METHOD2("MsgBox", CWin_MsgBox)
+				.def("SetTimer", [](lua_State* L)->int { //UINT_PTR nIDEvent, UINT nElapse, //void (CALLBACK * lpfnTimer)(HWND, UINT, UINT_PTR, DWORD) = NULL
+						CWin* pSelf = nullptr;
+						lua::uint64 nIDEvent;
+						unsigned int nElapse;
+						lua::function pFunc;
+						lua::get(L, 1, &pSelf, &nIDEvent, &nElapse, &pFunc);
+						UINT_PTR nID = pSelf->SetTimer((UINT_PTR)nIDEvent, nElapse, NULL);
+						lua::push(L, (lua::uint64)nID);
+						return 1;
+					})
+				.def("KillTimer", [](lua_State* L)->int {
+						CWin* pSelf = nullptr;
+						lua::uint64 nID;
+						lua::get(L, 1, &pSelf, &nID);
+						BOOL b = pSelf->KillTimer(nID);
+						return lua::push(L, (bool)b);
+					});
 #undef WRAP_METHOD
 
 			//CLuaWindow
@@ -3104,7 +3082,7 @@ namespace DuiLib
 				WRAP_METHOD(GetFileExt)
 				WRAP_METHOD(GetFileTitle)
 				WRAP_METHOD(GetFolderPath)
-				LAMBDA_METHOD2("__tostring", &CFileDialog::ToString)
+				//LAMBDA_METHOD2("__tostring", &CFileDialog::ToString)
 				LAMBDA_METHOD2("GetAllFileList", CFileDialog_GetAllFileList);
 #undef WRAP_METHOD
 
@@ -3135,7 +3113,6 @@ namespace DuiLib
 				.extend<CListContainerElementUI>()
 				.def(lua::constructor<>())
 				.def("New", NewControl<CMenuElementUI>)
-				.def("__tostring", CControlUI_ToString)
 				WRAP_METHOD(Activate);
 #undef WRAP_METHOD
 
@@ -3145,7 +3122,6 @@ namespace DuiLib
 				.extend<CListUI>()
 				.def(lua::constructor<>())
 				.def("New", NewControl<CMenuUI>)
-				.def("__tostring", CControlUI_ToString)
 				WRAP_METHOD(Remove);
 #undef WRAP_METHOD
 

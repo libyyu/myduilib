@@ -63,7 +63,7 @@ function Utils.printValue(...)
 	for _,v in ipairs({...}) do
 		sb[#sb+1] = Utils.Value2String(v)
 	end
-	warn(table.concat(sb, " "))
+	print(table.concat(sb, " "))
 end
 
 local userdata_hash_id_table = setmetatable({}, { __mode = "v" })

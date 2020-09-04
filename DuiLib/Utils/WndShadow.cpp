@@ -88,6 +88,7 @@ CWndShadow::CWndShadow(void)
 
 CWndShadow::~CWndShadow(void)
 {
+	IMPLEMENT_GCOBJ()
 	if( ::IsWindow(m_hWnd) ) PostMessage(m_hWnd, WM_CLOSE, (WPARAM)0, 0L);
 	if (m_pImageInfo)
 	{

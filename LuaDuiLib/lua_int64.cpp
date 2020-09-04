@@ -1,9 +1,10 @@
-#include "base/lua_wrapper.hpp"
+#include "base/lua_script.hpp"
 #include <math.h>
 #include <stdlib.h>
 
 #ifdef _WIN64
-typedef int64           intptr;
+typedef lua::int64      int64;
+typedef lua::int64      intptr;
 typedef unsigned int64  uintptr;
 #else
 typedef int              intptr;

@@ -4,6 +4,7 @@ function IBaseWindow:__constructor()
 	self.m_parent = nil
 	self.m_hWin = nil
 	self.m_msgTable = nil
+	self.m_bHandleNotify = false
 end
 
 function IBaseWindow:WindowClass()
@@ -13,10 +14,10 @@ function IBaseWindow:WindowName()
 	return "IBaseWindow"
 end
 function IBaseWindow:WindowStyle()
-	return bit.bor(DuiLib.UI_CLASSSTYLE_FRAME, DuiLib.WS_CLIPCHILDREN)
+	return lib64.bor(DuiLib.UI_WNDSTYLE_FRAME, DuiLib.WS_CLIPCHILDREN)
 end
 function IBaseWindow:WindowStyleEx()
-	return bit.bor(DuiLib.WS_EX_WINDOWEDGE,DuiLib.WS_EX_OVERLAPPEDWINDOW)
+	return lib64.bor(DuiLib.WS_EX_WINDOWEDGE,DuiLib.WS_EX_OVERLAPPEDWINDOW)
 end
 function IBaseWindow:WindowInitPos()
 	return _G.DEFAULT_POS
@@ -69,7 +70,7 @@ end
 
 function IBaseWindow:OnCreate (wParam,lParam)
 	local win = self.m_hWin
-	win:ModifyStyle(DuiLib.WS_CAPTION,bit.bor(DuiLib.WS_CLIPSIBLINGS,DuiLib.WS_CLIPCHILDREN), 0)
+	win:ModifyStyle(DuiLib.WS_CAPTION, lib64.bor(DuiLib.WS_CLIPSIBLINGS,DuiLib.WS_CLIPCHILDREN), 0)
 
 	if not win:RegisterSkin(self:SkinFile()) then
 		DuiLib.MsgBox(nil,"Error")
@@ -151,7 +152,6 @@ function IBaseWindow:CreateWindow(parent)
 	self:TouchMsgTable()
 
 	local hParentWnd = self.m_parent and self.m_parent:GetHWND() or nil
-	print(">>>>>>>>>>>>hParentWnd", hParentWnd)
 	local pos = self:WindowInitPos()
 	win:Create(hParentWnd, self:WindowName(),self:WindowStyle(),self:WindowStyleEx(), pos)
 
@@ -171,10 +171,19 @@ function IBaseWindow:CenterWindow()
 	assert(self:IsValid())
 	self.m_hWin:CenterWindow()
 end
+function IBaseWindow:ShowModal()
+	assert(self:IsValid())
+	self.m_hWin:ShowModal()
+end
 
 function IBaseWindow:FindControl(name)
 	assert(self:IsValid())
 	return self.m_hWin:FindControl(name)
+end
+
+function IBaseWindow:GetPaintMgr()
+	assert(self:IsValid())
+	return self.m_hWin:PaintMgr()
 end
 
 function IBaseWindow:OnNotify(msg)
@@ -196,33 +205,32 @@ function IBaseWindow:OnNotify(msg)
 			self:SendMessage(DuiLib.MsgArgs.WM_SYSCOMMAND, DuiLib.SC_MAXIMIZE, 0)
 		end
 	elseif msgType == "maxmin" then
+		local is_max = make_i64(1)
+		local is_restore = make_i64(0)
 		local pMax = self:FindControl("maxbtn")
 		local pRestore = self:FindControl("restorebtn")
 		local wParam = msg.wParam
-		if type(wParam) == "number" then
-			if wParam == 1 then
-				if pMax and pRestore then
-					pMax:SetVisible(false)
-					pRestore:SetVisible(true)
-				end
-			else
-				if pMax and pRestore then
-					pMax:SetVisible(true)
-					pRestore:SetVisible(false)
-				end
-			end
-		elseif wParam == helper.IntToUInt64(1) then
+
+		if is_max:equal(wParam) then
 			if pMax and pRestore then
 				pMax:SetVisible(false)
 				pRestore:SetVisible(true)
 			end
-		elseif wParam == helper.IntToUInt64(0) then
+		else
 			if pMax and pRestore then
 				pMax:SetVisible(true)
 				pRestore:SetVisible(false)
 			end
 		end
 	end
+end
+
+function IBaseWindow:CreateControl(pstrClass)
+	local pControl = MyControl.CreateControl(pstrClass)
+	if pControl then
+		return pControl
+	end
+	return nil
 end
 
 return IBaseWindow

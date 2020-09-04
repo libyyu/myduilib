@@ -48,23 +48,22 @@ namespace DuiLib
 		inline bool CallLuaObject(const char* method, const Args &... args)
 		{
 			LuaEnv* env = GetLuaEnv();
-			lua::lua_ref_t obj(*env, objRef); //²»ÄÜÊÍ·Å
-			return env->doTableFunc(luaRef, method, obj, args...);
+			return env->doTableFunc(luaRef.index(), method, objRef, args...);
 		}
 
 		template <typename ... Args>
 		inline bool CallLuaTable(const char* method, const Args &... args)
 		{
 			LuaEnv* env = GetLuaEnv();
-			return env->doTableFunc(luaRef, method, args...);
+			return env->doTableFunc(luaRef.index(), method, args...);
 		}
 
 		void GetNeedHandleMessage();
 	private:
 		const CDuiString szWindowName;
 		const UINT nClassStyle;
-		int luaRef;
-		int objRef;
+		lua::reference luaRef;
+		lua::reference objRef;
 		std::unordered_map<UINT, bool> NeedHandleMessage;
 		bool InitedMessageList;
 	};

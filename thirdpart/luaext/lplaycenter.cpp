@@ -332,7 +332,7 @@ static int GetTotalTime(lua_State* L)
 {
 	LuaAVPlayer* pPlayCenter = lua::get_from_lua<LuaAVPlayer>(L, 1, Meta_AVPlayer);
 	assert(pPlayCenter);
-	__int64 ret = pPlayCenter->GetTotalTime();
+	int64_t ret = pPlayCenter->GetTotalTime();
 	push_stack(L, ret);
 	return 1;
 }
@@ -340,7 +340,7 @@ static int GetTime(lua_State* L)
 {
 	LuaAVPlayer* pPlayCenter = lua::get_from_lua<LuaAVPlayer>(L, 1, Meta_AVPlayer);
 	assert(pPlayCenter);
-	__int64 ret = pPlayCenter->GetTime();
+	int64_t ret = pPlayCenter->GetTime();
 	push_stack(L, ret);
 	return 1;
 }

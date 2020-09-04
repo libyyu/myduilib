@@ -217,7 +217,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\thirdpart\luaext\lencoding.cpp" />
     <ClCompile Include="..\..\thirdpart\luaext\lplaycenter.cpp">
       <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\luaext\windows\x64\debug\thirdpart\luaext\lplaycenter.cpp.obj</ObjectFileName>
@@ -232,12 +231,19 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\luaext\windows\x64\debug\thirdpart\luaext\lfs.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\luaext\windows\x86\release\thirdpart\luaext\lfs.cpp.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="..\..\thirdpart\luaext\ltag.cpp">
+    <ClCompile Include="..\..\thirdpart\luaext\lencoding.cpp">
       <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\luaext\windows\x64\debug\thirdpart\luaext\ltag.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\luaext\windows\x86\release\thirdpart\luaext\ltag.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\luaext\windows\x86\debug\thirdpart\luaext\ltag.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\luaext\windows\x64\release\thirdpart\luaext\ltag.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\luaext\windows\x86\release\thirdpart\luaext\lencoding.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\luaext\windows\x64\debug\thirdpart\luaext\lencoding.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\luaext\windows\x64\release\thirdpart\luaext\lencoding.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\luaext\windows\x86\debug\thirdpart\luaext\lencoding.cpp.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\thirdpart\luaext\luaext.cpp">
+      <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\luaext\windows\x64\debug\thirdpart\luaext\luaext.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\luaext\windows\x86\debug\thirdpart\luaext\luaext.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\luaext\windows\x86\release\thirdpart\luaext\luaext.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\luaext\windows\x64\release\thirdpart\luaext\luaext.cpp.obj</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\thirdpart\luaext\ldatabase.cpp">
       <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
@@ -246,12 +252,12 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\luaext\windows\x64\release\thirdpart\luaext\ldatabase.cpp.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\luaext\windows\x86\debug\thirdpart\luaext\ldatabase.cpp.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="..\..\thirdpart\luaext\luaext.cpp">
+    <ClCompile Include="..\..\thirdpart\luaext\ltag.cpp">
       <AdditionalOptions Condition="'$(Configuration)'=='debug'">-FS -FS %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\luaext\windows\x64\debug\thirdpart\luaext\luaext.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\luaext\windows\x86\debug\thirdpart\luaext\luaext.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\luaext\windows\x86\release\thirdpart\luaext\luaext.cpp.obj</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\luaext\windows\x64\release\thirdpart\luaext\luaext.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\windows\x64\debug\luaext\windows\x64\debug\thirdpart\luaext\ltag.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\windows\x86\release\luaext\windows\x86\release\thirdpart\luaext\ltag.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\windows\x86\debug\luaext\windows\x86\debug\thirdpart\luaext\ltag.cpp.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\windows\x64\release\luaext\windows\x64\release\thirdpart\luaext\ltag.cpp.obj</ObjectFileName>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

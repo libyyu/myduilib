@@ -211,6 +211,7 @@ CMarkup::CMarkup(LPCTSTR pstrXML)
 
 CMarkup::~CMarkup()
 {
+    IMPLEMENT_GCOBJ()
     Release();
 }
 

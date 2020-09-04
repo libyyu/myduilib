@@ -50,7 +50,6 @@
 #include "stdafx.h"
 #include "UIlib.h"
 
-
 HANDLE ghModuleDuiLib = INVALID_HANDLE_VALUE;
 BOOL APIENTRY DllMain(HANDLE hModule, DWORD  dwReason, LPVOID /*lpReserved*/)
 {
@@ -97,3 +96,12 @@ BOOL APIENTRY DllMain(HANDLE hModule, DWORD  dwReason, LPVOID /*lpReserved*/)
     return TRUE;
 }
 
+IObjectGC* glb_pGCInterface = NULL;
+IObjectGC* GetObjectGCInterface()
+{
+	return glb_pGCInterface;
+}
+void SetObjectGCInterface(IObjectGC* p)
+{
+	glb_pGCInterface = p;
+}

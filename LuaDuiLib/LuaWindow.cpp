@@ -1,6 +1,5 @@
 #include "UIlib.h"
 #include "LuaWindow.h"
-#include "base/lua_wrapper.hpp"
 #include "lua_duilib_wrapper.hpp"
 #include "lua_duilib_extend_wrapper.hpp"
 #ifdef USE_CUSTOM_MEMORY
@@ -14,8 +13,6 @@ namespace DuiLib
 	CLuaWindow::CLuaWindow(LPCTSTR szName, UINT nStyle/* = CS_DBLCLKS*/)
 		: szWindowName(szName), 
 		nClassStyle(nStyle), 
-		luaRef(LUA_NOREF), 
-		objRef(LUA_NOREF),
 		InitedMessageList(false),
 		CWin()
 	{
@@ -30,13 +27,15 @@ namespace DuiLib
 	UINT CLuaWindow::GetClassStyle() const { return nClassStyle; }
 	void CLuaWindow::OnFinalMessage(HWND hWnd)
 	{
+		IMPLEMENT_GCOBJ()
+		
 		PaintMgr()->RemovePreMessageFilter(this);
 		PaintMgr()->RemoveNotifier(this);
 		PaintMgr()->ReapObjects(PaintMgr()->GetRoot());
 
 		CallLuaObject("OnFinalMessage");
 
-		this->SetValid(FALSE);
+		__super::OnFinalMessage(hWnd);
 		delete this;
 	}
 	CPaintManagerUI* CLuaWindow::PaintMgr() const { return GetPaintMgr(); }
@@ -55,39 +54,28 @@ namespace DuiLib
 
 	void CLuaWindow::UnBindLuaScript()
 	{
-		lua_State* l = *(GetLuaEnv());
-		if (l)
+		lua_State* L = *(GetLuaEnv());
+		if (L)
 		{
-			if (luaRef != LUA_NOREF)
-			{
-				luaL_unref(l, LUA_REGISTRYINDEX, luaRef);
-				luaRef = LUA_NOREF;
-			}
-			if (objRef != LUA_NOREF)
-			{
-				luaL_unref(l, LUA_REGISTRYINDEX, objRef);
-				objRef = LUA_NOREF;
-			}
+			luaRef.unref();
+			objRef.unref();
 		}
 	}
 
 	void CLuaWindow::BindLuaScript()
 	{
-		lua_State* l = *(GetLuaEnv());
+		lua_State* L = *(GetLuaEnv());
 		UnBindLuaScript();
-		lua_pushvalue(l, 2);
-		luaRef = luaL_ref(l, LUA_REGISTRYINDEX);
-		lua_pushvalue(l, 3);
-		objRef = luaL_ref(l, LUA_REGISTRYINDEX);
+		lua::get(L, 2, &luaRef, &objRef);
 	}
 
 	bool CLuaWindow::onUIEvent(void* param)
 	{
-		if (luaRef == LUA_NOREF || objRef == LUA_NOREF)
+		if (!luaRef.isref() || !objRef.isref())
 			return true;
 
 		LuaEnv* env = GetLuaEnv();
-		lua::stack_gurad g(*env);
+		lua::lua_stack_gurad g(*env);
 
 		const TEventUI* pEvent = static_cast<TEventUI*>(param);
 		if (CallLuaObject("OnUIEvent", pEvent))
@@ -104,11 +92,11 @@ namespace DuiLib
 
 	bool CLuaWindow::onUIDestroy(void* param)
 	{
-		if (luaRef == LUA_NOREF || objRef == LUA_NOREF)
+		if (!luaRef.isref() || !objRef.isref())
 			return true;
 
 		LuaEnv* env = GetLuaEnv();
-		lua::stack_gurad g(*env);
+		lua::lua_stack_gurad g(*env);
 
 		CControlUI* pControl = static_cast<CControlUI*>(param);
 		if (CallLuaObject("OnUIDestroy", pControl))
@@ -125,11 +113,11 @@ namespace DuiLib
 
 	bool CLuaWindow::onUISize(void* param)
 	{
-		if (luaRef == LUA_NOREF || objRef == LUA_NOREF)
+		if (!luaRef.isref() || !objRef.isref())
 			return true;
 
 		LuaEnv* env = GetLuaEnv();
-		lua::stack_gurad g(*env);
+		lua::lua_stack_gurad g(*env);
 
 		CControlUI* pControl = static_cast<CControlUI*>(param);
 		if (CallLuaObject("OnUISize", pControl))
@@ -145,11 +133,11 @@ namespace DuiLib
 	}
 	bool CLuaWindow::onUINotify(void* param)
 	{
-		if (luaRef == LUA_NOREF || objRef == LUA_NOREF)
+		if (!luaRef.isref() || !objRef.isref())
 			return true;
 		
 		LuaEnv* env = GetLuaEnv();
-		lua::stack_gurad g(*env);
+		lua::lua_stack_gurad g(*env);
 
 		const TNotifyUI* pNotify = static_cast<TNotifyUI*>(param);
 		if (CallLuaObject("OnUINotify", pNotify))
@@ -165,11 +153,11 @@ namespace DuiLib
 	}
 	bool CLuaWindow::onUIPaint(void* param)
 	{
-		if (luaRef == LUA_NOREF || objRef == LUA_NOREF)
+		if (!luaRef.isref() || !objRef.isref())
 			return true;
 		
 		LuaEnv* env = GetLuaEnv();
-		lua::stack_gurad g(*env);
+		lua::lua_stack_gurad g(*env);
 
 		CControlUI* pControl = static_cast<CControlUI*>(param);
 		if (CallLuaObject("OnUIPaint", pControl))
@@ -186,10 +174,10 @@ namespace DuiLib
 
 	void CLuaWindow::Notify(TNotifyUI &msg)
 	{
-		if (luaRef == LUA_NOREF || objRef == LUA_NOREF)
+		if (!luaRef.isref() || !objRef.isref())
 			return;
 		LuaEnv* env = GetLuaEnv();
-		lua::stack_gurad g(*env);
+		lua::lua_stack_gurad g(*env);
 		//ToLuaMsgNotify.dwTimestamp = msg.dwTimestamp;
 		//ToLuaMsgNotify.lParam = msg.lParam;
 		//ToLuaMsgNotify.pSender = msg.pSender;
@@ -204,7 +192,7 @@ namespace DuiLib
 	}
 	LRESULT CLuaWindow::MessageHandler(UINT msg, WPARAM wparam, LPARAM lparam, bool &handled)
 	{
-		if (luaRef == LUA_NOREF || objRef == LUA_NOREF)
+		if (!luaRef.isref() || !objRef.isref())
 			return FALSE;
 		if (!InitedMessageList)
 		{
@@ -217,7 +205,7 @@ namespace DuiLib
 			return FALSE;
 		}
 		LuaEnv* env = GetLuaEnv();
-		lua::stack_gurad g(*env);
+		lua::lua_stack_gurad g(*env);
 		if (CallLuaObject("MessageHandler", msg, wparam, lparam))
 		{
 			bool b;
@@ -228,10 +216,10 @@ namespace DuiLib
 	}
 	CControlUI * CLuaWindow::CreateControl(LPCTSTR pstrClass)
 	{
-		if (luaRef == LUA_NOREF || objRef == LUA_NOREF)
+		if (!luaRef.isref() || !objRef.isref())
 			return NULL;
 		LuaEnv* env = GetLuaEnv();
-		lua::stack_gurad g(*env);
+		lua::lua_stack_gurad g(*env);
 		CControlUI* pControl = nullptr;
 		if (CallLuaObject("CreateControl", pstrClass))
 		{
@@ -242,10 +230,10 @@ namespace DuiLib
 
 	void CLuaWindow::GetItemText(CControlUI* pControl, int iIndex, int iSubItem, CDuiString& text)
 	{
-		if (luaRef == LUA_NOREF || objRef == LUA_NOREF)
+		if (!luaRef.isref() || !objRef.isref())
 			text = _T("");
 		LuaEnv* env = GetLuaEnv();
-		lua::stack_gurad g(*env);
+		lua::lua_stack_gurad g(*env);
 		if (CallLuaObject("GetItemText", pControl, iIndex, iSubItem))
 		{			
 			lua::pop(*GetLuaEnv(), &text);
@@ -254,11 +242,11 @@ namespace DuiLib
 
 	void CLuaWindow::GetNeedHandleMessage()
 	{
-		if (luaRef == LUA_NOREF || objRef == LUA_NOREF)
+		if (!luaRef.isref() || !objRef.isref())
 			return;
 		
 		LuaEnv* env = GetLuaEnv();
-		lua::stack_gurad g(*env);
+		lua::lua_stack_gurad g(*env);
 
 		if (CallLuaObject("GetProcessWindowMessage"))
 		{
@@ -279,7 +267,7 @@ namespace DuiLib
 	{
 		LRESULT hr = __super::ProcessWindowMessage(uMsg, wParam, lParam, bHandled);
 		if (bHandled) return hr;
-		if (luaRef == LUA_NOREF || objRef == LUA_NOREF)
+		if (!luaRef.isref() || !objRef.isref())
 			return FALSE;
 		if (!InitedMessageList)
 		{
@@ -292,7 +280,7 @@ namespace DuiLib
 			return FALSE;
 		}
 		LuaEnv* env = GetLuaEnv();
-		lua::stack_gurad g(*env);
+		lua::lua_stack_gurad g(*env);
 		if (CallLuaObject("ProcessWindowMessage", uMsg, wParam, lParam))
 		{
 			bool b;
@@ -305,10 +293,10 @@ namespace DuiLib
 	{
 		__super::OnCreate(uMsg, wParam, lParam, bHandled);
 		
-		if (luaRef == LUA_NOREF || objRef == LUA_NOREF)
+		if (!luaRef.isref() || !objRef.isref())
 			return FALSE;
 		LuaEnv* env = GetLuaEnv();
-		lua::stack_gurad g(*env);
+		lua::lua_stack_gurad g(*env);
 		if (CallLuaObject("OnCreate", wParam, lParam))
 		{
 			bHandled = TRUE;
@@ -331,10 +319,10 @@ namespace DuiLib
 	{
 		__super::OnDestroy(uMsg, wParam, lParam, bHandled);
 		
-		if (luaRef == LUA_NOREF || objRef == LUA_NOREF)
+		if (!luaRef.isref() || !objRef.isref())
 			return TRUE;
 		LuaEnv* env = GetLuaEnv();
-		lua::stack_gurad g(*env);
+		lua::lua_stack_gurad g(*env);
 		if (CallLuaObject("OnDestroy", wParam, lParam))
 		{
 			bHandled = TRUE;
@@ -344,10 +332,10 @@ namespace DuiLib
 	LRESULT CLuaWindow::OnSysCommand(UINT msg, WPARAM wParam, LPARAM lParam, BOOL &bHandled)
 	{
 		LRESULT ret = __super::OnSysCommand(msg, wParam, lParam, bHandled);
-		if (luaRef == LUA_NOREF || objRef == LUA_NOREF)
+		if (!luaRef.isref() || !objRef.isref())
 			return ret;
 		LuaEnv* env = GetLuaEnv();
-		lua::stack_gurad g(*env);
+		lua::lua_stack_gurad g(*env);
 		if (CallLuaObject("OnSysCommand", wParam, lParam))
 		{
 			bHandled = TRUE;
@@ -357,8 +345,10 @@ namespace DuiLib
 
 	LRESULT CLuaWindow::OnMenuCommand(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 	{
+		if (!luaRef.isref() || !objRef.isref())
+			return 0;
 		LuaEnv* env = GetLuaEnv();
-		lua::stack_gurad g(*env);
+		lua::lua_stack_gurad g(*env);
 		MenuCmdMsg* pMsg = (MenuCmdMsg*)wParam;
 		if (CallLuaObject("OnMenuCommand", pMsg))
 		{
