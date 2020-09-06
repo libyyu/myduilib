@@ -65,27 +65,30 @@ do
         local typeMeta = {
             __cname = className,
             __class = cls,
-            __check = true,
             __options = classOption or {}
         }
 
         cls.__cname = className
 
         cls.__tryget = function(t, k, check)
-            local function get(m, k, check)
+            local function get(t, c, k, check)
+                local v = rawget(t, k)
+                if v then
+                    return v
+                end
                 local attr = t.__attributes[k]
                 if t.__fields[k] then
                     return attr
                 end
 
-                local v = rawget(m, k)
+                local v = rawget(c, k)
                 if v then
                     return v
                 end
 
-                local pcls = m.__parent
+                local pcls = c.__parent
                 while pcls ~= nil do
-                    v = get(pcls, k, check)
+                    v = get(t, pcls, k, check)
                     if v ~= nil then
                         return v
                     end
@@ -93,13 +96,13 @@ do
                     pcls = pcls.__parent
                 end
 
-                if check and not t.__fields[k] then
+                if check and not t.__fields[k] and k ~= "__no_strict_access_check" then
                     error("attribute \""..k.."\" not found in ".. tostring(cls), 2)
                 end
 
                 return nil
             end
-            return get(getmetatable(t), k, check)
+            return get(t, getmetatable(t), k, check)
         end
         cls.__index = function(t, k)
             return cls.__tryget(t, k, true)
@@ -113,11 +116,13 @@ do
                 k == "__constructor" or
                 k == "__gc" or
                 k == "__destructor" or
-                k == "__pointer" then
+                k == "__pointer" or
+                k == "__gcproxy" or
+                k == "__no_strict_access_check" then
                 error("field: '" .. k .. "' not enable for class '" .. tostring(cls) .. "'", 1)
             end
-
-            if typeMeta.__check then
+            
+            if not rawget(t, "__no_strict_access_check") then
                 if not t.__fields[k] then
                     error(tostring(cls) .." do not have field \""..k.."\" !!", 1)
                 end
@@ -151,50 +156,21 @@ do
             elseif typeMeta.__options.type == "static" then
                 error("can not instantiate static class " .. tostring(cls), 1)
             end
-            local instance = {__class = cls, __attributes={}, __fields={}}
+            local instance = {__class = cls, __attributes={}, __fields={}, __no_strict_access_check=true}
             instance.__pointer = tostring(instance)
             
             setmetatable(instance, cls)
 
-            local __tostring = cls.__tryget(instance, "toString", false)
-            cls.__tostring = function(t)
-                if __tostring then 
-                    return __tostring(t)
-                else
-                    local pointer = t.__pointer
-                    local objName = "\"" .. className .. "(".. pointer .. ")\""
-                    return objName
-                end
-            end
-
-            do
-                local lt = cls.__tryget(instance, "__lt", false)
-                if lt then
-                    cls.__lt = lt
-                end
-                local le = cls.__tryget(instance, "__le", false)
-                if le then
-                    cls.__le = le
-                end
-                local eq = cls.__tryget(instance, "__eq", false)
-                if eq then
-                    cls.__eq = eq
-                end
-                local add = cls.__tryget(instance, "__add", false)
-                if add then
-                    cls.__add = add
-                end
-                local sub = cls.__tryget(instance, "__sub", false)
-                if sub then
-                    cls.__sub = sub
-                end
-                local mul = cls.__tryget(instance, "__mul", false)
-                if mul then
-                    cls.__mul = mul
-                end
-                local div = cls.__tryget(instance, "__div", false)
-                if div then
-                    cls.__div = div
+            if not rawget(cls, "__tostring") then
+                local toString = rawget(cls, "toString")
+                cls.__tostring = function(t)
+                    if toString then 
+                        return toString(t)
+                    else
+                        local pointer = t.__pointer
+                        local objName = "\"" .. className .. "(".. pointer .. ")\""
+                        return objName
+                    end
                 end
             end
 
@@ -219,22 +195,25 @@ do
                     end
                 end
 
+                local createGcProxy
                 if TX_VERSION < TX_VERSION_520 then
-                    -- Create a empty userdata with empty metatable.
-                    -- And mark gc method for destructor.
-                    local proxy = newproxy(true)
-                    getmetatable(proxy).__gc = function (o)
-                        __destructor(instance)
+                    function createGcProxy (callback)
+                        local proxy = newproxy(true)
+                        local meta = getmetatable(proxy)
+                        meta.__gc = callback
+                        return proxy
                     end
-        
-                    -- Hold the one and only reference to the proxy userdata.
-                    rawget(instance, "__gc", proxy)
                 else
-                    -- Directly set __gc field of the metatable for destructor of this object.
-                    cls.__gc = function(o)
-                        __destructor(instance)
+                    function createGcProxy (callback)
+                        local proxy = {}
+                        local meta = {}
+                        meta.__gc = callback
+                        return setmetatable(proxy, meta)
                     end
                 end
+                rawset(instance, "__gcproxy", createGcProxy(function(_)
+                    __destructor(instance)
+                end))
             end
 
             do --constructor
@@ -244,12 +223,12 @@ do
                         __constructor(o)
                     end
                 end
-                typeMeta.__check = false
+                
                 for i = #clsList, 1, -1 do
                     local _cls = clsList[i]
                     ctor(instance, _cls)
                 end
-                typeMeta.__check = true
+                rawset(instance, "__no_strict_access_check", nil)
             end
 
             return instance
@@ -371,12 +350,16 @@ if false then
     local FTest2 = FLua.FinalClass()
     function FTest:__constructor()
         self.a = 1
+        self.c = nil
     end
     function FTest:toString()
-        return "<FTest>" .. self:GetPointer()
+        return "<FTest>--" .. self:GetPointer()
     end
     function FTest:__destructor()
         print(self, "__destructor")
+    end
+    function FTest:__lt(ths)
+        return true 
     end
     local t = FTest()
     local b = FTest()
@@ -385,11 +368,16 @@ if false then
     print(t)
     print(t.a)
     t.a = 10
-    print(t.a)
+    print(t.a, b.a)
+    t.c = 0
+    print(t.c)
     print(t:is(FTest))
     print(t:is(FBaseObject))
     print(t:is(FTest2))
     print(t, b)
+
+    print(t < b)
+    --t.b = 10
     t = nil
     collectgarbage()
 

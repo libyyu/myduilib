@@ -84,13 +84,17 @@ do
 		local eventnames = type(...) == "table" and ... or {...}
 		
 		if #eventnames == 0 then
-			return error("FLibEvent:DelEvent error: nil event name", 2)
-		end
-		
-		for i, eventname in ipairs(eventnames) do
-			local eventlist = self.events[eventname]
-			if eventlist and eventlist[obj] then
-				eventlist[obj] = nil
+			for eventname, eventlist in pairs(self.events) do
+				if eventlist and eventlist[obj] then
+					eventlist[obj] = nil
+				end
+			end
+		else
+			for i, eventname in ipairs(eventnames) do
+				local eventlist = self.events[eventname]
+				if eventlist and eventlist[obj] then
+					eventlist[obj] = nil
+				end
 			end
 		end
 	end

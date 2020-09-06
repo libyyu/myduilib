@@ -22,8 +22,18 @@ function Tmpl:GetTmplName()
 	return path.basename(self.filepath_)
 end
 
+function Tmpl:GetTID()
+	return self.message_.index
+end
+
 function Tmpl:GetFilePath()
 	return self.filepath_
+end
+
+function Tmpl:GetReleativePath()
+	local path = self:GetFilePath()
+	local data_path = theApp:GetRuntimeState():GetFilePathMgr():GetTmplRootPath()
+	return path:sub(string.len(data_path)+1)
 end
 
 function Tmpl:GetMessageName()

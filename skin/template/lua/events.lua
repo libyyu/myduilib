@@ -9,6 +9,7 @@ end
 local events = makeKey
 {	
 	"AddTreeNode",
-	"OnOpenTmpl"
+	"OnOpenTmpl",
+	"OnSearchFilter"
 }
 return events

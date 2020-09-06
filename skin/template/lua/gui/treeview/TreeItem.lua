@@ -125,6 +125,10 @@ function TreeItem:SetChildVisible(visible)
     self.tree:SetChildVisible(self, visible)
 end
 
+function TreeItem:SetVisible(visible)
+    self.tree:SetNodeVisible(self, visible)
+end
+
 function TreeItem:CanExpand()
     return self.tree:CanExpand(self)
 end

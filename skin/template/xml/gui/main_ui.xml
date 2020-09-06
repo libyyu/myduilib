@@ -52,10 +52,10 @@
                     <Control height="1" bordersize="1" bkcolor="#FFDDDDDD" padding="4,0,4,0" enabled="false"/>
                     <HorizontalLayout name="staus_bar" height="20" inset="4,0,0,0">
                         <Label name="message_file" text="" endellipsis="true" autocalcwidth="true"/>
-                        <Control width="1" bordersize="1" bkcolor="#FFDDDDDD" padding="0,1,0,1" enabled="false"/>
-                        <Control />
-                        <Control width="1" bordersize="1" bkcolor="#FFDDDDDD" padding="0,1,0,1" enabled="false"/>
+                        <Control width="2" bordersize="2" bkcolor="#FFDDDDDD" padding="0,1,0,1" enabled="false"/>
                         <Label name="message_name" text="" endellipsis="true" autocalcwidth="true"/>
+                        <Control width="2" bordersize="2" bkcolor="#FFDDDDDD" padding="0,1,0,1" enabled="false"/>
+                        <Control />
                     </HorizontalLayout>
                 </VerticalLayout>
             </HorizontalLayout>

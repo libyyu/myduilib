@@ -946,6 +946,24 @@ namespace DuiLib
 		return 0;
 	}
 
+	static int lua_OpenFolder(lua_State* L)
+	{
+		DuiLib::CDuiString cs_path;
+		lua::get(L, 1, &cs_path);
+		cs_path.Replace(_T('/'), _T('\\'));
+		ShellExecute(NULL, NULL, _T("explorer"), (DuiLib::CDuiString(_T("/select,")) + cs_path).GetData(), NULL, SW_SHOW);
+		return 0;
+	}
+
+	static int lua_OpenFile(lua_State* L)
+	{
+		DuiLib::CDuiString cs_path;
+		lua::get(L, 1, &cs_path);
+		cs_path.Replace(_T('/'), _T('\\'));
+		ShellExecute(NULL, NULL, _T("open"), cs_path.GetData(), NULL, SW_SHOW);
+		return 0;
+	}
+
 	static bool RegisterApplicationAPIToLua(lua_State* l)
 	{
 		//Application
@@ -986,6 +1004,8 @@ namespace DuiLib
 			.def("QuitApp", lua_QuitApp)
 			.def("GetLastError", lua_GetLastError)
 			.def("OnInitEnv", lua_OnInitEnv)
+			.def("OpenFolder", lua_OpenFolder)
+			.def("OpenFile", lua_OpenFile)
 #ifdef _DEBUG
 			.readonly("IsDebug", true);
 #else

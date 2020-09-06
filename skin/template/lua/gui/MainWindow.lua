@@ -241,6 +241,9 @@ function MainWindow:OnClick(msg)
 				self:Close()
 			end
 		end)
+	elseif sender:IsName("search_btn") then 
+		self.m_bHandleNotify = true
+		self:DoSearch()
 	end
 end
 
@@ -327,6 +330,8 @@ function MainWindow:OnMenuCommand(pMsg)
 	print("OnMenuCommand", pMsg.sItemName, pMsg.nMenuTag)
 	if pMsg.nMenuTag == _G.emMenuType.EMT_TEMPLATE_TREE_ROOT then
 		self:OnMenuCommandTemplateTreeRoot(pMsg)
+	elseif pMsg.nMenuTag == _G.emMenuType.EMT_TEMPLATE_TREE_ITEM then
+		self:OnMenuCommandTemplateTreeItem(pMsg)
 	end
 end
 
@@ -336,6 +341,20 @@ function MainWindow:OnMenuCommandTemplateTreeRoot(msg)
 		self:OnHandleNewTemplateFolder(pMenu:GetUserData2("node"))
 	elseif msg.sItemName == "new_template" then
 		self:OnHandleNewTemplateFile(pMenu:GetUserData2("node"))
+	else
+	end
+end
+
+function MainWindow:OnMenuCommandTemplateTreeItem(msg)
+	-- Utils.printValue(g_udref)
+	-- Utils.printValue(_accessChildren)
+	print(msg)
+	local pMenu = msg.pMenuWnd
+	warn("pMenu2", pMenu, pMenu:GetUserData2("node"))
+	if msg.sItemName == "opendir" then
+		local node = pMenu:GetUserData2("node")
+		local tmpl = node:GetTmpl()
+		Application.OpenFolder(tmpl:GetFilePath())
 	end
 end
 
@@ -489,6 +508,12 @@ function MainWindow:OnInitTemplateTree()
 		nodein:SetPath(data_path)
 		self.m_pTreeView:Add(nodein)
 	end 
+end
+
+function MainWindow:DoSearch()
+	local pInput = self:FindControl("search_input")
+	local search_txt = pInput:GetText()
+	theApp:GetRuntimeState():GetEventMgr():Fire(_G.Event.OnSearchFilter, search_txt)
 end
 
 return MainWindow

@@ -1,4 +1,5 @@
 local TreeItem = require "gui.treeview.TreeItem"
+local GcCallbacks = require "utility.GcCallbacks"
 local TreeView = FLua.Class("TreeView")
 
 local FolderItem = FLua.Class(TreeItem, "FolderItem")
@@ -7,6 +8,7 @@ do
         local obj = FolderItem()
         obj.name_ = name
         obj.node_xml = xml
+        obj:data().folder_ = true
         return obj
     end
     function FolderItem:__constructor()
@@ -15,12 +17,15 @@ do
         self.userdata_ = nil
         self.path_ = ""
     end
-    function TreeItem:toString()
+    function FolderItem:__destructor()
+        theApp:GetRuntimeState():GetEventMgr():DelEvent(self)
+        warn("FolderItem:__destructor", self)
+    end
+    function FolderItem:toString()
         return string.format("[%s][%s] num_children:%d, folder:%s", self:GetPointer(), self.name_, self:num_children(), tostring(self:folder()))
     end
     function FolderItem:OnCreate()
         TreeItem.OnCreate(self)
-        self:data().folder_ = true
         local pListElement = self:data().list_elment_
         local nameObj = pListElement:FindSubControl("tree_name")
         local checkObj = pListElement:FindSubControl("tree_expandbtn")
@@ -87,6 +92,8 @@ do
             --     end
             -- end
         end)
+
+        theApp:GetRuntimeState():GetEventMgr():AddEvent(self, _G.Event.OnSearchFilter)
     end
 
     function FolderItem:Choose(b)
@@ -129,6 +136,15 @@ do
     end
     function FolderItem:GetPath()
         return self.path_
+    end
+
+    function FolderItem:OnSearchFilter(txt)
+        print("OnSearchFilter", txt)
+        if txt ~= "" and string.find(self:GetName(), txt) == nil then
+            self:SetVisible(false)
+        else
+            self:SetVisible(true)
+        end
     end
 end
 local TemplateItem = FLua.Class(TreeItem, "TemplateItem")
@@ -192,8 +208,6 @@ function TreeView:__constructor()
 	self.delay_left_ = nil
 	self.text_padding_ = {left=0, top=0, right=0, bottom=0}
 	self.level_text_start_pos_ = 8
-
-    
 end
 function TreeView:__destructor()
    warn("TreeView:__destructor")
@@ -297,6 +311,23 @@ function TreeView:SetChildVisible(node, visible)
             end
 		end
 	end
+end
+
+function TreeView:SetNodeVisible(node, visible)
+    self:SetChildVisible(node, visible)
+
+    if not node or node == self.root_node_ then
+        return
+    end
+
+    if node:data().has_child_ then
+    end
+
+    if visible == node:data().list_elment_:IsVisible() then
+        return
+    end
+
+    node:data().list_elment_:SetVisible(visible)
 end
 
 function TreeView:CanExpand(node)

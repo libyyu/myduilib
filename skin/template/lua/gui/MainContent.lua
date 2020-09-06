@@ -107,7 +107,6 @@ function MainContent:OnCloseTmpl(tmpl)
 				if curSel == i-1 and nextpLayout and nextpLayout:GetUserData2("tmpl") then
 					self:OnOpenTmpl(nextpLayout:GetUserData2("tmpl"))
 				end
-
 				return
 			end
 		end
@@ -117,7 +116,7 @@ end
 function MainContent:OnTmplReady(tmpl)
 	local pStatusBarFile = self.pStatusBar:FindSubControl("message_file")
 	local pStatusBarName = self.pStatusBar:FindSubControl("message_name")
-	pStatusBarFile:SetText("模板文件:" .. tmpl:GetFilePath())
+	pStatusBarFile:SetText("ID:" .. tostring(tmpl:GetTID()) .. ",模板文件:" .. tmpl:GetReleativePath())
 	pStatusBarName:SetText("模板名:" .. tmpl:GetMessageName())
 end
 

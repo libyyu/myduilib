@@ -214,7 +214,10 @@ void CNotifyPump::NotifyPump(TNotifyUI& msg)
 CWindowWnd::CWindowWnd() : m_hWnd(NULL), m_OldWndProc(::DefWindowProc), m_bSubclassed(false)
 {
 }
-
+CWindowWnd::~CWindowWnd()
+{
+    IMPLEMENT_GCOBJ()
+}
 HWND CWindowWnd::GetHWND() const 
 { 
     return m_hWnd; 
@@ -495,7 +498,7 @@ LRESULT CWindowWnd::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 void CWindowWnd::OnFinalMessage(HWND /*hWnd*/)
 {
-    IMPLEMENT_GCOBJ()
+    
 }
 
 } // namespace DuiLib
