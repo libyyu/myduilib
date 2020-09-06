@@ -40,26 +40,19 @@ do
         chooseObj:SetTagCtrl(pListElement)
         pListElement:OnNotifyAdd(function(msg)
             if msg.sType == "itemactivate" then
-                if self:CanExpand() then
-                    self:SetChildVisible(not self:data().child_visible_)
-                    checkObj:SetCheck(not checkObj:GetCheck(), false)
-                    if self:data().child_visible_ then
-                        self:data().has_expand_ = true
-                    else
-                        self:data().has_expand_ = false
-                    end
+                if not self:data().child_visible_ then
+                    self:Expand()
+                else
+                    self:Shrink()
                 end
             end
         end)
         checkObj:OnNotifyAdd(function(msg)
             if msg.sType == "selectchanged" then
-                if self:CanExpand() then
-                    self:SetChildVisible(not self:data().child_visible_)
-                    if self:data().child_visible_ then
-                        self:data().has_expand_ = true
-                    else
-                        self:data().has_expand_ = false
-                    end
+                if not self:data().child_visible_ then
+                    self:Expand()
+                else
+                    self:Shrink()
                 end
             end
         end)
@@ -151,34 +144,64 @@ do
         return self.path_
     end
 
-    function FolderItem:OnSearchFilter(txt)
-        -- local function active_node(node, visible)
-        --     if not node then
-        --         return
-        --     end
-
-        --     if node:data().has_child_ then
-        --     end
-
-        --     if visible == node:data().list_elment_:IsVisible() then
-        --         return
-        --     end
-
-        --     node:data().list_elment_:SetVisible(visible)
-        --     if node:IsExpand() then
-        --         node:SetChildVisible(visible)
-        --     end
-        -- end
-
-        print("OnSearchFilter", txt)
-        if txt ~= "" and string.find(self:GetName(), txt) == nil then
-            self:SetNodeVisible(false)
-        else--if self:parent() and self:parent():IsExpand() then 
-            self:SetNodeVisible(true)
+    function FolderItem:Expand(all)
+        if self:CanExpand() then
+            self:data().has_expand_ = true
+            self:SetChildVisible(true)
         end
+        if all then
+            for i=1, self:num_children() do
+                local child = self:child(i)
+                if child:folder() then
+                    child:Expand(all)
+                end
+            end
+        end
+    end
 
+    function FolderItem:Shrink(all)
+        if all then
+            for i=1, self:num_children() do
+                local child = self:child(i)
+                if child:folder() then
+                    child:Shrink(all)
+                end
+            end
+        end
+        if self:CanExpand() then
+            self:SetChildVisible(false)
+            self:data().has_expand_ = false
+        end
+    end
 
-        
+    function FolderItem:MatchFilter(txt)
+        if txt ~= "" then
+            if string.find(self:GetName(), txt) ~= nil then
+                return true
+            elseif self:has_children() then
+                local n_count = 0
+                for i=1, self:num_children() do
+                    local child = self:child(i)
+                    if child:MatchFilter(txt) then
+                        n_count = n_count + 1
+                    end
+                end
+                return n_count >0
+            else
+                return false
+            end
+        else
+            return true
+        end
+    end
+
+    function FolderItem:OnSearchFilter(txt)
+        print("OnSearchFilter", txt, self)
+        if self:MatchFilter(txt) then
+            self:SetNodeVisible(true)
+        else
+            self:SetNodeVisible(false)
+        end
     end
 end
 local TemplateItem = FLua.Class(TreeItem, "TemplateItem")
@@ -223,6 +246,18 @@ do
     end
     function TemplateItem:GetTmpl()
         return self.tmpl_
+    end
+
+    function TemplateItem:MatchFilter(txt)
+        if txt ~= "" then
+            if string.find(self.tmpl_:GetTmplName(), txt) ~= nil then
+                return true
+            end
+
+            return false
+        else
+            return true
+        end 
     end
 end
 
@@ -321,7 +356,7 @@ function TreeView:SetChildVisible(node, visible)
     if node:data().has_child_ then
     end
 
-    if not node:data().list_elment_:IsVisible() then
+    if visible and not node:data().list_elment_:IsVisible() then
         return
     end
 
@@ -329,23 +364,10 @@ function TreeView:SetChildVisible(node, visible)
         return
     end
 
-    local cbegin = node:child(1)
-    local cend = node:get_last_child()
-
-    for i = cbegin:data().list_elment_:GetIndex(), cend:data().list_elment_:GetIndex() do
-        local control = self._pTreeViewCtrl:GetItemAt(i)
-		if control:IsClass(_T("ListContainerElement")) then
-            if visible then
-                local cnode = control:GetUserData2("node")
-				local local_parent = cnode:parent()
-				--if local_parent:data().child_visible_ and local_parent:data().list_elment_:IsVisible() then
-					control:SetVisible(true)
-                --end 
-			else
-				control:SetVisible(false)
-            end
-		end
-	end
+    for i=1, node:num_children() do
+        local cnode = node:child(i)
+        cnode:SetNodeVisible(visible)
+    end
 end
 
 function TreeView:SetNodeVisible(node, visible)
@@ -353,18 +375,20 @@ function TreeView:SetNodeVisible(node, visible)
         return
     end
 
-    if node:parent() and not node:parent():IsExpand() then
-        return
+    if node:parent() and node:parent() ~= self.root_node_ then
+        if visible and not node:parent():IsExpand() then 
+            return
+        end
     end
 
-    if visible == node:data().list_elment_:IsVisible() then
-        return
+    if visible ~= node:data().list_elment_:IsVisible() then
+        node:data().list_elment_:SetVisible(visible)
     end
-
-    node:data().list_elment_:SetVisible(visible)
 
     if node:IsExpand() then
         self:SetChildVisible(node, visible)
+    else
+        self:SetChildVisible(node, false)
     end
 end
 

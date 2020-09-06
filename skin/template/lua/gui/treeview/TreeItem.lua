@@ -129,12 +129,23 @@ function TreeItem:SetNodeVisible(visible)
     self.tree:SetNodeVisible(self, visible)
 end
 
+function TreeItem:IsVisible()
+    if not self:data().list_elment_ then 
+        return false
+    end
+    return self:data().list_elment_:IsVisible()
+end
+
 function TreeItem:CanExpand()
     return self.tree:CanExpand(self)
 end
 
 function TreeItem:IsExpand()
     return self.data_.has_expand_
+end
+
+function TreeItem:FilterSearch(txt)
+
 end
 
 return TreeItem
