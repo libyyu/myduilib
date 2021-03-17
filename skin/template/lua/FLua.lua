@@ -181,7 +181,7 @@ do
                 pcls = pcls.__parent
             end
 
-            do --gc
+            if not rawget(cls, "__destructor") then --gc
                 local function destructor_a(o, c)
                     local __destructor = rawget(c, "__destructor")
                     if __destructor then
