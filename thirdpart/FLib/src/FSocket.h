@@ -7,44 +7,30 @@
 #include <functional>
 #include <memory>
 #if FLIB_COMPILER_WINDOWS
-#ifndef _WINSOCK_DEPRECATED_NO_WARNINGS
-#define _WINSOCK_DEPRECATED_NO_WARNINGS
-#endif
 #if FLIB_COMPILER_64BITS
 #define F_SOCKET unsigned __int64
 #else
 #define F_SOCKET unsigned int
 #endif
-#define F_SOCK_STREAM 1
+#define F_SOCK_STREAM    1
 #define F_INVALID_SOCKET (F_SOCKET)(~0)
-#define socklen_t int
-#define F_SOCKET_STARTUP               \
-	{ WSADATA wsd; ::WSAStartup(MAKEWORD(2, 2), &wsd); }
-#define F_SOCKET_CLEANUP               \
-	{ ::WSACleanup(); }
-#define F_ERRNO WSAGetLastError()
+#define F_SOCKET_ERROR   (F_SOCKET)(~0)
 #else
-#include <errno.h>
-#include <netdb.h>
-#include <sys/socket.h> 
-#include <sys/types.h>
-#include <netinet/in.h>
-#include <netinet/tcp.h>
-#include <arpa/inet.h>
-#include <sys/ioctl.h>
-#include <fcntl.h>
-#include <unistd.h>
-#define F_SOCKET int
-#define F_SOCK_STREAM SOCK_STREAM
-#define F_INVALID_SOCKET -1
-#define INVALID_SOCKET F_INVALID_SOCKET
-#define SOCKET_ERROR -1
-#define F_SOCKET_STARTUP 	signal(SIGPIPE, SIG_IGN);
-#define F_SOCKET_CLEANUP
-#define F_ERRNO errno
+#define F_SOCKET            int
+#define F_SOCK_STREAM       1
+#define F_INVALID_SOCKET   -1
+#define F_SOCKET_ERROR     -1
 #endif
 
+#define F_SOCKET_STARTUP 	_FStd(FSocketStartup)();
+#define F_SOCKET_CLEANUP    _FStd(FSocketCleanup)();
+#define F_ERRNO             _FStd(FGetNetLastError)()
+
 _FStdBegin
+
+F_DLL_API int FGetNetLastError();
+F_DLL_API int FSocketStartup();
+F_DLL_API int FSocketCleanup();
 
 class F_DLL_API FSockAddr
 {
@@ -55,7 +41,6 @@ public:
 	FSockAddr(unsigned short uport, const char* ip = NULL);
 	~FSockAddr();
 	void* SockAddr() const;
-	socklen_t addlen;
 };
 
 class F_DLL_API FSocket

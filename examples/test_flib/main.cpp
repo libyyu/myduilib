@@ -2,7 +2,7 @@
 #include <iostream>
 
 #ifdef FLIB_COMPILER_WINDOWS
-#include <Windows.h>
+//#include <Windows.h>
 #endif // FLIB_COMPILER_WINDOWS
 std::string path = _FStd(FGetDirectory)(_FStd(FGetModulePath()));
 static _FStd(FAutoFile) fGlobalLog((path+"/log.txt").c_str());
